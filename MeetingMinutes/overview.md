@@ -45,7 +45,8 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 - 2024-01-26, 11:00 am to 12:00 am CET - canceled
 
 ### February
-- 2024-02-02, 11:00 am to 12:00 am CET
+- [2024-02-02, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/AhsOuu4sc)
+  - <sup>Exploring TransFusion Development Insights, Free-Connected Mode Switch Conditions, Test Scenarios for Mode Transition, Derivation Chain Depths, Content Nesting in TransFusion Implementation, and Translation Handling Extension Test Cases Discussion</sup>
 - 2024-02-09, 11:00 am to 12:00 am CET
 - 2024-02-16, 11:00 am to 12:00 am CET
 - 2024-02-23, 11:00 am to 12:00 am CET
