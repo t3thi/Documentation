@@ -56,65 +56,65 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
   - <sup>Submission for TransFusion Part 2 Development, t3_origuid Removal Impact, DataHandler Differentiation for pages and tt_content, and Free/Connected Mode Discussion for Pages</sup>
 
 ### March
-- 2024-03-01, 11:00 am to 12:00 am CET
-- 2024-03-08, 11:00 am to 12:00 am CET
-- 2024-03-15, 11:00 am to 12:00 am CET
-- 2024-03-22, 11:00 am to 12:00 am CET
-- 2024-03-29, 11:00 am to 12:00 am CET
+- 2024-03-01, 12:00 am to 13:00 am CET
+- 2024-03-08, 12:00 am to 13:00 am CET
+- 2024-03-15, 12:00 am to 13:00 am CET
+- 2024-03-22, 12:00 am to 13:00 am CET
+- 2024-03-29, 12:00 am to 13:00 am CET
 
 ### April
-- 2024-04-05, 11:00 am to 12:00 am CET
-- 2024-04-12, 11:00 am to 12:00 am CET
-- 2024-04-19, 11:00 am to 12:00 am CET
-- 2024-04-26, 11:00 am to 12:00 am CET
+- 2024-04-05, 12:00 am to 13:00 am CET
+- 2024-04-12, 12:00 am to 13:00 am CET
+- 2024-04-19, 12:00 am to 13:00 am CET
+- 2024-04-26, 12:00 am to 13:00 am CET
 
 ### May
-- 2024-05-03, 11:00 am to 12:00 am CET
-- 2024-05-10, 11:00 am to 12:00 am CET
-- 2024-05-17, 11:00 am to 12:00 am CET
-- 2024-05-24, 11:00 am to 12:00 am CET
-- 2024-05-31, 11:00 am to 12:00 am CET
+- 2024-05-03, 12:00 am to 13:00 am CET
+- 2024-05-10, 12:00 am to 13:00 am CET
+- 2024-05-17, 12:00 am to 13:00 am CET
+- 2024-05-24, 12:00 am to 13:00 am CET
+- 2024-05-31, 12:00 am to 13:00 am CET
 
 ### June
-- 2024-06-07, 11:00 am to 12:00 am CET
-- 2024-06-14, 11:00 am to 12:00 am CET
-- 2024-06-21, 11:00 am to 12:00 am CET
-- 2024-06-28, 11:00 am to 12:00 am CET
+- 2024-06-07, 12:00 am to 13:00 am CET
+- 2024-06-14, 12:00 am to 13:00 am CET
+- 2024-06-21, 12:00 am to 13:00 am CET
+- 2024-06-28, 12:00 am to 13:00 am CET
 
 ### July
-- 2024-07-05, 11:00 am to 12:00 am CET
-- 2024-07-12, 11:00 am to 12:00 am CET
-- 2024-07-19, 11:00 am to 12:00 am CET
-- 2024-07-26, 11:00 am to 12:00 am CET
+- 2024-07-05, 12:00 am to 13:00 am CET
+- 2024-07-12, 12:00 am to 13:00 am CET
+- 2024-07-19, 12:00 am to 13:00 am CET
+- 2024-07-26, 12:00 am to 13:00 am CET
 
 ### August
-- 2024-08-02, 11:00 am to 12:00 am CET
-- 2024-08-09, 11:00 am to 12:00 am CET
-- 2024-08-16, 11:00 am to 12:00 am CET
-- 2024-08-23, 11:00 am to 12:00 am CET
-- 2024-08-30, 11:00 am to 12:00 am CET
+- 2024-08-02, 12:00 am to 13:00 am CET
+- 2024-08-09, 12:00 am to 13:00 am CET
+- 2024-08-16, 12:00 am to 13:00 am CET
+- 2024-08-23, 12:00 am to 13:00 am CET
+- 2024-08-30, 12:00 am to 13:00 am CET
 
 ### September
-- 2024-09-06, 11:00 am to 12:00 am CET
-- 2024-09-13, 11:00 am to 12:00 am CET
-- 2024-09-20, 11:00 am to 12:00 am CET
-- 2024-09-27, 11:00 am to 12:00 am CET
+- 2024-09-06, 12:00 am to 13:00 am CET
+- 2024-09-13, 12:00 am to 13:00 am CET
+- 2024-09-20, 12:00 am to 13:00 am CET
+- 2024-09-27, 12:00 am to 13:00 am CET
 
 ### October
-- 2024-10-04, 11:00 am to 12:00 am CET
-- 2024-10-11, 11:00 am to 12:00 am CET
-- 2024-10-18, 11:00 am to 12:00 am CET
-- 2024-10-25, 11:00 am to 12:00 am CET
+- 2024-10-04, 12:00 am to 13:00 am CET
+- 2024-10-11, 12:00 am to 13:00 am CET
+- 2024-10-18, 12:00 am to 13:00 am CET
+- 2024-10-25, 12:00 am to 13:00 am CET
 
 ### November
-- 2024-11-01, 11:00 am to 12:00 am CET
-- 2024-11-08, 11:00 am to 12:00 am CET
-- 2024-11-15, 11:00 am to 12:00 am CET
-- 2024-11-22, 11:00 am to 12:00 am CET
-- 2024-11-29, 11:00 am to 12:00 am CET
+- 2024-11-01, 12:00 am to 13:00 am CET
+- 2024-11-08, 12:00 am to 13:00 am CET
+- 2024-11-15, 12:00 am to 13:00 am CET
+- 2024-11-22, 12:00 am to 13:00 am CET
+- 2024-11-29, 12:00 am to 13:00 am CET
 
 ### December
-- 2024-12-06, 11:00 am to 12:00 am CET
-- 2024-12-13, 11:00 am to 12:00 am CET
-- 2024-12-20, 11:00 am to 12:00 am CET
-- 2024-12-27, 11:00 am to 12:00 am CET
+- 2024-12-06, 12:00 am to 13:00 am CET
+- 2024-12-13, 12:00 am to 13:00 am CET
+- 2024-12-20, 12:00 am to 13:00 am CET
+- 2024-12-27, 12:00 am to 13:00 am CET
