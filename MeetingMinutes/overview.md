@@ -48,9 +48,12 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 ### February
 - [2024-02-02, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/AhsOuu4sc)
   - <sup>Exploring TransFusion Development Insights, Free-Connected Mode Switch Conditions, Test Scenarios for Mode Transition, Derivation Chain Depths, Content Nesting in TransFusion Implementation, and Translation Handling Extension Test Cases Discussion</sup>
-- 2024-02-09, 11:00 am to 12:00 am CET
-- 2024-02-16, 11:00 am to 12:00 am CET
-- 2024-02-23, 11:00 am to 12:00 am CET
+- [2024-02-09, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/XjJRqypcF)
+  - <sup>Collaboration on Core Patches, t3_origuid Field Discussion, and Styling for Translation Handling Test Extension Based on Bootstrap</sup>
+- [2024-02-16, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/OOMfIRbU9)
+  - <sup>Discussion on t3_origuid Necessity, Translate Button Bug in Page Module, and Workflow for Functional Testing</sup>
+- [2024-02-23, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/PcznGvQa4)
+  - <sup>Submission for TransFusion Part 2 Development, t3_origuid Removal Impact, DataHandler Differentiation for pages and tt_content, and Free/Connected Mode Discussion for Pages</sup>
 
 ### March
 - 2024-03-01, 11:00 am to 12:00 am CET
