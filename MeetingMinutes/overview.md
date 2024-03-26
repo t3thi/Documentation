@@ -57,9 +57,11 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 - [**2024-02 Monthly report**](https://notes.typo3.org/s/UExP2O4-i)
 
 ### March
-- 2024-03-01, 12:00 am to 13:00 am CET
-- 2024-03-08, 12:00 am to 13:00 am CET
-- 2024-03-15, 12:00 am to 13:00 am CET
+- [2024-03-01, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/dYLClg7ji)
+  - <sup>Handling Translated Content on Unsupported Pages, Structural Changes by Non-Default Language Editors, Free/Connected Mode Distinctions, and Standardizing Free/Connected Mode Behavior Across Levels</sup>
+- [2024-03-08, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/K7A5AG42z)
+  - <sup>Teaser Image Selection, TransFusion Development Update, Presentation at Contribution Fair, Core Patches on Content Translation, and Meeting Cancellation</sup>
+- 2024-03-15, 12:00 am to 13:00 am CET - canceled due to participation in [T3CMD](https://typo3-camp-mitteldeutschland.de/)
 - 2024-03-22, 12:00 am to 13:00 am CET
 - 2024-03-29, 12:00 am to 13:00 am CET
 
