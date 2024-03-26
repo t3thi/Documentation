@@ -54,6 +54,7 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
   - <sup>Discussion on t3_origuid Necessity, Translate Button Bug in Page Module, and Workflow for Functional Testing</sup>
 - [2024-02-23, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/PcznGvQa4)
   - <sup>Submission for TransFusion Part 2 Development, t3_origuid Removal Impact, DataHandler Differentiation for pages and tt_content, and Free/Connected Mode Discussion for Pages</sup>
+- [**2024-02 Monthly report**](https://notes.typo3.org/s/UExP2O4-i)
 
 ### March
 - 2024-03-01, 12:00 am to 13:00 am CET
