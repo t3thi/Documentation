@@ -68,7 +68,8 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
   - <sup>TransFusion Feedback and Future Plans, Issues Discussion and Ticket Creation, Output Behavior of TransFusion Connector, Columns Necessity Debate, AI Content Reference Checking Idea, Irreversible Process Discussions, Direct Editing via Connector, and André's Core Patches Update</sup>
 
 ### April
-- 2024-04-05, 12:00 am to 13:00 am CET
+- [2024-04-05, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/D6Pwmi6Pi)
+  - <sup>TransFusion Extension Testing, Core Team Engagement, Functional Test Adjustments, Inline Relations and l10n_mode Exclusions, Reference Dilemmas in Localization</sup>
 - 2024-04-12, 12:00 am to 13:00 am CET
 - 2024-04-19, 12:00 am to 13:00 am CET
 - 2024-04-26, 12:00 am to 13:00 am CET
