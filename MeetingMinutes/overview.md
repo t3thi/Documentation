@@ -64,7 +64,8 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 - 2024-03-15, 12:00 am to 13:00 am CET - canceled due to participation in [T3CMD](https://typo3-camp-mitteldeutschland.de/)
 - [2024-03-22, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/kqdwFxW1m)
   - <sup>Editorial Challenges in Translation Modes, Sorting in TYPO3, Export/Import of Translations, TransFusion Functionality and Sorting, Editorially Undesirable Changes in Scroll Position, Language Selection for Display, Save & Close Functionality, Idea for a Freely Configurable Backend Interface, and Ongoing Core Patches Discussion</sup>
-- 2024-03-29, 12:00 am to 13:00 am CET
+- [2024-03-29, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/zwPjAXMLw)
+  - <sup>TransFusion Feedback and Future Plans, Issues Discussion and Ticket Creation, Output Behavior of TransFusion Connector, Columns Necessity Debate, AI Content Reference Checking Idea, Irreversible Process Discussions, Direct Editing via Connector, and André's Core Patches Update</sup>
 
 ### April
 - 2024-04-05, 12:00 am to 13:00 am CET
