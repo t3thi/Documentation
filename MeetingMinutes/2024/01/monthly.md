@@ -9,7 +9,7 @@ title: "2024-01 - Translation Handling Initiative - Monthly report"
 
 ## What happened since the last report?
 
-- **Discussion with core developer Christian Kuhn**
+- **Discussion with core developer Lolli**
   - The removal of `sys_language_uid` -1 was noted as a primary goal
   - Alternative ways for "All Languages" functionality were discussed (bool field at default language level)
   - Definition of the goal of converting the integer storage of languages to string (according to BCP47)
@@ -49,7 +49,7 @@ title: "2024-01 - Translation Handling Initiative - Monthly report"
 
 ## Any last words
 
-- The discussions with Christian Kuhn were very informative. Our immediate goals in terms of contributing to the core code were clarified.
+- The discussions with Lolli were very informative. Our immediate goals in terms of contributing to the core code were clarified.
 - We now hope to find a way into the core contribution soon.
 - Unfortunately, this month we also had to contend with absences due to illness and a heavy workload for various team members outside of the work of the initiative.
 

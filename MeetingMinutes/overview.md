@@ -41,7 +41,7 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 - [2024-01-12, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/ANe0QizZ2)
   - <sup>TransFusion Budget Development, Core Analysis, Developer Coordination, and Translation Handling Extension Development</sup>
 - [2024-01-19, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/sEONb4kd6)
-  - <sup>Conversations with Core Developer Christian Kuhn, Technical Challenges and Solutions in Code Analysis, Language Configuration and Translation, Feature Toggles Debate, and Testing Focus for TYPO3 Development</sup>
+  - <sup>Conversations with Core Developer Lolli, Technical Challenges and Solutions in Code Analysis, Language Configuration and Translation, Feature Toggles Debate, and Testing Focus for TYPO3 Development</sup>
 - 2024-01-26, 11:00 am to 12:00 am CET - canceled
 - [**2024-01 Monthly report**](https://notes.typo3.org/s/mbML1ruZC)
 

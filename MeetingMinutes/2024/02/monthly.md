@@ -22,7 +22,7 @@ title: "2024-02 - Translation Handling Initiative - Monthly report"
   - Examination of functional tests especially regarding work with CSV files
   - First attempts in the form of WIP patches
   - Examination of the possibility of checking/updating the existing patches locally
-- **Discussion of questions raised by Core-Developer Christian Kuhn**
+- **Discussion of questions raised by Core-Developer Lolli**
   - Pros and cons of the distinction between records and pages in the DataHandler
   - Free/connected modes on the `pages` level
   - Current handling of the configuration `l10n_mode=exclude` and associated issues
@@ -35,7 +35,7 @@ title: "2024-02 - Translation Handling Initiative - Monthly report"
 - Further familiarization with the creation of core patches
 - Further development of the core patches we have already created
 - Translation handling-related discussions with the community at T3CMD24 (14.03. - 16.03.2024 )
-- Deepening the strategic issues in collaboration with Christian Kuhn
+- Deepening the strategic issues in collaboration with Lolli
 
 ## Any scope changes?
 - So far, nothing has changed in the scope of our initiative.
@@ -48,7 +48,7 @@ title: "2024-02 - Translation Handling Initiative - Monthly report"
 
 ## Any last words
 
-- We are grateful that Christian is sharing his translation handling work with us. This allows us to sharpen our own understanding of core patch processes
+- We are grateful that Lolli is sharing his translation handling work with us. This allows us to sharpen our own understanding of core patch processes
 - It is now motivating to have launched the first own WIP core patches from our team and to be able to discuss them within the team
 
 ## February Team Meeting Minutes
