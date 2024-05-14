@@ -79,8 +79,9 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
   - <sup>Finalization of Tests, Chat Recap with Frank, l10n_mode Detachability Investigations, and l10n_state Pitfalls and Optimizations</sup>
 
 ### May
-- 2024-05-03, 12:00 am to 13:00 am CET
-- 2024-05-10, 12:00 am to 13:00 am CET
+- 2024-05-03, 12:00 am to 13:00 am CET - canceled
+- [2024-05-10, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/_tq-Z1Stl)
+  - <sup>Finalizing Patch Commit Messages, Localized Content Handling, Language Removal Impacts, Cross-Team Coordination, Initiative Documentation and XLIFF Label Management Optimization</sup>
 - 2024-05-17, 12:00 am to 13:00 am CET
 - 2024-05-24, 12:00 am to 13:00 am CET
 - 2024-05-31, 12:00 am to 13:00 am CET
