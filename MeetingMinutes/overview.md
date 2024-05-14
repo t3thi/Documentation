@@ -73,8 +73,10 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
   - <sup>TransFusion Extension Testing, Core Team Engagement, Functional Test Adjustments, Inline Relations and l10n_mode Exclusions, Reference Dilemmas in Localization</sup>
 - [2024-04-12, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/gjl-sog92)
   - <sup>Core Patch Clean-Up, Record Translation Handling, l10n_mode=exclude Issues, and Localization State Management Discussion</sup>
-- 2024-04-19, 12:00 am to 13:00 am CET
-- 2024-04-26, 12:00 am to 13:00 am CET
+- [2024-04-19, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/oUDtK-JnP)
+  - <sup>Evaluation Criteria Inconsistency for 'Unique' Fields, CSV Revision Workflow Demonstration</sup>
+- [2024-04-26, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/D32XRXoCk)
+  - <sup>Finalization of Tests, Chat Recap with Frank, l10n_mode Detachability Investigations, and l10n_state Pitfalls and Optimizations</sup>
 
 ### May
 - 2024-05-03, 12:00 am to 13:00 am CET
