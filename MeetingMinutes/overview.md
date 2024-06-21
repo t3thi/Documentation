@@ -77,17 +77,21 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
   - <sup>Evaluation Criteria Inconsistency for 'Unique' Fields, CSV Revision Workflow Demonstration</sup>
 - [2024-04-26, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/D32XRXoCk)
   - <sup>Finalization of Tests, Chat Recap with Frank, l10n_mode Detachability Investigations, and l10n_state Pitfalls and Optimizations</sup>
+- [**2024-04 Monthly report**](https://notes.typo3.org/s/2GMAFGAwl)
 
 ### May
 - 2024-05-03, 12:00 am to 13:00 am CET - canceled
 - [2024-05-10, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/_tq-Z1Stl)
   - <sup>Finalizing Patch Commit Messages, Localized Content Handling, Language Removal Impacts, Cross-Team Coordination, Initiative Documentation and XLIFF Label Management Optimization</sup>
-- 2024-05-17, 12:00 am to 13:00 am CET
-- 2024-05-24, 12:00 am to 13:00 am CET
-- 2024-05-31, 12:00 am to 13:00 am CET
+- [2024-05-17, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/7h2OsaMDJ)
+  - <sup>Exploring Language ID Flexibility, Default Language Deletion Concerns, and Enhancements in Multilingual Site Management</sup>
+- [2024-05-24, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/i7jdSxg1G)
+  - <sup>Configurable Default Language UID Challenges, Custom Locales and TYPO3 Language Properties, Locale Mapping Issues in Site Configuration</sup>
+- [2024-05-31, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/ftdguxwrE)
+    - <sup>Copy Patch Completion, Move Record Patch Discussion, Locale Output Challenges, Language Identifier Updates, and Default Language Configuration Enhancement</sup>
 
 ### June
-- 2024-06-07, 12:00 am to 13:00 am CET
+- [2024-06-07, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/bOmHztnp4)
 - 2024-06-14, 12:00 am to 13:00 am CET
 - 2024-06-21, 12:00 am to 13:00 am CET
 - 2024-06-28, 12:00 am to 13:00 am CET
