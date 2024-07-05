@@ -4,6 +4,10 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 
 # Translation Handling Initiative<br>Team Meeting Minutes Overview
 
+## Current state
+
+[Click here for the current state of the initiative](https://notes.typo3.org/s/RhkYPguwb)
+
 ## 2023
 
 ### October
@@ -89,12 +93,18 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
   - <sup>Configurable Default Language UID Challenges, Custom Locales and TYPO3 Language Properties, Locale Mapping Issues in Site Configuration</sup>
 - [2024-05-31, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/ftdguxwrE)
     - <sup>Copy Patch Completion, Move Record Patch Discussion, Locale Output Challenges, Language Identifier Updates, and Default Language Configuration Enhancement</sup>
+- [**2024-05 Monthly report**](https://notes.typo3.org/s/Q0m01tZdw)
 
 ### June
 - [2024-06-07, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/bOmHztnp4)
-- 2024-06-14, 12:00 am to 13:00 am CET
-- 2024-06-21, 12:00 am to 13:00 am CET
-- 2024-06-28, 12:00 am to 13:00 am CET
+  - <sup>Documentation Status Update, Configurable Default Language Discussions, Locale Management Changes, TYPO3 Product Strategy Exploration, and Core Change Consensus Processes</sup>
+- [2024-06-14, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/75adkC7sT)
+  - <sup>Configurable Default Language Patch Challenges, Developer Resource Allocation, Potential Co-Lead Changes, and Language Menu Patch Review</sup>
+- [2024-06-21, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/l0_ju_W5Z)
+  - <sup>Discussion on Removal of sys_language_uid -1, Locale-Based Language Identification, and Review of Yannis's Patch for Language Menu Links</sup>
+- [2024-06-28, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/GQwWxdUKO)
+  - <sup>Strategic Delays and Prioritization of sys_language_uid=-1 Removal, Synchronisation Mechanisms, Mission Statement Development, and Bachelor Thesis Collaboration on AI-based Content Translation</sup>
+- [**2024-06 Monthly report**](https://notes.typo3.org/s/Ab27RA8iH)
 
 ### July
 - 2024-07-05, 12:00 am to 13:00 am CET
@@ -103,7 +113,7 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 - 2024-07-26, 12:00 am to 13:00 am CET
 
 ### August
-- 2024-08-02, 12:00 am to 13:00 am CET
+- 2024-08-02, 12:00 am to 13:00 am CET - canceled due to participation in [T3DD](https://t3dd24.typo3.com/)
 - 2024-08-09, 12:00 am to 13:00 am CET
 - 2024-08-16, 12:00 am to 13:00 am CET
 - 2024-08-23, 12:00 am to 13:00 am CET
