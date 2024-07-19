@@ -107,8 +107,10 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 - [**2024-06 Monthly report**](https://notes.typo3.org/s/Ab27RA8iH)
 
 ### July
-- 2024-07-05, 12:00 am to 13:00 am CET
-- 2024-07-12, 12:00 am to 13:00 am CET
+- [2024-07-05, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/TnJ7XbZXA)
+  - <sup>Mission Statement Discussions, AI-Based Translation Thesis Support, and Preparations for Summer Break and TYPO3 Developer Days</sup>
+- [2024-07-12, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/KTU3eLG1T)
+  - <sup>Preview of the TYPO3 Developer Days, Coding Night Applications and off-topic discussions</sup>
 - 2024-07-19, 12:00 am to 13:00 am CET
 - 2024-07-26, 12:00 am to 13:00 am CET
 
