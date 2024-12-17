@@ -121,9 +121,11 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
     - <sup>Mission Statement Discussions, AI-Based Translation Thesis Support, and Preparations for Summer Break and TYPO3 Developer Days</sup>
 - [2024-07-12, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/KTU3eLG1T)
     - <sup>Preview of the TYPO3 Developer Days, Coding Night Applications and off-topic discussions</sup>
-- 2024-07-19, 12:00 am to 13:00 am CET - Protocol still pending
-- 2024-07-26, 12:00 am to 13:00 am CET - Protocol still pending
-- **2024-07 Monthly report** - report still pending
+- [2024-07-19, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/ZM9retpWm)
+    - <sup>Recording broken, Protocol impossible</sup>
+- [2024-07-26, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/WcJjB8x0-)
+    - <sup>Deprecating Special Values for 'All Languages' Handling, Preparing for TYPO3 Developer Days, and Optimizing Changelog Annotations</sup>
+- [**2024-07 Monthly report**](https://notes.typo3.org/s/82idKXHAi)
 
 ### August
 
