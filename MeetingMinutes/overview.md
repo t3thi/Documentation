@@ -146,29 +146,35 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
     - <sup>TYPO3 Camp Munich Recap, IRRE Record Multiplication, MM Relation Editability, Language Consistency in MM Relations, and Automated Translation Creation Discussion</sup>
 - [2024-09-27, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/jFpzn3E6J)
     - <sup>Handling Inline Child Elements in Translations, Language Consistency in MM Relations, and Enhancements to Translation Processes</sup>
-- **2024-09 Monthly report** - report still pending
+- [**2024-09 Monthly report**](https://notes.typo3.org/s/v-Yha-wi_)
 
 ### October
 
-- 2024-10-04, 12:00 am to 13:00 am CET - Protocol still pending
+- [2024-10-04, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/RX64ozM6e)
+    - <sup>Revision of Copy Record Process, Addressing Translation Gaps in MM Relations, and Language -1 Sorting Test Preparations</sup>
 - 2024-10-11, 12:00 am to 13:00 am CET - canceled
 - [2024-10-18, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/8vI0MnUbs)
     - <sup>MM Record Handling and Translation Gaps, DataHandler Synchronization Standards, Translation Handling Strategy Development, and TCA Cleanup for Language Synchronization</sup>
-- 2024-10-25, 12:00 am to 13:00 am CET - Protocol still pending
-- **2024-10 Monthly report** - report still pending
+- [2024-10-25, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/zhyro-T1z)
+    - <sup>Inline Child Elements Handling in Language Copies, Move Language Tests, and Discussion on Data Handling Improvements</sup>
+- [**2024-10 Monthly report**](https://notes.typo3.org/s/JcK1ZQAPX)
 
 ### November
 
 - 2024-11-01, 12:00 am to 13:00 am CET - canceled
 - 2024-11-08, 12:00 am to 13:00 am CET - canceled
-- 2024-11-15, 12:00 am to 13:00 am CET - Protocol still pending
-- 2024-11-22, 12:00 am to 13:00 am CET - Protocol still pending
-- 2024-11-29, 12:00 am to 13:00 am CET - Protocol still pending
-- **2024-11 Monthly report** - report still pending
+- [2024-11-15, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/pc-a51MtE)
+    - <sup>TYPO3 Camp RheinRuhr Feedback, Formation of an Official Team, Development of a Translation Handling Strategy Paper, and Discussion on Special Cases in Translation Handling</sup>
+- [2024-11-22, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/rkkqO7DNC)
+    - <sup>Copy to Language Bugfix Updates, Language All Tests Development, and Collaborative Test Documentation Efforts</sup>
+- [2024-11-29, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/g3FkUQwXF)
+    - <sup>Status Update on Language Bugfix, Workspace Considerations in Language Tests, and Strategy Paper Budgeting</sup>
+- [**2024-11 Monthly report**](https://notes.typo3.org/s/ad2gSkf8U)
 
 ### December
 
-- 2024-12-06, 12:00 am to 13:00 am CET - Protocol still pending
+- [2024-12-06, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/nFE2KJ_ft)
+    - <sup>Language Synchronization Default Enablement in tt_content.assets, Breaking Changes in v14 Considered Acceptable, Detailed DataHandler Checks for Synchronization Integrity, Strategy concept state</sup>
 - 2024-12-13, 12:00 am to 13:00 am CET - canceled
 - 2024-12-20, 12:00 am to 13:00 am CET
 - 2024-12-27, 12:00 am to 13:00 am CET
