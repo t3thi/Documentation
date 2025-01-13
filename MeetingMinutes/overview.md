@@ -176,5 +176,6 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 - [2024-12-06, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/nFE2KJ_ft)
     - <sup>Language Synchronization Default Enablement in tt_content.assets, Breaking Changes in v14 Considered Acceptable, Detailed DataHandler Checks for Synchronization Integrity, Strategy concept state</sup>
 - 2024-12-13, 12:00 am to 13:00 am CET - canceled
-- 2024-12-20, 12:00 am to 13:00 am CET
-- 2024-12-27, 12:00 am to 13:00 am CET
+- [2024-12-20, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/J8BRk8TeQ)
+  - <sup>Yearly Review, Translation Handling Strategy Concept Development, Team Capacity Discussions, Language All Tests Design, and WIP Core Patch Setup</sup>
+- 2024-12-27, 12:00 am to 13:00 am CET - canceled
