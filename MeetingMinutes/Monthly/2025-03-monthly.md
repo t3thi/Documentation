@@ -8,23 +8,17 @@ title: "2025-03 - Translation Handling Initiative - Monthly report"
 
 ## What happened since the last report?
 
-- Discussed technical implications of `sys_language_uid = -1` and how to better support it within the translation infrastructure.
-- Reviewed options for an alternative translation system by analyzing workflows in other CMSs.
-- Structured and iteratively refined the initiative's conceptual roadmap, including milestones and responsibilities.
-- Evaluated AI-based approaches to support meeting documentation and concept development.
-- Identified sorting issues affecting translation behavior in TYPO3 v13 and documented them for follow-up.
-- Reflected on funding options and outlined possible approaches for future budget requests.
-- Began preparation of documentation describing the current state of translation handling in TYPO3.
-- Clarified long-term vision and goals of the initiative in relation to the TYPO3 ecosystem and stakeholder expectations.
-- Discussed implications of petition mechanisms within the TYPO3 Association General Assembly context.
+- Refined the overall concept by structuring responsibilities, outlining key milestones, and aligning long-term goals within the TYPO3 ecosystem.
+- Clarified the initiative’s vision and documented key aspects of the current translation handling to support further planning and onboarding.
+- Actively used AI tools to support the creation of weekly and monthly meeting protocols and evaluated further potential for concept support.
+- Analyzed translation sorting issues in TYPO3 v13 and discussed their relevance for future improvements.
+- Reflected on funding strategies and reviewed petition procedures within the TYPO3 Association context.
+- Took note of cross-CMS translation research being conducted independently by Olivier using community budget funds.
 
 ## What will happen until the next report?
 
+- Work towards a complete and structured outline to serve as a foundation for the next phase of concept development.
 - Continue documenting the current translation handling state to support onboarding and transparency.
-- Prepare revised funding proposals aligned with clarified initiative goals.
-- Further refine and consolidate the initiative’s internal concept based on structured input and community feedback.
-- Explore technical feasibility of selected translation system alternatives.
-- Initiate a review process for unresolved translation sorting inconsistencies in TYPO3 v13.
 
 ## Any scope changes?
 
@@ -37,7 +31,6 @@ title: "2025-03 - Translation Handling Initiative - Monthly report"
 ## Any last words?
 
 - Meeting on 2025-03-21 was canceled due to team participation in T3CMD.
-- AI-based tooling was repeatedly discussed but no concrete implementation has been initiated.
 
 ## March Team Meeting Minutes
 
