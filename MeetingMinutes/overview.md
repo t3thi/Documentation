@@ -179,3 +179,47 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 - [2024-12-20, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/J8BRk8TeQ)
   - <sup>Yearly Review, Translation Handling Strategy Concept Development, Team Capacity Discussions, Language All Tests Design, and WIP Core Patch Setup</sup>
 - 2024-12-27, 12:00 am to 13:00 am CET - canceled
+- [**2024-12 Monthly report**](https://notes.typo3.org/s/MzbDv5VIJ)
+
+## 2025
+
+### January
+
+- [2025-01-10, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/rIsoIhrv-)
+  - <sup>Inline Relations Localization Issues, Strategic Translation Planning, Removal of -1 Language Identifier, Test Development Strategies, l10n_diffsource Improvements, and Data Handling Challenges</sup>
+- [2025-01-17, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/yrsCuXK38)
+    - <sup>Discussion about Lollis list regarding Transition from sys_language_uid -1, DataHandler Synchronization Mechanisms, Translation Strategy Development</sup>
+- [2025-01-24, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/DHv7MrJBv)
+    - <sup>Resource Constraints, sys_language_uid -1 Transition, Synchronization Mechanisms, Migration Strategy, Strategic Planning, and File Translation Challenges</sup>
+- [2025-01-31, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/kEaZn6jJF)
+    - <sup>Proposal Follow-Up, sys_language_uid -1 Transition Plan, Migration Error Handling, UI Considerations, and AI-Assisted Translation Analysis</sup>
+- [**2025-01 Monthly report**](https://notes.typo3.org/s/XkwdAnBKs)
+
+### February
+
+- [2025-02-14, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/PAWSutG22)
+    - <sup>Funding Request Status, Community vs. Association Budget, sys_language_uid=-1 Transition, Translation Handling Strategy, UI Refinements, and Alternative Funding Options</sup>
+- [2025-02-21, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/wbl5hOP_y)
+    - <sup>Funding Request Follow-Up, Community vs. Association Budget, Strategic Budgeting Concerns, Board-Level Support, and TYPO3 Backend Sorting Issue Analysis</sup>
+- [2025-02-28, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/gFgzyB-V0)
+    - <sup>Funding Strategy and Community Budget Coordination, Roadmap Development, Visibility Enhancement, Contributor Engagement, and Organizational Improvements</sup>
+- [**2025-02 Monthly report**](https://notes.typo3.org/s/hudARdYLO)
+
+### March
+
+- [2025-03-07, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/INb4QE4IQ)
+    - <sup>Community Budget Application, Alternative Translation System Review, AI-Powered Meeting Minutes Workflow, Concept Development Plan, and sys_language_uid = -1 Strategy Refinement</sup>
+- [2025-03-14, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/taIdNg3ta)
+    - <sup>Inconsistent Translation Sorting in TYPO3 v13, AI-Based Concept Structuring, Vision Clarification, Funding Strategy, and General Assembly Petition Concerns</sup>
+- 2025-03-21, 12:00 am to 13:00 am CET - canceled due to participation in [T3CMD](https://typo3-camp-mitteldeutschland.de/)
+- [2025-03-28, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/OXmv36dSh)
+    - <sup>Cross-CMS Translation System Evaluation, AI Integration, TYPO3 Visibility Strategy, Concept Roadmap, Funding Perspectives, and Documentation of Current Translation State</sup>
+- [**2025-03 Monthly report**](https://notes.typo3.org/s/sts1h6r82)
+
+### April
+
+- [2025-04-04, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/R5p_9eZUR)
+    - <sup>AI-Supported Workflows, Collaboration with Olivier, Structure of 'Current State Analysis', Competitive System Review, Budget Planning, Core Coordination, Translation Copy Bug, and Strategic Role Alignment</sup>
+- [2025-04-11, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/4eXBXScHx)
+    - <sup>Current State Analysis Structure, Overlay vs. Fallback Concepts, Budget and Compensation Models, Translation Copy Bug Investigation, Scope Definition for Extensions, Terminology Alignment, and XLIFF System Text Planning</sup>
+- 2025-04-18, 12:00 am to 13:00 am CET - canceled
