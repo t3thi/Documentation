@@ -177,7 +177,7 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
     - <sup>Language Synchronization Default Enablement in tt_content.assets, Breaking Changes in v14 Considered Acceptable, Detailed DataHandler Checks for Synchronization Integrity, Strategy concept state</sup>
 - 2024-12-13, 12:00 am to 13:00 am CET - canceled
 - [2024-12-20, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/J8BRk8TeQ)
-  - <sup>Yearly Review, Translation Handling Strategy Concept Development, Team Capacity Discussions, Language All Tests Design, and WIP Core Patch Setup</sup>
+    - <sup>Yearly Review, Translation Handling Strategy Concept Development, Team Capacity Discussions, Language All Tests Design, and WIP Core Patch Setup</sup>
 - 2024-12-27, 12:00 am to 13:00 am CET - canceled
 - [**2024-12 Monthly report**](https://notes.typo3.org/s/MzbDv5VIJ)
 
@@ -186,7 +186,7 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 ### January
 
 - [2025-01-10, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/rIsoIhrv-)
-  - <sup>Inline Relations Localization Issues, Strategic Translation Planning, Removal of -1 Language Identifier, Test Development Strategies, l10n_diffsource Improvements, and Data Handling Challenges</sup>
+    - <sup>Inline Relations Localization Issues, Strategic Translation Planning, Removal of -1 Language Identifier, Test Development Strategies, l10n_diffsource Improvements, and Data Handling Challenges</sup>
 - [2025-01-17, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/yrsCuXK38)
     - <sup>Discussion about Lollis list regarding Transition from sys_language_uid -1, DataHandler Synchronization Mechanisms, Translation Strategy Development</sup>
 - [2025-01-24, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/DHv7MrJBv)
@@ -223,3 +223,9 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 - [2025-04-11, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/4eXBXScHx)
     - <sup>Current State Analysis Structure, Overlay vs. Fallback Concepts, Budget and Compensation Models, Translation Copy Bug Investigation, Scope Definition for Extensions, Terminology Alignment, and XLIFF System Text Planning</sup>
 - 2025-04-18, 12:00 am to 13:00 am CET - canceled
+- 2025-04-25, 12:00 am to 13:00 am CET - canceled
+
+### May
+
+- [2025-05-02, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/ohvqQACli)
+    - <sup>Concept Draft Review, Terminology Refinement, Multidimensional Translation Handling, Technical Clarifications, and Performance Considerations</sup>
