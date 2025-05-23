@@ -229,3 +229,9 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 
 - [2025-05-02, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/ohvqQACli)
     - <sup>Concept Draft Review, Terminology Refinement, Multidimensional Translation Handling, Technical Clarifications, and Performance Considerations</sup>
+- [2025-05-09, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/8w_-x7_m7)
+    - <sup>Concept Refinement and Coordination, Audience Targeting, TYPO3 Dimension Model Limitations, NEOS Comparison, Routing-Based Enhancements, and Extension Use Cases</sup>
+- 2025-05-16, 12:00 am to 13:00 am CET - canceled
+- [2025-05-23, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/cxmxQamlF)
+    - <sup>Document Progress and Structure, AI-Generated Content Review, Competitive Analysis Balance, Community Survey Plans, Contribution Tracking, and Strategic Framing of TYPO3 Translation Challenges</sup>
+  
