@@ -234,4 +234,44 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 - 2025-05-16, 12:00 am to 13:00 am CET - canceled
 - [2025-05-23, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/cxmxQamlF)
     - <sup>Document Progress and Structure, AI-Generated Content Review, Competitive Analysis Balance, Community Survey Plans, Contribution Tracking, and Strategic Framing of TYPO3 Translation Challenges</sup>
-  
+- [2025-05-30, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/o4zQHaqkm)
+    - <sup>Survey Outreach, AI-Generated Draft Validation, Documentation Purpose, Competitive System Comparison, Enterprise Translation Needs, and Planning of Improvement Recommendations</sup>
+
+### June
+
+- [2025-06-06, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/k569Hn3y8)
+    - <sup>DevDays Participation, AI Document Reliability Concerns, Strategic Position on Initiative Endorsement, Future Collaboration Conditions, and Technical Review of Extbase Translation Handling</sup>
+- [ 2025-06-13, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/nGaVmOSK3)
+    - <sup>Onboarding of New Contributor, Overview of Language Architecture, Synchronization Concepts, MM Relation Challenges, and BCP47 Language Strategy</sup>
+- 2025-06-20, 12:00 am to 13:00 am CET
+    - <sup>No Recording, Protocol impossible</sup>
+- 2025-06-27, 12:00 am to 13:00 am CET
+    - <sup>No Recording, Protocol impossible</sup>
+
+### July
+
+- [ 2025-07-04, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/dABVZY_Lw)
+    - <sup>Strategic Realignment of Concept Draft, Collaborative Authoring Tools, Core Objectives Definition, Community Feedback Integration, and Inclusive Contribution Process</sup>
+- [ 2025-07-11, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/k11hyaA4N)
+    - <sup>Concept Structuring, Language Layer Unification, Fallback Type Analysis, Default Language Decoupling, and Roadmap Towards BCP47-Based Language Handling</sup>
+- [ 2025-07-18, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/L0lQKrWaW)
+    - <sup>Concept Realignment and Goal Definition, Overlay and -1 Phase-Out, Structural Handling Models, Free vs. Connected Modes Evaluation, and Language Layer Consistency Strategies</sup>
+- [ 2025-07-25, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/dtw4v9T7S)
+    - <sup>BCP 47-Based Language Identification, Structural Decoupling of Default Language, Migration Strategy Design, Real-World TYPO3 Language Challenges, and Modular Concept Planning</sup>
+
+### August
+
+- [ 2025-08-01, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/31wHJBQf6)
+    - <sup>refine doc structure, separate state/conflicts/goals/measures, goals independent of implementation, example unique language IDs & remove -1, add intro with purpose/dependencies/sequence, use epic-story-task hierarchy</sup>
+- 2025-08-08, 12:00 am to 13:00 am CET - canceled due to participation in [T3DD](https://t3dd25.typo3.com/)
+- [ 2025-08-15, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/MeVwJYp_q)
+    - <sup>Parallel Strategy for Concept and Patch Development, Removal of -1, Enforced Language Synchronization, Free Mode Clarifications, and Iterative Justification Framework</sup>
+- [ 2025-08-22, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/gL97CaQ5M)
+  - <sup>Dual-Track Strategy for Concept and Core Work, Field-Level Synchronization Model, l10n_mode Evaluation, Complex Parent/Child Language Scenarios, and Transition from -1/0 to BCP 47 Identifiers</sup>
+- [ 2025-08-29, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/jm31KWH1P)
+  - <sup>Revival of Translation Handling Extension, Versioning Strategy, IRRE Language Test Scenarios, Reproducible Setup for Core Analysis, and Next Steps for Structured Extension Enhancement</sup>
+
+### September
+
+- [ 2025-09-05, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/Op7mIarOh)
+    - <sup>Translation Handling Extension Reactivation, Parent-Child Language -1 Behavior, Structured Test Case Design, TCA Variant Management, and Alignment with TYPO3 Core Testing Strategy</sup>
