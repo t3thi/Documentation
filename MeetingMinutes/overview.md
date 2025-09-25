@@ -275,3 +275,5 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 
 - [ 2025-09-05, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/Op7mIarOh)
     - <sup>Translation Handling Extension Reactivation, Parent-Child Language -1 Behavior, Structured Test Case Design, TCA Variant Management, and Alignment with TYPO3 Core Testing Strategy</sup>
+- [ 2025-09-19, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/KpzYPkMsd)
+    - <sup>Meeting Rhythm Adjustment, Extension CLI Refactoring, Directory Deletion Bug Handling, Deterministic Content Generation, Mode Inconsistencies, and Core Contribution Focus on sys_language_uid = -1</sup>
