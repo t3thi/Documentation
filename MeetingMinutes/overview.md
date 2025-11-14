@@ -289,3 +289,5 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
     - <sup>Translation Handling Extension Reactivation, CLI Improvements, Strategy Shift for -1 Removal, Parent-Child Synchronization Scenarios, Test Case Modeling, and Core Contribution Preparation</sup>
 - [ 2025-10-24, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/2Ysd3gDdn)
     - <sup>Review of Translation Fields, Deprecation of origUid, Synchronization Models, Shadow Records vs. Structural Layer, and Future Direction for Translation Architecture in TYPO3</sup>
+- [ 2025-10-31, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/9jtoPX7xB)
+    - <sup>Meeting Format Adjustments, CSP Regression in TYPO3 13.4.19, Real-World Translation Challenges, DeepL Extension Comparison, and Future of Structured Localization vs. Browser-Based Translation</sup>
