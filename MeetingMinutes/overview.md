@@ -296,3 +296,5 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 
 - [ 2025-11-07, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/P8ovO1nXD)
     - <sup>Extension Compatibility Progress, Automated Review Environments, Daily Deployment Task Scheduling, and Core-Based IRRE Testing for Translation Handling</sup>
+- [ 2025-11-14, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/77gZd2Onh)
+    - <sup>Meeting Frequency Review, TYPO3 v14 Compatibility Fixes, IRRE Translation Test Scenarios, Language Consistency Bugs, and Preparation of Forge Issue for Core Discussion</sup>
