@@ -287,3 +287,5 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 - 2025-10-10, 12:00 am to 13:00 am CET - canceled
 - [ 2025-10-17, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/YN1urJbqc)
     - <sup>Translation Handling Extension Reactivation, CLI Improvements, Strategy Shift for -1 Removal, Parent-Child Synchronization Scenarios, Test Case Modeling, and Core Contribution Preparation</sup>
+- [ 2025-10-24, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/2Ysd3gDdn)
+    - <sup>Review of Translation Fields, Deprecation of origUid, Synchronization Models, Shadow Records vs. Structural Layer, and Future Direction for Translation Architecture in TYPO3</sup>
