@@ -280,3 +280,10 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
     - <sup>Meeting Rhythm Adjustment, Extension CLI Refactoring, Directory Deletion Bug Handling, Deterministic Content Generation, Mode Inconsistencies, and Core Contribution Focus on sys_language_uid = -1</sup>
 - [ 2025-09-26, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/1RnTSuBsq)
     - <sup>Iterative Strategy Shift, Removal of -1, BCP 47 Language Identification, Core Test Preparation, Migration Roadmap, UI Inconsistencies, and Vision for Unified Translation Handling</sup>
+
+### October
+
+- 2025-10-03, 12:00 am to 13:00 am CET - canceled
+- 2025-10-10, 12:00 am to 13:00 am CET - canceled
+- [ 2025-10-17, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/YN1urJbqc)
+    - <sup>Translation Handling Extension Reactivation, CLI Improvements, Strategy Shift for -1 Removal, Parent-Child Synchronization Scenarios, Test Case Modeling, and Core Contribution Preparation</sup>
