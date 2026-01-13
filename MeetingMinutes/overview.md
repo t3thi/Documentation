@@ -298,3 +298,22 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
     - <sup>Extension Compatibility Progress, Automated Review Environments, Daily Deployment Task Scheduling, and Core-Based IRRE Testing for Translation Handling</sup>
 - [ 2025-11-14, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/77gZd2Onh)
     - <sup>Meeting Frequency Review, TYPO3 v14 Compatibility Fixes, IRRE Translation Test Scenarios, Language Consistency Bugs, and Preparation of Forge Issue for Core Discussion</sup>
+- [ 2025-11-21, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/3FGnIrj4e)
+    - <sup>Refinement of IRRE language-sync rules, parent–child deletion behavior, language as single dimension, handling edge cases when changing parent language, planned replacement of -1 with isLanguageAllRecord</sup>
+- [ 2025-11-28, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/Sxl-kkYjW)
+    - <sup>Meeting Rhythm Adjustment, Core WIP Patch Planning, Replacement of language = -1, Synchronization Logic Redefinition, Orphaned Record Handling, and Forge Ticket for Translation Warning</sup>
+
+### December
+
+- 2025-12-05, 12:00 am to 13:00 am CET - winter break
+- 2025-12-12, 12:00 am to 13:00 am CET - winter break
+- 2025-12-19, 12:00 am to 13:00 am CET - winter break
+- 2025-12-26, 12:00 am to 13:00 am CET - winter break
+
+## 2026
+
+### January
+
+- 2026-01-02, 12:00 am to 13:00 am CET - winter break
+- [ 2026-01-09, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/zF7_KgK0D1)
+  - <sup>AI-based analysis workflow to locate -1 language identifiers, create annotated TODOs for future refactor, propose WIP patch and review strategy with Lolli, plan phased move from comments to tests/refactoring</sup>
