@@ -2,8 +2,6 @@
 
 **Reference commit (HEAD):** `2925d44512d4dab4523451589defef339e6b662a`
 
-This table lists **each changed line** from the supplied diff (`current-state.diff`) that is related to the patch introducing marker comments for `sys_language_uid = -1` / LanguageAll handling.
-
 **Changed files:** 48
 **Changed lines (entries):** 82
 
