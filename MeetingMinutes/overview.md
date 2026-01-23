@@ -315,3 +315,5 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
   - <sup>AI-based analysis workflow to locate -1 language identifiers, create annotated TODOs for future refactor, propose WIP patch and review strategy with Lolli, plan phased move from comments to tests/refactoring</sup>
 - [ 2026-01-16, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/6lULa9vrCZ)
     - <sup>Manual Review of -1 Findings, Identification of False Positives, Non-Standard -1 Usage Cases, Deprecation Strategy, Migration Vision, and Preparation for String-Based Language Identifiers</sup>
+- [ 2026-01-16, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/HIWXn2SBCN)
+    - <sup>Global and Local Content Handling, Fallback Logic Challenges, Massive Duplicate Reference Bug, Copy Process Patch Analysis, TYPO3 v14 Translation Tests, and Planned Fix for Orphaned Page Records</sup>
