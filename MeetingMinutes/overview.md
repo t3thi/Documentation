@@ -4,10 +4,6 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 
 # Translation Handling Initiative<br>Team Meeting Minutes Overview
 
-## Current state
-
-[Click here for the current state of the initiative](https://notes.typo3.org/s/RhkYPguwb)
-
 ## 2023
 
 ### October
