@@ -315,5 +315,25 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
   - <sup>AI-based analysis workflow to locate -1 language identifiers, create annotated TODOs for future refactor, propose WIP patch and review strategy with Lolli, plan phased move from comments to tests/refactoring</sup>
 - [ 2026-01-16, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/6lULa9vrCZ)
     - <sup>Manual Review of -1 Findings, Identification of False Positives, Non-Standard -1 Usage Cases, Deprecation Strategy, Migration Vision, and Preparation for String-Based Language Identifiers</sup>
-- [ 2026-01-16, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/HIWXn2SBCN)
+- [ 2026-01-23, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/HIWXn2SBCN)
     - <sup>Global and Local Content Handling, Fallback Logic Challenges, Massive Duplicate Reference Bug, Copy Process Patch Analysis, TYPO3 v14 Translation Tests, and Planned Fix for Orphaned Page Records</sup>
+- [ 2026-01-30, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/0KdJoxvvjU#)
+    - <sup>AI-Assisted Patch Development, Translation Copy Logic Fixes, Non-Site Context Handling, Free Mode Translation Filtering, Test Coverage Expansion, and Extension Compatibility with TYPO3 v14</sup>
+
+### February
+
+- [ 2026-02-06, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/D8oadqoN-7#)
+    - <sup>Copy-content patch finalized, free-mode translation rendering bugfix, minimal-risk Fluid fallback accepted, new dbdoctor orphan-translation check (WIP)</sup>
+- [ 2026-02-13, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/2kiCxISGt9)
+    - <sup>Merged Copy Patches, `EXT:dbdoctor` Follow-Up, Free Mode Test Data Strategy, and DataHandler Filtering for Free Mode Copy Operations</sup>
+- [ 2026-02-20, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/DnwoiW1YXf)
+    - <sup>AI-Assisted Core Contribution Workflow, Copying Pages and Records into Language-Restricted Targets, MM Relation Concept, DataHandler Refactoring, and Camino Language Navigation</sup>
+
+### March
+
+- [ 2026-03-13, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/OrbcX9cNIY)
+    - <sup>Language Switching in Product Data, Orphaned Translation Warnings, Typolink rel Attribute Handling, Language All Test Coverage, and `EXT:dbdoctor` Review</sup>
+- [ 2026-03-20, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/uo9UqIMYo2)
+    - <sup>Cross-Translation Consistency for CType and colPos, DataHandler Language All Guard Research, Paste Semantics, and Workspace Copy Tests for Language All Content</sup>
+- [ 2026-03-27, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/hpp2clZ6Pg)
+    - <sup>AI-Assisted Extension Testing, rel Attribute Patch Review, Non-Language-Aware IRRE Children, Core Patch Status, Recent Core Features, Form Storage, and DevDays Talk Ideas</sup>
