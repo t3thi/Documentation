@@ -337,3 +337,8 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
     - <sup>Cross-Translation Consistency for CType and colPos, DataHandler Language All Guard Research, Paste Semantics, and Workspace Copy Tests for Language All Content</sup>
 - [ 2026-03-27, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/hpp2clZ6Pg)
     - <sup>AI-Assisted Extension Testing, rel Attribute Patch Review, Non-Language-Aware IRRE Children, Core Patch Status, Recent Core Features, Form Storage, and DevDays Talk Ideas</sup>
+
+### April
+
+- [ 2026-04-24, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/TODO-2026-04-24)
+    - <sup>Meeting Minutes Catch-Up, Merged Non-Language-Aware IRRE Child Patch, TYPO3 v15 Roadmap for Language All Removal, Free Mode Copy and Move Patches, Language All Test Coverage, Parent-Child IRRE Language Rules, and Lolli Coordination</sup>
