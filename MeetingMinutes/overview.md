@@ -342,3 +342,8 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 
 - [ 2026-04-24, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/TODO-2026-04-24)
     - <sup>Meeting Minutes Catch-Up, Merged Non-Language-Aware IRRE Child Patch, TYPO3 v15 Roadmap for Language All Removal, Free Mode Copy and Move Patches, Language All Test Coverage, Parent-Child IRRE Language Rules, and Lolli Coordination</sup>
+
+### May
+
+- [2026-05-08, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/TODO-2026-05-08)
+    - <sup>TYPO3 v15 Roadmap Contacts, Language All Removal Framing, `CType` and `colPos` Translation Lock, Hidden Structural Layer for Flexible Translations, Page Tree Translation UX, Editing Language Selector, and Prototype Planning</sup>
