@@ -347,3 +347,19 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 
 - [2026-05-08, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/TODO-2026-05-08)
     - <sup>TYPO3 v15 Roadmap Contacts, Language All Removal Framing, `CType` and `colPos` Translation Lock, Hidden Structural Layer for Flexible Translations, Page Tree Translation UX, Editing Language Selector, and Prototype Planning</sup>
+- [2026-05-29, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/0AJqa7JwuJ)
+    - <sup>Core Contribution Setup, Hidden Default Language Prototype, Shadow Records in Translations, Placeholder Visibility and Sorting Semantics, Structural Change Permissions, Backend Permission Testing, and June Meeting Schedule</sup>
+
+### June
+
+- [2026-06-11, 14:00 to 15:00 CET](https://notes.typo3.org/s/1-J3KsT7VU)
+    - <sup>Strict Mode Fallback Chain Regression, Core Patch Scope, TYPO3 Dialog Days Strategy Representation, Translation Handling Roadmap, `sys_language_uid` Special Value Removal, `BCP 47` Identifier Path, Hidden Structural Layer Strategy, and Strategy Material Preparation</sup>
+- [2026-06-26, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/-RP1PwIafA)
+    - <sup>Dialog Days Strategy Framing, Localization and Regionalization Use Cases, Mixed Mode Limits, Connected Structure Benefits, Hidden Structural Layer Model, Fallback Configuration, and Predictable Output Behavior</sup>
+
+### July
+
+- [2026-07-10, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/ccbVIOYfEy)
+    - <sup>Dialog Days Product Strategy Framing, Localization and Internationalization Structure Variants, `sys_language_uid` Special Value Cleanup, Multi-Dimensional Content Contexts, Fallback Visibility Semantics, and Explicit Synchronization Direction</sup>
+- [2026-07-24, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/Sn7GKjSk_3)
+    - <sup>Merged Mount Point Translation Patch, Initiative Direction After Dialog Days, `sys_language_uid = -1` Test Strategy, Free Mode Column Rendering, Mixed Mode Layout Semantics, Duplicate `l10n_parent` Prevention, Translation Wizard Source-Language Behavior, and DevDays Campfire Planning</sup>
