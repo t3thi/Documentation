@@ -21,6 +21,7 @@
 | [`QA-Report.md`](QA-Report.md) | Existing | Final corpus, citation, link, Markdown, content-status, and repository-boundary validation checkpoint. |
 | [`Distribution-Package.md`](Distribution-Package.md) | Existing | Manifest, checksums and deployment contract for the minimal static upload copy. |
 | [`../../MeetingMinutes/current-state.md`](../../MeetingMinutes/current-state.md) | Updated 2026-08-10 | Canonical living account reconstructed from the research, with the Four Responsibilities as its conceptual axis. |
+| [`../../MeetingMinutes/current-state.de.md`](../../MeetingMinutes/current-state.de.md) | Added 2026-08-10 | Semantically equivalent German publication version of the canonical Current State. |
 | [`../../MeetingMinutes/current-state-maintenance.md`](../../MeetingMinutes/current-state-maintenance.md) | Existing | Executable maintenance prompt and source-cutoff contract for future Current-State updates. |
 | [`../Current-State-Reconstruction-2026-08-10.md`](../Current-State-Reconstruction-2026-08-10.md) | Existing | Reconstruction audit, historical TODO disposition and live-status corrections applied after T3DD26. |
 | [`../../Presentation/T3DD26/README.md`](../../Presentation/T3DD26/README.md) | Existing | Production-ready offline Reveal.js deck, build/presenter instructions, accessibility contract, and presentation QA entry point. |

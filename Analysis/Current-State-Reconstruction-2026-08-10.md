@@ -49,6 +49,7 @@ No still-relevant content remains dependent on the deleted TODO file.
 ## Resulting canonical files
 
 - `MeetingMinutes/current-state.md`: present knowledge, vision, work, achievements and decisions.
+- `MeetingMinutes/current-state.de.md`: semantically equivalent German translation for publication at `https://notes.typo3.org/s/7bbwd73t2h`.
 - `MeetingMinutes/current-state-maintenance.md`: executable update process and minimal source-cutoff metadata.
 - `MeetingMinutes/todos.md`: removed after every still-relevant item was integrated contextually.
 
@@ -58,5 +59,13 @@ No still-relevant content remains dependent on the deleted TODO file.
 - Weekly evidence links use the corresponding Notes URLs recorded in `MeetingMinutes/overview.md` instead of repository-relative file paths.
 - The 2026-05-08 placeholder in `MeetingMinutes/overview.md` was replaced with `https://notes.typo3.org/s/-0p3kqzMll` and the target returned HTTP 200 on 2026-08-10.
 - The maintenance link points directly to `https://github.com/t3thi/Documentation/blob/main/MeetingMinutes/current-state-maintenance.md`.
-- All 49 unique Markdown link targets in `MeetingMinutes/current-state.md` returned a final HTTP 200 response on 2026-08-10.
+- All 50 unique Markdown link targets in `MeetingMinutes/current-state.md` returned a final HTTP 200 response on 2026-08-10 after the reciprocal language link was added.
 - `MeetingMinutes/current-state.md` contains no repository-relative Markdown link and no `TODO-*` link placeholder.
+
+## German translation
+
+- The German version preserves the complete structure, evidence, status distinctions and decision boundaries of the English canonical source.
+- Established TYPO3 Core names and technical identifiers remain unchanged where translation could alter their meaning.
+- The English and German versions link to each other through `https://notes.typo3.org/s/RhkYPguwb` and `https://notes.typo3.org/s/7bbwd73t2h`.
+- The German publication URL returned HTTP 200 before it was added as a cross-language link.
+- The maintenance process now requires semantic parity, matching metadata and reciprocal language links after every Current State update.

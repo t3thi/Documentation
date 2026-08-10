@@ -1,6 +1,7 @@
 ---
 title: "Translation Handling Initiative - Current State Maintenance"
 canonical_document: "current-state.md"
+translated_document: "current-state.de.md"
 last_completed_update: "2026-08-10"
 weekly_minutes_included_through: "2026-07-31"
 transcripts_included_through: "2026-07-31"
@@ -9,7 +10,7 @@ external_status_checked_through: "2026-08-10"
 
 # Maintain the Translation Handling Initiative Current State
 
-Use this document as the complete working prompt for updating the [Current State](https://github.com/t3thi/Documentation/blob/main/MeetingMinutes/current-state.md). Execute the process directly in the repository.
+Use this document as the complete working prompt for updating the [English Current State](https://github.com/t3thi/Documentation/blob/main/MeetingMinutes/current-state.md) and its German translation in `current-state.de.md`. Execute the process directly in the repository.
 
 The objective is to keep one coherent account of what the initiative currently knows, wants, investigates, improves and still needs to decide. Do not turn the Current State into a meeting chronology, changelog, patch dump or standalone backlog.
 
@@ -21,7 +22,7 @@ The two governing rules are:
 
 ## 1. Establish the update boundary
 
-1. Read this file and `current-state.md` completely.
+1. Read this file, `current-state.md` and `current-state.de.md` completely.
 2. Read the metadata fields at the top of both files.
 3. Enumerate all weekly minutes and transcripts by filename, not filesystem modification time:
 
@@ -56,7 +57,8 @@ For publication links in the Current State:
 2. Never publish a `TODO-*` placeholder or a repository-relative weekly-minutes link.
 3. If `overview.md` has no functional Notes link for a required source, resolve and verify that Notes URL before adding the source link to the Current State.
 4. Link this maintenance document through `https://github.com/t3thi/Documentation/blob/main/MeetingMinutes/current-state-maintenance.md`.
-5. Keep every Markdown link in the published Current State absolute so it works when the document is rendered at `https://notes.typo3.org/s/RhkYPguwb`.
+5. Link the English version at `https://notes.typo3.org/s/RhkYPguwb` to the German version at `https://notes.typo3.org/s/7bbwd73t2h` and vice versa.
+6. Keep every Markdown link in both published language versions absolute so it works when rendered through Notes.
 
 ## 3. Extract only state-changing information
 
@@ -184,19 +186,30 @@ For relevant work not owned by the initiative, document:
 
 Do not reject a useful incremental fix merely because it does not implement the entire vision.
 
-## 10. Update metadata only after integration
+## 10. Maintain both language versions
+
+`current-state.md` remains the canonical working source. After its semantic update is complete, update `current-state.de.md` to the same state before finishing the task:
+
+1. Preserve the complete structure, claim scope, evidence links, status distinctions and decision boundaries of the English source.
+2. Translate explanatory prose precisely, but retain established TYPO3 Core names and technical identifiers such as `Site Language`, `Default Language`, Connected Mode, Free Mode, Mixed Mode, `Language All`, DataHandler, Workspaces, Extbase and TCA.
+3. Do not strengthen, weaken or resolve a claim through translation.
+4. Keep the four responsibility names **Language Identity**, **Synchronization Intent**, **Structural Identity** and **Output Policy** visible in both versions.
+5. Keep the metadata cutoff values identical in both documents.
+6. Ensure that both published versions link to each other through their absolute Notes URLs.
+
+## 11. Update metadata only after integration
 
 After all content changes are complete:
 
-1. Set `last_updated` in `current-state.md` to the update date.
+1. Set `last_updated` in both Current State files to the update date.
 2. Set both source cutoffs to the latest fully reviewed source dates.
 3. Set `external_status_checked_through` only if current Core/Gerrit/Forge states were actually revalidated.
 4. Copy the same four values into this maintenance document under `last_completed_update` and the three cutoff fields.
-5. Ensure the metadata in both files agrees exactly.
+5. Ensure the metadata in all three files agrees exactly.
 
-## 11. Required quality checks
+## 12. Required quality checks
 
-Read the complete updated Current State from beginning to end and verify:
+Read both complete language versions from beginning to end and verify:
 
 - a reader outside the initiative can understand every central term;
 - the document begins with needs and findings, not a preferred implementation;
@@ -211,7 +224,10 @@ Read the complete updated Current State from beginning to end and verify:
 - merged patches and active patches are not mixed;
 - no obsolete patch state remains;
 - no information is duplicated as a standalone TODO list;
-- every Markdown link in the published Current State is an absolute HTTPS URL;
+- the German document contains every claim from the English document with the same semantic and evidential status;
+- established TYPO3 Core names and technical identifiers were not translated into misleading alternatives;
+- both language versions link to each other through the correct absolute Notes URLs;
+- every Markdown link in both published Current State documents is an absolute HTTPS URL;
 - every linked weekly minute uses the corresponding Notes URL from `MeetingMinutes/overview.md`;
 - no published link contains a `TODO-*` placeholder;
 - external links are authoritative where possible;
@@ -219,17 +235,18 @@ Read the complete updated Current State from beginning to end and verify:
 - `git diff --check` passes;
 - unrelated user changes remain untouched.
 
-## 12. Execute the update
+## 13. Execute the update
 
 Perform the update directly in the repository:
 
 1. Read the selected new sources completely.
 2. Build a private change ledger with evidence, status and affected responsibility.
 3. Revalidate time-sensitive external state.
-4. Edit existing statements at their canonical locations.
+4. Edit existing statements at their canonical locations in the English source.
 5. Add only genuinely new concepts or work.
 6. Remove or replace superseded claims.
 7. Move patch entries when their lifecycle state changes.
-8. Update both metadata blocks.
-9. Run the required checks.
-10. Report which findings changed the Current State, which sources were reviewed and which decisions remain open.
+8. Synchronize the German translation without changing claim meaning or terminology status.
+9. Update all three metadata blocks.
+10. Run the required checks.
+11. Report which findings changed the Current State, which sources were reviewed and which decisions remain open.
