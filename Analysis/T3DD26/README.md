@@ -20,6 +20,9 @@
 | [`External-Technical-Validation.md`](External-Technical-Validation.md) | Existing | Time-sensitive verification of the official session information, Gerrit state, and local thematic/technical cross-checks. Revalidate live facts when reused. |
 | [`QA-Report.md`](QA-Report.md) | Existing | Final corpus, citation, link, Markdown, content-status, and repository-boundary validation checkpoint. |
 | [`Distribution-Package.md`](Distribution-Package.md) | Existing | Manifest, checksums and deployment contract for the minimal static upload copy. |
+| [`../../MeetingMinutes/current-state.md`](../../MeetingMinutes/current-state.md) | Updated 2026-08-10 | Canonical living account reconstructed from the research, with the Four Responsibilities as its conceptual axis. |
+| [`../../MeetingMinutes/current-state-maintenance.md`](../../MeetingMinutes/current-state-maintenance.md) | Existing | Executable maintenance prompt and source-cutoff contract for future Current-State updates. |
+| [`../Current-State-Reconstruction-2026-08-10.md`](../Current-State-Reconstruction-2026-08-10.md) | Existing | Reconstruction audit, historical TODO disposition and live-status corrections applied after T3DD26. |
 | [`../../Presentation/T3DD26/README.md`](../../Presentation/T3DD26/README.md) | Existing | Production-ready offline Reveal.js deck, build/presenter instructions, accessibility contract, and presentation QA entry point. |
 
 ### Complete source-audit set
@@ -34,7 +37,7 @@
 | [`SourceAudits/2026-Q1.md`](SourceAudits/2026-Q1.md) | Weekly minutes, January–March 2026, plus the available February/March transcripts | 10 Markdown files + 5 text transcripts |
 | [`SourceAudits/2026-April-May.md`](SourceAudits/2026-April-May.md) | Weekly minutes and transcripts for April–May 2026 | 3 Markdown files + 3 text transcripts |
 | [`SourceAudits/2026-June-July.md`](SourceAudits/2026-June-July.md) | Weekly minutes and transcripts for June–July 2026, including the read-only untracked 2026-07-31 minute | 5 Markdown files + 5 text transcripts |
-| [`SourceAudits/Monthly-and-Meta.md`](SourceAudits/Monthly-and-Meta.md) | Every monthly report plus `current-state.md`, `todos.md`, and `overview.md` | 19 Markdown files |
+| [`SourceAudits/Monthly-and-Meta.md`](SourceAudits/Monthly-and-Meta.md) | Every monthly report plus the pre-reconstruction snapshots of `current-state.md`, `todos.md`, and `overview.md` | 19 Markdown files |
 
 The audit partitions account for all 121 Markdown source documents and all 13 text transcripts in the defined corpus. No source document is intentionally counted in two period-audit file totals.
 
@@ -68,7 +71,7 @@ At the 2026-08-08 checkpoint, this is:
 3. **Record every file.** Each period audit contains a manifest or review ledger, including files that yielded no distinct T3DD26-relevant evidence.
 4. **Extract atomic claims.** Separate current behavior, problems, ideas, directions, open questions, plans, work in progress, implementations, and analytical recommendations.
 5. **Cite exact evidence.** Attach repository-relative paths, 1-based inclusive line ranges, and the source date to material claims.
-6. **Respect source hierarchy.** Transcripts preserve conversational nuance but may contain transcription errors; weekly minutes are edited summaries; monthly reports are secondary syntheses; `overview.md` is an index/locator; `current-state.md` and `todos.md` are historical snapshots rather than automatically current status.
+6. **Respect source hierarchy.** Transcripts preserve conversational nuance but may contain transcription errors; weekly minutes are edited summaries; monthly reports are secondary syntheses; `overview.md` is an index/locator. The versions of `current-state.md` and `todos.md` captured by the 2026-08-08 audit were historical snapshots. The Current State was reconstructed on 2026-08-10 and the TODO file was removed.
 7. **Reconstruct evolution.** Preserve earlier position → later correction/refinement → youngest defensible status. Frequency of discussion or confident wording alone does not establish consensus.
 8. **Apply newest-evidence precedence carefully.** Later evidence supersedes an older intermediate state only for the same question. It does not erase the reasoning path or silently resolve a different architectural question.
 9. **Distinguish source-backed and derived work.** Any inferred dependency, sequencing step, or recommendation must use `Analytically Derived Recommendation` and cite the source facts from which it follows.
@@ -130,7 +133,7 @@ Write absence claims as corpus-scoped findings, for example: “Not found in the
 - Automatic transcripts can contain speaker-label, terminology, punctuation, and recognition errors. Interpret a passage in surrounding context and avoid over-weighting an isolated phrase.
 - Weekly minutes are reviewed summaries, not verbatim records. Monthly reports summarize weekly work again and are best used for initiative-level emphasis/status corroboration.
 - `MeetingMinutes/overview.md` is an index and chronology aid. Its short descriptors are locators, not sufficient evidence for detailed technical semantics or consensus.
-- `MeetingMinutes/current-state.md` has no internal date and reflects a historical repository snapshot; `MeetingMinutes/todos.md` also lacks an internal source date and must not be treated as a live backlog without newer confirmation.
+- The Monthly-and-Meta audit preserves the pre-2026-08-10 state of `MeetingMinutes/current-state.md` and the former `MeetingMinutes/todos.md`. Its line citations to those two snapshots are historical audit evidence, not references to the reconstructed living document.
 - Some meetings were canceled, had no recording, or produced no usable protocol. Corpus completeness means every available included document was reviewed, not that every calendar meeting has a substantive source.
 - `MeetingMinutes/Weekly/2025/06/2025-06-13.md` states that it was reconstructed from memory and therefore carries lower confidence for fine technical detail.
 - `MeetingMinutes/Weekly/2025/11/2025-11-14.md` has a filename/internal-date discrepancy documented in the 2025 H2 audit. Preserve the discrepancy when reasoning chronologically.
