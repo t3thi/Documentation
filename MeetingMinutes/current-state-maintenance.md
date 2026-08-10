@@ -34,6 +34,7 @@ The two governing rules are:
 4. Select every source dated after `weekly_minutes_included_through` or `transcripts_included_through`.
 5. Also include an older source if it changed after the last update or if a new finding requires historical re-evaluation.
 6. Do not advance a cutoff until every source through that date has been read completely and either integrated or explicitly judged not to change the Current State.
+7. Treat supplied channel exports as supplemental snapshots. Record their scope and checksum in a durable audit, but do not advance the weekly-minute or transcript cutoffs because of them.
 
 The cutoff dates are the only ongoing tracking metadata. Do not create a parallel per-meeting inclusion ledger.
 
@@ -44,8 +45,9 @@ Use sources in this order:
 1. Current TYPO3 Core code and official Gerrit/Forge state for claims about present implementation or patch status.
 2. Weekly minutes for reviewed initiative findings, positions and work status.
 3. Transcripts for nuance, tentative language, disagreement and statements omitted from the minutes.
-4. Monthly reports and `overview.md` as indexes and emphasis summaries.
-5. Drafts and derived analyses as research aids, never as stronger evidence than the sources above.
+4. Supplied initiative-channel exports for unminuted use cases and implementation references. Treat individual messages as leads until they are cross-checked against reviewed minutes, current Core code or official project state.
+5. Monthly reports and `overview.md` as indexes and emphasis summaries.
+6. Drafts and derived analyses as research aids, never as stronger evidence than the sources above.
 
 When a current patch state matters, verify it live through the official TYPO3 source. A status recorded in a meeting remains historical evidence only.
 
@@ -192,10 +194,11 @@ Do not reject a useful incremental fix merely because it does not implement the 
 
 1. Preserve the complete structure, claim scope, evidence links, status distinctions and decision boundaries of the English source.
 2. Translate explanatory prose precisely, but retain established TYPO3 Core names and technical identifiers such as `Site Language`, `Default Language`, Connected Mode, Free Mode, Mixed Mode, `Language All`, DataHandler, Workspaces, Extbase and TCA.
-3. Do not strengthen, weaken or resolve a claim through translation.
-4. Keep the four responsibility names **Language Identity**, **Synchronization Intent**, **Structural Identity** and **Output Policy** visible in both versions.
-5. Keep the metadata cutoff values identical in both documents.
-6. Ensure that both published versions link to each other through their absolute Notes URLs.
+3. Verify user-facing module names against the current Core checkout. As of TYPO3 v14 the relevant labels are Layout, Records and Media; do not reintroduce the former Page, List or Filelist module names. In English prose use, for example, Layout module. In German prose retain the label, for example, Modul „Layout“. Keep Page Tree where the tree itself is meant.
+4. Do not strengthen, weaken or resolve a claim through translation.
+5. Keep the four responsibility names **Language Identity**, **Synchronization Intent**, **Structural Identity** and **Output Policy** visible in both versions.
+6. Keep the metadata cutoff values identical in both documents.
+7. Ensure that both published versions link to each other through their absolute Notes URLs.
 
 ## 11. Update metadata only after integration
 
@@ -226,6 +229,7 @@ Read both complete language versions from beginning to end and verify:
 - no information is duplicated as a standalone TODO list;
 - the German document contains every claim from the English document with the same semantic and evidential status;
 - established TYPO3 Core names and technical identifiers were not translated into misleading alternatives;
+- current user-facing Core module names are used consistently, especially Layout, Records and Media instead of their former names;
 - both language versions link to each other through the correct absolute Notes URLs;
 - every Markdown link in both published Current State documents is an absolute HTTPS URL;
 - every linked weekly minute uses the corresponding Notes URL from `MeetingMinutes/overview.md`;
