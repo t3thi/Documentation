@@ -332,6 +332,7 @@ The initiative and related Core work have already delivered bounded improvements
 | [Gerrit 88837](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88837), merged 2026-04-11 | Avoids remapping non-language-aware IRRE children and uses separately assigned records for localized parents. | A concrete case where explicit synchronized data resolved ownership ambiguity. |
 | [Gerrit 94831](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94831), merged 2026-07-21 | Resolves translated Mount Point subpages through the default-language relation and prevents a `404`. | A real shared-storage project produced a small, test-backed fix. |
 | [Gerrit 94914](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94914), [94916](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94916) and [94915](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94915), merged 2026-08-01 | Finds existing translations through `l10n_parent` when `l10n_source` is empty. | Preserves the distinction between structural parent and translation source while preventing duplicates. |
+| [Gerrit 95170](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95170), merged on `main` 2026-08-10 | Corrects comparison views that combine Connected- and Free-Mode languages: connected items form comparison rows while each Free-Mode language renders independently, including when the Default Language has no items. | A bounded interim correction for the current modes. It does not select the future editing or structural model. |
 | [Gerrit 95178](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95178), merged on `main` 2026-08-10 | Keeps the language title, flag and translation mode visible while scrolling a long comparison view in the Layout module. | Improves editor orientation in the current interface. The patch is explicitly interim and neither changes nor selects a future structural model. |
 
 The [initiative test extension](https://github.com/t3thi/translation-handling) also provides reproducible translation, fallback and relation scenarios. It was revived and extended with focused IRRE cases in 2025. It is research infrastructure, not evidence of changed Core behavior.
@@ -364,12 +365,11 @@ For open Gerrit changes, **Merge conflict: Yes** means that Gerrit reported the 
 | [Gerrit 92777](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92777) | Patch set 10; two Code-Review `+1`; CI `+1`; 2 unresolved comments. | No | Restricts copied Free-Mode records to languages available in the target context. This improves current-model integrity without selecting a future structure model. |
 | [Gerrit 93063](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93063) | Patch set 7; Code-Review `+1`; CI `+1`; 3 unresolved comments. | **Yes** | Warns about invalid translation parents. It makes structural corruption visible but does not repair or redesign identity. |
 | [Forge 110008](https://forge.typo3.org/issues/110008) and [Gerrit 94510](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) | Patch set 7; CI `-1`; 1 unresolved comment. | No | Addresses a regression after merged [Gerrit 88828](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828), in which `strict` output can fall back from a hidden requested-language record to another language. Current behavior is unchanged while the fix remains unmerged. |
-| [Gerrit 94917](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94917) | Patch set 4; no current Code-Review vote; 3 unresolved comments. | No | Improves Free/Mixed comparison rendering. Replacement by 95170 has been proposed in review, but 94917 is still officially open rather than abandoned. |
-| [Gerrit 95170](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95170) | Patch set 3; three Code-Review `+1`; CI `+1`; 4 unresolved comments. | No | Improves Free-Mode rendering in the Layout module. Remaining review threads cover exact comparison semantics and the 14.3 backport. |
+| [Gerrit 94917](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94917) | Patch set 4; no current Code-Review vote; 3 unresolved comments. | No | Improves Free/Mixed comparison rendering. Replacement by the now-merged 95170 has been proposed in review, but 94917 is still officially open rather than abandoned. |
 
 ### Review-positive and mergeable
 
-No current patch meets all criteria. Positive Code-Review votes on 92777 and 95170 coexist with unresolved comments, so both remain under **Review action required**.
+No current patch meets all criteria. Positive Code-Review votes on 92777 coexist with unresolved comments, so it remains under **Review action required**.
 
 ### Awaiting review
 
