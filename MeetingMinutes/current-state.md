@@ -41,7 +41,8 @@ Statements use the following distinctions:
 - The vision is to make each responsibility explicit before deciding how it should be stored or implemented.
 - BCP 47 is the current preference for semantic language identity. The database representation and migration path remain open.
 - Replacing persisted `sys_language_uid = -1` with explicit synchronization is a strong direction. The synchronization lifecycle is not designed yet.
-- A structure that supports "mostly connected, selectively different" content is a central product requirement. Complete language layers, shadow records and a shared structural layer remain possible approaches, not a selected architecture.
+- A structure that supports "mostly connected, selectively different" content is a central product requirement. Editors should be able to work in the required language without selecting or understanding Free, Connected or Mixed Mode as database-relation states.
+- The current structural preference is a shared hidden, language-neutral structure layer rather than complete per-language layers with universal shadows. This is a preference for further investigation, not an adopted Core architecture; the hidden layer remains a hypothesis that needs a prototype and lifecycle design.
 - Current delivery is incremental: characterize existing behavior, merge bounded correctness fixes, prototype uncertain concepts and use the resulting evidence to support broader decisions.
 
 ## How the initiative works
@@ -80,6 +81,12 @@ The initiative's vision starts from concrete project and editorial needs. These 
 
 The "mostly connected, selectively different" case is the clearest description of the middle ground TYPO3 should support better. Identical translated structures and fully independent structures are both valid. A small local exception should not force editors to give up the benefits of the shared majority. See the [June 2026 use-case analysis](https://notes.typo3.org/s/-RP1PwIafA) and its [July refinement](https://notes.typo3.org/s/ccbVIOYfEy).
 
+### What community feedback supports
+
+The [community-feedback matrix from T3DD22 and subsequent events](https://docs.google.com/spreadsheets/d/1Y8KnuYxMoXyVaZzVHENBp_1fg2M-JGxHog6K3T9qn_Q/edit?gid=0#gid=0) does not contain one yes-or-no decision about removing translation modes. It records "Switching translation modes" as an editor problem and easier Mixed-Mode resolution as an editor requirement. Other responses value Free Mode because it permits content in only one language. The 2024 editor interview likewise confirms that "mostly connected, selectively different" is valid while both Mixed Mode and artificial hidden Default-Language records are unsatisfactory.
+
+The established need is therefore not to remove independent editorial outcomes. It is to stop requiring editors to manage technical relation states when their intent is simply to create, omit, replace or reorder content in a particular language. The initiative recommends removing the Free, Connected and Mixed distinction from the normal editor interface once Core can create and maintain the necessary structural relations safely. This recommendation depends on prior work for automatic target creation, relation integrity, migration and lifecycle handling; it is not a deprecation of today's Free Mode behavior. See the [2024 editor interview](https://notes.typo3.org/s/kqdwFxW1m), the [always-connected discussion](https://notes.typo3.org/s/k11hyaA4N) and the [later technically-connected refinement](https://notes.typo3.org/s/2Ysd3gDdn).
+
 ## Research findings: what exists today
 
 Current TYPO3 behavior is not based on one translation model. It is the interaction of several data and configuration contracts.
@@ -92,12 +99,12 @@ Current TYPO3 behavior is not based on one translation model. It is the interact
 | **Translation source** | `l10n_source` identifies the record from which content was taken. | Source provenance and structural parent are related but not identical. |
 | **Configuration-enforced field synchronization** | `l10n_mode=exclude` statically marks a field in TCA. In connected translations, the field is excluded from independent translation editing and its Default-Language value is synchronized to existing dependent translations. | The rule is fixed for that TCA field. It is not selected per translation through `l10n_state`. |
 | **Editor-selectable field synchronization** | `config.behaviour.allowLanguageSynchronization=true` makes a field eligible for a per-translation choice between `parent`, `source` where available, and `custom`; `l10n_state` stores that choice. | The editor controls the field state, but a missing or invalid state currently defaults to `parent`. |
-| **Backend translation mode** | Connected, Free or Mixed Mode is inferred from record relations. | The editor-facing mode exposes properties of the current data structure. |
+| **Backend translation mode** | Connected, Free or Mixed Mode is inferred from record relations, shown in the Layout module and used to constrain actions such as direct content creation. | The editor-facing workflow exposes properties of the current data structure instead of only asking what the editor wants to create. |
 | **Frontend output policy** | Site `fallbackType` and configured fallback IDs define selection and overlay behavior. | A runtime fallback is separate from the backend structural relationship. |
 
 Page translations always retain a parent relation. Free and Mixed Mode primarily describe how other records, especially content elements, relate inside the Layout module.
 
-The current contracts above are supported by the Core code snapshot validated for T3DD26: [TCA language relations](https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/Configuration/Tca/TcaEnrichment.php#L185-L247), [localization state](https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/DataHandling/Localization/State.php#L29-L39), [Layout module mode detection](https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/backend/Classes/View/BackendLayout/ContentFetcher.php#L165-L203) and [fallback construction](https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/Context/LanguageAspectFactory.php#L27-L60).
+The current contracts above are supported by the Core code snapshot validated for T3DD26: [TCA language relations](https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/Configuration/Tca/TcaEnrichment.php#L185-L247), [localization state](https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/DataHandling/Localization/State.php#L29-L39), [Layout module mode detection](https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/backend/Classes/View/BackendLayout/ContentFetcher.php#L165-L203) and [fallback construction](https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/Context/LanguageAspectFactory.php#L27-L60). Current Core also [derives the mode labels and restricts new content in Connected Mode](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/backend/Classes/View/PageLayoutContext.php#L230-L291), while the [Layout template renders the mode as a visible badge](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/backend/Resources/Private/Partials/PageLayout/LanguageColumns.fluid.html#L27-L33).
 
 Current Core processes both field-synchronization mechanisms in the same [DataMapProcessor pipeline](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/DataHandling/Localization/DataMapProcessor.php#L50-L57), but resolves their fields through separate scopes. `parent` and `source` come from `l10n_state`; the `exclude` scope is collected directly from [`l10n_mode=exclude` in TCA](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/DataHandling/Localization/DataMapProcessor.php#L1338-L1383). The [localization state selects only fields configured with `allowLanguageSynchronization`](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/DataHandling/Localization/State.php#L71-L97), and the [backend selector exposes `custom`, `parent` and, where a source exists, `source`](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/backend/Classes/Form/FieldWizard/LocalizationStateSelector.php#L48-L140). Both mechanisms operate on existing related language records. Neither creates missing language variants or expresses record-wide synchronization by itself.
 
@@ -113,11 +120,12 @@ The user-facing module names in this document follow the current v14 Core labels
 6. **Frontend fallback is not the structural relationship.** `l10n_parent` describes a record relation; site fallback settings decide which language may render. The two can influence the same result but answer different questions.
 7. **Numeric language IDs are local configuration.** The same human language can have different IDs across sites, and one ID can be labelled differently in separate sites. Mapping by number or locale is not a reliable global identity contract.
 8. **More explicit data can reduce runtime branches, but it has costs.** Record volume, synchronization, Workspaces, versioning, references, migration and performance must be measured. The initiative has not decided where the optimum lies.
-9. **Free Mode remains a valid endpoint.** Fully independent structures exist. The current direction is to reduce unnecessary mode choices and support local exceptions better, not to claim that Free Mode has been deprecated.
-10. **Small fixes and tests are part of the architecture work.** They expose actual invariants and prevent the future model from being based on incomplete assumptions.
-11. **Synchronization metadata and stored values can disagree.** In existing data, an empty or missing `l10n_state` entry does not prove that a localized field equals its parent. Current [Core state enrichment](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/core/Classes/DataHandling/Localization/State.php#L223-L238) treats a missing field state as `parent` without comparing the stored values, so the backend can present the field as inherited while its stored value differs. The open [dbdoctor PR 98](https://github.com/lolli42/dbdoctor/pull/98) demonstrates a repair approach; it is not merged Core behavior.
-12. **Field synchronization has two control models today.** `l10n_mode=exclude` enforces synchronization through TCA configuration. `allowLanguageSynchronization` exposes an editor choice stored in `l10n_state`. The execution pipeline is shared, but configuration, state discovery and scopes remain distinct.
-13. **Language All applies the complete record.** Current [frontend selection includes `-1`](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/frontend/Classes/ContentObject/ContentObjectRenderer.php#L4780-L4846) for every requested language, and the [overlay logic returns such a record unchanged](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/Domain/Repository/PageRepository.php#L635-L660). A compatible first replacement must therefore preserve the effect of one complete shared row before introducing more granular synchronization.
+9. **Independent structures remain valid, but editor-visible relation modes are not the desired product contract.** Current Free Mode behavior remains supported and is not deprecated. The recommended future editor workflow hides Free, Connected and Mixed relation states only after Core can preserve independent outcomes and maintain structural identity automatically.
+10. **Technical connection does not require identical structures.** Two language variants can share one logical structural identity while one language adds, omits, replaces or reorders content. "Always connected" describes maintained identity, not mandatory structural or content equality.
+11. **Small fixes and tests are part of the architecture work.** They expose actual invariants and prevent the future model from being based on incomplete assumptions.
+12. **Synchronization metadata and stored values can disagree.** In existing data, an empty or missing `l10n_state` entry does not prove that a localized field equals its parent. Current [Core state enrichment](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/core/Classes/DataHandling/Localization/State.php#L223-L238) treats a missing field state as `parent` without comparing the stored values, so the backend can present the field as inherited while its stored value differs. The open [dbdoctor PR 98](https://github.com/lolli42/dbdoctor/pull/98) demonstrates a repair approach; it is not merged Core behavior.
+13. **Field synchronization has two control models today.** `l10n_mode=exclude` enforces synchronization through TCA configuration. `allowLanguageSynchronization` exposes an editor choice stored in `l10n_state`. The execution pipeline is shared, but configuration, state discovery and scopes remain distinct.
+14. **Language All applies the complete record.** Current [frontend selection includes `-1`](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/frontend/Classes/ContentObject/ContentObjectRenderer.php#L4780-L4846) for every requested language, and the [overlay logic returns such a record unchanged](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/Domain/Repository/PageRepository.php#L635-L660). A compatible first replacement must therefore preserve the effect of one complete shared row before introducing more granular synchronization.
 
 ## Vision: separate four responsibilities
 
@@ -213,30 +221,54 @@ A separate possible field-level consolidation is `enforceLanguageSynchronization
 
 A logical content position is the shared place or role of a page, content element or other localizable record. It is not necessarily the record whose text was used as the translation source.
 
-**Current coupling:** In Connected Mode, the default-language record is both visible content and structural parent. Free Mode removes that relation. Mixed Mode combines both states on one page. A local addition therefore needs either a fabricated default record or an independent record that loses the shared relation.
+**Current coupling:** In Connected Mode, the Default-Language record is both visible content and structural parent. Free Mode removes that relation. Mixed Mode combines both states on one page. Core derives those labels from `l18n_parent`, displays them in the Layout module and normally prevents direct content creation in a Connected-Mode target column. A local addition therefore needs either a fabricated Default-Language record or an independent record that loses the shared relation.
 
 **Derived requirements:**
 
 - TYPO3 must be able to preserve the shared majority while allowing explicit language-specific additions, omissions, replacement or reordering.
 - A structural relation must not require meaningless visible content in another language.
-- Editors should be able to create content directly in the language where it is needed.
+- Editors should be able to create content directly in the language where it is needed without deciding whether that language or page is structurally Free, Connected or Mixed.
+- Core should create and maintain the necessary structural identity automatically, including for content that exists in only one real language.
+- A maintained structural connection must still allow language-specific additions, omissions, replacements and ordering.
 - The system should manage relation integrity and prevent duplicate or impossible parent assignments.
 - Content source, structural parent and current editing context must remain distinct.
 - The model must cover pages, content and other localizable records while retaining necessary record-type differences.
 - Editors need a clear view of which language variants exist and efficient creation workflows for records beyond pages and content, including file metadata.
+- The mode distinction may disappear from normal editor UX only after creation, migration, permissions, deletion, restoration and Workspace behavior preserve today's valid outcomes.
 
-**Vision:** Structural relationships should be explicit enough to support "mostly connected, selectively different" content without artificial default-language partners or accidental loss of connected behavior.
+**Vision:** The editor chooses the language and the intended content operation. Core maintains a technical connection to the same logical position while allowing each real language to have its own visible structure. Structural relationships should support "mostly connected, selectively different" content without artificial visible Default-Language partners or accidental loss of connection.
+
+"Technically connected" does not mean that every language must render the same records in the same order. It means that Core retains an explicit cross-language identity even when a language omits, adds, replaces or reorders content. A genuinely independent editorial result therefore remains possible without using a missing parent relation as its storage contract.
+
+**Editor-facing recommendation:** Remove the Free, Connected and Mixed mode distinction from the normal Layout workflow once Core can uphold that contract. This is a UI and product recommendation with architectural prerequisites. It is not a statement that existing Free-Mode data can already be converted safely or that independent structures should disappear.
 
 **Editing Language:** The preferred product concept is a selectable content language from which the editor works, independent of the backend interface language. For example, a Chinese editor could create Chinese content from English while German remains the site default. The Layout module would place English where it currently always places the default language. This is a product direction, not an implemented feature.
 
+#### Current structural preference and the two meanings of Shadow Record
+
+The discussions have used "Shadow Record" for two materially different representations:
+
+- A **language-layer shadow** is a placeholder inside a concrete language. It completes that language's structure even when the position has no visible content there.
+- A **structural shadow** is one contentless record in a shared hidden structure layer. Real language records connect to it as their common structural identity; it is not duplicated into every language.
+
+Conflating them would hide the main trade-off. The initiative has discussed two paths:
+
+| Path | Representation | Benefit | Main risk or open work | Current assessment |
+|---|---|---|---|---|
+| **1. Complete structure in every language** | Every language contains every structural position and could in principle act as the structural lead. Core creates language-layer shadows wherever that language has no visible content. | Each language layer is structurally self-contained and can express local ordering. | Every local deviation must be projected into other language layers. Record volume, synchronization, Workspace versions, references and visible Layout density can grow with languages and structural differences. Even a small reorder can require several generated placeholders; the exact multiplier is model-dependent and has not been measured. | **Discussed, but currently disfavored in comparison with a shared layer. Not disproved or formally rejected.** |
+| **2. Shared hidden structure plus real language layers** | Split the current Default Language's roles. A contentless, language-neutral structure layer stores each logical position; the current default output content moves to its own real language layer, like every other output language. Core creates a structural shadow when a language introduces a new position, and every real variant connects to that shared position. | One cross-language reference point without universal language-layer shadows; no real output language has to lead all structure. | The exact entity and identifier, migration of current Default-Language content, per-language ordering and absence, permissions, APIs, Workspaces, references and hiding the structural layer from backend and frontend output all require design and testing. | **Current preference for investigation. Still a hypothesis, not selected or implemented Core architecture.** |
+
+The second path should remain invisible in normal editorial and frontend output. "Hidden" is part of the desired product behavior, not a claim about current Core. A shared identity alone also does not solve local ordering: the model still needs an explicit language-specific placement, ordering or delta contract.
+
 **Open questions:**
 
-- What owns structural identity if no real output language is privileged?
-- Are missing language positions represented by records, a neutral structure entity, derived state or a hybrid?
-- How are sorting, moves and local additions represented across several language layers?
+- What exact record or entity owns structural identity if no real output language is privileged?
+- Does a shared structure reuse `sys_language_uid = 0`, introduce a new entity or use another representation?
+- How are sorting, moves, local additions, omissions and replacements represented per language around one shared identity?
 - Which structural records are visible to editors, APIs, references and Workspaces?
 - When can an independently created record later join an existing structure safely?
-- Which current Free, Connected and Mixed behaviors remain explicit in the UX?
+- Which migration and lifecycle guarantees are prerequisites before the normal UI can stop showing Free, Connected and Mixed modes?
+- How are existing Free- and Mixed-Mode records migrated without losing their independent outcome?
 
 ### 4. Output Policy
 
@@ -273,9 +305,10 @@ The following approaches answer parts of the responsibilities. None is the compl
 | Select synchronization targets | Evolve the all-target Boolean into a record-level multi-select of target languages while reusing the same target creation and full-record synchronization process. | Adds target-language granularity without requiring a separate synchronization engine. | Stable target identity, permissions, existing target conflicts and lifecycle when a language is selected or removed. | **Possible feature; decision and lifecycle open.** |
 | Unify field-synchronization configuration | Add `config.behaviour.enforceLanguageSynchronization`, represent the enforced field state through `l10n_state` and evaluate replacing `l10n_mode=exclude`. | One TCA and state model for editor-selectable and configuration-enforced field synchronization; fewer overlapping selection branches in Core. | Exact state value, editor display, migration, `prefixLangTitle`, default behavior and extension compatibility. | **Possible approach; not implemented or selected.** |
 | Preserve current sparse records | Keep current records and relations, but clarify APIs, tests and UX. | Lowest migration and data-volume cost. | Retains missing-record states, overlay branches and default-language coupling. | **Current baseline, not sufficient for every requirement.** |
-| Complete per-language layers | Materialize a structural/content representation for each relevant language, using placeholders where content is absent. | More explicit layers and potentially simpler direct queries and output. | More records, synchronization, editor density, Workspace versions, references and migration. | **Discussed direction; not selected.** |
-| Shared neutral structure layer | Store common structural identity separately from real output languages. | No real language must be the structural lead; less full-layer duplication. | Introduces a new abstraction that every editing, query, relation and permission path must understand. | **Possible approach; hypothesis.** |
-| Bounded hybrid | Keep a shared structural identity and materialize language records only when content or explicit absence requires them. | Could combine explicit structure with bounded data growth. | More states and transition rules; analytical option not yet validated by the initiative. | **Analytical option; no preference established.** |
+| Remove editor-visible translation modes | Let editors create, omit, replace and reorder content in the selected language while Core maintains structural identity. | The workflow expresses editorial intent instead of requiring knowledge of `l18n_parent` and inferred page mode. | Depends on safe automatic structural creation, legacy migration, permissions, lifecycle, Workspaces and clear representation of independent outcomes. | **Product recommendation; prerequisites and UX contract open.** |
+| Complete per-language layers | Materialize every structural position in every relevant language, using language-layer shadows where content is absent. | Every language is structurally self-contained and can carry local ordering. | Highest duplication risk; synchronization, Layout density, Workspace versions, references, migration and the actual record multiplier need measurement. | **Discussed direction; currently disfavored, not selected.** |
+| Shared hidden neutral structure layer | Separate common structural identity from real output languages, migrate today's default output content into its own real language layer and create contentless structural shadows as shared anchors. | No real language must be the structural lead; less universal shadow duplication and one cross-language reference point. | Introduces an abstraction that every editing, query, relation, permission and Workspace path must understand; local ordering and explicit absence still need a contract. | **Current preference for investigation; still an unselected hypothesis.** |
+| Bounded hybrid | Keep a shared structural identity and materialize language records only when content or explicit absence requires them. | Could combine explicit structure with bounded data growth. | More states and transition rules; analytical option not yet validated by the initiative. | **Analytical option; not a separate initiative preference.** |
 | Editing Language | Let editors select the content language from which they work and use it as the primary backend context. | Removes irrelevant default-language text from the workflow and supports non-default sources. | Page Tree, Layout module, Records module, permissions, ordering and source/provenance behavior. | **Preferred product framing; prototype still needed.** |
 | Explicit absence intent | Represent whether fallback should continue or stop for one structural position. | Makes regional omission predictable. | Backward compatibility, UX and consistent frontend evaluation. | **Derived requirement; representation open.** |
 
@@ -371,7 +404,9 @@ The vision is a review framework, not a reason to reject every partial solution.
 | Explicit all-language synchronization | Replaces one shared `-1` row with concrete target-language records whose parity-relevant fields remain fully enforced. | Strongly aligned in principle. The first stage should preserve complete-record behavior without editor opt-out; granularity comes later. It becomes unsafe if target creation, lifecycle, provenance, conflict and migration rules are undefined. |
 | Target-language multi-select | Limits the same full-record synchronization process to selected target languages. | A natural extension after parity, but not a committed next feature. It remains aligned if target identity and deselection semantics are explicit. |
 | Field-level `enforceLanguageSynchronization` | Could replace `l10n_mode=exclude` while retaining configuration-enforced synchronization. | Aligned with explicit Synchronization Intent if enforced and editor-selectable states remain distinguishable. Current Core already shares the execution pipeline, so the gain is consolidation of configuration, state discovery and scopes. Migration and compatibility are undecided. |
-| Complete language layers or a hidden structure | Could make missing positions and structural relations more explicit. | Aligned with the structural requirement, but only after data volume, permissions, Workspaces, references, sorting, editor visibility and migration are tested. |
+| Mode-free editor workflow | Removes the need to choose Free, Connected or Mixed Mode when the actual intent is to work in one language. | Strongly aligned as a product requirement once Core maintains identity and preserves local structural freedom. It is not safe to remove today's controls before migration and lifecycle prerequisites exist. |
+| Complete language layers with universal shadows | Makes every language structurally complete. | Covers local structure but is currently disfavored because it can amplify records, synchronization, Workspace versions and Layout density. The costs are not yet quantified, so this is not a rejection based on measured performance. |
+| Shared hidden structure layer | Gives every real language the same language-neutral structural reference point. | The current structural preference because it avoids universal shadows and separates visible content from structural lead. It remains an unselected hypothesis until local ordering, permissions, Workspaces, references, migration and editor invisibility are validated. |
 
 For any new proposal, the initiative asks:
 
@@ -405,9 +440,12 @@ For any new proposal, the initiative asks:
 
 ### Structural Identity
 
-- **Decision required:** where logical structure lives when no real language is privileged.
-- **Open question:** complete layers, shared structure, hybrid or improved sparse representation.
-- **Open question:** lifecycle and visibility of shadows, placeholders or structural-only records.
+- **Current direction:** investigate a shared hidden, language-neutral structure layer before complete per-language shadows; this preference is not an adopted Core architecture.
+- **Decision required:** the exact representation and ownership of logical structure when no real output language is privileged.
+- **Open question:** whether the preferred shared structure, complete layers, a bounded hybrid or an improved sparse representation best satisfies the acceptance cases after prototyping and measurement.
+- **Open question:** lifecycle and visibility of language-layer shadows, structural shadows, placeholders or structural-only records.
+- **Decision required:** prerequisites and migration rules for removing Free, Connected and Mixed Mode from the normal editor interface while preserving existing independent outcomes.
+- **Open question:** the per-language placement, sorting and absence contract around a shared structural identity.
 - **Open question:** a consistent model for pages, content and other records without ignoring their necessary differences.
 
 ### Output Policy
@@ -430,8 +468,8 @@ These are the initiative's current best sequence of activities, not a committed 
 1. **Keep the evidence base current.** Add reproducible editor and project use cases, especially where language, country, structure and output intent differ.
 2. **Complete focused characterization.** Review the `-1` inventory, map each valid behavior to a test and close known Workspace and DataHandler gaps.
 3. **Finish bounded fixes.** Reconcile the overlapping Free/Mixed comparison work, progress copy/move integrity patches, validate the parent-selector and wizard drafts and resolve the failing strict-fallback regression patch.
-4. **Prototype product behavior before storage.** Test Editing Language, direct target-language creation, local structural additions and explicit absence with realistic editor workflows.
-5. **Compare structural options with evidence.** Use the same acceptance cases for sparse records, complete layers, shared structure and any hybrid. Measure data and operational costs rather than assuming them.
+4. **Prototype product behavior before storage.** Test Editing Language, a mode-free Layout workflow, direct target-language creation, local structural additions and explicit absence with realistic editor workflows.
+5. **Validate the current structural preference against its countermodel.** Use the same acceptance cases for the shared hidden structure, complete per-language shadows, sparse records and any hybrid. Measure record growth, Layout density, Workspaces, references, migration and operational costs rather than assuming them.
 6. **Define and characterize first-stage parity.** Specify the all-target record flag, target creation, the full enforced field set, source and target identity, conflicts and every transition. Prove that it reproduces current `-1` output, then evaluate the separately decidable multi-select and other granular extensions against the same process.
 7. **Agree the semantic identity contract.** Decide what BCP 47 identifies, how Site Languages map to it and how legacy values migrate.
 8. **Design compatibility before removal.** Introduce explicit alternatives first, provide migration and extension guidance, then consider deprecation of old semantics.
@@ -445,10 +483,11 @@ Key primary evidence anchors are:
 
 | Topic | Meeting evidence |
 |---|---|
+| Community feedback and editor-facing mode simplification | [T3DD22 and subsequent feedback matrix](https://docs.google.com/spreadsheets/d/1Y8KnuYxMoXyVaZzVHENBp_1fg2M-JGxHog6K3T9qn_Q/edit?gid=0#gid=0), [2024-03-22](https://notes.typo3.org/s/kqdwFxW1m), [2025-07-11](https://notes.typo3.org/s/k11hyaA4N), [2025-10-24](https://notes.typo3.org/s/2Ysd3gDdn) |
 | Language identity and BCP 47 | [2024-01-19](https://notes.typo3.org/s/sEONb4kd6), [2025-07-25](https://notes.typo3.org/s/dtw4v9T7S), [2026-07-31](https://notes.typo3.org/s/z5ICno5pK2) |
 | `-1` replacement, full-record parity and synchronization lifecycle | [2024-06-28](https://notes.typo3.org/s/GQwWxdUKO), [2025-01-31](https://notes.typo3.org/s/kEaZn6jJF), [2025-09-26](https://notes.typo3.org/s/1RnTSuBsq), [2025-11-28](https://notes.typo3.org/s/Sxl-kkYjW), [2026-06-11](https://notes.typo3.org/s/1-J3KsT7VU) |
 | Current field-synchronization modes and possible consolidation | [2024-04-12](https://notes.typo3.org/s/gjl-sog92), [2024-04-26](https://notes.typo3.org/s/D32XRXoCk), [2024-10-18](https://notes.typo3.org/s/8vI0MnUbs), [2025-08-22](https://notes.typo3.org/s/gL97CaQ5M), [2026-05-08](https://notes.typo3.org/s/-0p3kqzMll) |
-| `l10n_state` consistency and historical copy damage | [2024-04-26](https://notes.typo3.org/s/D32XRXoCk), [2026-02-06](https://notes.typo3.org/s/D8oadqoN-7) |
+| `l10n_state` consistency and historical copy damage | [2024-04-26](https://notes.typo3.org/s/D32XRXoCk), [2026-02-06](https://notes.typo3.org/s/D8oadqoN-7#) |
 | Mostly connected structures and local exceptions | [2024-03-22](https://notes.typo3.org/s/kqdwFxW1m), [2026-05-08](https://notes.typo3.org/s/-0p3kqzMll), [2026-06-26](https://notes.typo3.org/s/-RP1PwIafA), [2026-07-10](https://notes.typo3.org/s/ccbVIOYfEy) |
 | Complete layers, shadows and shared structure | [2025-07-18](https://notes.typo3.org/s/L0lQKrWaW), [2025-10-24](https://notes.typo3.org/s/2Ysd3gDdn), [2026-05-29](https://notes.typo3.org/s/0AJqa7JwuJ), [2026-07-10](https://notes.typo3.org/s/ccbVIOYfEy) |
 | Editing Language | [2026-05-08](https://notes.typo3.org/s/-0p3kqzMll), [2026-05-29](https://notes.typo3.org/s/0AJqa7JwuJ) |

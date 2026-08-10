@@ -130,6 +130,9 @@ Then determine:
 - Does the first `-1` replacement preserve the complete-record effect before any target-language or field-level granularity is introduced?
 - If "every field" is used for record synchronization, are parity-relevant values distinguished from target identity and Core-managed lifecycle metadata?
 - Is a target-language multi-select presented as a possible feature requiring a decision rather than as a fixed next step?
+- Is the editor requirement stated as freedom from managing relation states, while independent structural outcomes remain supported?
+- Is "technically connected" distinguished from identical content, visibility, structure and ordering?
+- Are a language-layer shadow in a concrete language and a structural shadow in a shared hidden layer defined separately?
 
 Never promote a new table, field, flag, API, shadow-record model or prototype into the vision merely because it looks promising. The vision is defined by the responsibilities and derived product requirements.
 
@@ -186,6 +189,10 @@ Before changing the vision, establish all of the following:
 3. The source supports an initiative-level position rather than one participant's idea.
 4. Related requirements, solution spaces, open questions and assessments are updated consistently.
 5. The language still respects the initiative's decision boundary.
+
+Community feedback can establish a need or problem without selecting the initiative's solution. In particular, mode switching and Mixed Mode are documented problems, while Free Mode is also valued for independent content. Treat removal of the editor-visible mode distinction as the initiative's product recommendation derived from that evidence, not as a literal unanimous survey result or a deprecation of independent behavior.
+
+The latest comparative preference favors a shared hidden, language-neutral structural layer over complete per-language shadows because of qualitative duplication, synchronization and Workspace concerns. Keep this as a current direction for investigation and simultaneously as an unselected hypothesis. Do not promote it to a Core decision or implemented architecture. Do not use a fixed record-multiplier example, including a claimed number of shadows produced by a reorder, unless the selected model and a reproducible count support it.
 
 If those conditions are not met, update the relevant solution approach or open question instead of the vision.
 
@@ -247,6 +254,13 @@ Read both complete language versions from beginning to end and verify:
 - field-level synchronization consolidation is not conflated with record-wide replacement of `-1`;
 - removal of `l10n_mode=exclude` is not proposed without considering migration, `prefixLangTitle`, default behavior and extension compatibility;
 - complete layers, shadows and a neutral structure are not presented as selected architecture without a new decision;
+- the current preference for a shared hidden structure over universal per-language shadows is visible without being called selected or implemented;
+- language-layer shadows and structural shadows are not conflated;
+- hiding a structural layer from backend and frontend output is described as desired behavior, not current Core behavior;
+- editor-visible mode removal is presented as a product recommendation with automatic creation, integrity, lifecycle and migration prerequisites;
+- "always connected" or "technically connected" is not presented as identical per-language content, visibility, structure or ordering;
+- the feedback matrix is not misrepresented as a unanimous request to remove Free Mode behavior;
+- no unmeasured record or Shadow-Record multiplier is presented as fact;
 - Free Mode is not called deprecated without evidence;
 - Editing Language is not called implemented without evidence;
 - frontend fallback is not equated with backend structural relation;
