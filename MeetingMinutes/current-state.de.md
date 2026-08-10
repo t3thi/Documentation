@@ -261,6 +261,7 @@ Die Initiative und damit verbundene Core-Arbeiten haben bereits klar abgegrenzte
 | [Gerrit 84237](https://review.typo3.org/c/Packages/TYPO3.CMS/+/84237), gemergt am 25.05.2024 | Verhinderte verwaiste übersetzte Datensätze in einem Kopiervorgang. | Strukturelle und sprachliche Validität müssen beim Kopieren erhalten bleiben. |
 | [Gerrit 83310](https://review.typo3.org/c/Packages/TYPO3.CMS/+/83310), [86085](https://review.typo3.org/c/Packages/TYPO3.CMS/+/86085) und [85912](https://review.typo3.org/c/Packages/TYPO3.CMS/+/85912), gemergt zwischen dem 13.05.2024 und dem 07.01.2025 | Ergänzte gezielte Tests für das Kopieren lokalisierter Inhalte auf eine nicht übersetzte Seite, das Kopieren von Inline Child Records und das Verschieben von `-1`-Inhalten. | Die Charakterisierung hält aktuelle Einschränkungen fest, bevor Verhalten geändert wird. |
 | [Gerrit 86773](https://review.typo3.org/c/Packages/TYPO3.CMS/+/86773) und [88827](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88827), gemergt am 10.01.2025 und 05.05.2025 | Synchronisierte beim Kopieren die Sprache von Inline Child Records und bewahrte beim Kopieren die Sprache von Übersetzungen. | Kopiervorgänge müssen die Sprachabsicht für Child Records und übersetzte Datensätze erhalten. |
+| [Gerrit 89199](https://review.typo3.org/c/Packages/TYPO3.CMS/+/89199), gemergt am 30.04.2025 | Behält bei der Navigation innerhalb einer Site die ausgewählte Sprache bei, zeigt bei fehlender Übersetzung Inhalte der Default Language und setzt die Auswahl zurück, wenn eine andere Site diese Sprache nicht bereitstellt. | Verhindert, dass eine ungültige Sprachauswahl zu einem leeren Modul „Layout“ führt, und erhält zugleich den nützlichen redaktionellen Kontext, soweit dies möglich ist. |
 | [Gerrit 92580](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92580), gemergt am 09.02.2026 | Beschränkt kopierte Datensatzübersetzungen auf Sprachen, die in der Ziel-Site verfügbar sind. | Eine klar abgegrenzte Integritätskorrektur für den aktuellen Site-lokalen Umgang mit Sprachen. |
 | [Gerrit 92881](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92881), gemergt am 20.02.2026 | Trennt `localizeRecord()` von `copyRecord()` im DataHandler. | Klarere Code-Pfade unterstützen eine sicherere Charakterisierung und spätere Änderungen. |
 | [Gerrit 88837](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88837), gemergt am 11.04.2026 | Vermeidet die Neuzuordnung nicht sprachfähiger IRRE-Child-Records und verwendet separat zugewiesene Datensätze für lokalisierte Parent-Records. | Ein konkreter Fall, in dem explizit synchronisierte Daten die Mehrdeutigkeit der Zuständigkeit beseitigten. |
@@ -274,32 +275,58 @@ Das wiederkehrende Muster ist hilfreich: Ein realer Fehler wird reproduziert, de
 
 ## Laufende Arbeit mit Stand vom 10.08.2026
 
-### Forschung und Validierung
+Jeder offene Core-Patch erhält entsprechend seinem aktuellen offiziellen Stand genau einen primären Statuseintrag. **WIP** hat Vorrang vor Review-Befunden. **Review-Nacharbeit erforderlich** bedeutet, dass das aktuelle Patch Set mindestens einen ungelösten Kommentar oder eine aktuelle negative Review- beziehungsweise Verifizierungsstimme besitzt. **Review-positiv und mergefähig** ist die hier verwendete Kategorie für einen finalen Patch-Stand; sie erfordert mindestens ein aktuelles Code-Review `+1`, keine aktuelle negative Stimme, keinen ungelösten Kommentar und ein mergefähiges aktuelles Patch Set. **Review ausstehend** umfasst offene Patches ohne diese Blocker, aber auch ohne aktuelles positives Code-Review. **Abgelehnt oder ersetzt** dokumentiert formal aufgegebene Änderungen, wenn ihre Begründung weiterhin relevant ist.
 
-| Arbeit | Aktueller Stand | Bedeutung |
-|---|---|---|
-| [Gerrit 92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267) | WIP, Patch Set 6, CI verifiziert; 59 Kommentarergänzungen in 39 Core-Dateien. | Inventarisiert gespeicherte `Language All`-Annahmen. Ändert kein ausführbares Verhalten und ist weder eine Characterization-Test-Suite noch eine Ersatzimplementierung. |
-| [Gerrit 93289](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93289) | WIP-Workspace-Abdeckung für das Einfügeverhalten von Language All. | Schließt eine bekannte Charakterisierungslücke vor semantischen Änderungen. |
-| [dbdoctor PR 171](https://github.com/lolli42/dbdoctor/pull/171) | Offene WIP-Regel zur Erkennung verwaister Übersetzungen aus historischen Kopiervorgängen. | Stellt Diagnose- und Reparaturwerkzeuge für vorhandene Daten bereit; sie ist weder ein gemergter Core-Fix noch ein neues Übersetzungsmodell. |
-| Untersuchung von struktureller Ebene und Editing Language | Die Produktbeschreibung liegt vor; eine Skizze, ein Click Dummy oder ein Extension-Experiment wurde diskutiert, aber ein abgeschlossener Prototyp ist nicht belegt. | Prüft redaktionellen Nutzen und strukturelle Annahmen vor einer Architekturentscheidung. |
+Für offene Gerrit-Änderungen bedeutet **Merge-Konflikt: Ja**, dass Gerrit das aktuelle Patch Set am 10.08.2026 gegenüber seinem Ziel-Branch als `mergeable: false` gemeldet hat. Dies kann sich ändern, wenn sich der Ziel-Branch oder das Patch Set ändert. **Nein** bedeutet `mergeable: true`; dies ersetzt weder Review noch Submit-Freigabe.
 
-### Inkrementelle Korrekturen und Reviews
+### In Arbeit (WIP)
 
-| Arbeit | Aktueller Stand | Ausrichtung an der Vision und Abgrenzung |
-|---|---|---|
-| [Gerrit 92777](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92777) | Offen; beschränkt kopierte Free-Mode-Datensätze auf Zielsprachen. | Erweitert die Integrität des aktuellen Modells, ohne ein zukünftiges Strukturmodell auszuwählen. |
-| [Gerrit 93752](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93752) und [93819](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93819) | Offene Schutzmechanismen beim Kopieren und Verschieben von Free-Mode-Inhalten. | Verhindern verwaiste Beziehungen, während der aktuelle Free Mode weiterhin unterstützt wird. |
-| [Gerrit 94917](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94917) und [95170](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95170) | Beide offen und teilweise überlappend; 95170 ersetzt die eng begrenzte Änderung [92585](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92585) mit Status Abandoned. | Verbessern die Vergleichsdarstellung für Free Mode und Mixed Mode und erhalten zugleich die Ausrichtung im Connected Mode. Das Review muss Überschneidungen und die genaue Semantik der Zeilen klären. |
-| [Forge 110328](https://forge.typo3.org/issues/110328) und [Gerrit 95042](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95042) | Under Review; das offene WIP Patch Set 1 mit aktuell CI Verified +1 beschränkt die auswählbaren Translation Parents. | Verhindert doppelte Zuordnungen von Translation Parents und stellt strukturelle Integrität sicher. Der Patch bleibt ein Entwurf und ist kein implementierter Fix. |
-| [Forge 110330](https://forge.typo3.org/issues/110330) und [Gerrit 95043](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95043) | Under Review; das offene WIP Patch Set 1 mit aktuell CI Verified +1 verbirgt Connected Mode, wenn die Quelle keine Default-Language-Beziehung herstellen kann. | Eine Free-Mode-Quelle kann keine fehlende Verbindung erzeugen. Der Wizard sollte deshalb keine irreführende Translate-Option anbieten. Der Patch bleibt ein Entwurf. |
-| [Gerrit 93028](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93028) und [87595](https://review.typo3.org/c/Packages/TYPO3.CMS/+/87595) | Offene verwandte Ansätze zur Sprachkonsistenz von Child Records. | Erfordert eine sorgfältige Trennung zwischen der Absicht bei neuen Child Records und Änderungen an vorhandenen Child Records und Beziehungen. |
-| [Gerrit 93063](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93063) | Offener Warnhinweis-Patch für ungültige Translation Parents. | Macht aktuelle strukturelle Beschädigungen sichtbar; er repariert oder gestaltet Identität nicht neu. |
+| Patch | Aktueller Review-Stand | Merge-Konflikt | Geltungsbereich und Abgrenzung |
+|---|---|---|---|
+| [Gerrit 84338](https://review.typo3.org/c/Packages/TYPO3.CMS/+/84338) | Patch Set 6; WIP; CI `+1`; 5 ungelöste Kommentare. | **Ja** | Schlägt vor, die ID der ersten Site Language als Default Language zu verwenden, statt `0` zu erzwingen. Weitreichende Core-Annahmen bleiben ungelöst, und die Initiative hat ihre unmittelbare Priorität später von diesem Weg weg verlagert. |
+| [Gerrit 92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267) | Patch Set 6; WIP; CI `+1`; keine ungelösten Kommentare. | Nein | Inventarisiert gespeicherte `Language All`-Annahmen. Ändert kein ausführbares Verhalten und ist weder eine Characterization-Test-Suite noch eine Ersatzimplementierung. |
+| [Gerrit 92859](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92859) | Patch Set 6; WIP; CI `-1`; 9 ungelöste Kommentare. | **Ja** | Schlägt sprach- und Workspace-fähige MM-Tabellen vor. Das einheitliche Beziehungsmodell ist relevant, aber die Verwendung von Live-UIDs der Default Language ist ein inkrementeller Entwurf und keine Entscheidung über die zukünftige Structural Identity. |
+| [Gerrit 93289](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93289) | Patch Set 1; WIP; CI `+1`; keine ungelösten Kommentare. | Nein | Ergänzt Workspace-Abdeckung für das Einfügeverhalten von Language All und schließt vor semantischen Änderungen eine Charakterisierungslücke. |
+| [Gerrit 93819](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93819) | Patch Set 2; `[WIP]`; CI `+1`; keine ungelösten Kommentare. | **Ja** | Ergänzt Schutzmechanismen beim Verschieben von Free-Mode-Inhalten, während der aktuelle Free Mode weiterhin unterstützt wird. |
+| [Forge 110328](https://forge.typo3.org/issues/110328) und [Gerrit 95042](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95042) | Patch Set 1; `[WIP]`; CI `+1`; keine ungelösten Kommentare. | Nein | Beschränkt auswählbare Translation Parents, um doppelte oder strukturell ungültige Zuordnungen zu verhindern. Der Patch ist kein implementierter Fix. |
+| [Forge 110330](https://forge.typo3.org/issues/110330) und [Gerrit 95043](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95043) | Patch Set 1; `[WIP]`; CI `+1`; keine ungelösten Kommentare. | Nein | Verbirgt Connected Mode, wenn die Quelle keine Default-Language-Beziehung herstellen kann. Eine Free-Mode-Quelle kann die fehlende Verbindung nicht erzeugen. |
 
-### Relevante parallele Core-Arbeit
+### Review-Nacharbeit erforderlich
 
-[Gerrit 92859](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92859) ist ein WIP-Vorschlag, MM-Tabellen sprach- und Workspace-fähig zu machen. Die Initiative betrachtet das einheitliche Beziehungsmodell als vielversprechende Kompatibilitätsgrundlage. Die Verwendung von Live-UIDs der Default Language ist ein inkrementeller Entwurf für heutige Einschränkungen und keine Entscheidung, dass ein zukünftiges Modell die Default Language weiterhin privilegieren muss.
+| Patch | Aktueller Review-Stand | Merge-Konflikt | Geltungsbereich und Abgrenzung |
+|---|---|---|---|
+| [Gerrit 87595](https://review.typo3.org/c/Packages/TYPO3.CMS/+/87595) | Patch Set 11; CI `-1`; 7 ungelöste Kommentare. | **Ja** | Ändert die Sprache vorhandener Inline Child Records gemeinsam mit ihrem Parent. Die Reviews erfordern weiterhin eine breitere Abdeckung von Beziehungen, Tests und Migrationsaspekten. |
+| [Gerrit 92777](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92777) | Patch Set 10; zwei Code-Review `+1`; CI `+1`; 2 ungelöste Kommentare. | Nein | Beschränkt kopierte Free-Mode-Datensätze auf im Zielkontext verfügbare Sprachen. Dies verbessert die Integrität des aktuellen Modells, ohne ein zukünftiges Strukturmodell auszuwählen. |
+| [Gerrit 93063](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93063) | Patch Set 7; Code-Review `+1`; CI `+1`; 3 ungelöste Kommentare. | **Ja** | Warnt vor ungültigen Translation Parents. Der Patch macht strukturelle Beschädigungen sichtbar, repariert oder gestaltet Identität aber nicht neu. |
+| [Forge 110008](https://forge.typo3.org/issues/110008) und [Gerrit 94510](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) | Patch Set 7; CI `-1`; 1 ungelöster Kommentar. | Nein | Behandelt eine Regression nach dem gemergten [Gerrit-Patch 88828](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828), bei der die Ausgabe unter `strict` von einem verborgenen Datensatz in der angeforderten Sprache auf eine andere Sprache zurückfallen kann. Solange der Fix nicht gemergt ist, bleibt das aktuelle Verhalten unverändert. |
+| [Gerrit 94917](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94917) | Patch Set 4; keine aktuelle Code-Review-Stimme; 3 ungelöste Kommentare. | Nein | Verbessert die Vergleichsdarstellung für Free Mode und Mixed Mode. Im Review wurde die Ersetzung durch 95170 vorgeschlagen, 94917 ist offiziell jedoch weiterhin offen und nicht aufgegeben. |
+| [Gerrit 95170](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95170) | Patch Set 3; drei Code-Review `+1`; CI `+1`; 4 ungelöste Kommentare. | Nein | Verbessert die Darstellung von Free Mode im Modul „Layout“. Verbleibende Review-Threads betreffen die genaue Semantik des Vergleichs und den Backport nach 14.3. |
 
-[Forge 110008](https://forge.typo3.org/issues/110008) und der offene [Gerrit-Patch 94510](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510), derzeit Patch Set 7 mit CI Verified -1, behandeln eine Regression nach dem gemergten [Gerrit-Patch 88828](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828), bei der die Ausgabe unter `strict` von einem verborgenen Datensatz in der angeforderten Sprache auf eine andere Sprache zurückfallen kann. Der vorgeschlagene Fix ist nicht gemergt; das aktuelle Verhalten bleibt daher unverändert.
+### Review-positiv und mergefähig
+
+Derzeit erfüllt kein Patch alle Kriterien. Positive Code-Review-Stimmen für 92777 und 95170 bestehen parallel zu ungelösten Kommentaren. Beide verbleiben deshalb unter **Review-Nacharbeit erforderlich**.
+
+### Review ausstehend
+
+| Patch | Aktueller Review-Stand | Merge-Konflikt | Geltungsbereich und Abgrenzung |
+|---|---|---|---|
+| [Gerrit 93028](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93028) | Patch Set 6; CI `+1`; keine aktuelle Code-Review-Stimme und kein ungelöster Kommentar. | Nein | Wendet die angeforderte Sprache des Parents auf neu erstellte Relation Child Records an und lässt bereits lokalisierte Child Records unverändert. |
+| [Gerrit 93752](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93752) | Patch Set 3; CI `+1`; keine aktuelle Code-Review-Stimme und kein ungelöster Kommentar. | **Ja** | Ergänzt Schutzmechanismen beim Kopieren von Free-Mode-Inhalten. Das aktuelle Patch Set muss zunächst gegenüber `main` wieder mergefähig gemacht werden. |
+| [Gerrit 95038](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95038) | Patch Set 2; CI `+1`; keine aktuelle Code-Review-Stimme und kein ungelöster Kommentar. | Nein | Hält `pages.doktype` mittels `l10n_mode=exclude` an der Default-Language-Seite ausgerichtet und stellt für bereits abweichende Übersetzungen einen Upgrade Wizard bereit. Dies erzwingt eine Invariante des aktuellen Modells und wählt kein zukünftiges Strukturmodell aus. |
+
+### Abgelehnt oder ersetzt
+
+| Patch | Offizieller Stand | Merge-Konflikt | Begründung |
+|---|---|---|---|
+| [Gerrit 92585](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92585) | Am 07.08.2026 aufgegeben. | Nicht anwendbar | Die eng begrenzte Korrektur der Free-Mode-Darstellung wurde in [Gerrit 95170](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95170) weiterentwickelt. |
+
+### Unterstützende Patches und Forschung ohne Patch
+
+| Arbeit | Aktueller Stand | Merge-Konflikt | Bedeutung |
+|---|---|---|---|
+| [dbdoctor PR 98](https://github.com/lolli42/dbdoctor/pull/98) | Offen; GitHub meldet den aktuellen Stand als nicht mergefähig und `dirty`. | **Ja** | Repariert `l10n_state`, wenn Synchronisierungsmetadaten gespeicherten übersetzten Werten widersprechen. Dies ist kein gemergtes Core-Verhalten. |
+| [dbdoctor PR 171](https://github.com/lolli42/dbdoctor/pull/171) | Offen mit `[WIP]`; GitHub meldet den aktuellen Stand als konfliktfrei und mergefähig. | Nein | Erkennt verwaiste Übersetzungen aus historischen Kopiervorgängen. Dies ist Diagnose- und Reparaturwerkzeug, kein gemergter Core-Fix und kein neues Übersetzungsmodell. |
+| Untersuchung der strukturellen Ebene und der Editing Language | Eine Produktbeschreibung existiert; ein fertiggestellter Prototyp ist nicht belegt. | Nicht anwendbar | Eine Skizze, ein Click Dummy oder ein Experiment als Extension würde den redaktionellen Nutzen und strukturelle Annahmen vor einer Architekturentscheidung prüfen. |
 
 ## Kritische Ausrichtung an der Vision
 

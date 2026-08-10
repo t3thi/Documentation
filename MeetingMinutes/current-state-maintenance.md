@@ -153,11 +153,22 @@ For every relevant patch or issue already named in the Current State and every n
 
 1. Verify the current official state.
 2. Check whether its subject, scope, branch or implementation changed.
-3. Check review comments for new semantic findings.
+3. Check the current patch set's Code-Review and Verified votes and count unresolved review comments.
 4. Check whether another patch supersedes or overlaps it.
-5. Move merged work from Current Work to Achievements.
-6. Remove abandoned work unless its replacement, failure or learned constraint remains relevant.
-7. Keep the distinction between a patch's immediate value and its relationship to the vision.
+5. For every open Gerrit change, query the current revision's mergeability against its target branch. Record a merge conflict when Gerrit returns `mergeable: false`; record no conflict when it returns `mergeable: true`.
+6. Move merged work from Current Work to Achievements.
+7. Keep an abandoned patch under **Rejected or superseded** only when its replacement, rejection reason or learned constraint remains relevant, and state that reason briefly.
+8. Keep the distinction between a patch's immediate value and its relationship to the vision.
+
+Give every open Core patch exactly one primary listing using this precedence and classification:
+
+1. **Work in progress (WIP):** Gerrit marks the change WIP or its current subject contains `[WIP]`. WIP takes precedence even when negative votes or unresolved comments also exist.
+2. **Review action required:** the change is not WIP and its current patch set has at least one unresolved comment, a negative Code-Review vote or a negative Verified vote.
+3. **Review-positive and mergeable:** this is the final patch category used by the Current State. The change is not WIP, has at least one current Code-Review `+1`, has no current negative vote, has no unresolved comment and Gerrit reports `mergeable: true`. This describes review state; it does not replace the submit permission or required maintainer approval.
+4. **Awaiting review:** the change is not WIP, has no current review blocker and is open, but has no current positive Code-Review. Keep this category so such a patch is not misrepresented as final.
+5. **Rejected or superseded:** the change is formally abandoned and its reason remains relevant to the current work.
+
+Use separate columns for review state, merge conflict and semantic scope. For all open patches state **Yes** or **No** in the merge-conflict column and record the date on which mergeability was checked. Apply the same live mergeability check to relevant supporting pull requests outside Core and list them separately from the Gerrit categories. Use **Not applicable** for merged, abandoned or non-patch work. Treat mergeability as volatile external state and recheck it on every Current State update.
 
 Never call a WIP inventory a test suite, a prototype an implementation, an open issue a patch or a merged incremental fix confirmation of the future architecture.
 
@@ -225,6 +236,11 @@ Read both complete language versions from beginning to end and verify:
 - Editing Language is not called implemented without evidence;
 - frontend fallback is not equated with backend structural relation;
 - merged patches and active patches are not mixed;
+- every open patch appears exactly once under WIP, Review action required, Review-positive and mergeable, or Awaiting review;
+- WIP classification takes precedence over review findings;
+- every open patch has a live-checked **Yes** or **No** merge-conflict value;
+- no patch is called review-positive and mergeable while it has an unresolved comment, a current negative vote, no Code-Review `+1` or `mergeable: false`;
+- abandoned patches retained under Rejected or superseded have a concise, officially supported reason;
 - no obsolete patch state remains;
 - no information is duplicated as a standalone TODO list;
 - the German document contains every claim from the English document with the same semantic and evidential status;
