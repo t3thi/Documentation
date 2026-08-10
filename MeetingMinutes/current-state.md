@@ -72,7 +72,7 @@ The initiative's vision starts from concrete project and editorial needs. These 
 | **Mostly connected, selectively different** | A target language shares most content with another language but needs one local addition. Today that addition can require an artificial hidden default-language record, create Mixed Mode or lose useful connected behavior. | Structural Identity and Synchronization Intent |
 | **Shared global storage** | Several sites use a common record store but configure the same human languages with local numeric IDs. The number alone cannot reliably identify the language across sites. | Language Identity |
 | **Regional fallback** | UK content should reuse general English, but not an unrelated terminal language. A site-wide chain cannot also express whether one missing position should fall back or remain intentionally absent. | Output Policy |
-| **Content for all languages** | A record uses `sys_language_uid = -1` to mean "all languages", although this is behavior rather than a human language. The special value affects many unrelated Core paths. | Synchronization Intent and Language Identity |
+| **Content for all languages** | A record uses `sys_language_uid = -1` to mean "all languages", although this is behavior rather than a human language. The same complete record is used in every language, and the special value affects many unrelated Core paths. | Synchronization Intent and Language Identity |
 | **Target-language-only content** | An editor cannot always create content directly where it is needed while retaining the useful structural relation for the rest of the page. | Structural Identity |
 | **Editing from a comprehensible language** | A Chinese editor may need to create Chinese content from English while the site default is German. A permanently privileged default-language column makes the workflow harder to understand. | Structural Identity and editorial context |
 | **File-metadata translation at scale** | The [Media module translation control](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/filelist/Classes/FileList.php#L1225-L1305) shows for each file whether metadata for a configured language can be created or edited. Creating or editing target-language alternative text remains a per-file workflow; no dedicated bulk creation or completeness workflow is evident in current Core. | Structural Identity and editorial workflow |
@@ -90,13 +90,16 @@ Current TYPO3 behavior is not based on one translation model. It is the interact
 | **Record language value** | `sys_language_uid` stores a positive language ID, `0` for the default language, or `-1` for all languages where supported. | Identity, default role and cross-language behavior share one field. |
 | **Translation relation** | `l10n_parent` or `l18n_parent` connects a translation to a default-language record. | The relation also drives Layout module presentation and parts of overlay behavior. |
 | **Translation source** | `l10n_source` identifies the record from which content was taken. | Source provenance and structural parent are related but not identical. |
-| **Field synchronization** | `l10n_mode=exclude` and `allowLanguageSynchronization` control selected fields; `l10n_state` records `parent`, `source` or `custom`. | Field-level intent is separate from record-wide language-all behavior. |
+| **Configuration-enforced field synchronization** | `l10n_mode=exclude` statically marks a field in TCA. In connected translations, the field is excluded from independent translation editing and its Default-Language value is synchronized to existing dependent translations. | The rule is fixed for that TCA field. It is not selected per translation through `l10n_state`. |
+| **Editor-selectable field synchronization** | `config.behaviour.allowLanguageSynchronization=true` makes a field eligible for a per-translation choice between `parent`, `source` where available, and `custom`; `l10n_state` stores that choice. | The editor controls the field state, but a missing or invalid state currently defaults to `parent`. |
 | **Backend translation mode** | Connected, Free or Mixed Mode is inferred from record relations. | The editor-facing mode exposes properties of the current data structure. |
 | **Frontend output policy** | Site `fallbackType` and configured fallback IDs define selection and overlay behavior. | A runtime fallback is separate from the backend structural relationship. |
 
 Page translations always retain a parent relation. Free and Mixed Mode primarily describe how other records, especially content elements, relate inside the Layout module.
 
 The current contracts above are supported by the Core code snapshot validated for T3DD26: [TCA language relations](https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/Configuration/Tca/TcaEnrichment.php#L185-L247), [localization state](https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/DataHandling/Localization/State.php#L29-L39), [Layout module mode detection](https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/backend/Classes/View/BackendLayout/ContentFetcher.php#L165-L203) and [fallback construction](https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/Context/LanguageAspectFactory.php#L27-L60).
+
+Current Core processes both field-synchronization mechanisms in the same [DataMapProcessor pipeline](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/DataHandling/Localization/DataMapProcessor.php#L50-L57), but resolves their fields through separate scopes. `parent` and `source` come from `l10n_state`; the `exclude` scope is collected directly from [`l10n_mode=exclude` in TCA](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/DataHandling/Localization/DataMapProcessor.php#L1338-L1383). The [localization state selects only fields configured with `allowLanguageSynchronization`](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/DataHandling/Localization/State.php#L71-L97), and the [backend selector exposes `custom`, `parent` and, where a source exists, `source`](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/backend/Classes/Form/FieldWizard/LocalizationStateSelector.php#L48-L140). Both mechanisms operate on existing related language records. Neither creates missing language variants or expresses record-wide synchronization by itself.
 
 The user-facing module names in this document follow the current v14 Core labels: [Layout](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/backend/Resources/Private/Language/Modules/layout.xlf#L9-L13), [Records](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/backend/Resources/Private/Language/Modules/list.xlf#L9-L13) and [Media](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/filelist/Resources/Private/Language/module.xlf#L9-L13).
 
@@ -113,6 +116,8 @@ The user-facing module names in this document follow the current v14 Core labels
 9. **Free Mode remains a valid endpoint.** Fully independent structures exist. The current direction is to reduce unnecessary mode choices and support local exceptions better, not to claim that Free Mode has been deprecated.
 10. **Small fixes and tests are part of the architecture work.** They expose actual invariants and prevent the future model from being based on incomplete assumptions.
 11. **Synchronization metadata and stored values can disagree.** In existing data, an empty or missing `l10n_state` entry does not prove that a localized field equals its parent. Current [Core state enrichment](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/core/Classes/DataHandling/Localization/State.php#L223-L238) treats a missing field state as `parent` without comparing the stored values, so the backend can present the field as inherited while its stored value differs. The open [dbdoctor PR 98](https://github.com/lolli42/dbdoctor/pull/98) demonstrates a repair approach; it is not merged Core behavior.
+12. **Field synchronization has two control models today.** `l10n_mode=exclude` enforces synchronization through TCA configuration. `allowLanguageSynchronization` exposes an editor choice stored in `l10n_state`. The execution pipeline is shared, but configuration, state discovery and scopes remain distinct.
+13. **Language All applies the complete record.** Current [frontend selection includes `-1`](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/frontend/Classes/ContentObject/ContentObjectRenderer.php#L4780-L4846) for every requested language, and the [overlay logic returns such a record unchanged](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/Domain/Repository/PageRepository.php#L635-L660). A compatible first replacement must therefore preserve the effect of one complete shared row before introducing more granular synchronization.
 
 ## Vision: separate four responsibilities
 
@@ -153,31 +158,54 @@ BCP 47 addresses semantic identity. It does not by itself solve structural relat
 
 **Question:** Which fields or records must stay aligned, and where may they differ?
 
-**Current coupling:** `-1` makes one record apply across languages. Connected translations and `l10n_state` can synchronize selected fields. These mechanisms differ in scope, enforceability and lifecycle, while "language all" is still encoded as a language value.
+**Current coupling:** At field level, `l10n_mode=exclude` enforces synchronization through TCA, while `allowLanguageSynchronization` lets editors choose `parent`, `source` or `custom` through `l10n_state`. At record level, `-1` makes the same complete record apply across languages. These mechanisms differ in scope, control and lifecycle, while "language all" is still encoded as a language value.
 
 **Derived requirements:**
 
 - Record-wide and field-level synchronization must be explicit and distinguishable.
+- Editor-selectable and configuration-enforced field synchronization must remain distinguishable even if they are represented through one TCA and state model.
+- The first `-1` replacement must reproduce full-record Language-All behavior before later versions add target-language or field-level exceptions.
+- While first-stage full-record synchronization is active, record-level enforcement must take precedence over per-field `custom` choices and the editor must not be offered an ineffective opt-out.
 - The intended target languages must be known.
 - Editors must understand which values are inherited, synchronized or independent.
 - Automatically created variants need provenance and ownership.
 - Activation, modification, detachment and deactivation must have defined, repeatable behavior.
 - Workspaces, versions, relations, deletions, restoration and newly added site languages must be part of the lifecycle.
 - Migration and repair must reconcile `l10n_state` with stored values and relations without overwriting intentional manual differences.
+- Replacing `l10n_mode=exclude` must preserve its no-opt-out behavior for affected translations and provide explicit migration and compatibility rules.
+- Materialized target records need their own identity and lifecycle metadata even when every behavior-relevant source value remains enforced.
 
 **Vision:** "Maintain once for several languages" should be represented as synchronization intent applied to concrete language variants, not as a fictitious language identity.
 
 **Open questions:**
 
-- Is the initial replacement a Boolean for all targets, a selected target set, synchronization groups or another policy?
+- Which lead record and site or shared-storage scope determine the target languages for the first all-target Boolean?
+- Which fields reproduce the complete Language-All effect, and which target identity or system-managed fields must remain distinct?
 - What happens when manual translations already exist?
 - Which values may be overwritten, and who may authorize that transition?
 - What happens to generated records when synchronization is disabled?
 - How is generated content distinguished from independently maintained content?
 - Does a later language join an existing synchronization group automatically?
 - How are missing or inconsistent `l10n_state` entries classified when scalar values or relations differ?
+- Should a new `config.behaviour.enforceLanguageSynchronization` represent the enforced state through `l10n_state` and replace `l10n_mode=exclude`?
+- If `l10n_mode` is removed, how are `prefixLangTitle`, the default behavior and extension compatibility handled?
 
-The Boolean all-languages flag is a useful minimal model for discussion, but it is not a finished lifecycle or adopted TCA API.
+The Boolean all-languages flag is the useful minimal compatibility model: in its first stage it should mean all configured targets and no field-level opt-out, matching the complete-record effect of `-1`. A natural feature option built on that state is to replace or extend the Boolean with a record-level multi-select of synchronization target languages. The same full-record process would then create and maintain targets only in the selected languages. A [tentative meeting proposal](https://notes.typo3.org/s/Sxl-kkYjW) called the record field `language_sync` and its TCA reference `ctrl.languageSyncField`; neither name nor API is selected. Whether and when to introduce the multi-select must be decided, and field-level exceptions are a separate possible extension. Neither the flag nor the multi-select is a finished lifecycle or adopted TCA API.
+
+**Possible technical reuse path for first-stage `-1` parity:**
+
+1. A record-wide synchronization intent on a lead record initially selects every target language in its defined site or storage scope.
+2. The DataHandler ensures that one connected target record exists in each target language. Current [`localize()`](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/DataHandling/DataHandler.php#L4735-L4918) already validates the target Site Language, rejects duplicates and prepares language, parent and source values; [`localizeRecord()`](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/DataHandling/DataHandler.php#L4921-L5004) creates the target through a nested DataHandler operation.
+3. Each target receives an enforced `l10n_state`, or an equivalent new state representation, for every field needed to reproduce the complete source record. The existing DataMapProcessor can then reuse its [parent-to-dependent propagation for scalar values and relations](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/DataHandling/Localization/DataMapProcessor.php#L381-L452).
+4. Later updates continue through the same dependency pipeline. After functional parity is proven, the same contract can support a separately decided multi-select of target languages while retaining full-field enforcement within every selected target.
+
+"Every field" means every value whose current `-1` record is intended to expose identically, including output and structural values. It does not mean that generated records share `uid`, `sys_language_uid`, `l10n_parent`, `l10n_source`, `l10n_state` or Workspace/version metadata; those fields establish the identity and lifecycle of each target record. The exact Core-managed exclusion set must be defined by schema and characterized in tests.
+
+This is a possible reuse path, not a drop-in configuration change. The record-level intent would have to derive effective `enforceLanguageSynchronization` semantics for every parity-relevant field of its targets. Declaring `l10n_mode=exclude` statically on every TCA field would also affect unrelated records. Current DataMapProcessor [skips `-1` records and requires connected target records](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/DataHandling/Localization/DataMapProcessor.php#L203-L284). The new record-level path must therefore resolve targets, create or reconcile them, derive the full enforced field set and perform activation atomically and idempotently. A current `-1` source must first be mapped to a valid lead record or handled by a new creation path because existing `localize()` establishes a connected parent when the source is a Default-Language record.
+
+For the multi-select, adding a language can reuse the same "ensure target, then enforce all fields" operation. Removing a language needs an explicit lifecycle decision: retain and detach the generated record, disable it, soft-delete it or remove it. The stored target identity must also remain meaningful across sites; current site-local numeric IDs are not sufficient for a shared-storage contract. These points make the multi-select a concrete feature option requiring a decision, not an implemented field definition or fixed next step.
+
+A separate possible field-level consolidation is `enforceLanguageSynchronization` beside `allowLanguageSynchronization` at the same `config.behaviour` level. The enforced state could then be represented through `l10n_state`, allowing `l10n_mode=exclude` and its separate field-selection scope to be retired. This was proposed by the initiative but is neither implemented nor selected. Its exact state representation, migration and compatibility contract remain open. It must not be conflated with the separate record-wide replacement for `-1`.
 
 ### 3. Structural Identity
 
@@ -241,7 +269,9 @@ The following approaches answer parts of the responsibilities. None is the compl
 | Requirement or question | Possible approach | Expected benefit | Trade-offs and open points | Current assessment |
 |---|---|---|---|---|
 | Stable semantic language identity | Use BCP 47 tags and explicit Site Language mapping. | Cross-site meaning, clearer shared storage and exchange. | Legacy mapping, tag policy, database/API compatibility and possible internal keys. | **Current direction; storage decision open.** |
-| Replace `-1` behavior | Add explicit record synchronization, initially possibly an all-target flag and later selected targets. | Removes behavior from the language field and materializes explicit variants. | Complete lifecycle, conflicts, provenance, Workspaces, deletion and migration. | **Strong direction; design incomplete.** |
+| Replace `-1` behavior | Add an all-target record flag that creates missing connected target records and enforces every parity-relevant field through `l10n_state` or equivalent state. | Reproduces complete-record behavior first, removes behavior from the language field and reuses DataHandler target creation and synchronization. | Lead and target scope, exact enforced field set, existing targets, atomicity, provenance, Workspaces, relations and migration. | **Strong direction; reuse path plausible but unvalidated; design incomplete.** |
+| Select synchronization targets | Evolve the all-target Boolean into a record-level multi-select of target languages while reusing the same target creation and full-record synchronization process. | Adds target-language granularity without requiring a separate synchronization engine. | Stable target identity, permissions, existing target conflicts and lifecycle when a language is selected or removed. | **Possible feature; decision and lifecycle open.** |
+| Unify field-synchronization configuration | Add `config.behaviour.enforceLanguageSynchronization`, represent the enforced field state through `l10n_state` and evaluate replacing `l10n_mode=exclude`. | One TCA and state model for editor-selectable and configuration-enforced field synchronization; fewer overlapping selection branches in Core. | Exact state value, editor display, migration, `prefixLangTitle`, default behavior and extension compatibility. | **Possible approach; not implemented or selected.** |
 | Preserve current sparse records | Keep current records and relations, but clarify APIs, tests and UX. | Lowest migration and data-volume cost. | Retains missing-record states, overlay branches and default-language coupling. | **Current baseline, not sufficient for every requirement.** |
 | Complete per-language layers | Materialize a structural/content representation for each relevant language, using placeholders where content is absent. | More explicit layers and potentially simpler direct queries and output. | More records, synchronization, editor density, Workspace versions, references and migration. | **Discussed direction; not selected.** |
 | Shared neutral structure layer | Store common structural identity separately from real output languages. | No real language must be the structural lead; less full-layer duplication. | Introduces a new abstraction that every editing, query, relation and permission path must understand. | **Possible approach; hypothesis.** |
@@ -338,7 +368,9 @@ The vision is a review framework, not a reason to reject every partial solution.
 | [Respect fallback chains during record overlay](https://review.typo3.org/c/Packages/TYPO3.CMS/+/83169), its merged [13.4 follow-up](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828) and the open [strict-regression fix](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) | Fixed real fallback behavior, but also exposed a regression when a requested-language record is hidden under `strict`. | Compatible with the vision when restricted to fallback mode. The active fix confirms that `strict` must not silently behave like fallback; its current patch set is not yet verified or merged. |
 | Free/Mixed comparison fixes | Make independent and connected content visible and aligned in the current Layout module. | Valuable current UX work. They preserve valid independence while making structural relations clearer; they do not need to wait for a new data model. |
 | MM context proposal | Reduces relation ambiguity across languages and Workspaces. | A reasonable preparatory model if migration and Extbase/DataHandler behavior remain consistent. It should not be mistaken for final semantic identity. |
-| Explicit all-language synchronization | Removes behavior from the language identity field. | Strongly aligned in principle. It becomes unsafe if introduced before lifecycle, provenance, conflict and migration rules are defined. |
+| Explicit all-language synchronization | Replaces one shared `-1` row with concrete target-language records whose parity-relevant fields remain fully enforced. | Strongly aligned in principle. The first stage should preserve complete-record behavior without editor opt-out; granularity comes later. It becomes unsafe if target creation, lifecycle, provenance, conflict and migration rules are undefined. |
+| Target-language multi-select | Limits the same full-record synchronization process to selected target languages. | A natural extension after parity, but not a committed next feature. It remains aligned if target identity and deselection semantics are explicit. |
+| Field-level `enforceLanguageSynchronization` | Could replace `l10n_mode=exclude` while retaining configuration-enforced synchronization. | Aligned with explicit Synchronization Intent if enforced and editor-selectable states remain distinguishable. Current Core already shares the execution pipeline, so the gain is consolidation of configuration, state discovery and scopes. Migration and compatibility are undecided. |
 | Complete language layers or a hidden structure | Could make missing positions and structural relations more explicit. | Aligned with the structural requirement, but only after data volume, permissions, Workspaces, references, sorting, editor visibility and migration are tested. |
 
 For any new proposal, the initiative asks:
@@ -361,6 +393,13 @@ For any new proposal, the initiative asks:
 ### Synchronization Intent
 
 - **Decision required:** the record-wide synchronization contract and target selection model.
+- **Decision required:** the exact first-stage parity contract: all target languages, every behavior-relevant field enforced and only target identity or Core-managed lifecycle fields excluded.
+- **Open question:** how target scope is resolved for shared storage, how existing target records are reconciled and how multi-target creation is made atomic and idempotent.
+- **Possible approach:** after Boolean parity, reuse the same process for a record-level multi-select of synchronization target languages while keeping all parity-relevant fields enforced inside each selected target.
+- **Decision required:** whether and when to introduce the multi-select and at which site, storage or semantic-language scope it operates.
+- **Open question:** the stable identity stored by the multi-select and the detach, disable, delete or restore behavior when a target language is removed.
+- **Open question:** whether `enforceLanguageSynchronization` should become the configuration-enforced counterpart to `allowLanguageSynchronization` and replace `l10n_mode=exclude` through `l10n_state`.
+- **Open question:** the exact enforced state, editor presentation and migration of `exclude`, `prefixLangTitle`, default behavior and extension TCA.
 - **Open question:** activation, overwrite, provenance, detachment, deactivation, deletion, restoration and new-language behavior.
 - **Open question:** interaction with field synchronization, relations, Workspaces and permissions.
 
@@ -393,7 +432,7 @@ These are the initiative's current best sequence of activities, not a committed 
 3. **Finish bounded fixes.** Reconcile the overlapping Free/Mixed comparison work, progress copy/move integrity patches, validate the parent-selector and wizard drafts and resolve the failing strict-fallback regression patch.
 4. **Prototype product behavior before storage.** Test Editing Language, direct target-language creation, local structural additions and explicit absence with realistic editor workflows.
 5. **Compare structural options with evidence.** Use the same acceptance cases for sparse records, complete layers, shared structure and any hybrid. Measure data and operational costs rather than assuming them.
-6. **Define synchronization as a state machine.** Specify every transition and conflict before implementing an all-language flag or target group.
+6. **Define and characterize first-stage parity.** Specify the all-target record flag, target creation, the full enforced field set, source and target identity, conflicts and every transition. Prove that it reproduces current `-1` output, then evaluate the separately decidable multi-select and other granular extensions against the same process.
 7. **Agree the semantic identity contract.** Decide what BCP 47 identifies, how Site Languages map to it and how legacy values migrate.
 8. **Design compatibility before removal.** Introduce explicit alternatives first, provide migration and extension guidance, then consider deprecation of old semantics.
 9. **Bring evidence to the required decision makers.** The initiative should make trade-offs and consequences concrete so Core, product and architecture decisions can be made on a shared factual basis.
@@ -407,8 +446,9 @@ Key primary evidence anchors are:
 | Topic | Meeting evidence |
 |---|---|
 | Language identity and BCP 47 | [2024-01-19](https://notes.typo3.org/s/sEONb4kd6), [2025-07-25](https://notes.typo3.org/s/dtw4v9T7S), [2026-07-31](https://notes.typo3.org/s/z5ICno5pK2) |
-| `-1` replacement and synchronization lifecycle | [2024-01-19](https://notes.typo3.org/s/sEONb4kd6), [2024-06-28](https://notes.typo3.org/s/GQwWxdUKO), [2025-11-28](https://notes.typo3.org/s/Sxl-kkYjW), [2026-06-11](https://notes.typo3.org/s/1-J3KsT7VU) |
-| Field-synchronization consistency and historical copy damage | [2024-04-26](https://notes.typo3.org/s/D32XRXoCk), [2026-02-06](https://notes.typo3.org/s/D8oadqoN-7) |
+| `-1` replacement, full-record parity and synchronization lifecycle | [2024-06-28](https://notes.typo3.org/s/GQwWxdUKO), [2025-01-31](https://notes.typo3.org/s/kEaZn6jJF), [2025-09-26](https://notes.typo3.org/s/1RnTSuBsq), [2025-11-28](https://notes.typo3.org/s/Sxl-kkYjW), [2026-06-11](https://notes.typo3.org/s/1-J3KsT7VU) |
+| Current field-synchronization modes and possible consolidation | [2024-04-12](https://notes.typo3.org/s/gjl-sog92), [2024-04-26](https://notes.typo3.org/s/D32XRXoCk), [2024-10-18](https://notes.typo3.org/s/8vI0MnUbs), [2025-08-22](https://notes.typo3.org/s/gL97CaQ5M), [2026-05-08](https://notes.typo3.org/s/-0p3kqzMll) |
+| `l10n_state` consistency and historical copy damage | [2024-04-26](https://notes.typo3.org/s/D32XRXoCk), [2026-02-06](https://notes.typo3.org/s/D8oadqoN-7) |
 | Mostly connected structures and local exceptions | [2024-03-22](https://notes.typo3.org/s/kqdwFxW1m), [2026-05-08](https://notes.typo3.org/s/-0p3kqzMll), [2026-06-26](https://notes.typo3.org/s/-RP1PwIafA), [2026-07-10](https://notes.typo3.org/s/ccbVIOYfEy) |
 | Complete layers, shadows and shared structure | [2025-07-18](https://notes.typo3.org/s/L0lQKrWaW), [2025-10-24](https://notes.typo3.org/s/2Ysd3gDdn), [2026-05-29](https://notes.typo3.org/s/0AJqa7JwuJ), [2026-07-10](https://notes.typo3.org/s/ccbVIOYfEy) |
 | Editing Language | [2026-05-08](https://notes.typo3.org/s/-0p3kqzMll), [2026-05-29](https://notes.typo3.org/s/0AJqa7JwuJ) |

@@ -125,6 +125,11 @@ Then determine:
 - Does it alter the vision, or only one possible implementation?
 - Does it expose an interaction with another responsibility?
 - Does the current wording assume semantics that a non-participant would not know?
+- Does current field synchronization distinguish configuration-enforced `l10n_mode=exclude` from editor-selectable `allowLanguageSynchronization` stored in `l10n_state`?
+- Is a possible `enforceLanguageSynchronization` kept separate from record-wide synchronization and clearly marked as not implemented or selected?
+- Does the first `-1` replacement preserve the complete-record effect before any target-language or field-level granularity is introduced?
+- If "every field" is used for record synchronization, are parity-relevant values distinguished from target identity and Core-managed lifecycle metadata?
+- Is a target-language multi-select presented as a possible feature requiring a decision rather than as a fixed next step?
 
 Never promote a new table, field, flag, API, shadow-record model or prototype into the vision merely because it looks promising. The vision is defined by the responsibilities and derived product requirements.
 
@@ -231,6 +236,16 @@ Read both complete language versions from beginning to end and verify:
 - current behavior, findings, requirements, vision, approaches and decisions are distinguishable;
 - BCP 47 is not presented as implemented record storage;
 - `-1` replacement has a visible lifecycle and migration boundary;
+- current Language-All behavior is described as one complete `-1` record being selected across languages and returned unchanged by overlay;
+- first-stage `-1` replacement preserves all-target, full-record behavior before optional target-language or field-level granularity;
+- first-stage record-level enforcement has explicit precedence over per-field `custom` choices and does not expose an ineffective editor opt-out;
+- a technical reuse path through DataHandler target creation and enforced field propagation is not presented as current implementation or a drop-in TCA switch;
+- the current DataMapProcessor limitation is visible: it skips `-1` records and synchronizes only existing connected targets;
+- a target-language multi-select is classified as a possible feature with open identity and deselection lifecycle, not a committed first or next feature;
+- current field synchronization distinguishes the configuration-enforced `l10n_mode=exclude` path from the editor-selectable `allowLanguageSynchronization` and `l10n_state` path;
+- `enforceLanguageSynchronization` is not presented as implemented or selected without new evidence;
+- field-level synchronization consolidation is not conflated with record-wide replacement of `-1`;
+- removal of `l10n_mode=exclude` is not proposed without considering migration, `prefixLangTitle`, default behavior and extension compatibility;
 - complete layers, shadows and a neutral structure are not presented as selected architecture without a new decision;
 - Free Mode is not called deprecated without evidence;
 - Editing Language is not called implemented without evidence;
