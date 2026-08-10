@@ -133,6 +133,8 @@ Then determine:
 - Is the editor requirement stated as freedom from managing relation states, while independent structural outcomes remain supported?
 - Is "technically connected" distinguished from identical content, visibility, structure and ordering?
 - Are a language-layer shadow in a concrete language and a structural shadow in a shared hidden layer defined separately?
+- Is the initiative's work on editor-maintained database records clearly separated from the Localization Team's infrastructure and services for static XLIFF-based Core and extension labels?
+- Is the Localization Team described accurately as maintaining the translation infrastructure and services rather than as being responsible for every translation or wording decision?
 
 Never promote a new table, field, flag, API, shadow-record model or prototype into the vision merely because it looks promising. The vision is defined by the responsibilities and derived product requirements.
 
@@ -275,6 +277,8 @@ Read both complete language versions from beginning to end and verify:
 - the German document contains every claim from the English document with the same semantic and evidential status;
 - established TYPO3 Core names and technical identifiers were not translated into misleading alternatives;
 - current user-facing Core module names are used consistently, especially Layout, Records and Media instead of their former names;
+- the boundary to the Localization Team is visible: static-label translation through XLIFF, Crowdin, Crowdin Bridge and Language Packs is not conflated with translation handling for editor-maintained database records;
+- the Localization Team is not inaccurately described as performing every translation; its primary responsibility for infrastructure and services remains clear;
 - both language versions link to each other through the correct absolute Notes URLs;
 - every Markdown link in both published Current State documents is an absolute HTTPS URL;
 - every linked weekly minute uses the corresponding Notes URL from `MeetingMinutes/overview.md`;

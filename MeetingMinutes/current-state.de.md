@@ -16,7 +16,9 @@ Das Dokument ist keine Chronologie der Sitzungen, keine Patch-Liste, kein eigens
 
 ## Geltungsbereich und Lesehinweise
 
-Der Schwerpunkt liegt auf dem Umgang mit redaktionell gepflegten Datenbankdatensätzen wie Seiten, Inhaltselementen, Dateimetadaten und Extension-Datensätzen. XLIFF-Dateien für System- und Oberflächenbezeichnungen sind ein verwandter Bereich der Lokalisierung, aber nicht das Hauptthema dieses Dokuments.
+Das [TYPO3 Localization Team](https://typo3.community/contribute/teams-committees/localization) pflegt die Infrastruktur und die Dienste für die Übersetzung statischer TYPO3-Labels für Backend und Frontend. Die Ausgangstexte liegen üblicherweise als XLIFF-Dateien im Dateisystem des Core oder von Extensions; Übersetzungen werden über [Crowdin](https://crowdin.com/) gepflegt, und die [Crowdin Bridge](https://github.com/TYPO3/crowdin-bridge) exportiert sie auf den Translation Server, von dem TYPO3-Instanzen sie als Language Packs abrufen.
+
+Die Translation Handling Initiative arbeitet dagegen an redaktionell gepflegten Datenbankdatensätzen wie Seiten, Inhaltselementen, Dateimetadaten und Extension-Datensätzen. Ihr Tätigkeitsfeld umfasst die Sprachidentität dieser Inhalte, ihre Synchronisierung und strukturellen Beziehungen, den Editing Workflow und die Frontend-Ausgabe. Die Pflege von statischen Label-Übersetzungen, Crowdin-Projekten und der Language-Pack-Infrastruktur gehört nicht zu ihrer primären Verantwortung.
 
 Für Aussagen gelten folgende Unterscheidungen:
 

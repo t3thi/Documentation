@@ -16,7 +16,9 @@ It is not a meeting chronology, a patch list, a standalone backlog or an adopted
 
 ## Scope and reading guide
 
-The primary scope is the handling of editor-maintained database records such as pages, content elements, file metadata and extension records. XLIFF files for system and interface labels are a related localization domain, but not the main subject of this document.
+The [TYPO3 Localization Team](https://typo3.community/contribute/teams-committees/localization) maintains the infrastructure and services for translating static TYPO3 backend and frontend labels. The source labels are normally stored as XLIFF files in the filesystem of Core or extensions; translations are maintained through [Crowdin](https://crowdin.com/), and the [Crowdin Bridge](https://github.com/TYPO3/crowdin-bridge) exports them to the translation server from which TYPO3 installations fetch Language Packs.
+
+The Translation Handling Initiative instead works on editor-maintained database records such as pages, content elements, file metadata and extension records. Its scope is the language identity of this content, its synchronization and structural relations, the editing workflow and frontend output. Maintaining static-label translations, Crowdin projects or Language Pack infrastructure is not part of its primary responsibility.
 
 Statements use the following distinctions:
 
