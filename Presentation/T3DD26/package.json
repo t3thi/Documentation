@@ -1,0 +1,21 @@
+{
+  "name": "t3dd26-translation-handling-session",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "lint": "html-validate index.html",
+    "validate": "node scripts/validate.mjs",
+    "check": "npm run lint && npm run validate && npm run build"
+  },
+  "dependencies": {
+    "reveal.js": "6.0.1"
+  },
+  "devDependencies": {
+    "html-validate": "11.6.2",
+    "vite": "8.2.1"
+  }
+}

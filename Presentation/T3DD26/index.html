@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Translation Handling in TYPO3: Where We Are and Where We Could Go">
+    <title>Translation Handling in TYPO3</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./vendor/reveal/reveal.css">
+    <link rel="stylesheet" href="./src/styles.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section id="session-promise" class="main-slide title-slide" data-timing="00:00 to 00:35" aria-labelledby="title-m01">
+          <div class="slide-shell">
+            <p class="kicker">T3DD26 · Eric Harrer</p>
+            <div class="title-lockup">
+              <h1 id="title-m01">Translation Handling<br>in TYPO3</h1>
+              <p>Where we are and where we could go</p>
+            </div>
+          </div>
+          <aside class="notes" role="note">
+            <p><strong>Timing:</strong> 00:00 to 00:35.</p>
+            <p>The session covers three things: current pain points, the direction envisioned by the Translation Handling Initiative, and concrete next steps. It does not present an open architecture as a committed Core roadmap.</p>
+            <p><strong>Sources:</strong> <a href="https://t3dd.typo3.com/schedule/sessions/translation-handling-in-typo3-where-we-are-and-where-we-could-go-1203">official T3DD26 session description</a>.</p>
+            <p><strong>Boundary:</strong> Current behavior, vision, open questions and active work stay distinct.</p>
+          </aside>
+        </section>
+
+        <section id="overview" class="main-slide" data-timing="00:35 to 01:15" aria-labelledby="title-m02">
+          <div class="slide-shell">
+            <header><p class="kicker">Overview</p><h2 id="title-m02">Three gaps, four responsibilities, one path</h2></header>
+            <div class="agenda">
+              <div><strong>1</strong><span>Where we are</span><small>current behavior and missing case</small></div>
+              <div><strong>2</strong><span>What we separate</span><small>four explicit responsibilities</small></div>
+              <div><strong>3</strong><span>Where we could go</span><small>identity, sync, structure, output</small></div>
+              <div><strong>4</strong><span>How we proceed</span><small>evidence, cooperation, next steps</small></div>
+            </div>
+          </div>
+          <aside class="notes" role="note">
+            <p><strong>Timing:</strong> 00:35 to 01:15.</p>
+            <p>Give the audience the full path before entering the details. We start with the product gap and current behavior. We then decompose the problem into four responsibilities. The future models follow those responsibilities in the same order. We close with current work, cooperation and a controlled path.</p>
+            <p><strong>Sources:</strong> <a href="https://t3dd.typo3.com/schedule/sessions/translation-handling-in-typo3-where-we-are-and-where-we-could-go-1203">official T3DD26 session description</a>.</p>
+            <p><strong>Boundary:</strong> The order is an explanatory structure, not an approved implementation sequence.</p>
+          </aside>
+        </section>
+
+        <section id="who-we-are" class="main-slide" data-timing="01:15 to 02:00" aria-labelledby="title-m03">
+          <div class="slide-shell">
+            <header><p class="kicker">Current</p><h2 id="title-m03">Who we are</h2></header>
+            <p class="initiative-name">Translation Handling Initiative</p>
+            <div class="responsibility-grid responsibility-grid--three">
+              <div><strong>Listen</strong><span>project use cases</span></div>
+              <div><strong>Verify</strong><span>Core behavior</span></div>
+              <div><strong>Contribute</strong><span>focused changes</span></div>
+            </div>
+            <p class="quiet-line">Editors · integrators · developers · translators</p>
+          </div>
+          <aside class="notes" role="note">
+            <p><strong>Timing:</strong> 01:15 to 02:00.</p>
+            <p>The initiative brings project experience and Core contribution together. Its established purpose is to simplify, improve and professionalize translation handling for editors, integrators, developers and translators. The work combines use cases, documentation, reproducible tests and focused Core changes.</p>
+            <p><strong>Sources:</strong> <a href="https://notes.typo3.org/s/pM80pPOyR">Translation Handling Initiative application</a>, <a href="https://notes.typo3.org/n2MVukjgQleQGO7bObL4lw">TYPO3 Camp RheinRuhr 2024 presentation</a>, <a href="https://github.com/t3thi/Documentation">T3THI documentation repository</a>.</p>
+            <p><strong>Boundary:</strong> The proposed TYPO3 Unit model may change the organizational label, not this working purpose.</p>
+          </aside>
+        </section>
+
+        <section id="middle-case" class="main-slide" data-timing="02:00 to 03:30" aria-labelledby="title-m04">
+          <div class="slide-shell">
+            <header><p class="kicker">Problem</p><h2 id="title-m04">The missing case sits in the middle</h2></header>
+            <div class="spectrum">
+              <span>identical</span><span>reduced</span><span class="is-focus">enriched</span><span>changed</span><span>independent</span>
+            </div>
+            <p class="quiet-line">Mostly connected, selectively different</p>
+          </div>
+          <aside class="notes" role="note">
+            <p><strong>Timing:</strong> 02:00 to 03:30.</p>
+            <p>TYPO3 handles identical translated structures and fully independent structures. The product gap appears when a language variant shares most of the structure but needs a small local addition or omission. Today that can require Mixed Mode, loss of the connection, or an artificial default language partner.</p>
+            <p><strong>Sources:</strong> <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/06/26.md#L31-L96">T3THI minutes, 26 June 2026</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/07/10.md#L34-L58">T3THI minutes, 10 July 2026</a>.</p>
+            <p><strong>Boundary:</strong> Free Mode remains a legitimate endpoint. Its deprecation is not established.</p>
+          </aside>
+        </section>
+
+        <section id="use-cases" class="main-slide" data-timing="03:30 to 05:00" aria-labelledby="title-m05">
+          <div class="slide-shell">
+            <header><p class="kicker">Problem</p><h2 id="title-m05">Three use cases reveal three different gaps</h2></header>
+            <div class="use-case-grid">
+              <div><strong>Local addition</strong><span>Content only in the target language</span><small>Gap: Connected Mode requires a default partner</small></div>
+              <div><strong>Global storage</strong><span>Shared records across sites</span><small>Gap: Numeric IDs have only site-local meaning</small></div>
+              <div><strong>Regional fallback</strong><span>en-GB may reuse en, not de</span><small>Gap: One chain cannot express per-position intent</small></div>
+            </div>
+          </div>
+          <aside class="notes" role="note">
+            <p><strong>Timing:</strong> 03:30 to 05:00.</p>
+            <p>The first gap is structural: Connected Mode expects a target-language record to have a default-language partner. The second is identity: numeric language IDs are configured per site, so shared storage cannot derive one global language identity from the number alone. The third is output policy: one configured fallback chain does not say whether a missing position should continue through fallback or remain intentionally absent.</p>
+            <p><strong>Sources:</strong> <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/05/29.md#L23-L61">T3THI minutes, 29 May 2026</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/06/26.md#L56-L62">global storage case</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/07/24.md#L19-L25">cross-site language case</a>, <a href="https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/backend/Classes/View/BackendLayout/ContentFetcher.php#L165-L203">current relation modes</a>, <a href="https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/Site/Entity/SiteLanguage.php#L110-L156">current site language properties</a>, <a href="https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/Context/LanguageAspectFactory.php#L27-L60">current fallback mapping</a>.</p>
+            <p><strong>Boundary:</strong> Each case exposes a distinct gap. The examples do not imply one shared implementation defect.</p>
+          </aside>
+        </section>
+
+        <section id="contract-overlap" class="main-slide" data-timing="05:00 to 06:30" aria-labelledby="title-m06">
+          <div class="slide-shell">
+            <header><p class="kicker">Current · Interacting contracts</p><h2 id="title-m06">Four questions use different contracts</h2></header>
+            <div class="contract-map">
+              <div><strong>Language identity</strong><span>Site config maps IDs to languages</span><code>0 default · −1 all</code></div>
+              <div><strong>Synchronization intent</strong><span>Which fields or records stay in sync?</span><code>l10n_state · −1</code></div>
+              <div><strong>Structural identity</strong><span>Do records belong together? If so, which ones?</span><code>l10n_parent · mode</code></div>
+              <div><strong>Output policy</strong><span>Which records may render?</span><code>fallbackType · fallbacks</code></div>
+            </div>
+          </div>
+          <aside class="notes" role="note">
+            <p><strong>Timing:</strong> 05:00 to 06:30.</p>
+            <p>Current Core does not answer these questions with one model. Site configuration maps numeric IDs to languages. Zero additionally denotes the default language and structural source. Minus one denotes one record for all languages. Localization state controls selected fields. Origin pointers and Page module modes describe record relations. Site fallback type and fallback IDs control frontend selection.</p>
+            <p><strong>Sources:</strong> <a href="https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/Site/Entity/SiteLanguage.php#L110-L156">current site language configuration</a>, <a href="https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/backend/Classes/Form/FormDataProvider/TcaLanguage.php#L83-L147">current language values</a>, <a href="https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/DataHandling/Localization/State.php#L29-L97">current field states</a>, <a href="https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/backend/Classes/View/BackendLayout/ContentFetcher.php#L165-L203">current relation modes</a>, <a href="https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/Context/LanguageAspectFactory.php#L27-L60">current output mapping</a>.</p>
+            <p><strong>Boundary:</strong> The four-row mapping is an explanatory decomposition, not one existing Core API or one data model.</p>
+          </aside>
+        </section>
+
+        <section id="four-responsibilities" class="main-slide contract-slide" data-timing="06:30 to 09:00" aria-labelledby="title-m07">
+          <div class="slide-shell">
+            <header><p class="kicker">Vision · Problem decomposition</p><h2 id="title-m07">Separate four responsibilities</h2></header>
+            <div class="contract-grid">
+              <div><b>1</b><strong>Language identity</strong><span>Which human language does this content represent?</span></div>
+              <div><b>2</b><strong>Synchronization intent</strong><span>Which fields or records stay in sync, and where may they differ?</span></div>
+              <div><b>3</b><strong>Structural identity</strong><span>Which records are the same logical node across languages?</span></div>
+              <div><b>4</b><strong>Output policy</strong><span>What should render when the requested variant is missing?</span></div>
+            </div>
+            <p class="quiet-line">Make each contract explicit, then decide how the database represents it.</p>
+          </div>
+          <aside class="notes" role="note">
+            <p><strong>Timing:</strong> 06:30 to 09:00.</p>
+            <p>This is the organizing model for the rest of the talk. Identity names the human language. Synchronization intent states what remains aligned. Structural identity links logical nodes across variants. Output policy decides what a request may render. The following slides keep this order.</p>
+            <p><strong>Sources:</strong> <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/05/08.md#L24-L64">T3THI minutes, 8 May 2026</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/06/11.md#L52-L80">T3THI minutes, 11 June 2026</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/06/26.md#L206-L224">T3THI minutes, 26 June 2026</a>.</p>
+            <p><strong>Boundary:</strong> This is a design decomposition, not a selected data model.</p>
+          </aside>
+        </section>
+
+        <section id="language-identity" class="main-slide" data-timing="09:00 to 10:45" aria-labelledby="title-m08">
+          <div class="slide-shell">
+            <header><p class="kicker">Vision · 1 Language identity</p><h2 id="title-m08">Site language IDs have only local meaning</h2></header>
+            <div class="identity-map"><span>Site A · ID 9</span><i>→</i><strong>en-GB</strong><i>←</i><span>Site B · ID 14</span></div>
+            <p class="quiet-line">Direction: BCP 47 provides shared language identity.</p>
+          </div>
+          <aside class="notes" role="note">
+            <p><strong>Timing:</strong> 09:00 to 10:45.</p>
+            <p>Each site language has a configured integer ID. The same human language can therefore use different IDs in different sites. Zero also denotes the default language and translation source. Minus one is a special record value for all languages, not a human language. BCP 47 is the preferred semantic identity across sites and shared storage. Record storage, migration and the future role of numeric keys remain open.</p>
+            <p><strong>Sources:</strong> <a href="https://www.rfc-editor.org/rfc/rfc5646">RFC 5646</a>, <a href="https://notes.typo3.org/n2MVukjgQleQGO7bObL4lw">TYPO3 Camp RheinRuhr 2024 presentation</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2023/11/2023-11-10.md#L30-L53">T3THI minutes, 10 November 2023</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2025/07/2025-07-25.md#L22-L65">T3THI minutes, 25 July 2025</a>, <a href="https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/Site/Entity/SiteLanguage.php#L110-L156">current SiteLanguage properties</a>, <a href="https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/backend/Classes/Form/FormDataProvider/TcaLanguage.php#L83-L147">special record language values</a>.</p>
+            <p><strong>Boundary:</strong> BCP 47 is not current record storage in Core.</p>
+          </aside>
+        </section>
+
+        <section id="sync-intent" class="main-slide" data-timing="10:45 to 12:15" aria-labelledby="title-m09">
+          <div class="slide-shell">
+            <header><p class="kicker">Vision · 2 Synchronization intent</p><h2 id="title-m09">All Languages becomes an explicit rule</h2></header>
+            <div class="sync-shift">
+              <div><small>Today</small><strong>one record labelled All Languages</strong></div>
+              <i>→</i>
+              <div><small>Direction</small><strong>one source + named targets</strong><span>de · en · fr</span></div>
+            </div>
+            <p class="quiet-line">Exact API and target set remain open</p>
+          </div>
+          <aside class="notes" role="note">
+            <p><strong>Timing:</strong> 10:45 to 12:15.</p>
+            <p>Today one minus one record is both content and distribution rule. A discussed replacement direction makes synchronization explicit and materializes concrete language variants. A Boolean, target set, provenance model and field contract are not defined Core APIs.</p>
+            <p><strong>Sources:</strong> <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2024/10/2024-10-18.md#L21-L66">T3THI minutes, 18 October 2024</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/05/08.md#L24-L46">T3THI minutes, 8 May 2026</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/06/11.md#L62-L74">T3THI minutes, 11 June 2026</a>.</p>
+            <p><strong>Boundary:</strong> The functional replacement is a direction. Its concrete contract is open.</p>
+          </aside>
+        </section>
+
+        <section id="sync-lifecycle" class="main-slide" data-timing="12:15 to 13:45" aria-labelledby="title-m10">
+          <div class="slide-shell">
+            <header><p class="kicker">Open · 2 Synchronization intent</p><h2 id="title-m10">Synchronization needs rules for start, change and stop</h2></header>
+            <div class="definition-list compact">
+              <div><span>Start</span><span>handle existing language versions</span></div>
+              <div><span>Change</span><span>define allowed local differences</span></div>
+              <div><span>Stop</span><span>keep, detach or delete generated versions</span></div>
+            </div>
+            <p class="quiet-line">A flag alone is not enough</p>
+          </div>
+          <aside class="notes" role="note">
+            <p><strong>Timing:</strong> 12:15 to 13:45.</p>
+            <p>Enabling synchronization must handle existing variants. Disabling it must decide whether generated variants are removed, detached or kept. New site languages, manual changes, workspaces, restore, delete and references all need explicit rules. A flag without this lifecycle would create another special case.</p>
+            <p><strong>Sources:</strong> <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2025/01/2025-01-31.md#L35-L52">T3THI minutes, 31 January 2025</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/05/29.md#L39-L45">T3THI minutes, 29 May 2026</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/07/24.md#L59-L63">T3THI minutes, 24 July 2026</a>.</p>
+            <p><strong>Boundary:</strong> These questions are unresolved design requirements.</p>
+          </aside>
+        </section>
+
+        <section id="structural-exceptions" class="main-slide" data-timing="13:45 to 15:30" aria-labelledby="title-m11">
+          <div class="slide-shell">
+            <header><p class="kicker">Vision · 3 Structural identity</p><h2 id="title-m11">Connected Mode needs local additions</h2></header>
+            <div class="structure-lines">
+              <div><strong>Default language</strong><span>A</span><i>→</i><span>B</span><i>→</i><span>C</span></div>
+              <div><strong>Target language</strong><span>A</span><i>→</i><span>B</span><i>→</i><span>C</span><i>→</i><span class="is-local">Local</span></div>
+            </div>
+            <p class="quiet-line">Need: add Local without a default-language placeholder</p>
+          </div>
+          <aside class="notes" role="note">
+            <p><strong>Timing:</strong> 13:45 to 15:30.</p>
+            <p>In current Connected Mode, translated records point to a default-language record. A target-language-only record has no such parent and is treated as standalone content, which can create Free or Mixed Mode semantics. The requirement is to keep A, B and C connected while adding Local only in the target language, without creating an unused default-language placeholder. Strongly divergent structures may still use Free Mode.</p>
+            <p><strong>Sources:</strong> <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/06/26.md#L194-L214">T3THI minutes, 26 June 2026</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/05/29.md#L23-L61">T3THI minutes, 29 May 2026</a>, <a href="https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/backend/Classes/View/BackendLayout/ContentFetcher.php#L165-L203">current Connected, Free and Mixed Mode detection</a>.</p>
+            <p><strong>Boundary:</strong> The structural partner mechanism is not selected or implemented.</p>
+          </aside>
+        </section>
+
+        <section id="editing-language" class="main-slide" data-timing="15:30 to 17:00" aria-labelledby="title-m12">
+          <div class="slide-shell">
+            <header><p class="kicker">Vision · 3 Structural identity</p><h2 id="title-m12">Editors choose the language they translate from</h2></header>
+            <div class="editing-mock">
+              <p><span>Site default</span><strong>German</strong></p>
+              <p><span>Editing language</span><strong>English</strong></p>
+              <p><span>Translate into</span><strong>Chinese</strong></p>
+            </div>
+            <p class="quiet-line">The editing view shows English instead of German as its source</p>
+          </div>
+          <aside class="notes" role="note">
+            <p><strong>Timing:</strong> 15:30 to 17:00.</p>
+            <p>Editing Language defines the content language from which an editor works. In this example, German remains the site default, but a Chinese editor chooses English as the source for Chinese translations. The Page module would show the English positions where it currently places the default language, so German text does not obstruct this workflow. Editing Language is separate from the backend user interface language.</p>
+            <p><strong>Sources:</strong> <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/05/08.md#L48-L68">T3THI minutes, 8 May 2026</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/05/29.md#L23-L61">T3THI minutes, 29 May 2026</a>.</p>
+            <p><strong>Boundary:</strong> Editing Language remains a product direction and prototype topic.</p>
+          </aside>
+        </section>
+
+        <section id="language-layers" class="main-slide" data-timing="17:00 to 19:00" aria-labelledby="title-m13">
+          <div class="slide-shell">
+            <header><p class="kicker">Open · 3 Structural identity</p><h2 id="title-m13">A complete layer gives every language the same record positions</h2></header>
+            <div class="tradeoff">
+              <div><strong>Potential</strong><span>missing positions are explicit</span><span>less runtime lookup</span></div>
+              <i>↔</i>
+              <div><strong>Cost</strong><span>more records</span><span>more sync and workspace work</span></div>
+            </div>
+            <p class="quiet-line">Direction: complete layers. Representation remains open.</p>
+          </div>
+          <aside class="notes" role="note">
+            <p><strong>Timing:</strong> 17:00 to 19:00.</p>
+            <p>Complete language layers can make absence explicit and reduce runtime overlay cases. Materializing structure also increases record count and raises provenance, workspace, reference, migration and performance questions. Shadow records, a hidden zero spine and a neutral structure layer are distinct models. None is selected.</p>
+            <p><strong>Sources:</strong> <a href="https://notes.typo3.org/n2MVukjgQleQGO7bObL4lw">TYPO3 Camp RheinRuhr 2024 presentation</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2025/10/2025-10-24.md#L45-L78">T3THI minutes, 24 October 2025</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/05/08.md#L40-L58">T3THI minutes, 8 May 2026</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/07/10.md#L50-L58">T3THI minutes, 10 July 2026</a>.</p>
+            <p><strong>Boundary:</strong> Completing layers is a direction. The representation and cost model remain open.</p>
+          </aside>
+        </section>
+
+        <section id="output-policy" class="main-slide" data-timing="19:00 to 20:30" aria-labelledby="title-m14">
+          <div class="slide-shell">
+            <header><p class="kicker">Current · 4 Output policy</p><h2 id="title-m14">Backend connection is not frontend fallback</h2></header>
+            <div class="lanes">
+              <div class="lane"><strong>Backend</strong><div><span>record</span><i>→</i><code>l10n_parent</code><i>→</i><span>relation</span></div></div>
+              <div class="lane"><strong>Frontend</strong><div><span>request</span><i>→</i><span>fallback policy</span><i>→</i><span>output</span></div></div>
+            </div>
+          </div>
+          <aside class="notes" role="note">
+            <p><strong>Timing:</strong> 19:00 to 20:30.</p>
+            <p>The backend origin pointer describes an editorial and structural relation. Site fallback and LanguageAspect determine which records are rendered. Connected therefore does not answer what the frontend displays. Core keeps these mechanisms in separate code paths.</p>
+            <p><strong>Sources:</strong> <a href="https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/backend/Classes/View/BackendLayout/ContentFetcher.php#L165-L203">backend relation modes in Core</a>, <a href="https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/Context/LanguageAspectFactory.php#L25-L60">frontend fallback mapping in Core</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2023/12/2023-12-15.md#L20-L104">T3THI minutes, 15 December 2023</a>.</p>
+            <p><strong>Boundary:</strong> The two lanes interact at runtime but remain different responsibilities.</p>
+          </aside>
+        </section>
+
+        <section id="output-absence" class="main-slide" data-timing="20:30 to 21:45" aria-labelledby="title-m15">
+          <div class="slide-shell">
+            <header><p class="kicker">Open · 4 Output policy</p><h2 id="title-m15">Absence must tell fallback whether to continue</h2></header>
+            <div class="definition-list compact">
+              <div><span>Configured chain</span><span>en-GB → en → de (default)</span></div>
+              <div><span>missing translation</span><span>continue through allowed fallbacks</span></div>
+              <div><span>intentionally omitted</span><span>stop and render nothing</span></div>
+            </div>
+            <p class="quiet-line">Current fallback configuration has no per-position intent</p>
+          </div>
+          <aside class="notes" role="note">
+            <p><strong>Timing:</strong> 20:30 to 21:45.</p>
+            <p>In this example, language zero is the final configured fallback. A missing English variant should continue through the allowed chain. An intentionally omitted position should stop and render nothing. Current Core applies the configured language-wide chain but has no per-position intent for this distinction. Core does not automatically append language zero to every valid chain, so the problem applies where zero is configured. Strict behavior remains separate.</p>
+            <p><strong>Sources:</strong> <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/06/11.md#L20-L42">T3THI minutes, 11 June 2026</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/07/10.md#L68-L80">T3THI minutes, 10 July 2026</a>, <a href="https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/Site/Entity/SiteLanguage.php#L135-L143">configured fallback language IDs</a>, <a href="https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/Context/LanguageAspectFactory.php#L27-L60">fallback order and overlay type</a>.</p>
+            <p><strong>Boundary:</strong> The per-position intent is a future requirement. Language zero is terminal only where it is configured.</p>
+          </aside>
+        </section>
+
+        <section id="real-status" class="main-slide" data-timing="21:45 to 23:15" aria-labelledby="title-m16">
+          <div class="slide-shell">
+            <header><p class="kicker">In Progress</p><h2 id="title-m16">Today is preparation, not rollout</h2></header>
+            <div class="status-line">
+              <div><strong>Merged</strong><span>focused fixes</span></div>
+              <div><strong>Active</strong><span>inventory + behavior tests</span></div>
+              <div><strong>Open</strong><span>architecture + migration</span></div>
+            </div>
+          </div>
+          <aside class="notes" role="note">
+            <p><strong>Timing:</strong> 21:45 to 23:15.</p>
+            <p>Current work makes existing behavior visible and testable and lands bounded fixes. Gerrit 92267 was verified live on 8 August 2026 as patch set 6, status NEW, work in progress, with 59 insertions and no deletions. It marks assumptions and does not implement the target model. Architecture ownership, sequence and migration remain open.</p>
+            <p><strong>Sources:</strong> <a href="https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267">Gerrit 92267</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/01/09.md#L21-L77">T3THI minutes, 9 January 2026</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/04/24.md#L23-L53">T3THI minutes, 24 April 2026</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/07/24.md#L17-L35">T3THI minutes, 24 July 2026</a>.</p>
+            <p><strong>Boundary:</strong> There is no committed big bang migration roadmap.</p>
+          </aside>
+        </section>
+
+        <section id="unit-model" class="main-slide" data-timing="23:15 to 24:45" aria-labelledby="title-m17">
+          <div class="slide-shell">
+            <header><p class="kicker">Open</p><h2 id="title-m17">Our place in the proposed Unit model</h2></header>
+            <div class="unit-path">
+              <div><small>Expected start</small><strong>Stability &amp; Compliance</strong><span>prepare refactoring with the Core Team</span></div>
+              <i>→</i>
+              <div><small>Perspective</small><strong>Feature</strong><span>develop multilingual functions with the Core Team</span></div>
+            </div>
+            <p class="quiet-line">Working Group role, charters and priorities remain open</p>
+          </div>
+          <aside class="notes" role="note">
+            <p><strong>Timing:</strong> 23:15 to 24:45.</p>
+            <p>The Unit model is a proposal under community review, not adopted governance. Our current perspective is to contribute as a Working Group first through Stability &amp; Compliance, in agreement with the Core Team and Unit lead, while preparing the required refactoring. We expect later work with the Feature Unit, again with the Core Team and the applicable rules. We hope product strategy gives multilingual Core functions suitable priority. This is an initiative perspective, not an official assignment or priority decision.</p>
+            <p><strong>Sources:</strong> <a href="https://news.typo3.com/article/review-the-proposed-rules-for-typo3-units-and-the-unit-cooperation-panel">official community review article</a>, <a href="https://github.com/TYPO3-Documentation/Policy/pull/49">proposed Rules for TYPO3 Units</a>, <a href="https://github.com/TYPO3-Documentation/Policy/blob/cc48949ec7ccad9e8ac587e11e8ca34251698c59/Documentation/Community/Units/RulesForTypo3Units.rst#L405-L410">proposed Working Group structure</a>, <a href="https://github.com/TYPO3-Documentation/Policy/blob/cc48949ec7ccad9e8ac587e11e8ca34251698c59/Documentation/Community/Units/RulesForTypo3Units.rst#L753-L759">proposed Feature and Stability cooperation</a>.</p>
+            <p><strong>Boundary:</strong> Public review is open until 6 September 2026. Unit charters and bylaw changes are not adopted.</p>
+          </aside>
+        </section>
+
+        <section id="next-path" class="main-slide closing-slide" data-timing="24:45 to 27:30" aria-labelledby="title-m18">
+          <div class="slide-shell">
+            <p class="kicker">In Progress</p>
+            <h2 id="title-m18">Change only after the contracts are explicit</h2>
+            <div class="evolution"><span>Understand</span><i>→</i><span>Test</span><i>→</i><span>Decide</span><i>→</i><span>Change</span><i>→</i><span>Prove</span></div>
+            <p class="quiet-line">Compatibility first. No release promise.</p>
+          </div>
+          <aside class="notes" role="note">
+            <p><strong>Timing:</strong> 24:45 to 27:30.</p>
+            <p>First list every Core path that reads language values or translation relationships. Then add tests that describe current behavior, including workspaces and frontend output. Use focused prototypes to decide identity, synchronization, structure and output. Only then define a reversible migration and prove the three project use cases.</p>
+            <p><strong>Sources:</strong> <a href="https://notes.typo3.org/n2MVukjgQleQGO7bObL4lw">TYPO3 Camp RheinRuhr 2024 compatibility principle</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/01/09.md#L21-L77">T3THI minutes, 9 January 2026</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/04/24.md#L29-L75">T3THI minutes, 24 April 2026</a>, <a href="https://github.com/t3thi/Documentation/blob/702db1d691ae4083d0325ea259aff7d639aa4ecd/MeetingMinutes/Weekly/2026/07/24.md#L27-L35">T3THI minutes, 24 July 2026</a>.</p>
+            <p><strong>Boundary:</strong> This is a controlled decision path, not an approved calendar.</p>
+          </aside>
+        </section>
+
+        <section id="thanks" class="main-slide title-slide closing-slide" data-timing="27:30 to 28:00" aria-labelledby="title-m19">
+          <div class="slide-shell">
+            <p class="kicker">Join us</p>
+            <div class="title-lockup">
+              <h2 id="title-m19">Thank you for your attention</h2>
+              <a class="join-link" href="https://typo3.slack.com/archives/C05D7UF1L8M">#typo3-translation-handling</a>
+              <p>Bring a use case. Review a test. Shape the next step.</p>
+            </div>
+          </div>
+          <aside class="notes" role="note">
+            <p><strong>Timing:</strong> 27:30 to 28:00.</p>
+            <p>Invite participants to bring concrete project cases, help with characterization tests, review proposals and join the Translation Handling discussion on TYPO3 Slack.</p>
+            <p><strong>Sources:</strong> <a href="https://typo3.slack.com/archives/C05D7UF1L8M">Translation Handling Slack channel</a>, <a href="https://notes.typo3.org/s/pM80pPOyR">Translation Handling Initiative application</a>.</p>
+            <p><strong>Boundary:</strong> Participation is open. Specific work still follows Core review and the applicable governance.</p>
+          </aside>
+        </section>
+
+      </div>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
