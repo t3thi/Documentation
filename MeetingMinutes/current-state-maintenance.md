@@ -9,7 +9,7 @@ external_status_checked_through: "2026-08-10"
 
 # Maintain the Translation Handling Initiative Current State
 
-Use this document as the complete working prompt for updating [current-state.md](current-state.md). Execute the process directly in the repository.
+Use this document as the complete working prompt for updating the [Current State](https://github.com/t3thi/Documentation/blob/main/MeetingMinutes/current-state.md). Execute the process directly in the repository.
 
 The objective is to keep one coherent account of what the initiative currently knows, wants, investigates, improves and still needs to decide. Do not turn the Current State into a meeting chronology, changelog, patch dump or standalone backlog.
 
@@ -49,6 +49,14 @@ Use sources in this order:
 When a current patch state matters, verify it live through the official TYPO3 source. A status recorded in a meeting remains historical evidence only.
 
 Prefer the newest reliable statement about the same question. A later preference does not become a decision unless the source supports that status.
+
+For publication links in the Current State:
+
+1. Use absolute `https://notes.typo3.org/` links from `MeetingMinutes/overview.md` for weekly minutes.
+2. Never publish a `TODO-*` placeholder or a repository-relative weekly-minutes link.
+3. If `overview.md` has no functional Notes link for a required source, resolve and verify that Notes URL before adding the source link to the Current State.
+4. Link this maintenance document through `https://github.com/t3thi/Documentation/blob/main/MeetingMinutes/current-state-maintenance.md`.
+5. Keep every Markdown link in the published Current State absolute so it works when the document is rendered at `https://notes.typo3.org/s/RhkYPguwb`.
 
 ## 3. Extract only state-changing information
 
@@ -203,7 +211,9 @@ Read the complete updated Current State from beginning to end and verify:
 - merged patches and active patches are not mixed;
 - no obsolete patch state remains;
 - no information is duplicated as a standalone TODO list;
-- relative internal links resolve;
+- every Markdown link in the published Current State is an absolute HTTPS URL;
+- every linked weekly minute uses the corresponding Notes URL from `MeetingMinutes/overview.md`;
+- no published link contains a `TODO-*` placeholder;
 - external links are authoritative where possible;
 - Markdown tables have consistent column counts;
 - `git diff --check` passes;
@@ -223,4 +233,3 @@ Perform the update directly in the repository:
 8. Update both metadata blocks.
 9. Run the required checks.
 10. Report which findings changed the Current State, which sources were reviewed and which decisions remain open.
-

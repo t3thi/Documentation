@@ -345,7 +345,7 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 
 ### May
 
-- [2026-05-08, 12:00 to 13:00 CET](https://notes.typo3.org/s/TODO-2026-05-08)
+- [2026-05-08, 12:00 to 13:00 CET](https://notes.typo3.org/s/-0p3kqzMll)
     - <sup>TYPO3 v15 Roadmap Contacts, Language All Removal Framing, `CType` and `colPos` Translation Lock, Hidden Structural Layer for Flexible Translations, Page Tree Translation UX, Editing Language Selector, and Prototype Planning</sup>
 - [2026-05-29, 12:00 to 13:00 CET](https://notes.typo3.org/s/0AJqa7JwuJ)
     - <sup>Core Contribution Setup, Hidden Default Language Prototype, Shadow Records in Translations, Placeholder Visibility and Sorting Semantics, Structural Change Permissions, Backend Permission Testing, and June Meeting Schedule</sup>

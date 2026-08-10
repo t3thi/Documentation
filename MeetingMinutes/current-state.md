@@ -8,7 +8,7 @@ external_status_checked_through: "2026-08-10"
 
 # Translation Handling Initiative: Current State
 
-[Meeting minutes overview](overview.md) · [How to maintain this document](current-state-maintenance.md)
+[Meeting minutes overview](https://notes.typo3.org/s/f3ae8fZSD) · [How to maintain this document](https://github.com/t3thi/Documentation/blob/main/MeetingMinutes/current-state-maintenance.md)
 
 This is the canonical description of the Translation Handling Initiative's current understanding, vision and work. It explains why the initiative works on translation handling, what its research has established, which direction it currently sees, which approaches it is investigating and which decisions remain open.
 
@@ -77,7 +77,7 @@ The initiative's vision starts from concrete project and editorial needs. These 
 | **Editing from a comprehensible language** | A Chinese editor may need to create Chinese content from English while the site default is German. A permanently privileged default-language column makes the workflow harder to understand. | Structural Identity and editorial context |
 | **Intentional absence** | A missing translation and an intentionally disabled or omitted translation can both lead to fallback. The editor's intent is not represented explicitly enough. | Output Policy |
 
-The "mostly connected, selectively different" case is the clearest description of the middle ground TYPO3 should support better. Identical translated structures and fully independent structures are both valid. A small local exception should not force editors to give up the benefits of the shared majority. See the [June 2026 use-case analysis](Weekly/2026/06/26.md#topic-2-localization-and-regionalization-use-cases) and its [July refinement](Weekly/2026/07/10.md#topic-3-localization-internationalization-and-structure-variants).
+The "mostly connected, selectively different" case is the clearest description of the middle ground TYPO3 should support better. Identical translated structures and fully independent structures are both valid. A small local exception should not force editors to give up the benefits of the shared majority. See the [June 2026 use-case analysis](https://notes.typo3.org/s/-RP1PwIafA) and its [July refinement](https://notes.typo3.org/s/ccbVIOYfEy).
 
 ## Research findings: what exists today
 
@@ -360,20 +360,20 @@ These are the initiative's current best sequence of activities, not a committed 
 
 ## Evidence basis and maintenance
 
-This reconstruction includes all repository meeting minutes through 2026-07-31 and all available transcripts through 2026-07-31. Current Gerrit and Forge states in the achievement and work sections were checked on 2026-08-10. The deeper full-corpus evidence audits and T3DD26 research remain available under `../Analysis/T3DD26/`.
+This reconstruction includes all repository meeting minutes through 2026-07-31 and all available transcripts through 2026-07-31. Current Gerrit and Forge states in the achievement and work sections were checked on 2026-08-10. The [T3DD26 presentation](https://content.eric-harrer.de/t3dd26/) presents the conceptual model used in this reconstruction.
 
 Key primary evidence anchors are:
 
 | Topic | Meeting evidence |
 |---|---|
-| Language identity and BCP 47 | [2024-01-19](Weekly/2024/01/2024-01-19.md), [2025-07-25](Weekly/2025/07/2025-07-25.md), [2026-07-31](Weekly/2026/07/31.md) |
-| `-1` replacement and synchronization lifecycle | [2024-01-19](Weekly/2024/01/2024-01-19.md), [2024-06-28](Weekly/2024/06/2024-06-28.md), [2025-11-28](Weekly/2025/11/2025-11-28.md), [2026-06-11](Weekly/2026/06/11.md) |
-| Mostly connected structures and local exceptions | [2024-03-22](Weekly/2024/03/2024-03-22.md), [2026-05-08](Weekly/2026/05/08.md), [2026-06-26](Weekly/2026/06/26.md), [2026-07-10](Weekly/2026/07/10.md) |
-| Complete layers, shadows and shared structure | [2025-07-18](Weekly/2025/07/2025-07-18.md), [2025-10-24](Weekly/2025/10/2025-10-24.md), [2026-05-29](Weekly/2026/05/29.md), [2026-07-10](Weekly/2026/07/10.md) |
-| Editing Language | [2026-05-08](Weekly/2026/05/08.md), [2026-05-29](Weekly/2026/05/29.md) |
-| Output policy, strict behavior and intentional absence | [2023-12-15](Weekly/2023/12/2023-12-15.md), [2026-06-11](Weekly/2026/06/11.md), [2026-07-10](Weekly/2026/07/10.md), [2026-07-31](Weekly/2026/07/31.md) |
-| Latest work and governance boundary | [2026-07-24](Weekly/2026/07/24.md), [2026-07-31](Weekly/2026/07/31.md) |
+| Language identity and BCP 47 | [2024-01-19](https://notes.typo3.org/s/sEONb4kd6), [2025-07-25](https://notes.typo3.org/s/dtw4v9T7S), [2026-07-31](https://notes.typo3.org/s/z5ICno5pK2) |
+| `-1` replacement and synchronization lifecycle | [2024-01-19](https://notes.typo3.org/s/sEONb4kd6), [2024-06-28](https://notes.typo3.org/s/GQwWxdUKO), [2025-11-28](https://notes.typo3.org/s/Sxl-kkYjW), [2026-06-11](https://notes.typo3.org/s/1-J3KsT7VU) |
+| Mostly connected structures and local exceptions | [2024-03-22](https://notes.typo3.org/s/kqdwFxW1m), [2026-05-08](https://notes.typo3.org/s/-0p3kqzMll), [2026-06-26](https://notes.typo3.org/s/-RP1PwIafA), [2026-07-10](https://notes.typo3.org/s/ccbVIOYfEy) |
+| Complete layers, shadows and shared structure | [2025-07-18](https://notes.typo3.org/s/L0lQKrWaW), [2025-10-24](https://notes.typo3.org/s/2Ysd3gDdn), [2026-05-29](https://notes.typo3.org/s/0AJqa7JwuJ), [2026-07-10](https://notes.typo3.org/s/ccbVIOYfEy) |
+| Editing Language | [2026-05-08](https://notes.typo3.org/s/-0p3kqzMll), [2026-05-29](https://notes.typo3.org/s/0AJqa7JwuJ) |
+| Output policy, strict behavior and intentional absence | [2023-12-15](https://notes.typo3.org/s/ddSKDuz1Q), [2026-06-11](https://notes.typo3.org/s/1-J3KsT7VU), [2026-07-10](https://notes.typo3.org/s/ccbVIOYfEy), [2026-07-31](https://notes.typo3.org/s/z5ICno5pK2) |
+| Latest work and governance boundary | [2026-07-24](https://notes.typo3.org/s/Sn7GKjSk_3), [2026-07-31](https://notes.typo3.org/s/z5ICno5pK2) |
 
-Future updates must follow [current-state-maintenance.md](current-state-maintenance.md). The key rule is:
+Future updates must follow the [Current State maintenance instructions](https://github.com/t3thi/Documentation/blob/main/MeetingMinutes/current-state-maintenance.md). The key rule is:
 
 > **Update the current state, not the history.**
