@@ -8,31 +8,31 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 
 ### October
 
-- [2023-10-27, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/qJAh9gC9L)
+- [2023-10-27, 11:00 to 12:00 CET](https://notes.typo3.org/s/qJAh9gC9L)
     - <sup>AI Audio Transcription Challenges, Site Configuration Strict Mode Analysis, Fallback Mode Shortcomings, and Backend vs. Frontend Language Modes Discussion</sup>
 
 ### November
 
-- [2023-11-03, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/SzDskOKpk)
+- [2023-11-03, 11:00 to 12:00 CET](https://notes.typo3.org/s/SzDskOKpk)
     - <sup>New Meeting Recording Procedure, Translation Handling Initiative Status, Fallback Type Additions, Language Selection and Fallback Mechanics in TYPO3, Standardized Language Configuration Testing, Fictitious Languages and Abstraction Layer, Practical Language Fallback Scenarios, Shopware Approach Analysis</sup>
-- [2023-11-10, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/Bz_kQTCni)
+- [2023-11-10, 11:00 to 12:00 CET](https://notes.typo3.org/s/Bz_kQTCni)
     - <sup>TYPO3 Camp Rhein Ruhr Review, Government Site Builder Collaboration, Language Tag Opportunities, Node-Based Data Storage in TYPO3, Cloned Cache Tables for Language Output, Database Size Implications, Development of Translatable Page Tree, Language Tags vs. Selectable Dimensions Discussion</sup>
-- [2023-11-17, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/Byd1uYnx9)
+- [2023-11-17, 11:00 to 12:00 CET](https://notes.typo3.org/s/Byd1uYnx9)
     - <sup>Financing Models for the Initiative, TYPO3 in Government Projects, Translation Handling Extension Development, Publishing Channel vs. Language-Tag Debate, and Separate Tables for Language Information</sup>
-- [2023-11-24, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/06W-G1LPV)
+- [2023-11-24, 11:00 to 12:00 CET](https://notes.typo3.org/s/06W-G1LPV)
     - <sup>Language Tag Mapping Discussions, TypeScript in Page Module, Translation Handling Survey Development Using ChatGPT, and Translation Handling Extension Enhancements</sup>
 - [**2023-11 Monthly report**](https://notes.typo3.org/s/lkbg79HW7)
 
 ### December
 
-- [2023-12-01, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/L1aLsRB1_)
+- [2023-12-01, 11:00 to 12:00 CET](https://notes.typo3.org/s/L1aLsRB1_)
     - <sup>Prioritizing Forge Tickets, ChatGPT Workflow for Survey Development, Persona Creation for Surveys, and Core Topics for Future Meetings</sup>
-- 2023-12-08, 11:00 am to 12:00 am CET - canceled
-- [2023-12-15, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/ddSKDuz1Q)
+- 2023-12-08, 11:00 to 12:00 CET - canceled
+- [2023-12-15, 11:00 to 12:00 CET](https://notes.typo3.org/s/ddSKDuz1Q)
     - <sup>Core Language Handling Analysis, LanguageAspectFactory and Typo3DbQueryParser in Extbase, Language Overlay Modes, and ContentObjectRenderer Language Restrictions</sup>
-- [2023-12-22, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/lbLlUw9-6)
+- [2023-12-22, 11:00 to 12:00 CET](https://notes.typo3.org/s/lbLlUw9-6)
     - <sup>Translation Handling Testing Extension Features, New Page Tree Creation via Console, Dynamic Language ID Selection, Frontend Output Strategies, Site Configuration Quality, Minimal Core Intervention via TSconfig, Language Configurability, Test Content Discussion, Public Presentation of Testing Extension, and Content Element Translation Modes Analysis</sup>
-- [2023-12-29, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/8gjJkDDt_)
+- [2023-12-29, 11:00 to 12:00 CET](https://notes.typo3.org/s/8gjJkDDt_)
     - <sup>PageRepository Analysis, Language ID vs. Content ID Clarification, Code Complexity in Language Overlays, Flow Diagram for Language Fallbacks, Centralized Class for Fallback Behavior, Need for Core Developer Support, Status of Translatable Page Tree Development</sup>
 - [**2023-12 Monthly report**](https://notes.typo3.org/s/jGG57HTO1)
 
@@ -40,326 +40,328 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 
 ### January
 
-- [2024-01-05, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/q1euU_wMt)
+- [2024-01-05, 11:00 to 12:00 CET](https://notes.typo3.org/s/q1euU_wMt)
     - <sup>PageRepository Sorting, Data Storage in Default Language, PageRepository Naming, Core Dev Conversations, Mermaid in Markdown Documentation, Flowchart Development, Language Fallback Process, Backend/Frontend Output Consistency, Translation Extension Design</sup>
-- [2024-01-12, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/ANe0QizZ2)
+- [2024-01-12, 11:00 to 12:00 CET](https://notes.typo3.org/s/ANe0QizZ2)
     - <sup>TransFusion Budget Development, Core Analysis, Developer Coordination, and Translation Handling Extension Development</sup>
-- [2024-01-19, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/sEONb4kd6)
+- [2024-01-19, 11:00 to 12:00 CET](https://notes.typo3.org/s/sEONb4kd6)
     - <sup>Conversations with Core Developer Lolli, Technical Challenges and Solutions in Code Analysis, Language Configuration and Translation, Feature Toggles Debate, and Testing Focus for TYPO3 Development</sup>
-- 2024-01-26, 11:00 am to 12:00 am CET - canceled
+- 2024-01-26, 11:00 to 12:00 CET - canceled
 - [**2024-01 Monthly report**](https://notes.typo3.org/s/mbML1ruZC)
 
 ### February
 
-- [2024-02-02, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/AhsOuu4sc)
+- [2024-02-02, 11:00 to 12:00 CET](https://notes.typo3.org/s/AhsOuu4sc)
     - <sup>Exploring TransFusion Development Insights, Free-Connected Mode Switch Conditions, Test Scenarios for Mode Transition, Derivation Chain Depths, Content Nesting in TransFusion Implementation, and Translation Handling Extension Test Cases Discussion</sup>
-- [2024-02-09, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/XjJRqypcF)
+- [2024-02-09, 11:00 to 12:00 CET](https://notes.typo3.org/s/XjJRqypcF)
     - <sup>Collaboration on Core Patches, t3_origuid Field Discussion, and Styling for Translation Handling Test Extension Based on Bootstrap</sup>
-- [2024-02-16, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/OOMfIRbU9)
+- [2024-02-16, 11:00 to 12:00 CET](https://notes.typo3.org/s/OOMfIRbU9)
     - <sup>Discussion on t3_origuid Necessity, Translate Button Bug in Page Module, and Workflow for Functional Testing</sup>
-- [2024-02-23, 11:00 am to 12:00 am CET](https://notes.typo3.org/s/PcznGvQa4)
+- [2024-02-23, 11:00 to 12:00 CET](https://notes.typo3.org/s/PcznGvQa4)
     - <sup>Submission for TransFusion Part 2 Development, t3_origuid Removal Impact, DataHandler Differentiation for pages and tt_content, and Free/Connected Mode Discussion for Pages</sup>
 - [**2024-02 Monthly report**](https://notes.typo3.org/s/UExP2O4-i)
 
 ### March
 
-- [2024-03-01, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/dYLClg7ji)
+- [2024-03-01, 12:00 to 13:00 CET](https://notes.typo3.org/s/dYLClg7ji)
     - <sup>Handling Translated Content on Unsupported Pages, Structural Changes by Non-Default Language Editors, Free/Connected Mode Distinctions, and Standardizing Free/Connected Mode Behavior Across Levels</sup>
-- [2024-03-08, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/K7A5AG42z)
+- [2024-03-08, 12:00 to 13:00 CET](https://notes.typo3.org/s/K7A5AG42z)
     - <sup>Teaser Image Selection, TransFusion Development Update, Presentation at Contribution Fair, Core Patches on Content Translation, and Meeting Cancellation</sup>
-- 2024-03-15, 12:00 am to 13:00 am CET - canceled due to participation in [T3CMD](https://typo3-camp-mitteldeutschland.de/)
-- [2024-03-22, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/kqdwFxW1m)
+- 2024-03-15, 12:00 to 13:00 CET - canceled due to participation in [T3CMD](https://typo3-camp-mitteldeutschland.de/)
+- [2024-03-22, 12:00 to 13:00 CET](https://notes.typo3.org/s/kqdwFxW1m)
     - <sup>Editorial Challenges in Translation Modes, Sorting in TYPO3, Export/Import of Translations, TransFusion Functionality and Sorting, Editorially Undesirable Changes in Scroll Position, Language Selection for Display, Save & Close Functionality, Idea for a Freely Configurable Backend Interface, and Ongoing Core Patches Discussion</sup>
-- [2024-03-29, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/zwPjAXMLw)
+- [2024-03-29, 12:00 to 13:00 CET](https://notes.typo3.org/s/zwPjAXMLw)
     - <sup>TransFusion Feedback and Future Plans, Issues Discussion and Ticket Creation, Output Behavior of TransFusion Connector, Columns Necessity Debate, AI Content Reference Checking Idea, Irreversible Process Discussions, Direct Editing via Connector, and André's Core Patches Update</sup>
 - [**2024-03 Monthly report**](https://notes.typo3.org/s/1G4RXPFo0)
 
 ### April
 
-- [2024-04-05, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/D6Pwmi6Pi)
+- [2024-04-05, 12:00 to 13:00 CET](https://notes.typo3.org/s/D6Pwmi6Pi)
     - <sup>TransFusion Extension Testing, Core Team Engagement, Functional Test Adjustments, Inline Relations and l10n_mode Exclusions, Reference Dilemmas in Localization</sup>
-- [2024-04-12, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/gjl-sog92)
+- [2024-04-12, 12:00 to 13:00 CET](https://notes.typo3.org/s/gjl-sog92)
     - <sup>Core Patch Clean-Up, Record Translation Handling, l10n_mode=exclude Issues, and Localization State Management Discussion</sup>
-- [2024-04-19, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/oUDtK-JnP)
+- [2024-04-19, 12:00 to 13:00 CET](https://notes.typo3.org/s/oUDtK-JnP)
     - <sup>Evaluation Criteria Inconsistency for 'Unique' Fields, CSV Revision Workflow Demonstration</sup>
-- [2024-04-26, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/D32XRXoCk)
+- [2024-04-26, 12:00 to 13:00 CET](https://notes.typo3.org/s/D32XRXoCk)
     - <sup>Finalization of Tests, Chat Recap with Frank, l10n_mode Detachability Investigations, and l10n_state Pitfalls and Optimizations</sup>
 - [**2024-04 Monthly report**](https://notes.typo3.org/s/2GMAFGAwl)
 
 ### May
 
-- 2024-05-03, 12:00 am to 13:00 am CET - canceled
-- [2024-05-10, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/_tq-Z1Stl)
+- 2024-05-03, 12:00 to 13:00 CET - canceled
+- [2024-05-10, 12:00 to 13:00 CET](https://notes.typo3.org/s/_tq-Z1Stl)
     - <sup>Finalizing Patch Commit Messages, Localized Content Handling, Language Removal Impacts, Cross-Team Coordination, Initiative Documentation and XLIFF Label Management Optimization</sup>
-- [2024-05-17, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/7h2OsaMDJ)
+- [2024-05-17, 12:00 to 13:00 CET](https://notes.typo3.org/s/7h2OsaMDJ)
     - <sup>Exploring Language ID Flexibility, Default Language Deletion Concerns, and Enhancements in Multilingual Site Management</sup>
-- [2024-05-24, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/i7jdSxg1G)
+- [2024-05-24, 12:00 to 13:00 CET](https://notes.typo3.org/s/i7jdSxg1G)
     - <sup>Configurable Default Language UID Challenges, Custom Locales and TYPO3 Language Properties, Locale Mapping Issues in Site Configuration</sup>
-- [2024-05-31, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/ftdguxwrE)
+- [2024-05-31, 12:00 to 13:00 CET](https://notes.typo3.org/s/ftdguxwrE)
     - <sup>Copy Patch Completion, Move Record Patch Discussion, Locale Output Challenges, Language Identifier Updates, and Default Language Configuration Enhancement</sup>
 - [**2024-05 Monthly report**](https://notes.typo3.org/s/Q0m01tZdw)
 
 ### June
 
-- [2024-06-07, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/bOmHztnp4)
+- [2024-06-07, 12:00 to 13:00 CET](https://notes.typo3.org/s/bOmHztnp4)
     - <sup>Documentation Status Update, Configurable Default Language Discussions, Locale Management Changes, TYPO3 Product Strategy Exploration, and Core Change Consensus Processes</sup>
-- [2024-06-14, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/75adkC7sT)
+- [2024-06-14, 12:00 to 13:00 CET](https://notes.typo3.org/s/75adkC7sT)
     - <sup>Configurable Default Language Patch Challenges, Developer Resource Allocation, Potential Co-Lead Changes, and Language Menu Patch Review</sup>
-- [2024-06-21, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/l0_ju_W5Z)
+- [2024-06-21, 12:00 to 13:00 CET](https://notes.typo3.org/s/l0_ju_W5Z)
     - <sup>Discussion on Removal of sys_language_uid -1, Locale-Based Language Identification, and Review of Yannis's Patch for Language Menu Links</sup>
-- [2024-06-28, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/GQwWxdUKO)
+- [2024-06-28, 12:00 to 13:00 CET](https://notes.typo3.org/s/GQwWxdUKO)
     - <sup>Strategic Delays and Prioritization of sys_language_uid=-1 Removal, Synchronisation Mechanisms, Mission Statement Development, and Bachelor Thesis Collaboration on AI-based Content Translation</sup>
 - [**2024-06 Monthly report**](https://notes.typo3.org/s/Ab27RA8iH)
 
 ### July
 
-- [2024-07-05, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/TnJ7XbZXA)
+- [2024-07-05, 12:00 to 13:00 CET](https://notes.typo3.org/s/TnJ7XbZXA)
     - <sup>Mission Statement Discussions, AI-Based Translation Thesis Support, and Preparations for Summer Break and TYPO3 Developer Days</sup>
-- [2024-07-12, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/KTU3eLG1T)
+- [2024-07-12, 12:00 to 13:00 CET](https://notes.typo3.org/s/KTU3eLG1T)
     - <sup>Preview of the TYPO3 Developer Days, Coding Night Applications and off-topic discussions</sup>
-- [2024-07-19, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/ZM9retpWm)
+- [2024-07-19, 12:00 to 13:00 CET](https://notes.typo3.org/s/ZM9retpWm)
     - <sup>Recording broken, Protocol impossible</sup>
-- [2024-07-26, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/WcJjB8x0-)
+- [2024-07-26, 12:00 to 13:00 CET](https://notes.typo3.org/s/WcJjB8x0-)
     - <sup>Deprecating Special Values for 'All Languages' Handling, Preparing for TYPO3 Developer Days, and Optimizing Changelog Annotations</sup>
 - [**2024-07 Monthly report**](https://notes.typo3.org/s/82idKXHAi)
 
 ### August
 
-- 2024-08-02, 12:00 am to 13:00 am CET - canceled due to participation in [T3DD](https://t3dd24.typo3.com/)
-- 2024-08-09, 12:00 am to 13:00 am CET - Summer break
-- 2024-08-16, 12:00 am to 13:00 am CET - Summer break
-- 2024-08-23, 12:00 am to 13:00 am CET - Summer break
-- 2024-08-30, 12:00 am to 13:00 am CET - Summer break
+- 2024-08-02, 12:00 to 13:00 CET - canceled due to participation in [T3DD](https://t3dd24.typo3.com/)
+- 2024-08-09, 12:00 to 13:00 CET - Summer break
+- 2024-08-16, 12:00 to 13:00 CET - Summer break
+- 2024-08-23, 12:00 to 13:00 CET - Summer break
+- 2024-08-30, 12:00 to 13:00 CET - Summer break
 - **2024-08 Monthly report** - report still pending
 
 ### September
 
-- [2024-09-06, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/NyANNnbZ3)
+- [2024-09-06, 12:00 to 13:00 CET](https://notes.typo3.org/s/NyANNnbZ3)
     - <sup>Handling IRRE Records Across Languages, MM Relations Translation Issues, Link Handler Translation Configurations, Migration Strategy for Language -1 Removal, and Cross-Language Data Handling Synchronization Discussions</sup>
-- [2024-09-13, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/2CyjIgYfC)
+- [2024-09-13, 12:00 to 13:00 CET](https://notes.typo3.org/s/2CyjIgYfC)
     - <sup>Handling Inline Children Copying Across Languages, Exploring New TYPO3 v13 Features, and Language Sorting Test Enhancements</sup>
-- [2024-09-20, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/UwIbZ6el0)
+- [2024-09-20, 12:00 to 13:00 CET](https://notes.typo3.org/s/UwIbZ6el0)
     - <sup>TYPO3 Camp Munich Recap, IRRE Record Multiplication, MM Relation Editability, Language Consistency in MM Relations, and Automated Translation Creation Discussion</sup>
-- [2024-09-27, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/jFpzn3E6J)
+- [2024-09-27, 12:00 to 13:00 CET](https://notes.typo3.org/s/jFpzn3E6J)
     - <sup>Handling Inline Child Elements in Translations, Language Consistency in MM Relations, and Enhancements to Translation Processes</sup>
 - [**2024-09 Monthly report**](https://notes.typo3.org/s/v-Yha-wi_)
 
 ### October
 
-- [2024-10-04, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/RX64ozM6e)
+- [2024-10-04, 12:00 to 13:00 CET](https://notes.typo3.org/s/RX64ozM6e)
     - <sup>Revision of Copy Record Process, Addressing Translation Gaps in MM Relations, and Language -1 Sorting Test Preparations</sup>
-- 2024-10-11, 12:00 am to 13:00 am CET - canceled
-- [2024-10-18, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/8vI0MnUbs)
+- 2024-10-11, 12:00 to 13:00 CET - canceled
+- [2024-10-18, 12:00 to 13:00 CET](https://notes.typo3.org/s/8vI0MnUbs)
     - <sup>MM Record Handling and Translation Gaps, DataHandler Synchronization Standards, Translation Handling Strategy Development, and TCA Cleanup for Language Synchronization</sup>
-- [2024-10-25, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/zhyro-T1z)
+- [2024-10-25, 12:00 to 13:00 CET](https://notes.typo3.org/s/zhyro-T1z)
     - <sup>Inline Child Elements Handling in Language Copies, Move Language Tests, and Discussion on Data Handling Improvements</sup>
 - [**2024-10 Monthly report**](https://notes.typo3.org/s/JcK1ZQAPX)
 
 ### November
 
-- 2024-11-01, 12:00 am to 13:00 am CET - canceled
-- 2024-11-08, 12:00 am to 13:00 am CET - canceled
-- [2024-11-15, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/pc-a51MtE)
+- 2024-11-01, 12:00 to 13:00 CET - canceled
+- 2024-11-08, 12:00 to 13:00 CET - canceled
+- [2024-11-15, 12:00 to 13:00 CET](https://notes.typo3.org/s/pc-a51MtE)
     - <sup>TYPO3 Camp RheinRuhr Feedback, Formation of an Official Team, Development of a Translation Handling Strategy Paper, and Discussion on Special Cases in Translation Handling</sup>
-- [2024-11-22, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/rkkqO7DNC)
+- [2024-11-22, 12:00 to 13:00 CET](https://notes.typo3.org/s/rkkqO7DNC)
     - <sup>Copy to Language Bugfix Updates, Language All Tests Development, and Collaborative Test Documentation Efforts</sup>
-- [2024-11-29, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/g3FkUQwXF)
+- [2024-11-29, 12:00 to 13:00 CET](https://notes.typo3.org/s/g3FkUQwXF)
     - <sup>Status Update on Language Bugfix, Workspace Considerations in Language Tests, and Strategy Paper Budgeting</sup>
 - [**2024-11 Monthly report**](https://notes.typo3.org/s/ad2gSkf8U)
 
 ### December
 
-- [2024-12-06, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/nFE2KJ_ft)
+- [2024-12-06, 12:00 to 13:00 CET](https://notes.typo3.org/s/nFE2KJ_ft)
     - <sup>Language Synchronization Default Enablement in tt_content.assets, Breaking Changes in v14 Considered Acceptable, Detailed DataHandler Checks for Synchronization Integrity, Strategy concept state</sup>
-- 2024-12-13, 12:00 am to 13:00 am CET - canceled
-- [2024-12-20, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/J8BRk8TeQ)
+- 2024-12-13, 12:00 to 13:00 CET - canceled
+- [2024-12-20, 12:00 to 13:00 CET](https://notes.typo3.org/s/J8BRk8TeQ)
     - <sup>Yearly Review, Translation Handling Strategy Concept Development, Team Capacity Discussions, Language All Tests Design, and WIP Core Patch Setup</sup>
-- 2024-12-27, 12:00 am to 13:00 am CET - canceled
+- 2024-12-27, 12:00 to 13:00 CET - canceled
 - [**2024-12 Monthly report**](https://notes.typo3.org/s/MzbDv5VIJ)
 
 ## 2025
 
 ### January
 
-- [2025-01-10, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/rIsoIhrv-)
+- [2025-01-10, 12:00 to 13:00 CET](https://notes.typo3.org/s/rIsoIhrv-)
     - <sup>Inline Relations Localization Issues, Strategic Translation Planning, Removal of -1 Language Identifier, Test Development Strategies, l10n_diffsource Improvements, and Data Handling Challenges</sup>
-- [2025-01-17, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/yrsCuXK38)
+- [2025-01-17, 12:00 to 13:00 CET](https://notes.typo3.org/s/yrsCuXK38)
     - <sup>Discussion about Lollis list regarding Transition from sys_language_uid -1, DataHandler Synchronization Mechanisms, Translation Strategy Development</sup>
-- [2025-01-24, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/DHv7MrJBv)
+- [2025-01-24, 12:00 to 13:00 CET](https://notes.typo3.org/s/DHv7MrJBv)
     - <sup>Resource Constraints, sys_language_uid -1 Transition, Synchronization Mechanisms, Migration Strategy, Strategic Planning, and File Translation Challenges</sup>
-- [2025-01-31, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/kEaZn6jJF)
+- [2025-01-31, 12:00 to 13:00 CET](https://notes.typo3.org/s/kEaZn6jJF)
     - <sup>Proposal Follow-Up, sys_language_uid -1 Transition Plan, Migration Error Handling, UI Considerations, and AI-Assisted Translation Analysis</sup>
 - [**2025-01 Monthly report**](https://notes.typo3.org/s/XkwdAnBKs)
 
 ### February
 
-- [2025-02-14, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/PAWSutG22)
+- [2025-02-14, 12:00 to 13:00 CET](https://notes.typo3.org/s/PAWSutG22)
     - <sup>Funding Request Status, Community vs. Association Budget, sys_language_uid=-1 Transition, Translation Handling Strategy, UI Refinements, and Alternative Funding Options</sup>
-- [2025-02-21, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/wbl5hOP_y)
+- [2025-02-21, 12:00 to 13:00 CET](https://notes.typo3.org/s/wbl5hOP_y)
     - <sup>Funding Request Follow-Up, Community vs. Association Budget, Strategic Budgeting Concerns, Board-Level Support, and TYPO3 Backend Sorting Issue Analysis</sup>
-- [2025-02-28, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/gFgzyB-V0)
+- [2025-02-28, 12:00 to 13:00 CET](https://notes.typo3.org/s/gFgzyB-V0)
     - <sup>Funding Strategy and Community Budget Coordination, Roadmap Development, Visibility Enhancement, Contributor Engagement, and Organizational Improvements</sup>
 - [**2025-02 Monthly report**](https://notes.typo3.org/s/hudARdYLO)
 
 ### March
 
-- [2025-03-07, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/INb4QE4IQ)
+- [2025-03-07, 12:00 to 13:00 CET](https://notes.typo3.org/s/INb4QE4IQ)
     - <sup>Community Budget Application, Alternative Translation System Review, AI-Powered Meeting Minutes Workflow, Concept Development Plan, and sys_language_uid = -1 Strategy Refinement</sup>
-- [2025-03-14, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/taIdNg3ta)
+- [2025-03-14, 12:00 to 13:00 CET](https://notes.typo3.org/s/taIdNg3ta)
     - <sup>Inconsistent Translation Sorting in TYPO3 v13, AI-Based Concept Structuring, Vision Clarification, Funding Strategy, and General Assembly Petition Concerns</sup>
-- 2025-03-21, 12:00 am to 13:00 am CET - canceled due to participation in [T3CMD](https://typo3-camp-mitteldeutschland.de/)
-- [2025-03-28, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/OXmv36dSh)
+- 2025-03-21, 12:00 to 13:00 CET - canceled due to participation in [T3CMD](https://typo3-camp-mitteldeutschland.de/)
+- [2025-03-28, 12:00 to 13:00 CET](https://notes.typo3.org/s/OXmv36dSh)
     - <sup>Cross-CMS Translation System Evaluation, AI Integration, TYPO3 Visibility Strategy, Concept Roadmap, Funding Perspectives, and Documentation of Current Translation State</sup>
 - [**2025-03 Monthly report**](https://notes.typo3.org/s/sts1h6r82)
 
 ### April
 
-- [2025-04-04, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/R5p_9eZUR)
+- [2025-04-04, 12:00 to 13:00 CET](https://notes.typo3.org/s/R5p_9eZUR)
     - <sup>AI-Supported Workflows, Collaboration with Olivier, Structure of 'Current State Analysis', Competitive System Review, Budget Planning, Core Coordination, Translation Copy Bug, and Strategic Role Alignment</sup>
-- [2025-04-11, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/4eXBXScHx)
+- [2025-04-11, 12:00 to 13:00 CET](https://notes.typo3.org/s/4eXBXScHx)
     - <sup>Current State Analysis Structure, Overlay vs. Fallback Concepts, Budget and Compensation Models, Translation Copy Bug Investigation, Scope Definition for Extensions, Terminology Alignment, and XLIFF System Text Planning</sup>
-- 2025-04-18, 12:00 am to 13:00 am CET - canceled
-- 2025-04-25, 12:00 am to 13:00 am CET - canceled
+- 2025-04-18, 12:00 to 13:00 CET - canceled
+- 2025-04-25, 12:00 to 13:00 CET - canceled
 
 ### May
 
-- [2025-05-02, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/ohvqQACli)
+- [2025-05-02, 12:00 to 13:00 CET](https://notes.typo3.org/s/ohvqQACli)
     - <sup>Concept Draft Review, Terminology Refinement, Multidimensional Translation Handling, Technical Clarifications, and Performance Considerations</sup>
-- [2025-05-09, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/8w_-x7_m7)
+- [2025-05-09, 12:00 to 13:00 CET](https://notes.typo3.org/s/8w_-x7_m7)
     - <sup>Concept Refinement and Coordination, Audience Targeting, TYPO3 Dimension Model Limitations, NEOS Comparison, Routing-Based Enhancements, and Extension Use Cases</sup>
-- 2025-05-16, 12:00 am to 13:00 am CET - canceled
-- [2025-05-23, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/cxmxQamlF)
+- 2025-05-16, 12:00 to 13:00 CET - canceled
+- [2025-05-23, 12:00 to 13:00 CET](https://notes.typo3.org/s/cxmxQamlF)
     - <sup>Document Progress and Structure, AI-Generated Content Review, Competitive Analysis Balance, Community Survey Plans, Contribution Tracking, and Strategic Framing of TYPO3 Translation Challenges</sup>
-- [2025-05-30, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/o4zQHaqkm)
+- [2025-05-30, 12:00 to 13:00 CET](https://notes.typo3.org/s/o4zQHaqkm)
     - <sup>Survey Outreach, AI-Generated Draft Validation, Documentation Purpose, Competitive System Comparison, Enterprise Translation Needs, and Planning of Improvement Recommendations</sup>
 
 ### June
 
-- [2025-06-06, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/k569Hn3y8)
+- [2025-06-06, 12:00 to 13:00 CET](https://notes.typo3.org/s/k569Hn3y8)
     - <sup>DevDays Participation, AI Document Reliability Concerns, Strategic Position on Initiative Endorsement, Future Collaboration Conditions, and Technical Review of Extbase Translation Handling</sup>
-- [ 2025-06-13, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/nGaVmOSK3)
+- [ 2025-06-13, 12:00 to 13:00 CET](https://notes.typo3.org/s/nGaVmOSK3)
     - <sup>Onboarding of New Contributor, Overview of Language Architecture, Synchronization Concepts, MM Relation Challenges, and BCP47 Language Strategy</sup>
-- 2025-06-20, 12:00 am to 13:00 am CET
+- 2025-06-20, 12:00 to 13:00 CET
     - <sup>No Recording, Protocol impossible</sup>
-- 2025-06-27, 12:00 am to 13:00 am CET
+- 2025-06-27, 12:00 to 13:00 CET
     - <sup>No Recording, Protocol impossible</sup>
 
 ### July
 
-- [ 2025-07-04, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/dABVZY_Lw)
+- [ 2025-07-04, 12:00 to 13:00 CET](https://notes.typo3.org/s/dABVZY_Lw)
     - <sup>Strategic Realignment of Concept Draft, Collaborative Authoring Tools, Core Objectives Definition, Community Feedback Integration, and Inclusive Contribution Process</sup>
-- [ 2025-07-11, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/k11hyaA4N)
+- [ 2025-07-11, 12:00 to 13:00 CET](https://notes.typo3.org/s/k11hyaA4N)
     - <sup>Concept Structuring, Language Layer Unification, Fallback Type Analysis, Default Language Decoupling, and Roadmap Towards BCP47-Based Language Handling</sup>
-- [ 2025-07-18, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/L0lQKrWaW)
+- [ 2025-07-18, 12:00 to 13:00 CET](https://notes.typo3.org/s/L0lQKrWaW)
     - <sup>Concept Realignment and Goal Definition, Overlay and -1 Phase-Out, Structural Handling Models, Free vs. Connected Modes Evaluation, and Language Layer Consistency Strategies</sup>
-- [ 2025-07-25, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/dtw4v9T7S)
+- [ 2025-07-25, 12:00 to 13:00 CET](https://notes.typo3.org/s/dtw4v9T7S)
     - <sup>BCP 47-Based Language Identification, Structural Decoupling of Default Language, Migration Strategy Design, Real-World TYPO3 Language Challenges, and Modular Concept Planning</sup>
 
 ### August
 
-- [ 2025-08-01, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/31wHJBQf6)
+- [ 2025-08-01, 12:00 to 13:00 CET](https://notes.typo3.org/s/31wHJBQf6)
     - <sup>refine doc structure, separate state/conflicts/goals/measures, goals independent of implementation, example unique language IDs & remove -1, add intro with purpose/dependencies/sequence, use epic-story-task hierarchy</sup>
-- 2025-08-08, 12:00 am to 13:00 am CET - canceled due to participation in [T3DD](https://t3dd25.typo3.com/)
-- [ 2025-08-15, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/MeVwJYp_q)
+- 2025-08-08, 12:00 to 13:00 CET - canceled due to participation in [T3DD](https://t3dd25.typo3.com/)
+- [ 2025-08-15, 12:00 to 13:00 CET](https://notes.typo3.org/s/MeVwJYp_q)
     - <sup>Parallel Strategy for Concept and Patch Development, Removal of -1, Enforced Language Synchronization, Free Mode Clarifications, and Iterative Justification Framework</sup>
-- [ 2025-08-22, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/gL97CaQ5M)
+- [ 2025-08-22, 12:00 to 13:00 CET](https://notes.typo3.org/s/gL97CaQ5M)
   - <sup>Dual-Track Strategy for Concept and Core Work, Field-Level Synchronization Model, l10n_mode Evaluation, Complex Parent/Child Language Scenarios, and Transition from -1/0 to BCP 47 Identifiers</sup>
-- [ 2025-08-29, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/jm31KWH1P)
+- [ 2025-08-29, 12:00 to 13:00 CET](https://notes.typo3.org/s/jm31KWH1P)
   - <sup>Revival of Translation Handling Extension, Versioning Strategy, IRRE Language Test Scenarios, Reproducible Setup for Core Analysis, and Next Steps for Structured Extension Enhancement</sup>
 
 ### September
 
-- [ 2025-09-05, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/Op7mIarOh)
+- [ 2025-09-05, 12:00 to 13:00 CET](https://notes.typo3.org/s/Op7mIarOh)
     - <sup>Translation Handling Extension Reactivation, Parent-Child Language -1 Behavior, Structured Test Case Design, TCA Variant Management, and Alignment with TYPO3 Core Testing Strategy</sup>
-- 2025-09-12, 12:00 am to 13:00 am CET - canceled due to participation in [T3CM](https://www.typo3camp-muenchen.de/)
-- [ 2025-09-19, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/KpzYPkMsd)
+- 2025-09-12, 12:00 to 13:00 CET - canceled due to participation in [T3CM](https://www.typo3camp-muenchen.de/)
+- [ 2025-09-19, 12:00 to 13:00 CET](https://notes.typo3.org/s/KpzYPkMsd)
     - <sup>Meeting Rhythm Adjustment, Extension CLI Refactoring, Directory Deletion Bug Handling, Deterministic Content Generation, Mode Inconsistencies, and Core Contribution Focus on sys_language_uid = -1</sup>
-- [ 2025-09-26, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/1RnTSuBsq)
+- [ 2025-09-26, 12:00 to 13:00 CET](https://notes.typo3.org/s/1RnTSuBsq)
     - <sup>Iterative Strategy Shift, Removal of -1, BCP 47 Language Identification, Core Test Preparation, Migration Roadmap, UI Inconsistencies, and Vision for Unified Translation Handling</sup>
 
 ### October
 
-- 2025-10-03, 12:00 am to 13:00 am CET - canceled
-- 2025-10-10, 12:00 am to 13:00 am CET - canceled
-- [ 2025-10-17, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/YN1urJbqc)
+- 2025-10-03, 12:00 to 13:00 CET - canceled
+- 2025-10-10, 12:00 to 13:00 CET - canceled
+- [ 2025-10-17, 12:00 to 13:00 CET](https://notes.typo3.org/s/YN1urJbqc)
     - <sup>Translation Handling Extension Reactivation, CLI Improvements, Strategy Shift for -1 Removal, Parent-Child Synchronization Scenarios, Test Case Modeling, and Core Contribution Preparation</sup>
-- [ 2025-10-24, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/2Ysd3gDdn)
+- [ 2025-10-24, 12:00 to 13:00 CET](https://notes.typo3.org/s/2Ysd3gDdn)
     - <sup>Review of Translation Fields, Deprecation of origUid, Synchronization Models, Shadow Records vs. Structural Layer, and Future Direction for Translation Architecture in TYPO3</sup>
-- [ 2025-10-31, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/9jtoPX7xB)
+- [ 2025-10-31, 12:00 to 13:00 CET](https://notes.typo3.org/s/9jtoPX7xB)
     - <sup>Meeting Format Adjustments, CSP Regression in TYPO3 13.4.19, Real-World Translation Challenges, DeepL Extension Comparison, and Future of Structured Localization vs. Browser-Based Translation</sup>
 
 ### November
 
-- [ 2025-11-07, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/P8ovO1nXD)
+- [ 2025-11-07, 12:00 to 13:00 CET](https://notes.typo3.org/s/P8ovO1nXD)
     - <sup>Extension Compatibility Progress, Automated Review Environments, Daily Deployment Task Scheduling, and Core-Based IRRE Testing for Translation Handling</sup>
-- [ 2025-11-14, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/77gZd2Onh)
+- [ 2025-11-14, 12:00 to 13:00 CET](https://notes.typo3.org/s/77gZd2Onh)
     - <sup>Meeting Frequency Review, TYPO3 v14 Compatibility Fixes, IRRE Translation Test Scenarios, Language Consistency Bugs, and Preparation of Forge Issue for Core Discussion</sup>
-- [ 2025-11-21, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/3FGnIrj4e)
+- [ 2025-11-21, 12:00 to 13:00 CET](https://notes.typo3.org/s/3FGnIrj4e)
     - <sup>Refinement of IRRE language-sync rules, parent–child deletion behavior, language as single dimension, handling edge cases when changing parent language, planned replacement of -1 with isLanguageAllRecord</sup>
-- [ 2025-11-28, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/Sxl-kkYjW)
+- [ 2025-11-28, 12:00 to 13:00 CET](https://notes.typo3.org/s/Sxl-kkYjW)
     - <sup>Meeting Rhythm Adjustment, Core WIP Patch Planning, Replacement of language = -1, Synchronization Logic Redefinition, Orphaned Record Handling, and Forge Ticket for Translation Warning</sup>
 
 ### December
 
-- 2025-12-05, 12:00 am to 13:00 am CET - winter break
-- 2025-12-12, 12:00 am to 13:00 am CET - winter break
-- 2025-12-19, 12:00 am to 13:00 am CET - winter break
-- 2025-12-26, 12:00 am to 13:00 am CET - winter break
+- 2025-12-05, 12:00 to 13:00 CET - winter break
+- 2025-12-12, 12:00 to 13:00 CET - winter break
+- 2025-12-19, 12:00 to 13:00 CET - winter break
+- 2025-12-26, 12:00 to 13:00 CET - winter break
 
 ## 2026
 
 ### January
 
-- 2026-01-02, 12:00 am to 13:00 am CET - winter break
-- [ 2026-01-09, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/zF7_KgK0D1)
+- 2026-01-02, 12:00 to 13:00 CET - winter break
+- [ 2026-01-09, 12:00 to 13:00 CET](https://notes.typo3.org/s/zF7_KgK0D1)
   - <sup>AI-based analysis workflow to locate -1 language identifiers, create annotated TODOs for future refactor, propose WIP patch and review strategy with Lolli, plan phased move from comments to tests/refactoring</sup>
-- [ 2026-01-16, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/6lULa9vrCZ)
+- [ 2026-01-16, 12:00 to 13:00 CET](https://notes.typo3.org/s/6lULa9vrCZ)
     - <sup>Manual Review of -1 Findings, Identification of False Positives, Non-Standard -1 Usage Cases, Deprecation Strategy, Migration Vision, and Preparation for String-Based Language Identifiers</sup>
-- [ 2026-01-23, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/HIWXn2SBCN)
+- [ 2026-01-23, 12:00 to 13:00 CET](https://notes.typo3.org/s/HIWXn2SBCN)
     - <sup>Global and Local Content Handling, Fallback Logic Challenges, Massive Duplicate Reference Bug, Copy Process Patch Analysis, TYPO3 v14 Translation Tests, and Planned Fix for Orphaned Page Records</sup>
-- [ 2026-01-30, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/0KdJoxvvjU#)
+- [ 2026-01-30, 12:00 to 13:00 CET](https://notes.typo3.org/s/0KdJoxvvjU#)
     - <sup>AI-Assisted Patch Development, Translation Copy Logic Fixes, Non-Site Context Handling, Free Mode Translation Filtering, Test Coverage Expansion, and Extension Compatibility with TYPO3 v14</sup>
 
 ### February
 
-- [ 2026-02-06, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/D8oadqoN-7#)
+- [ 2026-02-06, 12:00 to 13:00 CET](https://notes.typo3.org/s/D8oadqoN-7#)
     - <sup>Copy-content patch finalized, free-mode translation rendering bugfix, minimal-risk Fluid fallback accepted, new dbdoctor orphan-translation check (WIP)</sup>
-- [ 2026-02-13, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/2kiCxISGt9)
+- [ 2026-02-13, 12:00 to 13:00 CET](https://notes.typo3.org/s/2kiCxISGt9)
     - <sup>Merged Copy Patches, `EXT:dbdoctor` Follow-Up, Free Mode Test Data Strategy, and DataHandler Filtering for Free Mode Copy Operations</sup>
-- [ 2026-02-20, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/DnwoiW1YXf)
+- [ 2026-02-20, 12:00 to 13:00 CET](https://notes.typo3.org/s/DnwoiW1YXf)
     - <sup>AI-Assisted Core Contribution Workflow, Copying Pages and Records into Language-Restricted Targets, MM Relation Concept, DataHandler Refactoring, and Camino Language Navigation</sup>
 
 ### March
 
-- [ 2026-03-13, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/OrbcX9cNIY)
+- [ 2026-03-13, 12:00 to 13:00 CET](https://notes.typo3.org/s/OrbcX9cNIY)
     - <sup>Language Switching in Product Data, Orphaned Translation Warnings, Typolink rel Attribute Handling, Language All Test Coverage, and `EXT:dbdoctor` Review</sup>
-- [ 2026-03-20, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/uo9UqIMYo2)
+- [ 2026-03-20, 12:00 to 13:00 CET](https://notes.typo3.org/s/uo9UqIMYo2)
     - <sup>Cross-Translation Consistency for CType and colPos, DataHandler Language All Guard Research, Paste Semantics, and Workspace Copy Tests for Language All Content</sup>
-- [ 2026-03-27, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/hpp2clZ6Pg)
+- [ 2026-03-27, 12:00 to 13:00 CET](https://notes.typo3.org/s/hpp2clZ6Pg)
     - <sup>AI-Assisted Extension Testing, rel Attribute Patch Review, Non-Language-Aware IRRE Children, Core Patch Status, Recent Core Features, Form Storage, and DevDays Talk Ideas</sup>
 
 ### April
 
-- [ 2026-04-24, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/TODO-2026-04-24)
+- [ 2026-04-24, 12:00 to 13:00 CET](https://notes.typo3.org/s/TODO-2026-04-24)
     - <sup>Meeting Minutes Catch-Up, Merged Non-Language-Aware IRRE Child Patch, TYPO3 v15 Roadmap for Language All Removal, Free Mode Copy and Move Patches, Language All Test Coverage, Parent-Child IRRE Language Rules, and Lolli Coordination</sup>
 
 ### May
 
-- [2026-05-08, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/TODO-2026-05-08)
+- [2026-05-08, 12:00 to 13:00 CET](https://notes.typo3.org/s/TODO-2026-05-08)
     - <sup>TYPO3 v15 Roadmap Contacts, Language All Removal Framing, `CType` and `colPos` Translation Lock, Hidden Structural Layer for Flexible Translations, Page Tree Translation UX, Editing Language Selector, and Prototype Planning</sup>
-- [2026-05-29, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/0AJqa7JwuJ)
+- [2026-05-29, 12:00 to 13:00 CET](https://notes.typo3.org/s/0AJqa7JwuJ)
     - <sup>Core Contribution Setup, Hidden Default Language Prototype, Shadow Records in Translations, Placeholder Visibility and Sorting Semantics, Structural Change Permissions, Backend Permission Testing, and June Meeting Schedule</sup>
 
 ### June
 
 - [2026-06-11, 14:00 to 15:00 CET](https://notes.typo3.org/s/1-J3KsT7VU)
     - <sup>Strict Mode Fallback Chain Regression, Core Patch Scope, TYPO3 Dialog Days Strategy Representation, Translation Handling Roadmap, `sys_language_uid` Special Value Removal, `BCP 47` Identifier Path, Hidden Structural Layer Strategy, and Strategy Material Preparation</sup>
-- [2026-06-26, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/-RP1PwIafA)
+- [2026-06-26, 12:00 to 13:00 CET](https://notes.typo3.org/s/-RP1PwIafA)
     - <sup>Dialog Days Strategy Framing, Localization and Regionalization Use Cases, Mixed Mode Limits, Connected Structure Benefits, Hidden Structural Layer Model, Fallback Configuration, and Predictable Output Behavior</sup>
 
 ### July
 
-- [2026-07-10, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/ccbVIOYfEy)
+- [2026-07-10, 12:00 to 13:00 CET](https://notes.typo3.org/s/ccbVIOYfEy)
     - <sup>Dialog Days Product Strategy Framing, Localization and Internationalization Structure Variants, `sys_language_uid` Special Value Cleanup, Multi-Dimensional Content Contexts, Fallback Visibility Semantics, and Explicit Synchronization Direction</sup>
-- [2026-07-24, 12:00 am to 13:00 am CET](https://notes.typo3.org/s/Sn7GKjSk_3)
+- [2026-07-24, 12:00 to 13:00 CET](https://notes.typo3.org/s/Sn7GKjSk_3)
     - <sup>Merged Mount Point Translation Patch, Initiative Direction After Dialog Days, `sys_language_uid = -1` Test Strategy, Free Mode Column Rendering, Mixed Mode Layout Semantics, Duplicate `l10n_parent` Prevention, Translation Wizard Source-Language Behavior, and DevDays Campfire Planning</sup>
+- [2026-07-31, 11:30 to 13:15 CET](https://notes.typo3.org/s/z5ICno5pK2)
+    - <sup>Empty `l10n_source` Core Fix, Translation Parent Selector Filtering, Strict Mode with Non-Default Fallback Chains, Site-Scoped Fallback Options, Cross-Site Language Identity, and DevDays Meeting Schedule</sup>
