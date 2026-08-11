@@ -2,10 +2,10 @@
 title: "Translation Handling Initiative - Current State Maintenance"
 canonical_document: "current-state.md"
 translated_document: "current-state.de.md"
-last_completed_update: "2026-08-10"
+last_completed_update: "2026-08-11"
 weekly_minutes_included_through: "2026-07-31"
 transcripts_included_through: "2026-07-31"
-external_status_checked_through: "2026-08-10"
+external_status_checked_through: "2026-08-11"
 ---
 
 # Maintain the Translation Handling Initiative Current State
@@ -169,16 +169,23 @@ For every relevant patch or issue already named in the Current State and every n
 6. Move merged work from Current Work to Achievements.
 7. Keep an abandoned patch under **Rejected or superseded** only when its replacement, rejection reason or learned constraint remains relevant, and state that reason briefly.
 8. Keep the distinction between a patch's immediate value and its relationship to the vision.
+9. For every Gerrit change, query all changes with the same Change-Id and record every branch-specific Main or backport change separately.
+10. Treat each branch-specific Gerrit change as an independent lifecycle. A merged Main change does not prove that a named backport is merged, and a `Releases:` footer names intended branches rather than their delivery state.
+11. Link every existing backport. Keep merged Main and backport changes together under Achievements; if their states differ, place each change in the section matching its own current state and link the counterpart.
+12. If a commit names additional release branches but Gerrit has no corresponding change yet, state that distinction without presenting the uncreated backport as pending review or merged.
+13. Never use the moving branch name `main` as a standalone version label. Pair it with the concrete TYPO3 major development line and retain the Gerrit branch in parentheses.
+14. For a merged change, resolve `main` to the TYPO3 major line it represented at the merge date and write, for example, `TYPO3 v14 (main at merge time)`. For an open change, resolve `main` on the `external_status_checked_through` date and write, for example, `TYPO3 v15 (main as of 2026-08-11)`. Name fixed maintenance branches as, for example, `TYPO3 v14 LTS (14.3)`.
+15. Recheck the current `main` mapping after every major-branch transition. Do not rewrite the historically resolved major line of an already merged change when `main` later advances.
 
 Give every open Core patch exactly one primary listing using this precedence and classification:
 
 1. **Work in progress (WIP):** Gerrit marks the change WIP or its current subject contains `[WIP]`. WIP takes precedence even when negative votes or unresolved comments also exist.
-2. **Review action required:** the change is not WIP and its current patch set has at least one unresolved comment, a negative Code-Review vote or a negative Verified vote.
+2. **Review action required:** the change is not WIP and its current patch set has at least one unresolved comment, a negative Code-Review vote, a negative Verified vote or a merge conflict.
 3. **Review-positive and mergeable:** this is the final patch category used by the Current State. The change is not WIP, has at least one current Code-Review `+1`, has no current negative vote, has no unresolved comment and Gerrit reports `mergeable: true`. This describes review state; it does not replace the submit permission or required maintainer approval.
 4. **Awaiting review:** the change is not WIP, has no current review blocker and is open, but has no current positive Code-Review. Keep this category so such a patch is not misrepresented as final.
 5. **Rejected or superseded:** the change is formally abandoned and its reason remains relevant to the current work.
 
-Use separate columns for review state, merge conflict and semantic scope. For all open patches state **Yes** or **No** in the merge-conflict column and record the date on which mergeability was checked. Apply the same live mergeability check to relevant supporting pull requests outside Core and list them separately from the Gerrit categories. Use **Not applicable** for merged, abandoned or non-patch work. Treat mergeability as volatile external state and recheck it on every Current State update.
+Use separate columns for branch and backport state, review state, merge conflict and semantic scope. For all open patches state **Yes** or **No** in the merge-conflict column and record the date on which mergeability was checked. Apply the same live mergeability check to relevant supporting pull requests outside Core and list them separately from the Gerrit categories. Use **Not applicable** for merged, abandoned or non-patch work. Treat mergeability as volatile external state and recheck it on every Current State update.
 
 Never call a WIP inventory a test suite, a prototype an implementation, an open issue a patch or a merged incremental fix confirmation of the future architecture.
 
@@ -267,8 +274,15 @@ Read both complete language versions from beginning to end and verify:
 - Editing Language is not called implemented without evidence;
 - frontend fallback is not equated with backend structural relation;
 - merged patches and active patches are not mixed;
+- every Gerrit Change-Id has been checked for branch-specific Main and backport changes;
+- every existing backport is linked and its own branch and merge state are explicit;
+- no patch listing uses `main` without the concrete TYPO3 major line and a time qualifier;
+- historical `main` mappings use the major line at merge time, while open changes use the major line current on the external-status date;
+- a `Releases:` footer is not treated as evidence that a corresponding backport change exists or is merged;
+- when Main and backport states differ, each change appears in the lifecycle section matching its own state and links its counterpart;
 - every open patch appears exactly once under WIP, Review action required, Review-positive and mergeable, or Awaiting review;
 - WIP classification takes precedence over review findings;
+- a non-WIP change with a merge conflict appears under Review action required even when its reviews are otherwise positive;
 - every open patch has a live-checked **Yes** or **No** merge-conflict value;
 - no patch is called review-positive and mergeable while it has an unresolved comment, a current negative vote, no Code-Review `+1` or `mergeable: false`;
 - abandoned patches retained under Rejected or superseded have a concise, officially supported reason;
