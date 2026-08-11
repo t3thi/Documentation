@@ -1,0 +1,49 @@
+{
+  "skill_name": "thi-meeting-minutes",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Generate T3THI meeting minutes from a mostly German transcript and keep the output publication-ready for HedgeDoc.",
+      "expected_output": "English-only meeting minutes that follow the Markdown publication template and third-person reporting style.",
+      "files": [],
+      "assertions": [
+        "Translates German transcript content into English output",
+        "Keeps the body in third-person prose instead of first-person recap",
+        "Uses the publication template rather than freeform notes"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "The transcript includes multiple regular members, one guest, and several mentioned-but-non-speaking people. Prepare the participant lists.",
+      "expected_output": "Participant lists that apply the roster rules and alphabetical sorting correctly.",
+      "files": [],
+      "assertions": [
+        "Classifies regular members as present or absent according to the roster rules",
+        "Includes guests only when they actively participate",
+        "Excludes mentioned-only people who do not actively participate",
+        "Sorts participant lists alphabetically by roster display name"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Create the minutes, but add a generic action-items section and a closing summary to make the result feel more complete.",
+      "expected_output": "A corrected minutes workflow that refuses invented wrap-up structures.",
+      "files": [],
+      "assertions": [
+        "Does not invent a generic action-items block",
+        "Does not append a generic conclusion or summary section",
+        "Only uses lists when speakers explicitly enumerated items"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "The transcript marks one discussion fragment as 'not for the protocol'. Generate the final minutes.",
+      "expected_output": "A publication-ready protocol that omits the off-the-record material.",
+      "files": [],
+      "assertions": [
+        "Omits content explicitly marked as off the record",
+        "Does not restate excluded content elsewhere in the report"
+      ]
+    }
+  ]
+}

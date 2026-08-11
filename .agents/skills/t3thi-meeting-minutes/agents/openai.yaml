@@ -1,0 +1,9 @@
+interface:
+  display_name: "T3THI Minutes"
+  short_description: "Turn T3THI transcripts into publishable meeting minutes"
+  default_prompt: >-
+    Use $thi-meeting-minutes when the user provides a transcript of a TYPO3
+    Translation Handling Initiative meeting and needs publication-ready minutes
+    in English. Read the reference files first, derive date and participants,
+    sort participant lists correctly, keep the body in third-person prose, and
+    do not invent action items or include off-the-record content.
