@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "T3THI Semantic Change Set front matter",
+  "description": "Structured front matter for a reviewable set of durable semantic transitions. Properties prefixed with x- are reserved for documented repository extensions.",
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-[a-z0-9][a-z0-9-]*$": true
+  },
+  "required": [
+    "date",
+    "sources",
+    "review_status",
+    "changes"
+  ],
+  "properties": {
+    "date": {
+      "$ref": "#/$defs/date"
+    },
+    "sources": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9_-]*$"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/sourceReference"
+      }
+    },
+    "review_status": {
+      "enum": [
+        "proposed",
+        "review-required",
+        "accepted"
+      ]
+    },
+    "changes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/change"
+      }
+    }
+  },
+  "$defs": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "knowledgeId": {
+      "type": "string",
+      "pattern": "^K-[0-9]{6}$"
+    },
+    "decisionId": {
+      "type": "string",
+      "pattern": "^D-[0-9]{6}$"
+    },
+    "targetId": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/knowledgeId"
+        },
+        {
+          "$ref": "#/$defs/decisionId"
+        }
+      ]
+    },
+    "sourceReference": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*:[^\\s#]+(?:#[^\\s]+)?$"
+    },
+    "changeId": {
+      "type": "string",
+      "pattern": "^CHG-[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{2,}$"
+    },
+    "operation": {
+      "enum": [
+        "create",
+        "refine",
+        "confirm",
+        "contradict",
+        "supersede",
+        "reject",
+        "resolve",
+        "implement"
+      ]
+    },
+    "change": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-[a-z0-9][a-z0-9-]*$": true
+      },
+      "required": [
+        "id",
+        "target",
+        "operation",
+        "before",
+        "after",
+        "evidence",
+        "reason"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/changeId"
+        },
+        "target": {
+          "$ref": "#/$defs/targetId"
+        },
+        "operation": {
+          "$ref": "#/$defs/operation"
+        },
+        "before": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "after": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/sourceReference"
+          }
+        },
+        "reason": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "requires_human_review": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "T3THI Topic Synthesis front matter",
+  "description": "Structured front matter for an English canonical Topic Synthesis or its German translation projection. Properties prefixed with x- are reserved for documented repository extensions.",
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-[a-z0-9][a-z0-9-]*$": true
+  },
+  "required": [
+    "id",
+    "title",
+    "language",
+    "updated",
+    "knowledge",
+    "history",
+    "decisions"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/$defs/topicId"
+    },
+    "title": {
+      "$ref": "#/$defs/nonEmptyString"
+    },
+    "language": {
+      "enum": [
+        "en",
+        "de"
+      ]
+    },
+    "updated": {
+      "$ref": "#/$defs/date"
+    },
+    "knowledge": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/knowledgeId"
+      }
+    },
+    "history": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/knowledgeId"
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/decisionId"
+      }
+    },
+    "translation_of": {
+      "$ref": "#/$defs/topicId"
+    },
+    "source_updated": {
+      "$ref": "#/$defs/date"
+    },
+    "translation_reviewed_at": {
+      "$ref": "#/$defs/date"
+    },
+    "source_digest": {
+      "$ref": "#/$defs/sha256"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "language": {
+            "const": "de"
+          }
+        },
+        "required": [
+          "language"
+        ]
+      },
+      "then": {
+        "required": [
+          "translation_of",
+          "source_updated",
+          "translation_reviewed_at",
+          "source_digest"
+        ]
+      },
+      "else": {
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "translation_of"
+              ]
+            },
+            {
+              "required": [
+                "source_updated"
+              ]
+            },
+            {
+              "required": [
+                "translation_reviewed_at"
+              ]
+            },
+            {
+              "required": [
+                "source_digest"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "topicId": {
+      "type": "string",
+      "pattern": "^topic:[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "knowledgeId": {
+      "type": "string",
+      "pattern": "^K-[0-9]{6}$"
+    },
+    "decisionId": {
+      "type": "string",
+      "pattern": "^D-[0-9]{6}$"
+    },
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  }
+}

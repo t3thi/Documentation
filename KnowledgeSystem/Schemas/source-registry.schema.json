@@ -1,0 +1,287 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "T3THI source registry",
+  "description": "Canonical provenance and derivation registry. Repository sources must expose a committed path or URL. Local-restricted sources may refer to ignored files that are absent at validation time. Properties prefixed with x- are reserved for documented repository extensions.",
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-[a-z0-9][a-z0-9-]*$": true
+  },
+  "required": [
+    "version",
+    "publication",
+    "sources"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "publication": {
+      "$ref": "#/$defs/publication"
+    },
+    "sources": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "$ref": "#/$defs/sourceId"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/source"
+      }
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "dateOrNull": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/date"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "sourceId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*:[^\\s#]+$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-[a-z0-9][a-z0-9-]*$": true
+      },
+      "required": [
+        "last_updated",
+        "reviewed_transcripts_through",
+        "reviewed_minutes_through",
+        "external_status_verified_through"
+      ],
+      "properties": {
+        "last_updated": {
+          "$ref": "#/$defs/date"
+        },
+        "reviewed_transcripts_through": {
+          "$ref": "#/$defs/dateOrNull"
+        },
+        "reviewed_minutes_through": {
+          "$ref": "#/$defs/dateOrNull"
+        },
+        "external_status_verified_through": {
+          "$ref": "#/$defs/dateOrNull"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-[a-z0-9][a-z0-9-]*$": true
+      },
+      "required": [
+        "type",
+        "authority",
+        "availability"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "description": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "path": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "authority": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "availability": {
+          "enum": [
+            "repository",
+            "local-restricted"
+          ]
+        },
+        "reason": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "derived_from": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/sourceId"
+          }
+        },
+        "generated_with": {
+          "$ref": "#/$defs/generatedWith"
+        },
+        "review_status": {
+          "enum": [
+            "unreviewed",
+            "reviewed"
+          ]
+        },
+        "revision": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "status": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "observed_at": {
+          "$ref": "#/$defs/date"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "availability": {
+                "const": "repository"
+              }
+            },
+            "required": [
+              "availability"
+            ]
+          },
+          "then": {
+            "anyOf": [
+              {
+                "required": [
+                  "path"
+                ]
+              },
+              {
+                "required": [
+                  "url"
+                ]
+              }
+            ]
+          },
+          "else": {
+            "required": [
+              "reason"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "meeting-minutes"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "required": [
+              "derived_from",
+              "generated_with",
+              "review_status"
+            ],
+            "properties": {
+              "derived_from": {
+                "maxItems": 1
+              },
+              "review_status": {
+                "const": "reviewed"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "gerrit",
+                  "forge"
+                ]
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "required": [
+              "url"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "availability": {
+                "const": "local-restricted"
+              },
+              "type": {
+                "const": "transcript"
+              }
+            },
+            "required": [
+              "availability",
+              "type"
+            ]
+          },
+          "then": {
+            "required": [
+              "path",
+              "reason",
+              "sha256"
+            ]
+          }
+        }
+      ]
+    },
+    "generatedWith": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-[a-z0-9][a-z0-9-]*$": true
+      },
+      "required": [
+        "skill"
+      ],
+      "properties": {
+        "skill": {
+          "$ref": "#/$defs/sourceId"
+        },
+        "prompt": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+name: Knowledge
+
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Validate canonical knowledge
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: KnowledgeSystem/requirements.txt
+
+      - name: Install pinned tooling dependencies
+        run: python3 -m pip install --disable-pip-version-check --requirement KnowledgeSystem/requirements.txt
+
+      - name: Run Knowledge tooling tests
+        run: python3 -m unittest discover --start-directory KnowledgeSystem/Tests/knowledge --pattern "test_*.py" --verbose
+
+      - name: Verify Meeting Minutes contract
+        run: python3 .agents/skills/t3thi-meeting-minutes/scripts/verify_minutes_contract.py
+
+      - name: Validate canonical knowledge
+        run: KnowledgeSystem/Tools/validate
+
+      - name: Check canonical backlinks
+        run: KnowledgeSystem/Tools/check-backlinks
+
+      - name: Run advisory semantic lint
+        run: KnowledgeSystem/Tools/lint-knowledge
+
+      - name: Check generated indexes
+        run: KnowledgeSystem/Tools/build-index --check
+
+      - name: Check generated publication views
+        run: KnowledgeSystem/Tools/build-views --check

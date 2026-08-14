@@ -1,0 +1,429 @@
+version: 1
+publication:
+  last_updated: "2026-08-14"
+  reviewed_transcripts_through: "2026-07-31"
+  reviewed_minutes_through: "2026-07-31"
+  external_status_verified_through: "2026-08-11"
+
+sources:
+  skill:t3thi-meeting-minutes:
+    type: skill
+    path: .agents/skills/t3thi-meeting-minutes/SKILL.md
+    authority: transcript-to-minutes-workflow
+    availability: repository
+
+  skill:historical-unrecorded:
+    type: skill
+    authority: historical-provenance-marker
+    availability: local-restricted
+    reason: >
+      The exact generation tool for minutes predating the repository-local skill
+      commit is not recorded; this marker prevents false attribution to the
+      current skill.
+
+  policy:knowledge-system:
+    type: policy
+    path: KnowledgeSystem/AGENTS.md
+    authority: repository-operational-policy
+    availability: repository
+
+  policy:knowledge-handbook:
+    type: policy
+    path: KnowledgeSystem/Knowledge/README.md
+    authority: repository-knowledge-policy
+    availability: repository
+
+  current-state:3612574c0a4db050276c0e2602c2d812b7a87c8d:
+    type: current-state
+    path: MeetingMinutes/current-state.md
+    authority: bootstrap-current-state-consolidation
+    availability: repository
+    revision: "3612574c0a4db050276c0e2602c2d812b7a87c8d"
+    observed_at: "2026-08-11"
+    reason: >
+      Frozen migration baseline that consolidates underlying evidence; it is not
+      independent corroboration of the transcripts and minutes it summarizes.
+
+  transcript:2026-02-13:
+    type: transcript
+    path: "Transcripts/2026-02-13 12-00-52 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:f1dce59679fecf555d6d3742a85f8f266ac0c748ce621753bb09791d433ac038
+    reason: Raw transcripts are ignored and may contain restricted or private passages.
+  minutes:2026-02-13:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/02/13.md
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-02-13
+    generated_with:
+      skill: skill:historical-unrecorded
+    review_status: reviewed
+
+  transcript:2026-02-20:
+    type: transcript
+    path: "Transcripts/2026-02-20 12-00-16 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:4f41048777c3f61542a8beb2384c10446eb5c35054d3fbfde1cc63eed8389ae6
+    reason: Raw transcripts are ignored and may contain restricted or private passages.
+  minutes:2026-02-20:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/02/20.md
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-02-20
+    generated_with:
+      skill: skill:historical-unrecorded
+    review_status: reviewed
+
+  transcript:2026-03-13:
+    type: transcript
+    path: "Transcripts/2026-03-13 12-00-26 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:483496b1a806033ab23bf76cdbf8dc32e34ea587246e66ebcc692914d4f340d3
+    reason: Raw transcripts are ignored and may contain restricted or private passages.
+  minutes:2026-03-13:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/03/13.md
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-03-13
+    generated_with:
+      skill: skill:historical-unrecorded
+    review_status: reviewed
+
+  transcript:2026-03-20:
+    type: transcript
+    path: "Transcripts/2026-03-20 12-11-52 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:ea9602eb0351efec16d9f87b991193e005af71624a469731f3e2fe2c49558bc3
+    reason: Raw transcripts are ignored and may contain restricted or private passages.
+  minutes:2026-03-20:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/03/20.md
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-03-20
+    generated_with:
+      skill: skill:historical-unrecorded
+    review_status: reviewed
+
+  transcript:2026-03-27:
+    type: transcript
+    path: "Transcripts/2026-03-27 12-02-56 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:b2fd196766ed0ec1116fd6ff83c198b81cf4da34f8e31d41157c57a73ce425c8
+    reason: Raw transcripts are ignored and may contain restricted or private passages.
+  minutes:2026-03-27:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/03/27.md
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-03-27
+    generated_with:
+      skill: skill:historical-unrecorded
+    review_status: reviewed
+
+  transcript:2026-04-24:
+    type: transcript
+    path: "Transcripts/2026-04-24 12-01-11 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:0abb5f13b371d3a4162e4f3e2275249b0701cbeccc7a67f86ca1b191e2880035
+    reason: Raw transcripts are ignored and may contain restricted or private passages.
+  minutes:2026-04-24:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/04/24.md
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-04-24
+    generated_with:
+      skill: skill:historical-unrecorded
+    review_status: reviewed
+
+  transcript:2026-05-08:
+    type: transcript
+    path: "Transcripts/2026-05-08 12-13-43 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:659d1630b99f26405d4b5c19e583a8302d8a9e727a7a5ab2e8ebc909a98ef34e
+    reason: Raw transcripts are ignored and may contain restricted or private passages.
+  minutes:2026-05-08:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/05/08.md
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-05-08
+    generated_with:
+      skill: skill:historical-unrecorded
+    review_status: reviewed
+
+  transcript:2026-05-29:
+    type: transcript
+    path: "Transcripts/2026-05-29 12-01-43 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:62b2ea3162eb794c09a8dddc86404b543b02d8aa1f3502aa0438bc81964e33d6
+    reason: Raw transcripts are ignored and may contain restricted or private passages.
+  minutes:2026-05-29:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/05/29.md
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-05-29
+    generated_with:
+      skill: skill:historical-unrecorded
+    review_status: reviewed
+
+  transcript:2026-06-11:
+    type: transcript
+    path: "Transcripts/2026-06-11 14-00-45 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:ed4573e045605158087b8753aa47a38ced4a8a7241ba8c884d05cc14147f7b6d
+    reason: Raw transcripts are ignored and may contain restricted or private passages.
+  minutes:2026-06-11:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/06/11.md
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-06-11
+    generated_with:
+      skill: skill:historical-unrecorded
+    review_status: reviewed
+
+  transcript:2026-06-26:
+    type: transcript
+    path: "Transcripts/2026-06-26 12-00-22 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:e7cc25669ad388275b3f7bedc0f086a088b47803309f2efd2c85af18f8a9989e
+    reason: Raw transcripts are ignored and may contain restricted or private passages.
+  minutes:2026-06-26:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/06/26.md
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-06-26
+    generated_with:
+      skill: skill:historical-unrecorded
+    review_status: reviewed
+
+  transcript:2026-07-10:
+    type: transcript
+    path: "Transcripts/2026-07-10 12-01-17 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:0f486b86e3d91cea282144d3f99b88429a34c0497ae0c3754a24d8c5c2cfda68
+    reason: Raw transcripts are ignored and may contain restricted or private passages.
+  minutes:2026-07-10:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/07/10.md
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-07-10
+    generated_with:
+      skill: skill:historical-unrecorded
+    review_status: reviewed
+
+  transcript:2026-07-24:
+    type: transcript
+    path: "Transcripts/2026-07-24 12-01-03 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:bff0ac8da223f9d2065af7c1a79d42b7ca0ac8309c4ea813f958bdab1997c296
+    reason: Raw transcripts are ignored and may contain restricted or private passages.
+  minutes:2026-07-24:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/07/24.md
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-07-24
+    generated_with:
+      skill: skill:historical-unrecorded
+    review_status: reviewed
+
+  transcript:2026-07-31:
+    type: transcript
+    path: "Transcripts/2026-07-31 11-32-06 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:504ffabdf18dce6d17539904dfc439cb0463482217df17d7457aba9f30833ad0
+    reason: Raw transcripts are ignored and may contain restricted or private passages.
+  minutes:2026-07-31:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/07/31.md
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-07-31
+    generated_with:
+      skill: skill:historical-unrecorded
+    review_status: reviewed
+
+  core:tca-language-relations:
+    type: core-code
+    url: https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/Configuration/Tca/TcaEnrichment.php#L185-L247
+    authority: actual-current-typo3-core-code
+    availability: repository
+    observed_at: "2026-08-11"
+  core:layout-mode-detection:
+    type: core-code
+    url: https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/backend/Classes/View/BackendLayout/ContentFetcher.php#L165-L203
+    authority: actual-current-typo3-core-code
+    availability: repository
+    observed_at: "2026-08-11"
+  core:fallback-construction:
+    type: core-code
+    url: https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/Context/LanguageAspectFactory.php#L27-L60
+    authority: actual-current-typo3-core-code
+    availability: repository
+    observed_at: "2026-08-11"
+  core:datamap-synchronization:
+    type: core-code
+    url: https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/DataHandling/Localization/DataMapProcessor.php#L50-L57
+    authority: actual-current-typo3-core-code
+    availability: repository
+    observed_at: "2026-08-11"
+  core:localization-state:
+    type: core-code
+    url: https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/DataHandling/Localization/State.php#L71-L97
+    authority: actual-current-typo3-core-code
+    availability: repository
+    observed_at: "2026-08-11"
+  core:language-all-selection:
+    type: core-code
+    url: https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/frontend/Classes/ContentObject/ContentObjectRenderer.php#L4780-L4846
+    authority: actual-current-typo3-core-code
+    availability: repository
+    observed_at: "2026-08-11"
+  core:language-all-overlay:
+    type: core-code
+    url: https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/Domain/Repository/PageRepository.php#L635-L660
+    authority: actual-current-typo3-core-code
+    availability: repository
+    observed_at: "2026-08-11"
+  core:state-enrichment:
+    type: core-code
+    url: https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/core/Classes/DataHandling/Localization/State.php#L223-L238
+    authority: actual-current-typo3-core-code
+    availability: repository
+    observed_at: "2026-08-11"
+
+  github:dbdoctor-98:
+    type: github
+    url: https://github.com/lolli42/dbdoctor/pull/98
+    authority: external-current
+    availability: repository
+    status: open
+    observed_at: "2026-08-11"
+
+  forge:110008:
+    type: forge
+    url: https://forge.typo3.org/issues/110008
+    authority: external-current
+    availability: repository
+    status: under-review
+    observed_at: "2026-08-11"
+  forge:110281:
+    type: forge
+    url: https://forge.typo3.org/issues/110281
+    authority: external-current
+    availability: repository
+    status: resolved
+    observed_at: "2026-08-11"
+  forge:110328:
+    type: forge
+    url: https://forge.typo3.org/issues/110328
+    authority: external-current
+    availability: repository
+    status: under-review
+    observed_at: "2026-08-11"
+
+  gerrit:83169:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/83169
+    authority: external-current
+    availability: repository
+    status: merged
+    observed_at: "2026-08-11"
+  gerrit:88828:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828
+    authority: external-current
+    availability: repository
+    status: merged
+    observed_at: "2026-08-11"
+  gerrit:92585:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/92585
+    authority: external-current
+    availability: repository
+    status: abandoned
+    observed_at: "2026-08-11"
+  gerrit:94510:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510
+    authority: external-current
+    availability: repository
+    status: open-review-action-required
+    observed_at: "2026-08-11"
+  gerrit:94914:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/94914
+    authority: external-current
+    availability: repository
+    status: merged
+    observed_at: "2026-08-11"
+  gerrit:94915:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/94915
+    authority: external-current
+    availability: repository
+    status: merged
+    observed_at: "2026-08-11"
+  gerrit:94916:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/94916
+    authority: external-current
+    availability: repository
+    status: merged
+    observed_at: "2026-08-11"
+  gerrit:95042:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95042
+    authority: external-current
+    availability: repository
+    status: open-wip
+    observed_at: "2026-08-11"
+  gerrit:95170:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95170
+    authority: external-current
+    availability: repository
+    status: merged
+    observed_at: "2026-08-11"
+  gerrit:95199:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95199
+    authority: external-current
+    availability: repository
+    status: merged
+    observed_at: "2026-08-11"

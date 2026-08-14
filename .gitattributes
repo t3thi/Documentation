@@ -1,0 +1,6 @@
+AGENTS.md text eol=lf
+KnowledgeSystem/** text eol=lf
+MeetingMinutes/current-state*.md text eol=lf
+MeetingMinutes/current-state-maintenance.md text eol=lf
+Transcripts/README.md text eol=lf
+.github/workflows/** text eol=lf

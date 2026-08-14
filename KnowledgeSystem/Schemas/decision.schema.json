@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "T3THI Decision Record front matter",
+  "description": "Structured front matter for an explicit initiative or documentation Decision Record. Properties prefixed with x- are reserved for documented repository extensions.",
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-[a-z0-9][a-z0-9-]*$": true
+  },
+  "required": [
+    "id",
+    "status",
+    "title",
+    "date",
+    "scope",
+    "authority",
+    "evidence"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/$defs/decisionId"
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "accepted",
+        "superseded",
+        "rejected"
+      ]
+    },
+    "title": {
+      "$ref": "#/$defs/nonEmptyString"
+    },
+    "date": {
+      "$ref": "#/$defs/date"
+    },
+    "updated": {
+      "$ref": "#/$defs/date"
+    },
+    "scope": {
+      "$ref": "#/$defs/slug"
+    },
+    "authority": {
+      "$ref": "#/$defs/slug"
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/evidence"
+      }
+    },
+    "relations": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/relation"
+      }
+    },
+    "knowledge": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/knowledgeId"
+      }
+    },
+    "supersedes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/decisionId"
+      }
+    },
+    "external_artifacts": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/externalArtifact"
+      }
+    }
+  },
+  "$defs": {
+    "knowledgeId": {
+      "type": "string",
+      "pattern": "^K-[0-9]{6}$"
+    },
+    "decisionId": {
+      "type": "string",
+      "pattern": "^D-[0-9]{6}$"
+    },
+    "internalId": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/knowledgeId"
+        },
+        {
+          "$ref": "#/$defs/decisionId"
+        }
+      ]
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "sourceId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*:[^\\s#]+$"
+    },
+    "sourceReference": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*:[^\\s#]+(?:#[^\\s]+)?$"
+    },
+    "evidenceRelation": {
+      "enum": [
+        "establishes",
+        "supports",
+        "reinforces",
+        "refines",
+        "confirms",
+        "implements",
+        "supersedes",
+        "rejects"
+      ]
+    },
+    "semanticRelation": {
+      "enum": [
+        "supports",
+        "refines",
+        "contradicts",
+        "depends_on",
+        "supersedes",
+        "implements",
+        "answers",
+        "motivates",
+        "related_to"
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-[a-z0-9][a-z0-9-]*$": true
+      },
+      "required": [
+        "source"
+      ],
+      "properties": {
+        "source": {
+          "$ref": "#/$defs/sourceId"
+        },
+        "location": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "relation": {
+          "$ref": "#/$defs/evidenceRelation"
+        },
+        "summarized_in": {
+          "$ref": "#/$defs/sourceReference"
+        },
+        "note": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-[a-z0-9][a-z0-9-]*$": true
+      },
+      "required": [
+        "type",
+        "target"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/semanticRelation"
+        },
+        "target": {
+          "$ref": "#/$defs/internalId"
+        },
+        "note": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "externalArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-[a-z0-9][a-z0-9-]*$": true
+      },
+      "required": [
+        "id",
+        "relation"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/sourceId"
+        },
+        "relation": {
+          "$ref": "#/$defs/semanticRelation"
+        },
+        "state": {
+          "$ref": "#/$defs/slug"
+        },
+        "verified_at": {
+          "$ref": "#/$defs/date"
+        }
+      },
+      "dependentRequired": {
+        "state": [
+          "verified_at"
+        ]
+      }
+    }
+  }
+}

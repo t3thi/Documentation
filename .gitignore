@@ -1,4 +1,7 @@
 .idea
+__pycache__/
+*.py[cod]
 /AI/*
 /Drafts/*
 /Transcripts/*
+!/Transcripts/README.md

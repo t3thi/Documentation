@@ -1,11 +1,17 @@
 ---
 title: "Translation Handling Initiative - Aktueller Stand"
-last_updated: "2026-08-11"
+last_updated: "2026-08-14"
 weekly_minutes_included_through: "2026-07-31"
 transcripts_included_through: "2026-07-31"
 external_status_checked_through: "2026-08-11"
 ---
 
+<!--
+This file is generated from reviewed Topic Syntheses and structured
+Knowledge metadata. Do not edit it directly.
+-->
+
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/scope-governance.de.md -->
 # Translation Handling Initiative: Aktueller Stand
 
 [Englische Fassung](https://notes.typo3.org/s/RhkYPguwb) · [Übersicht der Sitzungsprotokolle](https://notes.typo3.org/s/f3ae8fZSD) · [Hinweise zur Pflege dieses Dokuments](https://github.com/t3thi/Documentation/blob/main/MeetingMinutes/current-state-maintenance.md)
@@ -41,7 +47,7 @@ Für Aussagen gelten folgende Unterscheidungen:
 - Wichtige Anforderungen bleiben offen, wenn Strukturen weitgehend gemeinsam sind, aber einzelne sprachspezifische Ergänzungen oder Auslassungen enthalten, wenn Datensätze von mehreren Sites gemeinsam verwendet werden oder wenn Fallback mehr ausdrücken muss als „verwende den nächsten verfügbaren Datensatz“.
 - Die Initiative beschreibt das Problem inzwischen anhand von vier getrennten Verantwortlichkeiten: **Language Identity**, **Synchronization Intent**, **Structural Identity** und **Output Policy**.
 - Die Vision besteht darin, jede Verantwortung explizit zu machen, bevor über ihre Speicherung oder Implementierung entschieden wird.
-- BCP 47 ist die aktuelle Präferenz für eine semantische Sprachidentität. Die Abbildung in der Datenbank und der Migrationspfad bleiben offen.
+- BCP 47 ist die aktuelle Präferenz für eine semantische Sprachidentität. Die vollständige Ablösung des heutigen `sys_language_uid`-Vertrags hängt außerdem davon ab, dessen nichtsprachliches `-1`-Synchronisierungsverhalten sowie die mit `0` gekoppelten Rollen als Default Language und strukturelle Führung getrennt zu modellieren; diese Ersatzverträge bleiben offen.
 - Gespeichertes `sys_language_uid = -1` durch explizite Synchronisierung zu ersetzen, ist eine klare Richtung. Der Lebenszyklus dieser Synchronisierung ist noch nicht konzipiert.
 - Eine Struktur, die „mostly connected, selectively different“ unterstützt, ist eine zentrale Produktanforderung. Redakteurinnen und Redakteure sollen in der benötigten Sprache arbeiten können, ohne Free Mode, Connected Mode oder Mixed Mode als Zustände von Datenbankbeziehungen auswählen oder verstehen zu müssen.
 - Die derzeitige strukturelle Präferenz ist eine gemeinsame verborgene, sprachneutrale Strukturebene statt vollständiger Language Layers mit universellen Shadows. Dies ist eine Präferenz für die weitere Untersuchung und keine beschlossene Core-Architektur; die verborgene Ebene bleibt eine Hypothese, die einen Prototyp und eine Konzeption ihres Lebenszyklus benötigt.
@@ -66,6 +72,7 @@ Die Initiative kann Probleme identifizieren, Anforderungen ableiten, Core-Verhal
 
 Eine von der Initiative bevorzugte Richtung ist daher nicht automatisch eine TYPO3-Entscheidung. Weitergehende Änderungen erfordern eine Abstimmung mit dem Core Team, den zuständigen Produkt- und Architekturverantwortlichen, Extension-Autorinnen und -Autoren sowie betroffenen Anwenderinnen und Anwendern.
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/editorial-needs.de.md -->
 ## Beobachtete Anforderungen und Use Cases
 
 Die Vision der Initiative geht von konkreten Projekt- und Redaktionsanforderungen aus. Diese Use Cases weisen nicht dieselbe Lücke auf. Jeder von ihnen macht eine andere Verantwortung sichtbar, die derzeit implizit, zu grob oder mit einem anderen Aspekt gekoppelt ist.
@@ -89,6 +96,7 @@ Die [Matrix des Community-Feedbacks von T3DD22 und nachfolgenden Veranstaltungen
 
 Die gesicherte Anforderung besteht daher nicht darin, unabhängige redaktionelle Ergebnisse zu entfernen. Redakteurinnen und Redakteure sollen keine technischen Beziehungszustände verwalten müssen, wenn sie Inhalte lediglich in einer bestimmten Sprache anlegen, auslassen, ersetzen oder umsortieren möchten. Die Initiative empfiehlt, die Unterscheidung zwischen Free Mode, Connected Mode und Mixed Mode aus der normalen redaktionellen Oberfläche zu entfernen, sobald der Core die erforderlichen strukturellen Beziehungen sicher anlegen und pflegen kann. Diese Empfehlung setzt Vorarbeiten für automatische Zielanlage, Beziehungsintegrität, Migration und Lebenszyklus voraus; sie ist keine Deprecation des heutigen Free-Mode-Verhaltens. Siehe das [redaktionelle Interview von 2024](https://notes.typo3.org/s/kqdwFxW1m), die [Diskussion eines durchgehend verbundenen Zustands](https://notes.typo3.org/s/k11hyaA4N) und die [spätere Präzisierung eines technisch verbundenen Zustands](https://notes.typo3.org/s/2Ysd3gDdn).
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/current-core-behavior.de.md -->
 ## Forschungsergebnisse: der heutige Stand
 
 Das aktuelle TYPO3-Verhalten beruht nicht auf einem einzigen Übersetzungsmodell. Es entsteht durch das Zusammenspiel mehrerer Daten- und Konfigurationsverträge.
@@ -129,6 +137,7 @@ Die in diesem Dokument verwendeten Modulnamen entsprechen den aktuellen Labels d
 13. **Feldsynchronisierung besitzt heute zwei Steuerungsmodelle.** `l10n_mode=exclude` erzwingt die Synchronisierung durch TCA-Konfiguration. `allowLanguageSynchronization` stellt eine redaktionelle Wahl bereit, die in `l10n_state` gespeichert wird. Die Ausführungspipeline ist gemeinsam, Konfiguration, Zustandsermittlung und Scopes bleiben jedoch getrennt.
 14. **Language All wendet den vollständigen Datensatz an.** Die aktuelle [Frontend-Auswahl bezieht `-1` ein](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/frontend/Classes/ContentObject/ContentObjectRenderer.php#L4780-L4846), und die [Overlay-Logik gibt einen solchen Datensatz unverändert zurück](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/Domain/Repository/PageRepository.php#L635-L660). Ein kompatibler erster Ersatz muss daher zunächst die Wirkung einer vollständigen gemeinsamen Datenbankzeile bewahren, bevor eine granularere Synchronisierung hinzukommt.
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/language-identity.de.md -->
 ## Vision: vier Verantwortlichkeiten trennen
 
 Das [T3DD26-Modell der Four Responsibilities](https://content.eric-harrer.de/t3dd26/#/four-responsibilities) ist der aktuelle konzeptionelle Bezugspunkt der Initiative:
@@ -146,8 +155,12 @@ Bei der Erklärung der Vision müssen die Verantwortlichkeiten in dieser Reihenf
 **Abgeleitete Anforderungen:**
 
 - Eine Sprache muss Site-übergreifend und, soweit erforderlich, installationsübergreifend eine stabile semantische Identität besitzen.
-- Der Status als Default Language muss getrennt von der Identität der Sprache modelliert werden.
-- Das Verhalten „alle Sprachen“ darf nicht als Sprache erscheinen.
+- Eine vollständige Migration weg vom heutigen `sys_language_uid`-Vertrag
+  benötigt explizite Ersatzmodelle für dessen nichtsprachliche Bedeutungen:
+  `-1` als datensatzweite Language-All-Synchronisierungsabsicht sowie `0` als
+  Rolle der Default Language einer Site und als heutige strukturelle Führung.
+  Der zukünftige Identitätswert darf ausschließlich eine reale menschliche
+  Sprache oder Sprachvariante identifizieren.
 - Semantische Identität darf nicht davon abhängen, ob eine Locale auf dem Applikationsserver installiert ist.
 - Die Site-Konfiguration muss ihre verfügbaren Sprachen explizit auf die semantische Identität abbilden.
 - Gemeinsamer Speicher, übersetzte Dateimetadaten sowie Import und Export dürfen nicht von zufällig übereinstimmenden lokalen Zahlen abhängen.
@@ -157,13 +170,23 @@ Bei der Erklärung der Vision müssen die Verantwortlichkeiten in dieser Reihenf
 **Offene Fragen:**
 
 - Ist ein Tag gemäß BCP 47 der maßgebliche gespeicherte Wert, eine externe Identität, die auf einen internen Schlüssel abgebildet wird, oder Teil eines anderen Identitätsmodells?
+- Wie weist jede Site ihre Rolle als Default Language einer realen semantischen
+  Sprache zu, ohne `0` zu einer besonderen Sprachidentität zu machen?
 - Welche Script-, Region-, Variant- und Private-Use-Subtags müssen unterstützt werden?
 - Wie werden mehrdeutige Legacy-IDs und Locales migriert?
 - Können zwei Datensätze mit demselben Tag bewusst unterschiedliche redaktionelle Kontexte repräsentieren?
 - Wie werden Berechtigungen, Abfragen, Beziehungen und Extension-APIs ohne unsichere Big-Bang-Änderung angepasst?
 
-BCP 47 adressiert semantische Identität. Es löst nicht selbstständig strukturelle Beziehungen, Synchronisierung, Berechtigungen, Seiten-Geltungsbereiche oder Frontend-Fallback.
+BCP 47 adressiert ausschließlich semantische Identität. Es ersetzt nicht selbst
+das heutige `-1`-Synchronisierungsverhalten und entscheidet nicht, welches
+Structural-Identity-Modell die derzeit mit `0` gekoppelte Rolle übernimmt. Auch
+ob der Tag direkt gespeichert oder auf einen internen Identifikator abgebildet
+wird, bleibt offen. Der heutige Feldvertrag kann daher erst vollständig ersetzt
+werden, wenn diese getrennten Verantwortlichkeiten explizite
+Migrationsverträge besitzen; diese Abhängigkeit wählt ihre Implementierung
+nicht aus.
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/synchronization-intent.de.md -->
 ### 2. Synchronization Intent
 
 **Frage:** Welche Felder oder Datensätze müssen synchron bleiben, und wo dürfen sie voneinander abweichen?
@@ -191,10 +214,18 @@ BCP 47 adressiert semantische Identität. Es löst nicht selbstständig struktur
 
 - Welcher führende Datensatz und welcher Site- beziehungsweise Shared-Storage-Geltungsbereich bestimmen die Zielsprachen für den ersten Boolean mit allen Zielen?
 - Welche Felder reproduzieren die vollständige Language-All-Wirkung, und welche Felder für Zielidentität oder systemseitige Verwaltung müssen abweichen?
-- Was geschieht, wenn bereits manuelle Übersetzungen vorhanden sind?
-- Welche Werte dürfen überschrieben werden, und wer darf diesen Übergang autorisieren?
-- Was geschieht mit erzeugten Datensätzen, wenn die Synchronisierung deaktiviert wird?
-- Wie werden erzeugte Inhalte von unabhängig gepflegten Inhalten unterschieden?
+- Wenn bei der Aktivierung bereits Zieldatensätze oder manuelle Übersetzungen
+  vorhanden sind: Werden sie in die Synchronisierungsgruppe übernommen,
+  abgeglichen, überschrieben, ersetzt oder unabhängig beibehalten, und wer darf
+  diesen Übergang autorisieren?
+- Sind automatisch erstellte oder übernommene Zieldatensätze direkt
+  bearbeitbar? Falls ja, welche lokalen Änderungen sind erlaubt und wie wirken
+  sie mit erzwungener Synchronisierung zusammen? Falls nein, wie erkennt die
+  Redaktion sie als synchronisierte Abbilder des führenden Datensatzes?
+- Wenn die datensatzweite Synchronisierung deaktiviert wird: Werden
+  materialisierte Ziele beibehalten und losgelöst, deaktiviert, als gelöscht
+  markiert oder entfernt, und wie bleiben ihre Herkunft und ihr bisheriger
+  Synchronisierungszustand erhalten, falls sie unabhängig werden?
 - Wird eine später hinzugefügte Sprache automatisch Mitglied einer bestehenden Synchronisierungsgruppe?
 - Wie werden fehlende oder inkonsistente `l10n_state`-Einträge eingeordnet, wenn skalare Werte oder Beziehungen abweichen?
 - Soll ein neues `config.behaviour.enforceLanguageSynchronization` den erzwungenen Zustand über `l10n_state` abbilden und `l10n_mode=exclude` ersetzen?
@@ -217,13 +248,24 @@ Beim Multi-Select kann das Hinzufügen einer Sprache dieselbe Operation „Ziel 
 
 Eine eigenständige mögliche Konsolidierung auf Feldebene ist `enforceLanguageSynchronization` neben `allowLanguageSynchronization` auf derselben `config.behaviour`-Ebene. Der erzwungene Zustand könnte dann über `l10n_state` dargestellt werden, sodass `l10n_mode=exclude` und dessen separater Scope zur Feldauswahl entfallen könnten. Dies wurde von der Initiative vorgeschlagen, ist aber weder implementiert noch ausgewählt. Die genaue Zustandsdarstellung sowie der Migrations- und Kompatibilitätsvertrag sind offen. Der Ansatz darf nicht mit dem getrennten datensatzweiten Ersatz für `-1` gleichgesetzt werden.
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/structural-identity.de.md -->
 ### 3. Structural Identity
 
 **Frage:** Welche Datensätze repräsentieren in verschiedenen Sprachen dieselbe logische Inhaltsposition?
 
 Eine logische Inhaltsposition ist der gemeinsame Ort oder die gemeinsame Funktion einer Seite, eines Inhaltselements oder eines anderen lokalisierbaren Datensatzes. Sie ist nicht notwendigerweise der Datensatz, dessen Text als Übersetzungsquelle verwendet wurde.
 
-**Aktuelle Kopplung:** Im Connected Mode ist der Datensatz der Default Language zugleich sichtbarer Inhalt und struktureller Parent. Free Mode entfernt diese Beziehung. Mixed Mode kombiniert beide Zustände auf einer Seite. Der Core leitet diese Bezeichnungen aus `l18n_parent` ab, zeigt sie im Modul „Layout“ an und verhindert normalerweise die direkte Inhaltsanlage in einer Zielspalte im Connected Mode. Eine lokale Ergänzung erfordert deshalb entweder einen künstlichen Datensatz der Default Language oder einen unabhängigen Datensatz, der die gemeinsame Beziehung verliert.
+**Aktuelle Kopplung:** Im Connected Mode ist der Datensatz mit
+`sys_language_uid = 0` zugleich sichtbarer Inhalt in einer realen Sprache und
+struktureller Parent beziehungsweise strukturelle Führung für verbundene
+Varianten. Seine Sprachidentität, seine Rolle als Default Language der Site und
+seine strukturelle Verantwortung sind damit gekoppelt. Free Mode entfernt die
+Parent-Beziehung. Mixed Mode kombiniert beide Zustände auf einer Seite. Der
+Core leitet diese Bezeichnungen aus `l18n_parent` ab, zeigt sie im Modul
+„Layout“ an und verhindert normalerweise die direkte Inhaltsanlage in einer
+Zielspalte im Connected Mode. Eine lokale Ergänzung erfordert deshalb entweder
+einen künstlichen Datensatz der Default Language oder einen unabhängigen
+Datensatz, der die gemeinsame Beziehung verliert.
 
 **Abgeleitete Anforderungen:**
 
@@ -234,6 +276,9 @@ Eine logische Inhaltsposition ist der gemeinsame Ort oder die gemeinsame Funktio
 - Eine gepflegte strukturelle Verbindung muss weiterhin sprachspezifische Ergänzungen, Auslassungen, Ersetzungen und Sortierungen ermöglichen.
 - Das System sollte die Integrität der Beziehungen verwalten und doppelte oder unmögliche Parent-Zuordnungen verhindern.
 - Inhaltsquelle, struktureller Parent und aktueller Bearbeitungskontext müssen voneinander getrennt bleiben.
+- Strukturelle Referenz und Führung müssen unabhängig davon modelliert werden,
+  welche reale Sprache als Default Language der Site konfiguriert ist; keine
+  reale Ausgabesprache darf allein deshalb strukturell privilegiert sein.
 - Das Modell muss Seiten, Inhalte und andere lokalisierbare Datensätze abdecken und zugleich notwendige Unterschiede zwischen Datensatztypen erhalten.
 - Redakteurinnen und Redakteure benötigen eine klare Übersicht darüber, welche Sprachvarianten vorhanden sind, sowie effiziente Abläufe zum Anlegen von Varianten für Datensätze jenseits von Seiten und Inhalten, einschließlich Dateimetadaten.
 - Die Modusunterscheidung darf erst aus der normalen redaktionellen UX verschwinden, nachdem Anlage, Migration, Berechtigungen, Löschung, Wiederherstellung und Workspace-Verhalten die heutigen validen Ergebnisse bewahren.
@@ -253,7 +298,12 @@ In den Diskussionen wurde „Shadow Record“ für zwei wesentlich verschiedene 
 - Ein **Language-Layer-Shadow** ist ein Platzhalter innerhalb einer konkreten Sprache. Er vervollständigt die Struktur dieser Sprache, auch wenn die Position dort keinen sichtbaren Inhalt besitzt.
 - Ein **Structural Shadow** ist ein einzelner inhaltsloser Datensatz in einer gemeinsamen verborgenen Strukturebene. Reale Sprachdatensätze verbinden sich mit ihm als gemeinsamer Structural Identity; er wird nicht in jede Sprache dupliziert.
 
-Eine Vermischung beider Begriffe würde den zentralen Trade-off verdecken. Die Initiative hat zwei Wege diskutiert:
+Eine Vermischung beider Begriffe würde den zentralen Trade-off verdecken. Der
+Vergleich behandelt zugleich eine Migrationsabhängigkeit: Wenn `0` einer realen
+Sprache keine implizite strukturelle Führung mehr gibt, muss ein explizites
+Structural-Identity-Modell diese Referenz und Verantwortung übernehmen. Die
+Initiative hat zwei mögliche Wege diskutiert; keiner von ihnen wird durch die
+Migration der Language Identity ausgewählt:
 
 | Weg | Repräsentation | Nutzen | Wesentliches Risiko oder offene Arbeit | Aktuelle Bewertung |
 |---|---|---|---|---|
@@ -264,14 +314,19 @@ Der zweite Weg sollte in der normalen Redaktion und Frontend-Ausgabe unsichtbar 
 
 **Offene Fragen:**
 
-- Welcher genaue Datensatz oder welche Entität trägt die Structural Identity, wenn keine reale Ausgabesprache privilegiert ist?
-- Verwendet eine gemeinsame Struktur `sys_language_uid = 0` weiter, führt sie eine neue Entität ein oder nutzt sie eine andere Repräsentation?
+- Welcher genaue Datensatz oder welche Entität trägt strukturelle Referenz und
+  Führung, wenn keine reale Ausgabesprache privilegiert ist?
+- Führt eine gemeinsame Struktur eine getrennte Entität ein, nutzt sie eine
+  andere Repräsentation oder benötigt sie eine vorübergehende
+  Kompatibilitätsabbildung, ohne `0` als semantische Identität einer
+  menschlichen Sprache beizubehalten?
 - Wie werden Sortierung, Verschiebungen, lokale Ergänzungen, Auslassungen und Ersetzungen je Sprache um eine gemeinsame Identität dargestellt?
 - Welche strukturellen Datensätze sind für Redakteurinnen und Redakteure, APIs, Referenzen und Workspaces sichtbar?
 - Wann kann ein unabhängig erstellter Datensatz später sicher mit einer vorhandenen Struktur verbunden werden?
 - Welche Migrations- und Lebenszyklusgarantien sind Voraussetzung dafür, dass Free Mode, Connected Mode und Mixed Mode in der normalen Oberfläche nicht mehr angezeigt werden müssen?
 - Wie werden vorhandene Datensätze aus Free Mode und Mixed Mode migriert, ohne ihr unabhängiges Ergebnis zu verlieren?
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/output-policy.de.md -->
 ### 4. Output Policy
 
 **Frage:** Was soll ausgegeben werden, wenn die angeforderte Sprachvariante an einer Inhaltsposition nicht verfügbar ist?
@@ -296,6 +351,7 @@ Der zweite Weg sollte in der normalen Redaktion und Frontend-Ausgabe unsichtbar 
 - In welchem Geltungsbereich darf die Ausgabeabsicht konfiguriert werden: Site Language, Seite, Strukturposition, Datensatz oder Feld?
 - Wie wird ein konsistentes Verhalten für Seiten, Inhalte, Extbase und eigene Abfragen sichergestellt?
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/solution-spaces.de.md -->
 ## Mögliche Lösungsräume
 
 Die folgenden Ansätze beantworten Teile der Verantwortlichkeiten. Keiner von ihnen bildet allein die vollständige Vision ab.
@@ -316,6 +372,7 @@ Die folgenden Ansätze beantworten Teile der Verantwortlichkeiten. Keiner von ih
 
 Ein generisches multidimensionales Modell für Sprache, Land, Markt, Marke oder Zielgruppe ist eine angrenzende Zukunftsperspektive. Es könnte später helfen, Sprache von anderen Inhaltskontexten zu trennen, ist aber nicht die unmittelbare Antwort der Initiative auf die vier Verantwortlichkeiten.
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/current-core-work.de.md -->
 ## Was bereits erreicht wurde
 
 Die Initiative und damit verbundene Core-Arbeiten haben bereits klar abgegrenzte Verbesserungen geliefert. Diese Ergebnisse machen das heutige System sicherer oder verständlicher. Sie setzen nicht die vollständige Vision um.
@@ -395,6 +452,7 @@ Derzeit erfüllt kein Patch alle Kriterien. Gerrit 92777 besitzt positive Review
 | [dbdoctor PR 171](https://github.com/lolli42/dbdoctor/pull/171) | Offen mit `[WIP]`; GitHub meldet den aktuellen Stand als konfliktfrei und mergefähig. | Nein | Erkennt verwaiste Übersetzungen aus historischen Kopiervorgängen. Dies ist Diagnose- und Reparaturwerkzeug, kein gemergter Core-Fix und kein neues Übersetzungsmodell. |
 | Untersuchung der strukturellen Ebene und der Editing Language | Eine Produktbeschreibung existiert; ein fertiggestellter Prototyp ist nicht belegt. | Nicht anwendbar | Eine Skizze, ein Click Dummy oder ein Experiment als Extension würde den redaktionellen Nutzen und strukturelle Annahmen vor einer Architekturentscheidung prüfen. |
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/critical-alignment.de.md -->
 ## Kritische Ausrichtung an der Vision
 
 Die Vision ist ein Bewertungsrahmen und kein Grund, jede Teillösung abzulehnen.
@@ -465,6 +523,7 @@ Bei jedem neuen Vorschlag stellt die Initiative folgende Fragen:
 - **Entscheidung erforderlich:** Strategie für Kompatibilität, Migration, Deprecation und Extension-APIs.
 - **Entscheidung erforderlich:** Zuständigkeit und Priorisierung gemeinsam mit den zuständigen TYPO3-Core- und Produktstrukturen.
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/evidence-maintenance.de.md -->
 ## Nächste sinnvolle Schritte
 
 Dies ist die aus heutiger Sicht sinnvollste Abfolge von Aktivitäten der Initiative und keine verbindliche TYPO3-Release-Roadmap.

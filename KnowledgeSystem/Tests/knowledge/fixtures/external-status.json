@@ -1,0 +1,15 @@
+{
+  "forge:456": {
+    "system": "forge",
+    "status": "resolved",
+    "title": "Synthetic fixture issue",
+    "updated_at": "2026-08-11T10:00:00Z"
+  },
+  "gerrit:123": {
+    "revision": "0123456789abcdef",
+    "status": "merged",
+    "system": "gerrit",
+    "title": "Synthetic fixture change",
+    "updated_at": "2026-08-11T09:00:00Z"
+  }
+}

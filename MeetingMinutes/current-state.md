@@ -1,11 +1,17 @@
 ---
 title: "Translation Handling Initiative - Current State"
-last_updated: "2026-08-11"
+last_updated: "2026-08-14"
 weekly_minutes_included_through: "2026-07-31"
 transcripts_included_through: "2026-07-31"
 external_status_checked_through: "2026-08-11"
 ---
 
+<!--
+This file is generated from reviewed Topic Syntheses and structured
+Knowledge metadata. Do not edit it directly.
+-->
+
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/scope-governance.md -->
 # Translation Handling Initiative: Current State
 
 [Deutsche Fassung](https://notes.typo3.org/s/7bbwd73t2h) · [Meeting minutes overview](https://notes.typo3.org/s/f3ae8fZSD) · [How to maintain this document](https://github.com/t3thi/Documentation/blob/main/MeetingMinutes/current-state-maintenance.md)
@@ -41,7 +47,7 @@ Statements use the following distinctions:
 - Important needs remain uncovered when structures are mostly shared but contain a few language-specific additions or omissions, when records are shared across sites, or when fallback must express more than "use the next available record".
 - The initiative now describes the problem through four separate responsibilities: **Language Identity**, **Synchronization Intent**, **Structural Identity** and **Output Policy**.
 - The vision is to make each responsibility explicit before deciding how it should be stored or implemented.
-- BCP 47 is the current preference for semantic language identity. The database representation and migration path remain open.
+- BCP 47 is the current preference for semantic language identity. Fully replacing today's `sys_language_uid` contract also depends on modelling its non-language `-1` synchronization behavior and the Default and structural-lead roles coupled to `0` separately; those replacement contracts remain open.
 - Replacing persisted `sys_language_uid = -1` with explicit synchronization is a strong direction. The synchronization lifecycle is not designed yet.
 - A structure that supports "mostly connected, selectively different" content is a central product requirement. Editors should be able to work in the required language without selecting or understanding Free, Connected or Mixed Mode as database-relation states.
 - The current structural preference is a shared hidden, language-neutral structure layer rather than complete per-language layers with universal shadows. This is a preference for further investigation, not an adopted Core architecture; the hidden layer remains a hypothesis that needs a prototype and lifecycle design.
@@ -66,6 +72,7 @@ The initiative can identify problems, derive requirements, investigate Core beha
 
 Accordingly, a preferred initiative direction is not automatically a TYPO3 decision. Broader changes require alignment with the Core Team, relevant product and architecture decision makers, extension authors and affected users.
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/editorial-needs.md -->
 ## Observed needs and use cases
 
 The initiative's vision starts from concrete project and editorial needs. These use cases do not expose one identical gap. Each reveals a different responsibility that is currently implicit, too coarse or coupled to another concern.
@@ -89,6 +96,7 @@ The [community-feedback matrix from T3DD22 and subsequent events](https://docs.g
 
 The established need is therefore not to remove independent editorial outcomes. It is to stop requiring editors to manage technical relation states when their intent is simply to create, omit, replace or reorder content in a particular language. The initiative recommends removing the Free, Connected and Mixed distinction from the normal editor interface once Core can create and maintain the necessary structural relations safely. This recommendation depends on prior work for automatic target creation, relation integrity, migration and lifecycle handling; it is not a deprecation of today's Free Mode behavior. See the [2024 editor interview](https://notes.typo3.org/s/kqdwFxW1m), the [always-connected discussion](https://notes.typo3.org/s/k11hyaA4N) and the [later technically-connected refinement](https://notes.typo3.org/s/2Ysd3gDdn).
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/current-core-behavior.md -->
 ## Research findings: what exists today
 
 Current TYPO3 behavior is not based on one translation model. It is the interaction of several data and configuration contracts.
@@ -129,6 +137,7 @@ The user-facing module names in this document follow the current v14 Core labels
 13. **Field synchronization has two control models today.** `l10n_mode=exclude` enforces synchronization through TCA configuration. `allowLanguageSynchronization` exposes an editor choice stored in `l10n_state`. The execution pipeline is shared, but configuration, state discovery and scopes remain distinct.
 14. **Language All applies the complete record.** Current [frontend selection includes `-1`](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/frontend/Classes/ContentObject/ContentObjectRenderer.php#L4780-L4846) for every requested language, and the [overlay logic returns such a record unchanged](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/Domain/Repository/PageRepository.php#L635-L660). A compatible first replacement must therefore preserve the effect of one complete shared row before introducing more granular synchronization.
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/language-identity.md -->
 ## Vision: separate four responsibilities
 
 The [T3DD26 Four Responsibilities model](https://content.eric-harrer.de/t3dd26/#/four-responsibilities) is the initiative's current conceptual reference point:
@@ -146,8 +155,11 @@ The responsibilities must be considered in this order when explaining the vision
 **Derived requirements:**
 
 - A language must have a stable semantic identity across sites and, where needed, across installations.
-- Default status must be modelled separately from the identity of the language.
-- "All languages" behavior must not masquerade as a language.
+- A complete migration away from today's `sys_language_uid` contract requires
+  explicit replacements for its non-language meanings: `-1` as record-wide
+  Language-All synchronization intent, and `0` as both the Site-default role
+  and today's structural lead. The future identity value may identify only a
+  real human language or variant.
 - Semantic identity must not depend on a locale being installed on the application server.
 - Site configuration must map its available languages to the semantic identity explicitly.
 - Shared storage, translated file metadata and import/export must not depend on coincidentally equal local numbers.
@@ -157,13 +169,22 @@ The responsibilities must be considered in this order when explaining the vision
 **Open questions:**
 
 - Is a BCP 47 tag the authoritative persisted value, an external identity mapped to an internal key, or part of a different identity model?
+- How does each Site assign its Default-Language role to one real semantic
+  language without making `0` a special language identity?
 - Which script, region, variant and private-use subtags must be supported?
 - How are ambiguous legacy IDs and locales migrated?
 - Can two records with the same tag intentionally represent different editorial contexts?
 - How are permissions, queries, relations and extension APIs adapted without an unsafe big-bang change?
 
-BCP 47 addresses semantic identity. It does not by itself solve structural relations, synchronization, permissions, page scope or frontend fallback.
+BCP 47 addresses semantic identity only. It does not by itself replace the
+current `-1` synchronization behavior or decide which Structural-Identity model
+assumes the role currently coupled to `0`. Whether the tag is stored directly
+or mapped to an internal identifier also remains open. The current field
+contract can therefore be replaced completely only after those separate
+responsibilities have explicit migration contracts; this dependency does not
+select their implementation.
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/synchronization-intent.md -->
 ### 2. Synchronization Intent
 
 **Question:** Which fields or records must stay aligned, and where may they differ?
@@ -191,10 +212,17 @@ BCP 47 addresses semantic identity. It does not by itself solve structural relat
 
 - Which lead record and site or shared-storage scope determine the target languages for the first all-target Boolean?
 - Which fields reproduce the complete Language-All effect, and which target identity or system-managed fields must remain distinct?
-- What happens when manual translations already exist?
-- Which values may be overwritten, and who may authorize that transition?
-- What happens to generated records when synchronization is disabled?
-- How is generated content distinguished from independently maintained content?
+- When target records or manual translations already exist at activation, are
+  they adopted into the synchronization group, reconciled, overwritten,
+  replaced or retained independently, and who may authorize that transition?
+- Are automatically created or adopted targets directly editable? If so,
+  which local changes are permitted and how do they interact with enforced
+  synchronization? If not, how does the editor recognize them as synchronized
+  representations of the lead record?
+- When record-wide synchronization is disabled, are materialized targets
+  retained and detached, disabled, soft-deleted or removed, and how are their
+  origin and previous synchronization state preserved if they become
+  independent?
 - Does a later language join an existing synchronization group automatically?
 - How are missing or inconsistent `l10n_state` entries classified when scalar values or relations differ?
 - Should a new `config.behaviour.enforceLanguageSynchronization` represent the enforced state through `l10n_state` and replace `l10n_mode=exclude`?
@@ -217,13 +245,22 @@ For the multi-select, adding a language can reuse the same "ensure target, then 
 
 A separate possible field-level consolidation is `enforceLanguageSynchronization` beside `allowLanguageSynchronization` at the same `config.behaviour` level. The enforced state could then be represented through `l10n_state`, allowing `l10n_mode=exclude` and its separate field-selection scope to be retired. This was proposed by the initiative but is neither implemented nor selected. Its exact state representation, migration and compatibility contract remain open. It must not be conflated with the separate record-wide replacement for `-1`.
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/structural-identity.md -->
 ### 3. Structural Identity
 
 **Question:** Which records represent the same logical content position across languages?
 
 A logical content position is the shared place or role of a page, content element or other localizable record. It is not necessarily the record whose text was used as the translation source.
 
-**Current coupling:** In Connected Mode, the Default-Language record is both visible content and structural parent. Free Mode removes that relation. Mixed Mode combines both states on one page. Core derives those labels from `l18n_parent`, displays them in the Layout module and normally prevents direct content creation in a Connected-Mode target column. A local addition therefore needs either a fabricated Default-Language record or an independent record that loses the shared relation.
+**Current coupling:** In Connected Mode, the record with
+`sys_language_uid = 0` is both visible content in one real language and the
+structural parent or lead for connected variants. Its language identity,
+Site-default role and structural responsibility are therefore coupled. Free
+Mode removes the parent relation. Mixed Mode combines both states on one page.
+Core derives those labels from `l18n_parent`, displays them in the Layout module
+and normally prevents direct content creation in a Connected-Mode target
+column. A local addition therefore needs either a fabricated Default-Language
+record or an independent record that loses the shared relation.
 
 **Derived requirements:**
 
@@ -234,6 +271,9 @@ A logical content position is the shared place or role of a page, content elemen
 - A maintained structural connection must still allow language-specific additions, omissions, replacements and ordering.
 - The system should manage relation integrity and prevent duplicate or impossible parent assignments.
 - Content source, structural parent and current editing context must remain distinct.
+- Structural reference and leadership must be modelled independently of which
+  real language is configured as the Site's Default Language; no real output
+  language should be structurally privileged for that reason alone.
 - The model must cover pages, content and other localizable records while retaining necessary record-type differences.
 - Editors need a clear view of which language variants exist and efficient creation workflows for records beyond pages and content, including file metadata.
 - The mode distinction may disappear from normal editor UX only after creation, migration, permissions, deletion, restoration and Workspace behavior preserve today's valid outcomes.
@@ -253,7 +293,11 @@ The discussions have used "Shadow Record" for two materially different represent
 - A **language-layer shadow** is a placeholder inside a concrete language. It completes that language's structure even when the position has no visible content there.
 - A **structural shadow** is one contentless record in a shared hidden structure layer. Real language records connect to it as their common structural identity; it is not duplicated into every language.
 
-Conflating them would hide the main trade-off. The initiative has discussed two paths:
+Conflating them would hide the main trade-off. The comparison also addresses a
+migration dependency: if `0` no longer gives one real language implicit
+structural leadership, an explicit Structural-Identity model must take over
+that reference and responsibility. The initiative has discussed two possible
+paths; neither is selected by the language-identity migration:
 
 | Path | Representation | Benefit | Main risk or open work | Current assessment |
 |---|---|---|---|---|
@@ -264,14 +308,18 @@ The second path should remain invisible in normal editorial and frontend output.
 
 **Open questions:**
 
-- What exact record or entity owns structural identity if no real output language is privileged?
-- Does a shared structure reuse `sys_language_uid = 0`, introduce a new entity or use another representation?
+- What exact record or entity owns structural reference and leadership if no
+  real output language is privileged?
+- Does a shared structure introduce a separate entity, use another
+  representation or require a temporary compatibility mapping without keeping
+  `0` as a semantic human-language identity?
 - How are sorting, moves, local additions, omissions and replacements represented per language around one shared identity?
 - Which structural records are visible to editors, APIs, references and Workspaces?
 - When can an independently created record later join an existing structure safely?
 - Which migration and lifecycle guarantees are prerequisites before the normal UI can stop showing Free, Connected and Mixed modes?
 - How are existing Free- and Mixed-Mode records migrated without losing their independent outcome?
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/output-policy.md -->
 ### 4. Output Policy
 
 **Question:** What should render when the requested language variant is unavailable at one content position?
@@ -296,6 +344,7 @@ The second path should remain invisible in normal editorial and frontend output.
 - At which scope may output intent be configured: site language, page, structure position, record or field?
 - How are page, content, Extbase and custom-query behaviors kept consistent?
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/solution-spaces.md -->
 ## Possible solution spaces
 
 The following approaches answer parts of the responsibilities. None is the complete vision by itself.
@@ -316,6 +365,7 @@ The following approaches answer parts of the responsibilities. None is the compl
 
 A generic multi-dimensional model for language, country, market, brand or audience is an adjacent future perspective. It may eventually help separate language from other content contexts, but it is not the initiative's immediate answer to the four responsibilities.
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/current-core-work.md -->
 ## What has been achieved
 
 The initiative and related Core work have already delivered bounded improvements. These results make today's system safer or easier to understand; they do not implement the complete vision.
@@ -395,6 +445,7 @@ No current patch meets all criteria. Gerrit 92777 has positive reviews but an un
 | [dbdoctor PR 171](https://github.com/lolli42/dbdoctor/pull/171) | Open `[WIP]`; GitHub reports the current head as clean and mergeable. | No | Detects orphaned translations left by historical copy operations. It is diagnostic and repair tooling, not a merged Core fix or a new translation model. |
 | Structural-layer and Editing-Language exploration | Product framing exists; no completed prototype is evidenced. | Not applicable | A sketch, click dummy or extension experiment would test editor value and structural assumptions before an architecture decision. |
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/critical-alignment.md -->
 ## Critical alignment against the vision
 
 The vision is a review framework, not a reason to reject every partial solution.
@@ -465,6 +516,7 @@ For any new proposal, the initiative asks:
 - **Decision required:** compatibility, migration, deprecation and extension API strategy.
 - **Decision required:** ownership and prioritization together with the relevant TYPO3 Core and product structures.
 
+<!-- Source Topic: KnowledgeSystem/Knowledge/topics/evidence-maintenance.md -->
 ## Next meaningful steps
 
 These are the initiative's current best sequence of activities, not a committed TYPO3 release roadmap.
