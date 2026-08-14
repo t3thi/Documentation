@@ -3,7 +3,9 @@
 These evals defend the most failure-prone behavior of this skill:
 
 - English-only output from German transcripts
-- correct participant classification and alphabetical sorting
+- evidence-based participant selection and alphabetical sorting
+- transcript resolution under `Transcripts/` and dated output under
+  `MeetingMinutes/Weekly/`
 - no invented action-items or summary boilerplate
 - omission of explicit off-the-record content
 

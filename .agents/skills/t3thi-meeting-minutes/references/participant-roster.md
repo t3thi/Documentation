@@ -1,37 +1,27 @@
 # Participant Roster
 
-This file defines the three participant categories for T3THI meeting minutes.
-The rules here are **strict** — follow them exactly when building the
-"Participants" and "No participation" lists.
+This file defines known people and deterministic display names for T3THI
+meeting minutes. The rules here are **strict** when building the single
+"Participants" list.
 
-## Category 1: Regular Members
+## Initiative Members
 
-These persons **must always** appear in exactly one of the two lists
-("Participants" or "No participation") — never omitted entirely.
+List these people only when the transcript shows that they spoke, were greeted,
+or were explicitly confirmed as present.
 
 | Name             | Aka Nickname | Notes |
 |------------------|-------------|-------|
 | Eric Harrer      | —           | Initiative lead |
 | Astrid Haubold   | —           | |
 | André Buchmann   | —           | |
-| Sven Wappler     | —           | Rarely attends; almost always under "No participation" |
+| Sven Wappler     | —           | |
 | Jo Hasenau       | —           | |
 
-### Rules for Regular Members
-
-- If they spoke in the transcript → **Participants**
-- If they were greeted/explicitly confirmed as present in the transcript
-  (without speaking) → **Participants**
-- If they did not speak and were not greeted/mentioned as present →
-  **No participation**
-- Sven Wappler: If there is no clear evidence of his participation, place
-  him under "No participation" by default.
-
-## Category 2: Occasional Guests
+## Occasional Guests
 
 These persons appear **only under "Participants"** if they actively
 participated in the meeting. If they did not participate, they are
-**not listed anywhere** — they do NOT go under "No participation".
+not listed.
 
 | Name               | Aka Nickname | Known appearances |
 |--------------------|-------------|-------------------|
@@ -42,29 +32,22 @@ participated in the meeting. If they did not participate, they are
 | Christian Kuhn     | Lolli       | 2025-02-14 (TYPO3 Core developer) |
 | Benni Mack         | —           | Referenced frequently but rarely attends |
 
-### Rules for Occasional Guests
-
-- If they spoke or were greeted as present → **Participants** (no "(guest)"
-  suffix)
-- If they did not participate → **do not list them at all**
-
 ### Display Name Convention
 
 Use one deterministic display name per person:
 
-- If an aka nickname exists, use the **nickname** in participant lists and body
+- If an aka nickname exists, use the **nickname** in the participant list and body
   text (example: "Lolli", not "Christian Kuhn").
 - If no nickname exists:
-  - In participant lists: use the **full name** (example: "André Buchmann")
+  - In the participant list: use the **full name** (example: "André Buchmann")
   - In body text: use the **first name only** (example: "André explained…")
 - Never mix nickname and full name for the same person in a single protocol.
 
-## Category 3: Mentioned-Only Persons
+## Mentioned-Only Persons
 
 These persons are treated as "mentioned-only" by default. If they are only
-mentioned during discussion, they are **not listed** under "Participants" or
-"No participation". If they actively participate (speak) or are explicitly
-greeted as present, they are listed under **Participants**.
+mentioned during discussion, they are not listed. If they actively participate
+or are explicitly greeted as present, they are listed under **Participants**.
 
 | Name                      | Aka Nickname | Notes |
 |---------------------------|-------------|-------|
@@ -72,25 +55,22 @@ greeted as present, they are listed under **Participants**.
 | Rachel Foucard            | —           | |
 | Daniel Zielinski          | —           | |
 
-### Rules for Mentioned-Only Persons
+## Participant Selection
 
-- If they are only discussed/referenced but not present → **do not list them**
-  in either participant list.
-- If they actively participate or are explicitly greeted as present →
-  **Participants**.
+- Include any person who speaks, is greeted, or is explicitly confirmed as
+  present.
+- Omit any person who is only discussed or has no evidence of presence.
+- Never add a "(guest)" suffix.
 - In the body text, use first name or aka nickname: "Tymek" (not
   "Tymoteusz"), "Rachel", "Daniel".
 
 ## Sorting
 
-All names in both lists ("Participants" and "No participation") must be
-sorted **alphabetically by first name** (or by aka nickname if one exists).
+All names in the participant list must be sorted **alphabetically by first
+name** (or by aka nickname if one exists).
 
 Examples of correct sort order:
 - André Buchmann
-- Astrid Haubold
 - Eric Harrer
-- Jo Hasenau
 - Lolli
 - Martin Clewing
-- Sven Wappler

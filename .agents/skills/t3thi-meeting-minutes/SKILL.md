@@ -2,12 +2,12 @@
 name: thi-meeting-minutes
 description: >
   Generate meeting minutes for the TYPO3 Translation Handling Initiative (T3THI)
-  from a transcript. Use this skill whenever the user uploads or pastes a
-  transcript (audio transcription) of a T3THI weekly meeting and asks for meeting
-  minutes, a protocol, or "Protokoll". Also trigger when the user says
-  "Meeting der Initiative", "Translation Handling Initiative minutes", "T3THI",
-  or references the weekly T3THI meeting. Produces a structured Markdown file
-  ready for publication on HedgeDoc / GitHub.
+  from a transcript stored under Transcripts/. Use this skill whenever the user
+  names or references a T3THI weekly transcript and asks for meeting minutes, a
+  protocol, or "Protokoll". Also trigger when the user says "Meeting der
+  Initiative", "Translation Handling Initiative minutes", "T3THI", or references
+  the latest weekly meeting. Writes publication-ready Markdown to the dated path
+  under MeetingMinutes/Weekly/.
 ---
 
 # TYPO3 Translation Handling Initiative – Meeting Minutes Generator
@@ -42,16 +42,15 @@ what was discussed — nothing more, nothing less.
 
 ## Inputs
 
-The user provides a transcript in one of these forms:
+All source transcripts are stored under the repository's `Transcripts/`
+directory. Resolve the input there when the user provides a relative path, a
+filename, a meeting date, or a reference to the latest "Meeting der Initiative"
+transcript. For "latest", select the newest unambiguous ISO-dated transcript
+filename. Ask the user only when no matching file exists or multiple candidates
+remain equally plausible.
 
-- An uploaded text/audio-transcript file (`.txt`, `.md`, `.srt`, `.vtt`, or
-  similar)
-- Pasted transcript text in the chat
-- A reference to the most recent transcript titled "Meeting der Initiative"
-
-If the user only references "the latest transcript" without providing actual
-content, ask for the transcript file or pasted transcript text before
-continuing.
+Do not treat existing Meeting Minutes or chat excerpts as the canonical raw
+source when the corresponding transcript should exist under `Transcripts/`.
 
 Extract from the transcript:
 
@@ -95,17 +94,15 @@ Before writing anything, read these reference files:
 
 1. Scan the transcript for speaker names and match them against the roster
    in [`references/participant-roster.md`](references/participant-roster.md).
-2. Classify each person as **present** or **absent** according to the roster
-   rules (regular members must always appear in either "Participants" or
-   "No participation"; occasional guests appear only if present; mentioned-only
-   persons stay out of participant lists unless they actively participate in the
-   current transcript).
-3. Build participant lists with each person's roster **display name**
+2. Include a person under **Participants** only if the transcript shows that
+   they spoke, were greeted, or were explicitly confirmed as present. Omit
+   everyone else, regardless of roster category. A person who is merely
+   discussed is not a participant.
+3. Build the single participant list with each person's roster **display name**
    (nickname if defined; otherwise full name), then sort names
    **alphabetically by display name**. This is critical — older protocols
-   sometimes had unsorted lists, which was a mistake. Examples of correct sort:
-   - André Buchmann, Astrid Haubold, Eric Harrer, Jo Hasenau, Lolli,
-     Martin Clewing
+   sometimes had unsorted names, which was a mistake. Example of correct sort:
+   - André Buchmann, Eric Harrer, Lolli, Martin Clewing
 4. Determine the meeting date from the transcript or filename.
 
 ### Phase 3 — Identify and Group Topics
@@ -174,7 +171,7 @@ For each topic, write a summary following these rules:
 
 **Reconstructed summaries:**
 - If the transcript is incomplete or the recording was partial, add a notice
-  at the top of the content (after the participant lists, before Topic 1):
+  at the top of the content (after the participant list, before Topic 1):
   ```
   > ⚠️ This is a **reconstructed summary** based on memory, as the audio
   > recording was not available due to a technical oversight.
@@ -194,7 +191,7 @@ For each topic, write a summary following these rules:
    with [`references/typo3-glossary.md`](references/typo3-glossary.md).
 5. Ensure the output matches the template in
    [`references/output-template.md`](references/output-template.md) exactly
-   (frontmatter, heading structure, link format, participant lists), including
+   (frontmatter, heading structure, link format, participant list), including
    the optional reconstructed-summary notice block when applicable.
 6. Confirm the Slack Huddle link is:
    `https://app.slack.com/huddle/T024TUMLZ/C05D7UF1L8M` — never alter it.
@@ -216,9 +213,9 @@ Before delivering the output, verify every item:
 | 6 | No action-items section | No standalone "Action Points", "Next Steps", or "To-Do" block |
 | 7 | Slack Huddle link intact | Exact URL as specified |
 | 8 | Technical IDs in backticks | `sys_language_uid`, `l10n_parent`, etc. |
-| 9 | Participant lists correct | Regular members in exactly one list; guests only if present; mentioned-only persons only if they actively participate |
-| 10 | Names sorted alphabetically | By roster display name in both lists |
-| 11 | Name format rules applied | Body: first names or nickname; participant lists: roster display names (nickname if defined, else full name) |
+| 9 | Participant selection correct | Only people who spoke, were greeted, or were explicitly confirmed as present are listed |
+| 10 | Names sorted alphabetically | By roster display name in the participant list |
+| 11 | Name format rules applied | Body: first names or nickname; participant list: roster display names (nickname if defined, else full name) |
 | 12 | Nicknames used in body | "Lolli" not "Christian", "Tymek" not "Tymoteusz" |
 | 13 | Transcription corrections applied | All entries from corrections file |
 | 14 | Vocabulary mappings applied | Explicit mappings always applied; phonetic mappings only with clear context; ambiguities are surfaced |
@@ -235,11 +232,12 @@ Generate the final Markdown and present it in **two ways**:
 
 1. **In the chat**: Wrapped in a fenced code block (` ```markdown … ``` `) so
    the user can copy it directly.
-2. **As a downloadable file**: Save as
-   `YYYY-MM-DD-thi-meeting-minutes.md` in `outputs/` (relative to the current
-   working directory). If `outputs/` does not exist, create it first. If file
-   writing is unavailable, return the Markdown in chat and clearly state that
-   file creation was skipped.
+2. **As a repository file**: Derive the target from the meeting date and save
+   it as `MeetingMinutes/Weekly/YYYY/MM/DD.md`. Create the year and month
+   directories when needed. Never silently overwrite an existing protocol;
+   inspect it and stop for clarification unless the user explicitly requested
+   an update to that file. If file writing is unavailable, return the Markdown
+   in chat and clearly state that file creation was skipped.
 
 ## Supplementary Context
 
@@ -294,7 +292,7 @@ The result is considered correct only if all of the following are true:
 - Every checklist item in Phase 6 passes.
 - The output structure matches
   [`references/output-template.md`](references/output-template.md).
-- Participant lists follow
+- The participant list follows
   [`references/participant-roster.md`](references/participant-roster.md)
   exactly.
 - All correction rules from
@@ -315,8 +313,12 @@ The result is considered correct only if all of the following are true:
 - Keep `evals/evals.json` aligned when date handling, participant sorting,
   English-only rules, or prohibited output structures change materially.
 
-## File Naming
+## Repository Paths
 
-Output file: `YYYY-MM-DD-thi-meeting-minutes.md`
+- Source transcript: `Transcripts/YYYY-MM-DD HH-MM-SS - Meeting der Initiative.txt`
+- Meeting Minutes: `MeetingMinutes/Weekly/YYYY/MM/DD.md`
 
-Example: `2025-02-14-thi-meeting-minutes.md`
+Example for 2026-08-14:
+
+- `Transcripts/2026-08-14 12-05-21 - Meeting der Initiative.txt`
+- `MeetingMinutes/Weekly/2026/08/14.md`

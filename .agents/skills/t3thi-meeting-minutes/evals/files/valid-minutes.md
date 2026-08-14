@@ -15,8 +15,6 @@ tags: "Meeting"
     - Eric Harrer
     - Jo Hasenau
     - Martin Clewing
-- **No participation:**
-    - Sven Wappler
 
 ## Topic 1: Copy Content Alignment
 

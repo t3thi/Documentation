@@ -3,8 +3,11 @@
 This skill turns TYPO3 Translation Handling Initiative transcripts into
 publication-ready Markdown meeting minutes for HedgeDoc and GitHub.
 
+Transcripts are resolved under `Transcripts/`. Finished protocols are written
+to `MeetingMinutes/Weekly/YYYY/MM/DD.md` according to the meeting date.
+
 Use it when the user provides a T3THI transcript and needs exact minutes with
-English-only prose, sorted participant lists, topic sections, and no invented
+English-only prose, a sorted participant list, topic sections, and no invented
 wrap-up structures.
 
 ## Core contract
@@ -14,7 +17,10 @@ The skill should:
 - read the output template, participant roster, correction rules, and glossary
   before drafting
 - keep the final protocol fully in English and in third-person prose
-- sort participant lists deterministically by roster display name
+- include only people with transcript evidence of participation and sort them
+  deterministically by roster display name
+- resolve the raw source from `Transcripts/` and place the finished protocol at
+  the dated path under `MeetingMinutes/Weekly/`
 - omit off-the-record material and generic action-item or summary sections
 - keep the publication template and prohibited-section rules machine-checkable
   through a replayable output-contract verifier

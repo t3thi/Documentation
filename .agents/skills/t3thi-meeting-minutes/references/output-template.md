@@ -23,9 +23,6 @@ tags: "Meeting"
     - {{Name 1}}
     - {{Name 2}}
     - {{…sorted alphabetically by first name / nickname}}
-- **No participation:**
-    - {{Name A}}
-    - {{…sorted alphabetically by first name / nickname}}
 
 {{Optional block: only if recording/transcript is incomplete}}
 > ⚠️ This is a **reconstructed summary** based on memory, as the audio
@@ -58,19 +55,16 @@ unless the speakers explicitly enumerated a list.}}
 5. **Date format**: Always `YYYY-MM-DD` (ISO 8601).
 6. **Participant list indentation**: Each name is indented with 4 spaces and
    prefixed with `- ` (Markdown nested list under `**Participants:**`).
-7. **No participation list**: Same indentation as participants. Only contains
-   absent regular members. Never contains guests. Never contains
-   mentioned-only persons.
-8. **Display names**: Apply roster display-name rules consistently (nickname
-   if defined; otherwise full name in lists).
-9. **Topic numbering**: Sequential starting at 1. Use `## Topic N: Title`.
-10. **Optional reconstructed-summary notice**: Allowed only when the
+7. **Display names**: Apply roster display-name rules consistently (nickname
+   if defined; otherwise full name in the participant list).
+8. **Topic numbering**: Sequential starting at 1. Use `## Topic N: Title`.
+9. **Optional reconstructed-summary notice**: Allowed only when the
     recording/transcript is incomplete, and only in the dedicated position
-    between participant lists and Topic 1.
-11. **No trailing sections**: The document ends after the last topic. No
-   "End of meeting minutes", no "Summary", no "Action Items", no "Next Steps"
-   section.
-12. **Output wrapping**: When presenting in chat, wrap the entire output in a
+    between the participant list and Topic 1.
+10. **No trailing sections**: The document ends after the last topic. No
+    "End of meeting minutes", no "Summary", no "Action Items", no "Next Steps"
+    section.
+11. **Output wrapping**: When presenting in chat, wrap the entire output in a
     fenced code block with `markdown` language identifier:
     ````
     ```markdown
@@ -85,5 +79,5 @@ unless the speakers explicitly enumerated a list.}}
 - `## Summary` or `## Conclusion`
 - `"End of meeting minutes."` or any closing phrase
 - `(guest)` suffix after any participant name
-- Any person from the "Mentioned-Only" category in "No participation", or in
-  "Participants" without speaking/presence evidence from the transcript
+- Any person in "Participants" without speaking or presence evidence from the
+  transcript

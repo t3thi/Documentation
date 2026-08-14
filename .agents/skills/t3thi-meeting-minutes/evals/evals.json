@@ -14,14 +14,14 @@
     },
     {
       "id": 2,
-      "prompt": "The transcript includes multiple regular members, one guest, and several mentioned-but-non-speaking people. Prepare the participant lists.",
-      "expected_output": "Participant lists that apply the roster rules and alphabetical sorting correctly.",
+      "prompt": "The transcript includes multiple initiative members, one guest, and several mentioned-but-non-speaking people. Prepare the participant list.",
+      "expected_output": "A single participant list that applies presence evidence, display-name, and alphabetical-sorting rules correctly.",
       "files": [],
       "assertions": [
-        "Classifies regular members as present or absent according to the roster rules",
-        "Includes guests only when they actively participate",
+        "Includes initiative members only when the transcript evidences their presence",
+        "Includes guests only when the transcript evidences their presence",
         "Excludes mentioned-only people who do not actively participate",
-        "Sorts participant lists alphabetically by roster display name"
+        "Sorts the participant list alphabetically by roster display name"
       ]
     },
     {
@@ -43,6 +43,18 @@
       "assertions": [
         "Omits content explicitly marked as off the record",
         "Does not restate excluded content elsewhere in the report"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Process the latest Meeting der Initiative transcript without giving an explicit file path.",
+      "expected_output": "The newest unambiguous ISO-dated source is read from Transcripts/ and the final protocol is saved under the matching dated MeetingMinutes/Weekly/ path.",
+      "files": [],
+      "assertions": [
+        "Resolves the raw source only from the Transcripts directory",
+        "Derives the meeting date from the selected transcript",
+        "Writes MeetingMinutes/Weekly/YYYY/MM/DD.md",
+        "Does not silently overwrite an existing protocol"
       ]
     }
   ]

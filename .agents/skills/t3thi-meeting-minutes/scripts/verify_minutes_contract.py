@@ -87,14 +87,11 @@ def validate_text(text: str) -> None:
     )
 
     participants_match = re.search(
-        r"- \*\*Participants:\*\*\n((?:    - .+\n)+)- \*\*No participation:\*\*\n((?:    - .+\n)+)",
+        r"- \*\*Participants:\*\*\n((?:    - .+\n)+)\n(?=(?:> ⚠️|## Topic 1:))",
         text,
     )
-    assert_true(participants_match is not None, "Participant blocks are malformed")
+    assert_true(participants_match is not None, "Participant block is malformed")
     participants = parse_list(participants_match.group(1), "Participants")
-    no_participation = parse_list(participants_match.group(2), "No participation")
-    overlap = set(participants) & set(no_participation)
-    assert_true(not overlap, "Participants and No participation overlap")
 
     assert_true(not re.search(r"^# Topic ", text, re.MULTILINE), "Topic headings must not use h1")
     assert_true(not re.search(r"^### Topic ", text, re.MULTILINE), "Topic headings must not use h3")
@@ -137,6 +134,14 @@ def main() -> None:
         "unsorted participants",
         text.replace("    - Andre Buchmann\n    - Astrid Haubold\n", "    - Astrid Haubold\n    - Andre Buchmann\n"),
         "Participants list is not sorted",
+    )
+    expect_failure(
+        "unexpected attendance block",
+        text.replace(
+            "\n\n## Topic 1: Copy Content Alignment",
+            "\n- **Observers:**\n    - Sven Wappler\n\n## Topic 1: Copy Content Alignment",
+        ),
+        "Participant block is malformed",
     )
     expect_failure(
         "forbidden summary heading",
