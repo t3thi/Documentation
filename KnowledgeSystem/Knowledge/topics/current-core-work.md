@@ -2,7 +2,7 @@
 id: topic:current-core-work
 title: "Current Core Work"
 language: en
-updated: "2026-08-11"
+updated: "2026-08-14"
 knowledge:
   - K-000013
   - K-000015
@@ -10,6 +10,7 @@ knowledge:
   - K-000022
   - K-000023
   - K-000027
+  - K-000028
 history:
   - K-000026
 decisions: []
@@ -96,4 +97,5 @@ No current patch meets all criteria. Gerrit 92777 has positive reviews but an un
 |---|---|---|---|
 | [dbdoctor PR 98](https://github.com/lolli42/dbdoctor/pull/98) | Open; GitHub reports the current head as not mergeable and `dirty`. | **Yes** | Repairs `l10n_state` when synchronized metadata disagrees with stored translated values. It is not merged Core behavior. |
 | [dbdoctor PR 171](https://github.com/lolli42/dbdoctor/pull/171) | Open `[WIP]`; GitHub reports the current head as clean and mergeable. | No | Detects orphaned translations left by historical copy operations. It is diagnostic and repair tooling, not a merged Core fix or a new translation model. |
+| Language-All visibility in every backend language | Proposed in the reviewed meeting on 2026-08-14; no Gerrit change is registered. | Not applicable | Would show each existing `sys_language_uid = -1` record in every language column at its effective sorting position. This is bounded preparatory usability work that retains current Language-All semantics and does not select a future structure model. |
 | Structural-layer and Editing-Language exploration | Product framing exists; no completed prototype is evidenced. | Not applicable | A sketch, click dummy or extension experiment would test editor value and structural assumptions before an architecture decision. |

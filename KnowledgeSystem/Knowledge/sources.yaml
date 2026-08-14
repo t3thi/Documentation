@@ -278,6 +278,24 @@ sources:
       skill: skill:historical-unrecorded
     review_status: reviewed
 
+  transcript:2026-08-14:
+    type: transcript
+    path: "Transcripts/2026-08-14 12-05-21 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:294dc6da43fd18fb06c480b9bd856dd9c83a145a5fc8d4f9b02a5de51237c704
+    reason: Raw transcript is restricted local evidence pending publication clearance.
+  minutes:2026-08-14:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/08/14.md
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-08-14
+    generated_with:
+      skill: skill:t3thi-meeting-minutes
+    review_status: reviewed
+
   core:tca-language-relations:
     type: core-code
     url: https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/Configuration/Tca/TcaEnrichment.php#L185-L247
@@ -406,6 +424,13 @@ sources:
     availability: repository
     status: merged
     observed_at: "2026-08-11"
+  gerrit:95038:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95038
+    authority: external-current
+    availability: repository
+    status: open-awaiting-review
+    observed_at: "2026-08-14"
   gerrit:95042:
     type: gerrit
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95042
@@ -419,7 +444,14 @@ sources:
     authority: external-current
     availability: repository
     status: merged
-    observed_at: "2026-08-11"
+    observed_at: "2026-08-14"
+  gerrit:95178:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95178
+    authority: external-current
+    availability: repository
+    status: merged
+    observed_at: "2026-08-14"
   gerrit:95199:
     type: gerrit
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95199
@@ -427,3 +459,10 @@ sources:
     availability: repository
     status: merged
     observed_at: "2026-08-11"
+  gerrit:95202:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95202
+    authority: external-current
+    availability: repository
+    status: merged
+    observed_at: "2026-08-14"

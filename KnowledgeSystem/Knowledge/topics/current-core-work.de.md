@@ -2,7 +2,7 @@
 id: topic:current-core-work
 title: "Aktuelle Core-Arbeit"
 language: de
-updated: "2026-08-11"
+updated: "2026-08-14"
 knowledge:
   - K-000013
   - K-000015
@@ -10,13 +10,14 @@ knowledge:
   - K-000022
   - K-000023
   - K-000027
+  - K-000028
 history:
   - K-000026
 decisions: []
 translation_of: topic:current-core-work
-source_updated: "2026-08-11"
+source_updated: "2026-08-14"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:4bbeca618b1e0067d0748518cdc0951dc8f3c760e7da5e3aa1f54801ecd931e7"
+source_digest: "sha256:b67259a848926ff0e1f1b864056aecf70cfdb53e6d5955b1f5f238ee1fa07cf4"
 ---
 
 # Aktuelle Core-Arbeit
@@ -100,4 +101,5 @@ Derzeit erfüllt kein Patch alle Kriterien. Gerrit 92777 besitzt positive Review
 |---|---|---|---|
 | [dbdoctor PR 98](https://github.com/lolli42/dbdoctor/pull/98) | Offen; GitHub meldet den aktuellen Stand als nicht mergefähig und `dirty`. | **Ja** | Repariert `l10n_state`, wenn Synchronisierungsmetadaten gespeicherten übersetzten Werten widersprechen. Dies ist kein gemergtes Core-Verhalten. |
 | [dbdoctor PR 171](https://github.com/lolli42/dbdoctor/pull/171) | Offen mit `[WIP]`; GitHub meldet den aktuellen Stand als konfliktfrei und mergefähig. | Nein | Erkennt verwaiste Übersetzungen aus historischen Kopiervorgängen. Dies ist Diagnose- und Reparaturwerkzeug, kein gemergter Core-Fix und kein neues Übersetzungsmodell. |
+| Sichtbarkeit von Language All in jeder Backend-Sprache | Im geprüften Meeting vom 14.08.2026 vorgeschlagen; es ist kein Gerrit-Change registriert. | Nicht anwendbar | Würde jeden bestehenden Datensatz mit `sys_language_uid = -1` in jeder Sprachspalte an seiner wirksamen Sortierposition anzeigen. Dies ist eine klar abgegrenzte vorbereitende Usability-Arbeit, die die heutige Language-All-Semantik beibehält und kein zukünftiges Strukturmodell bestimmt. |
 | Untersuchung der strukturellen Ebene und der Editing Language | Eine Produktbeschreibung existiert; ein fertiggestellter Prototyp ist nicht belegt. | Nicht anwendbar | Eine Skizze, ein Click Dummy oder ein Experiment als Extension würde den redaktionellen Nutzen und strukturelle Annahmen vor einer Architekturentscheidung prüfen. |
