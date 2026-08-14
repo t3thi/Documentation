@@ -89,14 +89,23 @@ def lint_repository(repository: KnowledgeRepository) -> list[Issue]:
                     )
                 )
         if topic.metadata.get("language") == "de":
-            warnings.append(
-                Issue(
-                    "warning",
-                    "topic.translation-human-review",
-                    path,
-                    "metadata parity passed, but semantic translation equivalence still requires human review",
+            source_updated = topic.metadata.get("source_updated")
+            reviewed_at = topic.metadata.get("translation_reviewed_at")
+            if not isinstance(reviewed_at, str):
+                detail = "translation_reviewed_at is missing"
+            elif isinstance(source_updated, str) and reviewed_at < source_updated:
+                detail = f"translation was reviewed at {reviewed_at} before source update {source_updated}"
+            else:
+                detail = None
+            if detail is not None:
+                warnings.append(
+                    Issue(
+                        "warning",
+                        "topic.translation-human-review",
+                        path,
+                        f"{detail}; semantic translation equivalence requires human review",
+                    )
                 )
-            )
 
     relation_targets: set[str] = set()
     answered: set[str] = set()

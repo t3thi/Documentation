@@ -25,7 +25,7 @@ decisions:
   - D-000001
 translation_of: topic:evidence-maintenance
 source_updated: "2026-08-11"
-translation_reviewed_at: "2026-08-11"
+translation_reviewed_at: "2026-08-14"
 source_digest: "sha256:35bc92e505568db8efd236d61e27537cd3cc3a76d489f39f0e237772be29d342"
 ---
 

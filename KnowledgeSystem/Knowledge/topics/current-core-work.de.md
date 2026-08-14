@@ -15,7 +15,7 @@ history:
 decisions: []
 translation_of: topic:current-core-work
 source_updated: "2026-08-11"
-translation_reviewed_at: "2026-08-11"
+translation_reviewed_at: "2026-08-14"
 source_digest: "sha256:4bbeca618b1e0067d0748518cdc0951dc8f3c760e7da5e3aa1f54801ecd931e7"
 ---
 

@@ -24,7 +24,7 @@ history: []
 decisions: []
 translation_of: topic:critical-alignment
 source_updated: "2026-08-11"
-translation_reviewed_at: "2026-08-11"
+translation_reviewed_at: "2026-08-14"
 source_digest: "sha256:89915519275331d65d5a24d6f71d64fcf6a1d13eeb21c923572b4431851a9311"
 ---
 

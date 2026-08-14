@@ -13,7 +13,7 @@ history:
 decisions: []
 translation_of: topic:output-policy
 source_updated: "2026-08-11"
-translation_reviewed_at: "2026-08-11"
+translation_reviewed_at: "2026-08-14"
 source_digest: "sha256:fd6bcc0310dc7368eb2940dbe3a8ac86b670a6682239e9fd042e9a56a6f24689"
 ---
 

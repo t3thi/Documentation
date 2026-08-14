@@ -785,6 +785,28 @@ class ValidationTests(KnowledgeToolingTestCase):
             [warning.code for warning in warnings],
         )
 
+    def test_current_german_translation_review_is_not_reported(self) -> None:
+        warnings = lint_repository(self.fixture.repository())
+
+        self.assertNotIn(
+            "topic.translation-human-review",
+            [warning.code for warning in warnings],
+        )
+
+    def test_stale_german_translation_review_is_reported(self) -> None:
+        self.fixture.replace(
+            "KnowledgeSystem/Knowledge/topics/example.de.md",
+            "translation_reviewed_at: 2026-08-11",
+            "translation_reviewed_at: 2026-08-10",
+        )
+
+        warnings = lint_repository(self.fixture.repository())
+
+        self.assertIn(
+            "topic.translation-human-review",
+            [warning.code for warning in warnings],
+        )
+
     def test_registry_external_observation_staleness_is_reported(self) -> None:
         self.fixture.replace(
             "KnowledgeSystem/Knowledge/sources.yaml",

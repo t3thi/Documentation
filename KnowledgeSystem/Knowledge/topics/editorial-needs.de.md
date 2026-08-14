@@ -14,7 +14,7 @@ history: []
 decisions: []
 translation_of: topic:editorial-needs
 source_updated: "2026-08-11"
-translation_reviewed_at: "2026-08-11"
+translation_reviewed_at: "2026-08-14"
 source_digest: "sha256:13008c3ceea6f3f969f2bcc76f63b95ceec3c16bbb7e433b61c0c12dedd4e5f8"
 ---
 

@@ -18,7 +18,7 @@ history: []
 decisions: []
 translation_of: topic:current-core-behavior
 source_updated: "2026-08-11"
-translation_reviewed_at: "2026-08-11"
+translation_reviewed_at: "2026-08-14"
 source_digest: "sha256:ee8205c91ae0c5cf6540683550604c642303feba38cff91d15fa6d02feea30e6"
 ---
 

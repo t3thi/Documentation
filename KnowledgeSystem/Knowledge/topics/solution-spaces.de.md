@@ -17,7 +17,7 @@ history: []
 decisions: []
 translation_of: topic:solution-spaces
 source_updated: "2026-08-11"
-translation_reviewed_at: "2026-08-11"
+translation_reviewed_at: "2026-08-14"
 source_digest: "sha256:9d9b0568e914084110d4c831623e7593a1b6be9fd97de8101b38f211bee2c0df"
 ---
 
