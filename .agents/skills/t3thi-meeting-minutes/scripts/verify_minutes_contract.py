@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import json
 import re
 import unicodedata
 from pathlib import Path
@@ -11,6 +12,11 @@ from pathlib import Path
 SCRIPT_DIR = Path(__file__).resolve().parent
 SKILL_ROOT = SCRIPT_DIR.parent
 FIXTURE_PATH = SKILL_ROOT / "evals" / "files" / "valid-minutes.md"
+SKILL_PATH = SKILL_ROOT / "SKILL.md"
+README_PATH = SKILL_ROOT / "README.md"
+OPENAI_METADATA_PATH = SKILL_ROOT / "agents" / "openai.yaml"
+EVALS_PATH = SKILL_ROOT / "evals" / "evals.json"
+OVERVIEW_PATH = "MeetingMinutes/overview.md"
 BACK_LINK = "https://notes.typo3.org/s/f3ae8fZSD"
 HUDDLE_URL = "https://app.slack.com/huddle/T024TUMLZ/C05D7UF1L8M"
 FORBIDDEN_HEADINGS = [
@@ -126,9 +132,40 @@ def expect_failure(label: str, text: str, expected_message: str) -> None:
     raise AssertionError(f"{label} should fail validation")
 
 
+def validate_repository_workflow_contract() -> None:
+    for path in (SKILL_PATH, README_PATH, OPENAI_METADATA_PATH):
+        text = path.read_text(encoding="utf-8")
+        assert_true(
+            OVERVIEW_PATH in text,
+            f"Overview workflow missing from {path.relative_to(SKILL_ROOT)}",
+        )
+
+    evals = json.loads(EVALS_PATH.read_text(encoding="utf-8"))
+    assertions = [
+        assertion
+        for evaluation in evals.get("evals", [])
+        for assertion in evaluation.get("assertions", [])
+    ]
+    assert_true(
+        any(OVERVIEW_PATH in assertion for assertion in assertions),
+        "Overview workflow missing from eval assertions",
+    )
+
+    skill_text = SKILL_PATH.read_text(encoding="utf-8")
+    assert_true(
+        "never invent a URL or placeholder" in skill_text,
+        "Missing no-fabrication rule for overview links",
+    )
+    assert_true(
+        "If no time is evidenced" in skill_text,
+        "Missing no-fabrication rule for overview times",
+    )
+
+
 def main() -> None:
     text = FIXTURE_PATH.read_text(encoding="utf-8")
     validate_text(text)
+    validate_repository_workflow_contract()
 
     expect_failure(
         "unsorted participants",
@@ -159,7 +196,7 @@ def main() -> None:
         "First-person prose is not allowed",
     )
 
-    print("Verified T3THI minutes contract.")
+    print("Verified T3THI minutes and repository workflow contract.")
 
 
 if __name__ == "__main__":

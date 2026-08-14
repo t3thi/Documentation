@@ -54,7 +54,21 @@
         "Resolves the raw source only from the Transcripts directory",
         "Derives the meeting date from the selected transcript",
         "Writes MeetingMinutes/Weekly/YYYY/MM/DD.md",
+        "Adds or updates exactly one matching MeetingMinutes/overview.md entry",
         "Does not silently overwrite an existing protocol"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Publish new T3THI minutes and update the meeting overview. No HedgeDoc URL or reliable meeting time was supplied.",
+      "expected_output": "The dated Minutes file is written and one chronological overview entry is added without fabricating missing metadata.",
+      "files": [],
+      "assertions": [
+        "Updates MeetingMinutes/overview.md under the correct year and month",
+        "Derives a concise English topic summary from the final Minutes",
+        "Keeps the date entry unlinked when no verified HedgeDoc URL is available",
+        "Does not invent a meeting time when none is evidenced",
+        "Does not duplicate or reorder unrelated overview entries"
       ]
     }
   ]

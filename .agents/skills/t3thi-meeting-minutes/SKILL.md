@@ -7,7 +7,7 @@ description: >
   protocol, or "Protokoll". Also trigger when the user says "Meeting der
   Initiative", "Translation Handling Initiative minutes", "T3THI", or references
   the latest weekly meeting. Writes publication-ready Markdown to the dated path
-  under MeetingMinutes/Weekly/.
+  under MeetingMinutes/Weekly/ and updates MeetingMinutes/overview.md.
 ---
 
 # TYPO3 Translation Handling Initiative – Meeting Minutes Generator
@@ -72,7 +72,7 @@ Phase 3 → Identify and group topics
 Phase 4 → Draft minutes per topic
 Phase 5 → Apply formatting and correction rules
 Phase 6 → Validate against checklist
-Phase 7 → Output final Markdown file
+Phase 7 → Publish the final Markdown and update the overview
 ```
 
 ### Phase 1 — Read References
@@ -225,10 +225,11 @@ Before delivering the output, verify every item:
 | 18 | Duplicate topics merged | No repeated content |
 | 19 | Links inline where mentioned | Gerrit patches, Forge tickets, GitHub PRs |
 | 20 | Output is a Markdown code block | Wrapped in triple backticks for easy copy |
+| 21 | Overview updated | Exactly one matching entry in `MeetingMinutes/overview.md`, with no invented link or time |
 
-### Phase 7 — Output
+### Phase 7 — Publish Minutes and Update the Overview
 
-Generate the final Markdown and present it in **two ways**:
+Generate the final Markdown and publish it in **three places**:
 
 1. **In the chat**: Wrapped in a fenced code block (` ```markdown … ``` `) so
    the user can copy it directly.
@@ -236,8 +237,20 @@ Generate the final Markdown and present it in **two ways**:
    it as `MeetingMinutes/Weekly/YYYY/MM/DD.md`. Create the year and month
    directories when needed. Never silently overwrite an existing protocol;
    inspect it and stop for clarification unless the user explicitly requested
-   an update to that file. If file writing is unavailable, return the Markdown
-   in chat and clearly state that file creation was skipped.
+   an update to that file.
+3. **In the repository overview**: Whenever the dated Minutes file is added or
+   materially updated, add or update exactly one matching entry in
+   `MeetingMinutes/overview.md` under the correct year and month. Preserve the
+   established chronological structure and indentation. Use a concise English
+   topic summary derived from the final Minutes. Use a HedgeDoc link only when
+   a verified URL is available. When no URL is known, keep the date entry
+   unlinked; never invent a URL or placeholder. Use a verified meeting time
+   from the transcript or supplied context. If no time is evidenced, record
+   the date without inventing a time. Do not duplicate or reorder unrelated
+   entries.
+
+If file writing is unavailable, return the Markdown in chat and clearly state
+that both repository updates were skipped.
 
 ## Supplementary Context
 
@@ -303,13 +316,16 @@ The result is considered correct only if all of the following are true:
   defined priority order.
 - The final text is fully in English with no untranslated German leftovers,
   except explicitly allowed italicized technical compounds.
+- `MeetingMinutes/overview.md` contains exactly one corresponding entry whose
+  time, link, and summary do not exceed the available evidence.
 
 ## Maintenance
 
 - Keep `agents/openai.yaml` aligned when the trigger surface, transcript
   inputs, or output contract change materially.
 - Run `python3 scripts/verify_minutes_contract.py` when the output template,
-  participant-list contract, or prohibited trailing-section rules change.
+  participant-list contract, prohibited trailing-section rules, or repository
+  overview workflow change.
 - Keep `evals/evals.json` aligned when date handling, participant sorting,
   English-only rules, or prohibited output structures change materially.
 
@@ -317,6 +333,7 @@ The result is considered correct only if all of the following are true:
 
 - Source transcript: `Transcripts/YYYY-MM-DD HH-MM-SS - Meeting der Initiative.txt`
 - Meeting Minutes: `MeetingMinutes/Weekly/YYYY/MM/DD.md`
+- Meeting overview: `MeetingMinutes/overview.md`
 
 Example for 2026-08-14:
 
