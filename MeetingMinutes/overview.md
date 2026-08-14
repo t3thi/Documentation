@@ -345,7 +345,7 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 
 ### April
 
-- [ 2026-04-24, 12:00 to 13:00 CET](https://notes.typo3.org/s/TODO-2026-04-24)
+- [2026-04-24, 12:00 to 13:00 CET](https://notes.typo3.org/s/A8UZCVFrDp)
     - <sup>Meeting Minutes Catch-Up, Merged Non-Language-Aware IRRE Child Patch, TYPO3 v15 Roadmap for Language All Removal, Free Mode Copy and Move Patches, Language All Test Coverage, Parent-Child IRRE Language Rules, and Lolli Coordination</sup>
 
 ### May
@@ -370,3 +370,8 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
     - <sup>Merged Mount Point Translation Patch, Initiative Direction After Dialog Days, `sys_language_uid = -1` Test Strategy, Free Mode Column Rendering, Mixed Mode Layout Semantics, Duplicate `l10n_parent` Prevention, Translation Wizard Source-Language Behavior, and DevDays Campfire Planning</sup>
 - [2026-07-31, 11:30 to 13:15 CET](https://notes.typo3.org/s/z5ICno5pK2)
     - <sup>Empty `l10n_source` Core Fix, Translation Parent Selector Filtering, Strict Mode with Non-Default Fallback Chains, Site-Scoped Fallback Options, Cross-Site Language Identity, and DevDays Meeting Schedule</sup>
+
+### August
+
+- [2026-08-14, 12:01 to 13:12 CET](https://notes.typo3.org/s/wlBVoAaW2V)
+    - <sup>Git-Native Knowledge System, Merged Comparison-View Patches, Page Type Synchronization, `BCP 47` Language Identity, Hidden Structural Layer Prototype, Structural Permissions, Fallback Scope, and Language-All Visibility</sup>
