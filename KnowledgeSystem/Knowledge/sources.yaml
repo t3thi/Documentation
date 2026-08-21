@@ -1,9 +1,9 @@
 version: 1
 publication:
-  last_updated: "2026-08-14"
-  reviewed_transcripts_through: "2026-07-31"
-  reviewed_minutes_through: "2026-07-31"
-  external_status_verified_through: "2026-08-11"
+  last_updated: "2026-08-21"
+  reviewed_transcripts_through: "2026-08-14"
+  reviewed_minutes_through: "2026-08-14"
+  external_status_verified_through: "2026-08-21"
 
 sources:
   skill:t3thi-meeting-minutes:
@@ -351,7 +351,7 @@ sources:
     authority: external-current
     availability: repository
     status: open
-    observed_at: "2026-08-11"
+    observed_at: "2026-08-21"
 
   forge:110008:
     type: forge
@@ -359,21 +359,21 @@ sources:
     authority: external-current
     availability: repository
     status: under-review
-    observed_at: "2026-08-11"
+    observed_at: "2026-08-21"
   forge:110281:
     type: forge
     url: https://forge.typo3.org/issues/110281
     authority: external-current
     availability: repository
     status: resolved
-    observed_at: "2026-08-11"
+    observed_at: "2026-08-21"
   forge:110328:
     type: forge
     url: https://forge.typo3.org/issues/110328
     authority: external-current
     availability: repository
     status: under-review
-    observed_at: "2026-08-11"
+    observed_at: "2026-08-21"
 
   gerrit:83169:
     type: gerrit
@@ -381,88 +381,88 @@ sources:
     authority: external-current
     availability: repository
     status: merged
-    observed_at: "2026-08-11"
+    observed_at: "2026-08-21"
   gerrit:88828:
     type: gerrit
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828
     authority: external-current
     availability: repository
     status: merged
-    observed_at: "2026-08-11"
+    observed_at: "2026-08-21"
   gerrit:92585:
     type: gerrit
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/92585
     authority: external-current
     availability: repository
     status: abandoned
-    observed_at: "2026-08-11"
+    observed_at: "2026-08-21"
   gerrit:94510:
     type: gerrit
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510
     authority: external-current
     availability: repository
     status: open-review-action-required
-    observed_at: "2026-08-11"
+    observed_at: "2026-08-21"
   gerrit:94914:
     type: gerrit
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/94914
     authority: external-current
     availability: repository
     status: merged
-    observed_at: "2026-08-11"
+    observed_at: "2026-08-21"
   gerrit:94915:
     type: gerrit
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/94915
     authority: external-current
     availability: repository
     status: merged
-    observed_at: "2026-08-11"
+    observed_at: "2026-08-21"
   gerrit:94916:
     type: gerrit
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/94916
     authority: external-current
     availability: repository
     status: merged
-    observed_at: "2026-08-11"
+    observed_at: "2026-08-21"
   gerrit:95038:
     type: gerrit
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95038
     authority: external-current
     availability: repository
     status: open-awaiting-review
-    observed_at: "2026-08-14"
+    observed_at: "2026-08-21"
   gerrit:95042:
     type: gerrit
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95042
     authority: external-current
     availability: repository
     status: open-wip
-    observed_at: "2026-08-11"
+    observed_at: "2026-08-21"
   gerrit:95170:
     type: gerrit
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95170
     authority: external-current
     availability: repository
     status: merged
-    observed_at: "2026-08-14"
+    observed_at: "2026-08-21"
   gerrit:95178:
     type: gerrit
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95178
     authority: external-current
     availability: repository
     status: merged
-    observed_at: "2026-08-14"
+    observed_at: "2026-08-21"
   gerrit:95199:
     type: gerrit
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95199
     authority: external-current
     availability: repository
     status: merged
-    observed_at: "2026-08-11"
+    observed_at: "2026-08-21"
   gerrit:95202:
     type: gerrit
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95202
     authority: external-current
     availability: repository
     status: merged
-    observed_at: "2026-08-14"
+    observed_at: "2026-08-21"

@@ -1,9 +1,9 @@
 ---
 title: "Translation Handling Initiative - Current State"
-last_updated: "2026-08-14"
-weekly_minutes_included_through: "2026-07-31"
-transcripts_included_through: "2026-07-31"
-external_status_checked_through: "2026-08-11"
+last_updated: "2026-08-21"
+weekly_minutes_included_through: "2026-08-14"
+transcripts_included_through: "2026-08-14"
+external_status_checked_through: "2026-08-21"
 ---
 
 <!--
@@ -370,7 +370,7 @@ A generic multi-dimensional model for language, country, market, brand or audien
 
 The initiative and related Core work have already delivered bounded improvements. These results make today's system safer or easier to understand; they do not implement the complete vision.
 
-`main` is a moving development branch, not a stable TYPO3 version label. This document therefore pairs it with the major development line it represented at the stated time. For merged changes, that is the line represented by `main` when the change was merged. For open changes, `main` represented the TYPO3 v15 development line when external status was checked on 2026-08-11. Fixed maintenance branches such as `14.3` and `13.4` are named directly.
+`main` is a moving development branch, not a stable TYPO3 version label. This document therefore pairs it with the major development line it represented at the stated time. For merged changes, that is the line represented by `main` when the change was merged. For open changes, `main` represented the TYPO3 v15 development line when external status was checked on 2026-08-21. Fixed maintenance branches such as `14.3` and `13.4` are named directly.
 
 | Result | Delivered release lines | Immediate improvement | Responsibility or learning |
 |---|---|---|---|
@@ -391,11 +391,11 @@ The [initiative test extension](https://github.com/t3thi/translation-handling) a
 
 The repeated pattern is useful: a real failure is reproduced, the responsible contract is identified, tests define the boundary and the fix remains narrow. This is the initiative's preferred form of incremental improvement.
 
-## Current work as of 2026-08-11
+## Current work as of 2026-08-21
 
 Each open Core patch has one primary status entry according to its current official state. **WIP** takes precedence over review findings. **Review action required** means that the current patch set has at least one unresolved comment, a current negative review or verification, or a merge conflict. **Review-positive and mergeable** is the final patch category used here; it requires at least one current Code-Review `+1`, no current negative vote, no unresolved comment and a mergeable current revision. **Awaiting review** covers open patches without those blockers but without a current positive Code-Review. **Rejected or superseded** records changes that are formally abandoned when the reason remains relevant.
 
-For open Gerrit changes, **Merge conflict: Yes** means that Gerrit reported the current revision as `mergeable: false` against its target branch on 2026-08-11. This can change when the target branch or patch set changes. **No** means `mergeable: true`; it does not replace review or submit approval. The release-line column lists actual Gerrit changes separately from additional branches named only in a commit's `Releases:` footer. A named branch without its own Gerrit change is not a pending or merged backport.
+For open Gerrit changes, **Merge conflict: Yes** means that Gerrit reported the current revision as `mergeable: false` against its target branch on 2026-08-21. This can change when the target branch or patch set changes. **No** means `mergeable: true`; it does not replace review or submit approval. The release-line column lists actual Gerrit changes separately from additional branches named only in a commit's `Releases:` footer. A named branch without its own Gerrit change is not a pending or merged backport.
 
 ### Work in progress (WIP)
 
@@ -416,7 +416,7 @@ For open Gerrit changes, **Merge conflict: Yes** means that Gerrit reported the 
 | [Gerrit 87595](https://review.typo3.org/c/Packages/TYPO3.CMS/+/87595) | TYPO3 v15 (current `main`); TYPO3 v14 LTS (`14.3`) is named, but no backport change exists yet. | Patch set 11; CI `-1`; 3 unresolved comments. | **Yes** | Changes the language of existing inline child records with their parent. Reviews still require broader relation coverage, tests and migration consideration. |
 | [Gerrit 92777](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92777) | TYPO3 v15 (current `main`); TYPO3 v14 LTS (`14.3`) is named, but no backport change exists yet. | Patch set 10; two Code-Review `+1`; CI `+1`; 1 unresolved comment. | No | Restricts copied Free-Mode records to languages available in the target context. This improves current-model integrity without selecting a future structure model. |
 | [Gerrit 93063](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93063) | TYPO3 v15 (current `main`); TYPO3 v14 LTS (`14.3`) is named, but no backport change exists yet. | Patch set 7; Code-Review `+1`; CI `+1`; no unresolved comments. | **Yes** | Warns about invalid translation parents. The patch is review-positive but must be made mergeable against the current TYPO3 v15 `main`; it makes structural corruption visible but does not repair or redesign identity. |
-| [Forge 110008](https://forge.typo3.org/issues/110008) and [Gerrit 94510](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) | TYPO3 v15 (current `main`); TYPO3 v14 LTS (`14.3`) and TYPO3 v13 LTS (`13.4`) are named, but no backport changes exist yet. | Patch set 7; CI `-1`; 1 unresolved comment. | No | Addresses a regression after merged [Gerrit 88828](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828), in which `strict` output can fall back from a hidden requested-language record to another language. Current behavior is unchanged while the fix remains unmerged. |
+| [Forge 110008](https://forge.typo3.org/issues/110008) and [Gerrit 94510](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) | TYPO3 v15 (current `main`); TYPO3 v14 LTS (`14.3`) and TYPO3 v13 LTS (`13.4`) are named, but no backport changes exist yet. | Patch set 8; CI `+1`; 1 unresolved comment. | No | Addresses a regression after merged [Gerrit 88828](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828), in which `strict` output can fall back from a hidden requested-language record to another language. Current behavior is unchanged while the fix remains unmerged. |
 | [Gerrit 94917](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94917) | TYPO3 v15 (current `main`); no backport branch is named and no backport change exists. | Patch set 4; no current Code-Review vote; 1 unresolved comment. | **Yes** | Improves Free/Mixed comparison rendering. Replacement by the merged [TYPO3 v15 change 95170](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95170) and [TYPO3 v14 LTS backport 95199](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95199) has been proposed in review, but 94917 is still officially open rather than abandoned. |
 | [Gerrit 93752](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93752) | TYPO3 v15 (current `main`); TYPO3 v14 LTS (`14.3`) is named, but no backport change exists yet. | Patch set 3; CI `+1`; no current Code-Review vote or unresolved comment. | **Yes** | Adds copy guards for Free-Mode content. The current revision must first be made mergeable against the current TYPO3 v15 `main`. |
 
@@ -454,7 +454,7 @@ The vision is a review framework, not a reason to reject every partial solution.
 | Change or approach | Problem solved within its scope | Assessment against the four responsibilities |
 |---|---|---|
 | [Disable custom `colPos` and `CType` for connected translations](https://review.typo3.org/c/Packages/TYPO3.CMS/+/85978), merged for TYPO3 v13 (`main` at merge time); no additional release line is named | Protects structural consistency for connected content and containers. | Sound for connected structure. It also removed a workaround for expressing local absence, showing why Structural Identity and Output Policy need their own explicit mechanisms. |
-| [Respect fallback chains during record overlay](https://review.typo3.org/c/Packages/TYPO3.CMS/+/83169), merged for TYPO3 v14 (`main` at merge time), and its merged [TYPO3 v13 LTS (`13.4`) backport](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828); the [strict-regression fix](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) is open for TYPO3 v15 (current `main`), while its named TYPO3 v14 LTS (`14.3`) and TYPO3 v13 LTS (`13.4`) backport changes do not yet exist | Fixed real fallback behavior, but also exposed a regression when a requested-language record is hidden under `strict`. | Compatible with the vision when restricted to fallback mode. The active fix confirms that `strict` must not silently behave like fallback; its current patch set has CI `-1`, one unresolved comment and is not merged. |
+| [Respect fallback chains during record overlay](https://review.typo3.org/c/Packages/TYPO3.CMS/+/83169), merged for TYPO3 v14 (`main` at merge time), and its merged [TYPO3 v13 LTS (`13.4`) backport](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828); the [strict-regression fix](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) is open for TYPO3 v15 (current `main`), while its named TYPO3 v14 LTS (`14.3`) and TYPO3 v13 LTS (`13.4`) backport changes do not yet exist | Fixed real fallback behavior, but also exposed a regression when a requested-language record is hidden under `strict`. | Compatible with the vision when restricted to fallback mode. The active fix confirms that `strict` must not silently behave like fallback; its current patch set has CI `+1`, one unresolved comment and is not merged. |
 | Free/Mixed comparison fixes | Make independent and connected content visible and aligned in the current Layout module. | Valuable current UX work. They preserve valid independence while making structural relations clearer; they do not need to wait for a new data model. |
 | MM context proposal | Reduces relation ambiguity across languages and Workspaces. | A reasonable preparatory model if migration and Extbase/DataHandler behavior remain consistent. It should not be mistaken for final semantic identity. |
 | Explicit all-language synchronization | Replaces one shared `-1` row with concrete target-language records whose parity-relevant fields remain fully enforced. | Strongly aligned in principle. The first stage should preserve complete-record behavior without editor opt-out; granularity comes later. It becomes unsafe if target creation, lifecycle, provenance, conflict and migration rules are undefined. |

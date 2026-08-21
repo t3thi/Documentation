@@ -375,3 +375,5 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
 
 - [2026-08-14, 12:01 to 13:12 CET](https://notes.typo3.org/s/wlBVoAaW2V)
     - <sup>Git-Native Knowledge System, Merged Comparison-View Patches, Page Type Synchronization, `BCP 47` Language Identity, Hidden Structural Layer Prototype, Structural Permissions, Fallback Scope, and Language-All Visibility</sup>
+- [2026-08-21, 12:01 to 13:04 CET](https://notes.typo3.org/s/LXLGYN1zY7)
+    - <sup>TYPO3 Upgrade Experiences, Language-All Visualization Prototype, Sorting and Permission Boundaries, Free-Mode Migration, and TYPO3 v14.3.6 Child-Language Regressions</sup>

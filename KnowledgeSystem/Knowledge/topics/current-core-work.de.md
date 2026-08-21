@@ -2,7 +2,7 @@
 id: topic:current-core-work
 title: "Aktuelle Core-Arbeit"
 language: de
-updated: "2026-08-14"
+updated: "2026-08-21"
 knowledge:
   - K-000013
   - K-000015
@@ -15,9 +15,9 @@ history:
   - K-000026
 decisions: []
 translation_of: topic:current-core-work
-source_updated: "2026-08-14"
+source_updated: "2026-08-21"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:b67259a848926ff0e1f1b864056aecf70cfdb53e6d5955b1f5f238ee1fa07cf4"
+source_digest: "sha256:4bedc2367f4addf28f77919accd306597bc10702016ccaff53260d88bc9f92ec"
 ---
 
 # Aktuelle Core-Arbeit
@@ -28,7 +28,7 @@ source_digest: "sha256:b67259a848926ff0e1f1b864056aecf70cfdb53e6d5955b1f5f238ee1
 
 Die Initiative und damit verbundene Core-Arbeiten haben bereits klar abgegrenzte Verbesserungen geliefert. Diese Ergebnisse machen das heutige System sicherer oder verständlicher. Sie setzen nicht die vollständige Vision um.
 
-`main` ist ein fortlaufender Entwicklungs-Branch und keine stabile TYPO3-Versionsbezeichnung. Dieses Dokument nennt deshalb zusätzlich die Major-Entwicklungslinie, für die `main` zum jeweils angegebenen Zeitpunkt stand. Bei gemergten Changes ist dies die von `main` zum Merge-Zeitpunkt repräsentierte Linie. Bei offenen Changes repräsentierte `main` bei der Prüfung des externen Status am 11.08.2026 die TYPO3-v15-Entwicklungslinie. Feste Maintenance-Branches wie `14.3` und `13.4` werden direkt benannt.
+`main` ist ein fortlaufender Entwicklungs-Branch und keine stabile TYPO3-Versionsbezeichnung. Dieses Dokument nennt deshalb zusätzlich die Major-Entwicklungslinie, für die `main` zum jeweils angegebenen Zeitpunkt stand. Bei gemergten Changes ist dies die von `main` zum Merge-Zeitpunkt repräsentierte Linie. Bei offenen Changes repräsentierte `main` bei der Prüfung des externen Status am 21.08.2026 die TYPO3-v15-Entwicklungslinie. Feste Maintenance-Branches wie `14.3` und `13.4` werden direkt benannt.
 
 | Ergebnis | Ausgelieferte Release-Linien | Unmittelbare Verbesserung | Verantwortung oder Erkenntnis |
 |---|---|---|---|
@@ -49,11 +49,11 @@ Die [Test-Extension der Initiative](https://github.com/t3thi/translation-handlin
 
 Das wiederkehrende Muster ist hilfreich: Ein realer Fehler wird reproduziert, der verantwortliche Vertrag wird identifiziert, Tests definieren die Grenze und die Korrektur bleibt eng begrenzt. Dies ist die von der Initiative bevorzugte Form der inkrementellen Verbesserung.
 
-## Laufende Arbeit mit Stand vom 11.08.2026
+## Laufende Arbeit mit Stand vom 21.08.2026
 
 Jeder offene Core-Patch erhält entsprechend seinem aktuellen offiziellen Stand genau einen primären Statuseintrag. **WIP** hat Vorrang vor Review-Befunden. **Review-Nacharbeit erforderlich** bedeutet, dass das aktuelle Patch Set mindestens einen ungelösten Kommentar, eine aktuelle negative Review- beziehungsweise Verifizierungsstimme oder einen Merge-Konflikt besitzt. **Review-positiv und mergefähig** ist die hier verwendete Kategorie für einen finalen Patch-Stand; sie erfordert mindestens ein aktuelles Code-Review `+1`, keine aktuelle negative Stimme, keinen ungelösten Kommentar und ein mergefähiges aktuelles Patch Set. **Review ausstehend** umfasst offene Patches ohne diese Blocker, aber auch ohne aktuelles positives Code-Review. **Abgelehnt oder ersetzt** dokumentiert formal aufgegebene Änderungen, wenn ihre Begründung weiterhin relevant ist.
 
-Für offene Gerrit-Änderungen bedeutet **Merge-Konflikt: Ja**, dass Gerrit das aktuelle Patch Set am 11.08.2026 gegenüber seinem Ziel-Branch als `mergeable: false` gemeldet hat. Dies kann sich ändern, wenn sich der Ziel-Branch oder das Patch Set ändert. **Nein** bedeutet `mergeable: true`; dies ersetzt weder Review noch Submit-Freigabe. Die Spalte für Release-Linien unterscheidet tatsächliche Gerrit-Changes von zusätzlichen Branches, die nur im `Releases:`-Footer eines Commits genannt werden. Ein genannter Branch ohne eigenen Gerrit-Change ist weder ein ausstehender noch ein gemergter Backport.
+Für offene Gerrit-Änderungen bedeutet **Merge-Konflikt: Ja**, dass Gerrit das aktuelle Patch Set am 21.08.2026 gegenüber seinem Ziel-Branch als `mergeable: false` gemeldet hat. Dies kann sich ändern, wenn sich der Ziel-Branch oder das Patch Set ändert. **Nein** bedeutet `mergeable: true`; dies ersetzt weder Review noch Submit-Freigabe. Die Spalte für Release-Linien unterscheidet tatsächliche Gerrit-Changes von zusätzlichen Branches, die nur im `Releases:`-Footer eines Commits genannt werden. Ein genannter Branch ohne eigenen Gerrit-Change ist weder ein ausstehender noch ein gemergter Backport.
 
 ### In Arbeit (WIP)
 
@@ -74,7 +74,7 @@ Für offene Gerrit-Änderungen bedeutet **Merge-Konflikt: Ja**, dass Gerrit das 
 | [Gerrit 87595](https://review.typo3.org/c/Packages/TYPO3.CMS/+/87595) | TYPO3 v15 (aktuelles `main`); TYPO3 v14 LTS (`14.3`) ist genannt, aber ein Backport-Change existiert noch nicht. | Patch Set 11; CI `-1`; 3 ungelöste Kommentare. | **Ja** | Ändert die Sprache vorhandener Inline Child Records gemeinsam mit ihrem Parent. Die Reviews erfordern weiterhin eine breitere Abdeckung von Beziehungen, Tests und Migrationsaspekten. |
 | [Gerrit 92777](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92777) | TYPO3 v15 (aktuelles `main`); TYPO3 v14 LTS (`14.3`) ist genannt, aber ein Backport-Change existiert noch nicht. | Patch Set 10; zwei Code-Review `+1`; CI `+1`; 1 ungelöster Kommentar. | Nein | Beschränkt kopierte Free-Mode-Datensätze auf im Zielkontext verfügbare Sprachen. Dies verbessert die Integrität des aktuellen Modells, ohne ein zukünftiges Strukturmodell auszuwählen. |
 | [Gerrit 93063](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93063) | TYPO3 v15 (aktuelles `main`); TYPO3 v14 LTS (`14.3`) ist genannt, aber ein Backport-Change existiert noch nicht. | Patch Set 7; Code-Review `+1`; CI `+1`; keine ungelösten Kommentare. | **Ja** | Warnt vor ungültigen Translation Parents. Der Patch ist review-positiv, muss aber gegenüber dem aktuellen TYPO3-v15-Branch `main` wieder mergefähig gemacht werden; er macht strukturelle Beschädigungen sichtbar, repariert oder gestaltet Identität aber nicht neu. |
-| [Forge 110008](https://forge.typo3.org/issues/110008) und [Gerrit 94510](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) | TYPO3 v15 (aktuelles `main`); TYPO3 v14 LTS (`14.3`) und TYPO3 v13 LTS (`13.4`) sind genannt, aber Backport-Changes existieren noch nicht. | Patch Set 7; CI `-1`; 1 ungelöster Kommentar. | Nein | Behandelt eine Regression nach dem gemergten [Gerrit-Patch 88828](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828), bei der die Ausgabe unter `strict` von einem verborgenen Datensatz in der angeforderten Sprache auf eine andere Sprache zurückfallen kann. Solange der Fix nicht gemergt ist, bleibt das aktuelle Verhalten unverändert. |
+| [Forge 110008](https://forge.typo3.org/issues/110008) und [Gerrit 94510](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) | TYPO3 v15 (aktuelles `main`); TYPO3 v14 LTS (`14.3`) und TYPO3 v13 LTS (`13.4`) sind genannt, aber Backport-Changes existieren noch nicht. | Patch Set 8; CI `+1`; 1 ungelöster Kommentar. | Nein | Behandelt eine Regression nach dem gemergten [Gerrit-Patch 88828](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828), bei der die Ausgabe unter `strict` von einem verborgenen Datensatz in der angeforderten Sprache auf eine andere Sprache zurückfallen kann. Solange der Fix nicht gemergt ist, bleibt das aktuelle Verhalten unverändert. |
 | [Gerrit 94917](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94917) | TYPO3 v15 (aktuelles `main`); kein Backport-Branch ist genannt und es existiert kein Backport-Change. | Patch Set 4; keine aktuelle Code-Review-Stimme; 1 ungelöster Kommentar. | **Ja** | Verbessert die Vergleichsdarstellung für Free Mode und Mixed Mode. Im Review wurde die Ersetzung durch den gemergten [TYPO3-v15-Change 95170](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95170) und den [TYPO3-v14-LTS-Backport 95199](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95199) vorgeschlagen, 94917 ist offiziell jedoch weiterhin offen und nicht aufgegeben. |
 | [Gerrit 93752](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93752) | TYPO3 v15 (aktuelles `main`); TYPO3 v14 LTS (`14.3`) ist genannt, aber ein Backport-Change existiert noch nicht. | Patch Set 3; CI `+1`; keine aktuelle Code-Review-Stimme und kein ungelöster Kommentar. | **Ja** | Ergänzt Schutzmechanismen beim Kopieren von Free-Mode-Inhalten. Das aktuelle Patch Set muss zunächst gegenüber dem aktuellen TYPO3-v15-Branch `main` wieder mergefähig gemacht werden. |
 

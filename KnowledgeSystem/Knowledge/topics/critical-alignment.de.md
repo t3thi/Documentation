@@ -2,7 +2,7 @@
 id: topic:critical-alignment
 title: "Kritische Ausrichtung und offene Entscheidungen"
 language: de
-updated: "2026-08-11"
+updated: "2026-08-21"
 knowledge:
   - K-000001
   - K-000003
@@ -23,9 +23,9 @@ knowledge:
 history: []
 decisions: []
 translation_of: topic:critical-alignment
-source_updated: "2026-08-11"
+source_updated: "2026-08-21"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:89915519275331d65d5a24d6f71d64fcf6a1d13eeb21c923572b4431851a9311"
+source_digest: "sha256:96b572d772e43a62cebb043497bf825b30470dbd47258a5af52a922cd4cfa339"
 ---
 
 # Kritische Ausrichtung und offene Entscheidungen
@@ -39,7 +39,7 @@ Die Vision ist ein Bewertungsrahmen und kein Grund, jede Teillösung abzulehnen.
 | Änderung oder Ansatz | Innerhalb des Geltungsbereichs gelöstes Problem | Bewertung anhand der vier Verantwortlichkeiten |
 |---|---|---|
 | [Eigene `colPos`- und `CType`-Werte für Connected Translations deaktivieren](https://review.typo3.org/c/Packages/TYPO3.CMS/+/85978), für TYPO3 v13 (`main` zum Merge-Zeitpunkt) gemergt; es ist keine weitere Release-Linie genannt | Schützt strukturelle Konsistenz für verbundene Inhalte und Container. | Für verbundene Strukturen sinnvoll. Die Änderung entfernte zugleich einen Workaround, mit dem lokale Abwesenheit ausgedrückt wurde. Dies zeigt, weshalb Structural Identity und Output Policy jeweils einen eigenen expliziten Mechanismus benötigen. |
-| [Fallback Chains beim Record Overlay berücksichtigen](https://review.typo3.org/c/Packages/TYPO3.CMS/+/83169), für TYPO3 v14 (`main` zum Merge-Zeitpunkt) gemergt, und der gemergte [Backport für TYPO3 v13 LTS (`13.4`)](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828); der [Fix zur Strict-Regression](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) ist für TYPO3 v15 (aktuelles `main`) offen, während die genannten Backport-Changes für TYPO3 v14 LTS (`14.3`) und TYPO3 v13 LTS (`13.4`) noch nicht existieren | Korrigierte reales Fallback-Verhalten, machte aber zugleich eine Regression sichtbar, wenn ein Datensatz in der angeforderten Sprache unter `strict` verborgen ist. | Mit der Vision vereinbar, wenn die Änderung auf den Fallback-Modus beschränkt bleibt. Der aktive Fix bestätigt, dass sich `strict` nicht implizit wie Fallback verhalten darf; sein aktuelles Patch Set besitzt CI `-1` und einen ungelösten Kommentar und ist nicht gemergt. |
+| [Fallback Chains beim Record Overlay berücksichtigen](https://review.typo3.org/c/Packages/TYPO3.CMS/+/83169), für TYPO3 v14 (`main` zum Merge-Zeitpunkt) gemergt, und der gemergte [Backport für TYPO3 v13 LTS (`13.4`)](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828); der [Fix zur Strict-Regression](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) ist für TYPO3 v15 (aktuelles `main`) offen, während die genannten Backport-Changes für TYPO3 v14 LTS (`14.3`) und TYPO3 v13 LTS (`13.4`) noch nicht existieren | Korrigierte reales Fallback-Verhalten, machte aber zugleich eine Regression sichtbar, wenn ein Datensatz in der angeforderten Sprache unter `strict` verborgen ist. | Mit der Vision vereinbar, wenn die Änderung auf den Fallback-Modus beschränkt bleibt. Der aktive Fix bestätigt, dass sich `strict` nicht implizit wie Fallback verhalten darf; sein aktuelles Patch Set besitzt CI `+1` und einen ungelösten Kommentar und ist nicht gemergt. |
 | Korrekturen am Vergleich in Free Mode und Mixed Mode | Machen unabhängige und verbundene Inhalte im aktuellen Modul „Layout“ sichtbar und richten sie aus. | Wertvolle Arbeit an der aktuellen UX. Sie erhält valide Unabhängigkeit und verdeutlicht zugleich strukturelle Beziehungen; sie muss nicht auf ein neues Datenmodell warten. |
 | MM-Kontext-Vorschlag | Reduziert Mehrdeutigkeit von Beziehungen über Sprachen und Workspaces hinweg. | Ein sinnvolles vorbereitendes Modell, sofern Migration sowie Extbase- und DataHandler-Verhalten konsistent bleiben. Es darf nicht mit der abschließenden semantischen Identität gleichgesetzt werden. |
 | Explizite Synchronisierung für alle Sprachen | Ersetzt eine gemeinsame `-1`-Datenbankzeile durch konkrete zielsprachliche Datensätze, deren für die Parität relevante Felder vollständig erzwungen bleiben. | Grundsätzlich klar an der Vision ausgerichtet. Die erste Stufe sollte das Verhalten des vollständigen Datensatzes ohne redaktionelle Abwahlmöglichkeit bewahren; Granularität folgt später. Der Ansatz wird unsicher, wenn Zielanlage, Lebenszyklus, Herkunft, Konflikte und Migration nicht definiert sind. |
