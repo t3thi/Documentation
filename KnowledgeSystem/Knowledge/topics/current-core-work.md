@@ -45,6 +45,10 @@ The repeated pattern is useful: a real failure is reproduced, the responsible co
 
 ## Current work as of 2026-08-21
 
+This section is based on the complete external-status review of 2026-08-21.
+Gerrit 94917 carries the explicitly dated later status update verified on
+2026-08-27; all other rows retain the general cutoff above.
+
 Each open Core patch has one primary status entry according to its current official state. **WIP** takes precedence over review findings. **Review action required** means that the current patch set has at least one unresolved comment, a current negative review or verification, or a merge conflict. **Review-positive and mergeable** is the final patch category used here; it requires at least one current Code-Review `+1`, no current negative vote, no unresolved comment and a mergeable current revision. **Awaiting review** covers open patches without those blockers but without a current positive Code-Review. **Rejected or superseded** records changes that are formally abandoned when the reason remains relevant.
 
 For open Gerrit changes, **Merge conflict: Yes** means that Gerrit reported the current revision as `mergeable: false` against its target branch on 2026-08-21. This can change when the target branch or patch set changes. **No** means `mergeable: true`; it does not replace review or submit approval.
@@ -69,7 +73,6 @@ For open Gerrit changes, **Merge conflict: Yes** means that Gerrit reported the 
 | [Gerrit 92777](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92777) | TYPO3 v15; TYPO3 14.3 is named, but no backport change exists yet. | Patch set 10; two Code-Review `+1`; CI `+1`; 1 unresolved comment. | No | Restricts copied Free-Mode records to languages available in the target context. This improves current-model integrity without selecting a future structure model. |
 | [Gerrit 93063](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93063) | TYPO3 v15; TYPO3 14.3 is named, but no backport change exists yet. | Patch set 7; Code-Review `+1`; CI `+1`; no unresolved comments. | **Yes** | Warns about invalid translation parents. The patch is review-positive but must be made mergeable against the TYPO3 v15 target branch; it makes structural corruption visible but does not repair or redesign identity. |
 | [Forge 110008](https://forge.typo3.org/issues/110008) and [Gerrit 94510](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) | TYPO3 v15; TYPO3 14.3 and TYPO3 13.4 are named, but no backport changes exist yet. | Patch set 8; CI `+1`; 1 unresolved comment. | No | Addresses a regression after merged [Gerrit 88828](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828), in which `strict` output can fall back from a hidden requested-language record to another language. Current behavior is unchanged while the fix remains unmerged. |
-| [Gerrit 94917](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94917) | TYPO3 v15; no backport branch is named and no backport change exists. | Patch set 4; no current Code-Review vote; 1 unresolved comment. | **Yes** | Improves Free/Mixed comparison rendering. Replacement by the merged [TYPO3 v15 change 95170](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95170) and [TYPO3 14.3 backport 95199](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95199) has been proposed in review, but 94917 is still officially open rather than abandoned. |
 | [Gerrit 93752](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93752) | TYPO3 v15; TYPO3 14.3 is named, but no backport change exists yet. | Patch set 3; CI `+1`; no current Code-Review vote or unresolved comment. | **Yes** | Adds copy guards for Free-Mode content. The current revision must first be made mergeable against the TYPO3 v15 target branch. |
 
 ### Review-positive and mergeable
@@ -88,6 +91,7 @@ No current patch meets all criteria. Gerrit 92777 has positive reviews but an un
 | Patch | Target release lines and backports | Official state | Merge conflict | Reason |
 |---|---|---|---|---|
 | [Gerrit 92585](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92585) | TYPO3 v15; TYPO3 14.3 was named, but no backport change exists. | Abandoned on 2026-08-07. | Not applicable | Its narrow Free-Mode rendering fix was further developed in the merged [TYPO3 v15 change 95170](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95170) and [TYPO3 14.3 backport 95199](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95199). |
+| [Gerrit 94917](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94917) | TYPO3 v15; no backport branch was named and no backport change exists. | Abandoned on 2026-08-27. | Not applicable | Its overlapping Free/Mixed comparison work had already been proposed for replacement by the merged [TYPO3 v15 change 95170](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95170) and [TYPO3 14.3 backport 95199](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95199). Change 94917 itself was not merged. |
 
 ### Supporting patches and non-patch research
 

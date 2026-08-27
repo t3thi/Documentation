@@ -432,6 +432,13 @@ sources:
     availability: repository
     status: merged
     observed_at: "2026-08-21"
+  gerrit:94917:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/94917
+    authority: external-current
+    availability: repository
+    status: abandoned
+    observed_at: "2026-08-27"
   gerrit:95038:
     type: gerrit
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95038

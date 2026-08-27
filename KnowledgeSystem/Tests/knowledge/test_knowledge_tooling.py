@@ -951,15 +951,17 @@ class GenerationTests(KnowledgeToolingTestCase):
         self.assertIn(
             "**Status of this edition:** The content was last updated on 11 August 2026. "
             "It includes reviewed meeting minutes and transcripts through 11 August 2026. "
-            "External TYPO3 Core, Gerrit and Forge states were last checked on 11 August 2026;",
+            "The complete external state of TYPO3 Core, Gerrit and Forge was last checked on "
+            "11 August 2026. Unless an entry names a later individual verification date,",
             current_state,
         )
         german_current_state = first[Path("MeetingMinutes/current-state.de.md")]
         self.assertIn(
             "**Stand dieser Fassung:** Die Inhalte wurden zuletzt am 11. August 2026 aktualisiert. "
             "Berücksichtigt sind geprüfte Sitzungsprotokolle und Transkripte bis einschließlich "
-            "11. August 2026. Der externe Stand von TYPO3 Core, Gerrit und Forge wurde zuletzt am "
-            "11. August 2026 geprüft;",
+            "11. August 2026. Der vollständige externe Stand von TYPO3 Core, Gerrit und Forge "
+            "wurde zuletzt am 11. August 2026 geprüft. Sofern ein Eintrag keinen späteren eigenen "
+            "Prüfzeitpunkt nennt,",
             german_current_state,
         )
         self.assertNotIn("publication-summary", current_state)
