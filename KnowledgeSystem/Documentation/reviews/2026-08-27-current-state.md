@@ -29,6 +29,9 @@ The review established the following corrections:
   reading guide and otherwise use concise release-line labels such as TYPO3
   v15, TYPO3 14.3 and TYPO3 13.4. They must continue to distinguish actual
   branch-specific Gerrit changes from branches named only in `Releases:`.
+- The publication dates should appear near the beginning as a human-readable
+  status summary. Visible prose should explain the relevant dates and their
+  meaning without exposing internal frontmatter field names.
 
 The review deliberately records no named-person attribution. Its statements
 represent the initiative's current editorial position, not an individual quote

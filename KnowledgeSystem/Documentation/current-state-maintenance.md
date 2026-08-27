@@ -136,16 +136,18 @@ editable source for:
 
 Advance a cutoff only after the complete relevant source bundle has been read,
 reviewed and incorporated. `KnowledgeSystem/Tools/build-views` materializes these values in the
-English and German Current State frontmatter. Do not maintain cutoff values in
-this file or edit the generated copies.
+English and German Current State metadata and in a human-readable status
+summary near the beginning of each document. The visible summary explains the
+dates without exposing internal metadata field names. Do not maintain cutoff
+values in this file or edit the generated copies.
 
 ## Patch release-line labels
 
 Define the time-dependent meaning of TYPO3's `main` branch once in the Current
-State reading guide, relative to `external_status_checked_through`. Patch
-tables then use concise release-line labels such as TYPO3 v15, TYPO3 14.3 and
-TYPO3 13.4 instead of repeating `main`, "at merge time" or `LTS` qualifiers in
-individual rows.
+State reading guide, relative to the human-readable external-status cutoff
+published near the beginning. Patch tables then use concise release-line
+labels such as TYPO3 v15, TYPO3 14.3 and TYPO3 13.4 instead of repeating
+`main`, "at merge time" or `LTS` qualifiers in individual rows.
 
 Resolve historical merged changes to the version line represented at their
 merge date. For open changes, use the version line represented by their target

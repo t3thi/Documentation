@@ -16,6 +16,8 @@ Knowledge metadata. Do not edit it directly.
 
 [Deutsche Fassung](https://notes.typo3.org/s/7bbwd73t2h) · [Meeting minutes overview](https://notes.typo3.org/s/f3ae8fZSD) · [How to maintain this document](https://github.com/t3thi/Documentation/blob/main/MeetingMinutes/current-state-maintenance.md)
 
+**Status of this edition:** The content was last updated on 27 August 2026. It includes reviewed meeting minutes and transcripts through 14 August 2026. External TYPO3 Core, Gerrit and Forge states were last checked on 21 August 2026; patch and review statuses in this document should therefore be read as of that date.
+
 This is the canonical description of the Translation Handling Initiative's current understanding, vision and work. It explains why the initiative works on translation handling, what its research has established, which direction it currently sees, which approaches it is investigating and which decisions remain open.
 
 It is not a meeting chronology, a patch list, a standalone backlog or an adopted TYPO3 Core roadmap. Historical discussion remains in the meeting minutes. This document is updated when the current state changes.
@@ -31,13 +33,11 @@ The Translation Handling Initiative instead works on editor-maintained database 
 The user-facing module names in this document follow the current TYPO3 v14
 Core labels: [Layout](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/backend/Resources/Private/Language/Modules/layout.xlf#L9-L13), [Records](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/backend/Resources/Private/Language/Modules/list.xlf#L9-L13) and [Media](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/filelist/Resources/Private/Language/module.xlf#L9-L13).
 
-Patch status and release-line statements apply at the
-`external_status_checked_through` date in the frontmatter. At that cutoff,
-`main` represents the TYPO3 v15 development line. Patch tables therefore use
-the concise release labels TYPO3 v15, TYPO3 14.3 and TYPO3 13.4. An additional
-branch counts as a backport only when a corresponding Gerrit change exists;
-mention in a `Releases:` footer alone is not evidence of a pending or merged
-backport.
+At the external-status cutoff stated above, `main` represented the TYPO3 v15
+development line. Patch tables therefore use the concise release labels TYPO3
+v15, TYPO3 14.3 and TYPO3 13.4. An additional branch counts as a backport only
+when a corresponding Gerrit change exists; mention in a `Releases:` footer
+alone is not evidence of a pending or merged backport.
 
 Statements use the following distinctions:
 

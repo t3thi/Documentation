@@ -158,8 +158,10 @@ for these cutoffs:
 - `external_status_verified_through`.
 
 Advance a cutoff only after the complete source bundle through that date has
-been reviewed and incorporated. Generated Current State frontmatter
-materializes those values; do not maintain another meeting ledger.
+been reviewed and incorporated. Generated Current State metadata and the
+human-readable status summary near the beginning materialize those values; do
+not maintain another meeting ledger or repeat internal field names in visible
+publication prose.
 
 ## Knowledge Objects
 

@@ -21,7 +21,7 @@ decisions:
 translation_of: topic:scope-governance
 source_updated: "2026-08-27"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:0a7817934077e964839d38c2cf20ba7f60449f4da30778b688155eccc5eac9ef"
+source_digest: "sha256:5c7f675e2a9583e56de28ef5c757cddde39bb1ce58748caa0d3d1ea1ba57e49b"
 ---
 
 # Geltungsbereich und Governance
@@ -31,6 +31,8 @@ source_digest: "sha256:0a7817934077e964839d38c2cf20ba7f60449f4da30778b688155eccc
 # Translation Handling Initiative: Aktueller Stand
 
 [Englische Fassung](https://notes.typo3.org/s/RhkYPguwb) · [Übersicht der Sitzungsprotokolle](https://notes.typo3.org/s/f3ae8fZSD) · [Hinweise zur Pflege dieses Dokuments](https://github.com/t3thi/Documentation/blob/main/MeetingMinutes/current-state-maintenance.md)
+
+{{ publication-summary }}
 
 Dies ist die deutsche Fassung der kanonischen Beschreibung des aktuellen Verständnisses, der Vision und der Arbeit der Translation Handling Initiative. Sie erläutert, warum die Initiative am Translation Handling arbeitet, welche Erkenntnisse ihre Forschung erbracht hat, welche Richtung sie derzeit verfolgt, welche Ansätze sie untersucht und welche Entscheidungen weiterhin offen sind.
 
@@ -47,8 +49,7 @@ Die Translation Handling Initiative arbeitet dagegen an redaktionell gepflegten 
 Die in diesem Dokument verwendeten Modulnamen entsprechen den aktuellen Labels
 des TYPO3-v14-Cores: [Layout](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/backend/Resources/Private/Language/Modules/layout.xlf#L9-L13), [Records](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/backend/Resources/Private/Language/Modules/list.xlf#L9-L13) und [Media](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/filelist/Resources/Private/Language/module.xlf#L9-L13).
 
-Patch-Status und Release-Linien gelten zum im Frontmatter genannten Stichtag
-`external_status_checked_through`. Zu diesem Stichtag bezeichnet `main` die
+Am oben genannten Stichtag für externe Statusangaben bezeichnete `main` die
 TYPO3-v15-Entwicklungslinie. Patch-Tabellen verwenden deshalb die knappen
 Release-Bezeichnungen TYPO3 v15, TYPO3 14.3 und TYPO3 13.4. Ein zusätzlicher
 Branch zählt nur dann als Backport, wenn ein entsprechender Gerrit-Change
