@@ -2,7 +2,7 @@
 id: topic:critical-alignment
 title: "Critical Alignment and Open Decisions"
 language: en
-updated: "2026-08-21"
+updated: "2026-08-27"
 knowledge:
   - K-000001
   - K-000003
@@ -34,15 +34,15 @@ The vision is a review framework, not a reason to reject every partial solution.
 
 | Change or approach | Problem solved within its scope | Assessment against the four responsibilities |
 |---|---|---|
-| [Disable custom `colPos` and `CType` for connected translations](https://review.typo3.org/c/Packages/TYPO3.CMS/+/85978), merged for TYPO3 v13 (`main` at merge time); no additional release line is named | Protects structural consistency for connected content and containers. | Sound for connected structure. It also removed a workaround for expressing local absence, showing why Structural Identity and Output Policy need their own explicit mechanisms. |
-| [Respect fallback chains during record overlay](https://review.typo3.org/c/Packages/TYPO3.CMS/+/83169), merged for TYPO3 v14 (`main` at merge time), and its merged [TYPO3 v13 LTS (`13.4`) backport](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828); the [strict-regression fix](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) is open for TYPO3 v15 (current `main`), while its named TYPO3 v14 LTS (`14.3`) and TYPO3 v13 LTS (`13.4`) backport changes do not yet exist | Fixed real fallback behavior, but also exposed a regression when a requested-language record is hidden under `strict`. | Compatible with the vision when restricted to fallback mode. The active fix confirms that `strict` must not silently behave like fallback; its current patch set has CI `+1`, one unresolved comment and is not merged. |
+| [Disable custom `colPos` and `CType` for connected translations](https://review.typo3.org/c/Packages/TYPO3.CMS/+/85978), merged for TYPO3 v13 | Protects structural consistency for connected content and containers. | Sound for connected structure. It also removed a workaround for expressing local absence, showing why Structural Identity and Output Policy need their own explicit mechanisms. |
+| [Respect fallback chains during record overlay](https://review.typo3.org/c/Packages/TYPO3.CMS/+/83169), merged for TYPO3 v14, and its merged [TYPO3 13.4 backport](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828); the [strict-regression fix](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) is open for TYPO3 v15, while its named TYPO3 14.3 and TYPO3 13.4 backport changes do not yet exist | Fixed real fallback behavior, but also exposed a regression when a requested-language record is hidden under `strict`. | Compatible with the vision when restricted to fallback mode. The active fix confirms that `strict` must not silently behave like fallback; its current patch set has CI `+1`, one unresolved comment and is not merged. |
 | Free/Mixed comparison fixes | Make independent and connected content visible and aligned in the current Layout module. | Valuable current UX work. They preserve valid independence while making structural relations clearer; they do not need to wait for a new data model. |
 | MM context proposal | Reduces relation ambiguity across languages and Workspaces. | A reasonable preparatory model if migration and Extbase/DataHandler behavior remain consistent. It should not be mistaken for final semantic identity. |
 | Explicit all-language synchronization | Replaces one shared `-1` row with concrete target-language records whose parity-relevant fields remain fully enforced. | Strongly aligned in principle. The first stage should preserve complete-record behavior without editor opt-out; granularity comes later. It becomes unsafe if target creation, lifecycle, provenance, conflict and migration rules are undefined. |
 | Target-language multi-select | Limits the same full-record synchronization process to selected target languages. | A natural extension after parity, but not a committed next feature. It remains aligned if target identity and deselection semantics are explicit. |
 | Field-level `enforceLanguageSynchronization` | Could replace `l10n_mode=exclude` while retaining configuration-enforced synchronization. | Aligned with explicit Synchronization Intent if enforced and editor-selectable states remain distinguishable. Current Core already shares the execution pipeline, so the gain is consolidation of configuration, state discovery and scopes. Migration and compatibility are undecided. |
 | Mode-free editor workflow | Removes the need to choose Free, Connected or Mixed Mode when the actual intent is to work in one language. | Strongly aligned as a product requirement once Core maintains identity and preserves local structural freedom. It is not safe to remove today's controls before migration and lifecycle prerequisites exist. |
-| Complete language layers with universal shadows | Makes every language structurally complete. | Covers local structure but is currently disfavored because it can amplify records, synchronization, Workspace versions and Layout density. The costs are not yet quantified, so this is not a rejection based on measured performance. |
+| Complete language layers with universal shadows | Makes every language structurally complete. | Record growth is acceptable when it simplifies processing. This approach is currently disfavored because universal shadows may still increase total synchronization and lifecycle logic, Workspace versions, references and Layout density without a demonstrated net simplification. This is not a rejection based on database size alone. |
 | Shared hidden structure layer | Gives every real language the same language-neutral structural reference point. | The current structural preference because it avoids universal shadows and separates visible content from structural lead. It remains an unselected hypothesis until local ordering, permissions, Workspaces, references, migration and editor invisibility are validated. |
 
 For any new proposal, the initiative asks:
@@ -93,7 +93,12 @@ For any new proposal, the initiative asks:
 
 ### Cross-cutting
 
-- **Decision required:** acceptable balance between explicit persisted data and runtime/code complexity.
-- **Open question:** measurable effects on query counts, write amplification, record volume, Reference Index, Workspaces and backend usability.
+- **Current preference:** favor explicit persisted synchronization data and
+  simpler, predictable code paths over minimizing record count.
+- **Decision required:** exact representation and lifecycle boundaries that
+  turn this preference into a safe implementation.
+- **Open question:** measurable net simplification and effects on query counts,
+  write amplification, record volume, Reference Index, Workspaces and backend
+  usability.
 - **Decision required:** compatibility, migration, deprecation and extension API strategy.
 - **Decision required:** ownership and prioritization together with the relevant TYPO3 Core and product structures.

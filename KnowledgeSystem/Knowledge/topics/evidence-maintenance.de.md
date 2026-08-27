@@ -2,7 +2,7 @@
 id: topic:evidence-maintenance
 title: "Nächste Schritte, Evidenz und Pflege"
 language: de
-updated: "2026-08-11"
+updated: "2026-08-27"
 knowledge:
   - K-000005
   - K-000006
@@ -24,9 +24,9 @@ history: []
 decisions:
   - D-000001
 translation_of: topic:evidence-maintenance
-source_updated: "2026-08-11"
+source_updated: "2026-08-27"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:35bc92e505568db8efd236d61e27537cd3cc3a76d489f39f0e237772be29d342"
+source_digest: "sha256:4af8cdf8bd1ea9bfb08b8a3bad54d222114f33898e0457950c71410f475a8b3e"
 ---
 
 # Nächste Schritte, Evidenz und Pflege
@@ -39,9 +39,9 @@ Dies ist die aus heutiger Sicht sinnvollste Abfolge von Aktivitäten der Initiat
 
 1. **Evidenzbasis aktuell halten.** Reproduzierbare Redaktions- und Projekt-Use-Cases ergänzen, insbesondere wenn sich Sprache, Land, Struktur und Ausgabeabsicht unterscheiden.
 2. **Gezielte Charakterisierung abschließen.** Das `-1`-Inventar prüfen, jedes valide Verhalten einem Test zuordnen und bekannte Lücken in Workspaces und DataHandler schließen.
-3. **Klar abgegrenzte Korrekturen abschließen.** Den weiterhin offenen überlappenden Free-/Mixed-Change 94917 formal klären, nachdem sein Ersatz für TYPO3 v15 (`main`) und TYPO3 v14 LTS (`14.3`) gemergt wurde, Integritäts-Patches für Kopieren und Verschieben voranbringen, die Entwürfe zu Parent Selector und Wizard validieren und den fehlschlagenden Patch zur Strict-Fallback-Regression korrigieren.
+3. **Klar abgegrenzte Korrekturen abschließen.** Den weiterhin offenen überlappenden Free-/Mixed-Change 94917 formal klären, nachdem sein Ersatz für TYPO3 v15 und TYPO3 14.3 gemergt wurde, Integritäts-Patches für Kopieren und Verschieben voranbringen, die Entwürfe zu Parent Selector und Wizard validieren und den fehlschlagenden Patch zur Strict-Fallback-Regression korrigieren.
 4. **Produktverhalten vor der Speicherung prototypisch untersuchen.** Editing Language, einen Arbeitsablauf ohne Moduswahl im Modul „Layout“, direktes Anlegen in einer Zielsprache, lokale strukturelle Ergänzungen und explizite Abwesenheit anhand realistischer redaktioneller Abläufe prüfen.
-5. **Die aktuelle strukturelle Präferenz gegenüber ihrem Gegenmodell validieren.** Dieselben Akzeptanzfälle für die gemeinsame verborgene Struktur, vollständige Language-Layer-Shadows, Sparse Records und hybride Ansätze verwenden. Datensatzwachstum, Informationsdichte im Modul „Layout“, Workspaces, Referenzen, Migration und Betriebskosten messen, statt sie anzunehmen.
+5. **Die aktuelle strukturelle Präferenz gegenüber ihrem Gegenmodell validieren.** Dieselben Akzeptanzfälle für die gemeinsame verborgene Struktur, vollständige Language-Layer-Shadows, Sparse Records und hybride Ansätze verwenden. Vereinfachungen von Code und Laufzeit gemeinsam mit Datensatzwachstum, Informationsdichte im Modul „Layout“, Workspaces, Referenzen, Migration und Betriebskosten messen, statt die Datenbankgröße allein als entscheidend zu behandeln.
 6. **Parität der ersten Stufe definieren und charakterisieren.** Das Flag für alle Ziele, die Zielanlage, die vollständige erzwungene Feldmenge, Quell- und Zielidentität, Konflikte und jeden Übergang spezifizieren. Zunächst nachweisen, dass damit die aktuelle `-1`-Ausgabe reproduziert wird, und anschließend das eigenständig zu entscheidende Multi-Select sowie andere granulare Erweiterungen am selben Prozess bewerten.
 7. **Vertrag für semantische Identität abstimmen.** Entscheiden, was BCP 47 identifiziert, wie Site Languages darauf abgebildet und wie Legacy-Werte migriert werden.
 8. **Kompatibilität vor der Entfernung konzipieren.** Zunächst explizite Alternativen einführen, Migrations- und Extension-Hinweise bereitstellen und erst danach eine Deprecation alter Semantik erwägen.

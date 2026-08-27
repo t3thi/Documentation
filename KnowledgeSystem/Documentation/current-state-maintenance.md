@@ -139,6 +139,20 @@ reviewed and incorporated. `KnowledgeSystem/Tools/build-views` materializes thes
 English and German Current State frontmatter. Do not maintain cutoff values in
 this file or edit the generated copies.
 
+## Patch release-line labels
+
+Define the time-dependent meaning of TYPO3's `main` branch once in the Current
+State reading guide, relative to `external_status_checked_through`. Patch
+tables then use concise release-line labels such as TYPO3 v15, TYPO3 14.3 and
+TYPO3 13.4 instead of repeating `main`, "at merge time" or `LTS` qualifiers in
+individual rows.
+
+Resolve historical merged changes to the version line represented at their
+merge date. For open changes, use the version line represented by their target
+branch at the external-status cutoff. A branch-specific backport is pending or
+merged only when a corresponding Gerrit change exists; a branch named only in
+the commit-message `Releases:` footer records intent, not a backport change.
+
 ## Human acceptance check
 
 Before accepting a rebuild, confirm that:

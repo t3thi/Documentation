@@ -2,7 +2,7 @@
 id: topic:language-identity
 title: "Language Identity"
 language: de
-updated: "2026-08-14"
+updated: "2026-08-27"
 knowledge:
   - K-000001
   - K-000002
@@ -12,9 +12,9 @@ knowledge:
 history: []
 decisions: []
 translation_of: topic:language-identity
-source_updated: "2026-08-14"
+source_updated: "2026-08-27"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:877e7f0fab443f3971e20a8b092f1d14697848a61ec2bec20657cd01d74341f5"
+source_digest: "sha256:b4ea5f23164b587fed11ad231c2ebed522813f0d2671e801d7a87ce65d07f09b"
 ---
 
 # Language Identity
@@ -45,10 +45,16 @@ Bei der Erklärung der Vision müssen die Verantwortlichkeiten in dieser Reihenf
   Der zukünftige Identitätswert darf ausschließlich eine reale menschliche
   Sprache oder Sprachvariante identifizieren.
 - Semantische Identität darf nicht davon abhängen, ob eine Locale auf dem Applikationsserver installiert ist.
+- Semantische Identität muss redaktionelle Sprachvarianten jenseits einer
+  herkömmlichen Locale mit Sprach- und Landesbezug abdecken, einschließlich Varianten wie
+  Leichte Sprache.
 - Die Site-Konfiguration muss ihre verfügbaren Sprachen explizit auf die semantische Identität abbilden.
 - Gemeinsamer Speicher, übersetzte Dateimetadaten sowie Import und Export dürfen nicht von zufällig übereinstimmenden lokalen Zahlen abhängen.
 
-**Vision:** Die Sprache von Inhalten sollte dadurch identifizierbar sein, welche Sprache sie ist, und nicht nur durch die ihr zugewiesene Site-lokale Zahl. BCP 47 ist die aktuelle Präferenz der Initiative für diese semantische Identität.
+**Vision:** Die Sprache von Inhalten sollte dadurch identifizierbar sein,
+welche Sprache und redaktionelle Variante sie ist, und nicht nur durch eine
+Site-lokale Zahl oder herkömmliche Locale. BCP 47 ist die aktuelle Präferenz
+der Initiative für diese semantische Identität.
 
 **Offene Fragen:**
 

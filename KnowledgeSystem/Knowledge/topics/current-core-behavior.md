@@ -2,7 +2,7 @@
 id: topic:current-core-behavior
 title: "Current Core Behavior"
 language: en
-updated: "2026-08-11"
+updated: "2026-08-27"
 knowledge:
   - K-000002
   - K-000003
@@ -43,8 +43,6 @@ The current contracts above are supported by the Core code snapshot validated fo
 
 Current Core processes both field-synchronization mechanisms in the same [DataMapProcessor pipeline](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/DataHandling/Localization/DataMapProcessor.php#L50-L57), but resolves their fields through separate scopes. `parent` and `source` come from `l10n_state`; the `exclude` scope is collected directly from [`l10n_mode=exclude` in TCA](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/DataHandling/Localization/DataMapProcessor.php#L1338-L1383). The [localization state selects only fields configured with `allowLanguageSynchronization`](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/DataHandling/Localization/State.php#L71-L97), and the [backend selector exposes `custom`, `parent` and, where a source exists, `source`](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/backend/Classes/Form/FieldWizard/LocalizationStateSelector.php#L48-L140). Both mechanisms operate on existing related language records. Neither creates missing language variants or expresses record-wide synchronization by itself.
 
-The user-facing module names in this document follow the current v14 Core labels: [Layout](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/backend/Resources/Private/Language/Modules/layout.xlf#L9-L13), [Records](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/backend/Resources/Private/Language/Modules/list.xlf#L9-L13) and [Media](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/filelist/Resources/Private/Language/module.xlf#L9-L13).
-
 ### Established findings
 
 1. **Different responsibilities are partially entangled.** Language identity, default-language status, all-language behavior, record relation and runtime output influence one another through the same values and relations.
@@ -53,8 +51,8 @@ The user-facing module names in this document follow the current v14 Core labels
 4. **Structural connection has real value.** It supports aligned ordering, change awareness, field synchronization and understandable comparison. The goal is not to remove relationships, but to avoid making a real output language carry every structural responsibility.
 5. **A missing record is an implicit state.** It can mean not translated yet, intentionally absent, structurally unnecessary or available through fallback. The database and editor workflow do not always distinguish these meanings.
 6. **Frontend fallback is not the structural relationship.** `l10n_parent` describes a record relation; site fallback settings decide which language may render. The two can influence the same result but answer different questions.
-7. **Numeric language IDs are local configuration.** The same human language can have different IDs across sites, and one ID can be labelled differently in separate sites. Mapping by number or locale is not a reliable global identity contract.
-8. **More explicit data can reduce runtime branches, but it has costs.** Record volume, synchronization, Workspaces, versioning, references, migration and performance must be measured. The initiative has not decided where the optimum lies.
+7. **Numeric language IDs are local configuration.** The same human language can have different IDs across sites, and one ID can be labelled differently in separate sites. The backend UI guards duplicate assignment and makes consistent reuse easier, but direct Site-YAML editing can bypass those safeguards. A number is therefore not a reliable global identity contract. A locale alone is also too narrow because a conventional language-and-region scope does not reliably represent wider editorial variants such as Easy Language.
+8. **Explicit synchronized data is preferred when it simplifies processing.** The current direction favors simpler, more predictable code paths over minimizing record count. Additional concrete records are acceptable when they remove special-case runtime branches and make invariants explicit. The exact model and its synchronization, lifecycle, Workspace, reference, migration, backend-usability and performance effects still require design and measurement.
 9. **Independent structures remain valid, but editor-visible relation modes are not the desired product contract.** Current Free Mode behavior remains supported and is not deprecated. The recommended future editor workflow hides Free, Connected and Mixed relation states only after Core can preserve independent outcomes and maintain structural identity automatically.
 10. **Technical connection does not require identical structures.** Two language variants can share one logical structural identity while one language adds, omits, replaces or reorders content. "Always connected" describes maintained identity, not mandatory structural or content equality.
 11. **Small fixes and tests are part of the architecture work.** They expose actual invariants and prevent the future model from being based on incomplete assumptions.

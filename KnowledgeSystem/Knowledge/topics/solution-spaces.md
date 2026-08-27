@@ -2,7 +2,7 @@
 id: topic:solution-spaces
 title: "Possible Solution Spaces"
 language: en
-updated: "2026-08-11"
+updated: "2026-08-27"
 knowledge:
   - K-000003
   - K-000005
@@ -13,6 +13,7 @@ knowledge:
   - K-000014
   - K-000016
   - K-000018
+  - K-000021
 history: []
 decisions: []
 ---
@@ -33,7 +34,7 @@ The following approaches answer parts of the responsibilities. None is the compl
 | Unify field-synchronization configuration | Add `config.behaviour.enforceLanguageSynchronization`, represent the enforced field state through `l10n_state` and evaluate replacing `l10n_mode=exclude`. | One TCA and state model for editor-selectable and configuration-enforced field synchronization; fewer overlapping selection branches in Core. | Exact state value, editor display, migration, `prefixLangTitle`, default behavior and extension compatibility. | **Possible approach; not implemented or selected.** |
 | Preserve current sparse records | Keep current records and relations, but clarify APIs, tests and UX. | Lowest migration and data-volume cost. | Retains missing-record states, overlay branches and default-language coupling. | **Current baseline, not sufficient for every requirement.** |
 | Remove editor-visible translation modes | Let editors create, omit, replace and reorder content in the selected language while Core maintains structural identity. | The workflow expresses editorial intent instead of requiring knowledge of `l18n_parent` and inferred page mode. | Depends on safe automatic structural creation, legacy migration, permissions, lifecycle, Workspaces and clear representation of independent outcomes. | **Product recommendation; prerequisites and UX contract open.** |
-| Complete per-language layers | Materialize every structural position in every relevant language, using language-layer shadows where content is absent. | Every language is structurally self-contained and can carry local ordering. | Highest duplication risk; synchronization, Layout density, Workspace versions, references, migration and the actual record multiplier need measurement. | **Discussed direction; currently disfavored, not selected.** |
+| Complete per-language layers | Materialize every structural position in every relevant language, using language-layer shadows where content is absent. | Every language is structurally self-contained and can carry local ordering. | Record growth is acceptable when it produces simpler processing, but universal shadows may also amplify synchronization and lifecycle logic, Layout density, Workspace versions, references and migration. Net simplification and the actual record multiplier need measurement. | **Discussed direction; currently disfavored until greater overall simplification is demonstrated, and not selected.** |
 | Shared hidden neutral structure layer | Separate common structural identity from real output languages, migrate today's default output content into its own real language layer and create contentless structural shadows as shared anchors. | No real language must be the structural lead; less universal shadow duplication and one cross-language reference point. | Introduces an abstraction that every editing, query, relation, permission and Workspace path must understand; local ordering and explicit absence still need a contract. | **Current preference for investigation; still an unselected hypothesis.** |
 | Bounded hybrid | Keep a shared structural identity and materialize language records only when content or explicit absence requires them. | Could combine explicit structure with bounded data growth. | More states and transition rules; analytical option not yet validated by the initiative. | **Analytical option; not a separate initiative preference.** |
 | Editing Language | Let editors select the content language from which they work and use it as the primary backend context. | Removes irrelevant default-language text from the workflow and supports non-default sources. | Page Tree, Layout module, Records module, permissions, ordering and source/provenance behavior. | **Preferred product framing; prototype still needed.** |

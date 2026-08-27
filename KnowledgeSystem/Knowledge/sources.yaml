@@ -1,6 +1,6 @@
 version: 1
 publication:
-  last_updated: "2026-08-21"
+  last_updated: "2026-08-27"
   reviewed_transcripts_through: "2026-08-14"
   reviewed_minutes_through: "2026-08-14"
   external_status_verified_through: "2026-08-21"
@@ -32,6 +32,14 @@ sources:
     path: KnowledgeSystem/Knowledge/README.md
     authority: repository-knowledge-policy
     availability: repository
+
+  review:current-state-2026-08-27:
+    type: human-review
+    path: KnowledgeSystem/Documentation/reviews/2026-08-27-current-state.md
+    authority: initiative-editorial-review
+    availability: repository
+    review_status: reviewed
+    observed_at: "2026-08-27"
 
   current-state:3612574c0a4db050276c0e2602c2d812b7a87c8d:
     type: current-state

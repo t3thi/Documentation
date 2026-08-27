@@ -2,7 +2,7 @@
 id: topic:scope-governance
 title: "Scope and Governance"
 language: en
-updated: "2026-08-14"
+updated: "2026-08-27"
 knowledge:
   - K-000001
   - K-000005
@@ -32,11 +32,24 @@ This is the canonical description of the Translation Handling Initiative's curre
 
 It is not a meeting chronology, a patch list, a standalone backlog or an adopted TYPO3 Core roadmap. Historical discussion remains in the meeting minutes. This document is updated when the current state changes.
 
-## Scope and reading guide
+## Scope
 
 The [TYPO3 Localization Team](https://typo3.community/contribute/teams-committees/localization) maintains the infrastructure and services for translating static TYPO3 backend and frontend labels. The source labels are normally stored as XLIFF files in the filesystem of Core or extensions; translations are maintained through [Crowdin](https://crowdin.com/), and the [Crowdin Bridge](https://github.com/TYPO3/crowdin-bridge) exports them to the translation server from which TYPO3 installations fetch Language Packs.
 
 The Translation Handling Initiative instead works on editor-maintained database records such as pages, content elements, file metadata and extension records. Its scope is the language identity of this content, its synchronization and structural relations, the editing workflow and frontend output. Maintaining static-label translations, Crowdin projects or Language Pack infrastructure is not part of its primary responsibility.
+
+## Reading guide
+
+The user-facing module names in this document follow the current TYPO3 v14
+Core labels: [Layout](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/backend/Resources/Private/Language/Modules/layout.xlf#L9-L13), [Records](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/backend/Resources/Private/Language/Modules/list.xlf#L9-L13) and [Media](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/filelist/Resources/Private/Language/module.xlf#L9-L13).
+
+Patch status and release-line statements apply at the
+`external_status_checked_through` date in the frontmatter. At that cutoff,
+`main` represents the TYPO3 v15 development line. Patch tables therefore use
+the concise release labels TYPO3 v15, TYPO3 14.3 and TYPO3 13.4. An additional
+branch counts as a backport only when a corresponding Gerrit change exists;
+mention in a `Releases:` footer alone is not evidence of a pending or merged
+backport.
 
 Statements use the following distinctions:
 
@@ -62,6 +75,9 @@ Statements use the following distinctions:
 - BCP 47 is the current preference for semantic language identity. Fully replacing today's `sys_language_uid` contract also depends on modelling its non-language `-1` synchronization behavior and the Default and structural-lead roles coupled to `0` separately; those replacement contracts remain open.
 - Replacing persisted `sys_language_uid = -1` with explicit synchronization is a strong direction. The synchronization lifecycle is not designed yet.
 - A structure that supports "mostly connected, selectively different" content is a central product requirement. Editors should be able to work in the required language without selecting or understanding Free, Connected or Mixed Mode as database-relation states.
+- The current direction favors explicit synchronized records and simpler,
+  predictable processing logic over minimizing record count. The exact model,
+  lifecycle and measured operational effects remain open.
 - The current structural preference is a shared hidden, language-neutral structure layer rather than complete per-language layers with universal shadows. This is a preference for further investigation, not an adopted Core architecture; the hidden layer remains a hypothesis that needs a prototype and lifecycle design.
 - Current delivery is incremental: characterize existing behavior, merge bounded correctness fixes, prototype uncertain concepts and use the resulting evidence to support broader decisions.
 

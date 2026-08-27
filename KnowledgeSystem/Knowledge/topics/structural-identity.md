@@ -2,7 +2,7 @@
 id: topic:structural-identity
 title: "Structural Identity"
 language: en
-updated: "2026-08-14"
+updated: "2026-08-27"
 knowledge:
   - K-000002
   - K-000009
@@ -11,6 +11,7 @@ knowledge:
   - K-000012
   - K-000016
   - K-000019
+  - K-000021
   - K-000022
 history: []
 decisions: []
@@ -75,7 +76,7 @@ paths; neither is selected by the language-identity migration:
 
 | Path | Representation | Benefit | Main risk or open work | Current assessment |
 |---|---|---|---|---|
-| **1. Complete structure in every language** | Every language contains every structural position and could in principle act as the structural lead. Core creates language-layer shadows wherever that language has no visible content. | Each language layer is structurally self-contained and can express local ordering. | Every local deviation must be projected into other language layers. Record volume, synchronization, Workspace versions, references and visible Layout density can grow with languages and structural differences. Even a small reorder can require several generated placeholders; the exact multiplier is model-dependent and has not been measured. | **Discussed, but currently disfavored in comparison with a shared layer. Not disproved or formally rejected.** |
+| **1. Complete structure in every language** | Every language contains every structural position and could in principle act as the structural lead. Core creates language-layer shadows wherever that language has no visible content. | Each language layer is structurally self-contained and can express local ordering. | Every local deviation must be projected into other language layers. A higher record count is acceptable if it simplifies processing, but universal shadows may also increase synchronization and lifecycle logic, Workspace versions, references and visible Layout density. Even a small reorder can require several generated placeholders; the net complexity and exact multiplier are model-dependent and have not been measured. | **Discussed, but currently disfavored in comparison with a shared layer until it demonstrates a greater overall simplification. Not disproved or formally rejected.** |
 | **2. Shared hidden structure plus real language layers** | Split the current Default Language's roles. A contentless, language-neutral structure layer stores each logical position; the current default output content moves to its own real language layer, like every other output language. Core creates a structural shadow when a language introduces a new position, and every real variant connects to that shared position. | One cross-language reference point without universal language-layer shadows; no real output language has to lead all structure. | The exact entity and identifier, migration of current Default-Language content, per-language ordering and absence, permissions, APIs, Workspaces, references and hiding the structural layer from backend and frontend output all require design and testing. | **Current preference for investigation. Still a hypothesis, not selected or implemented Core architecture.** |
 
 The second path should remain invisible in normal editorial and frontend output. "Hidden" is part of the desired product behavior, not a claim about current Core. A shared identity alone also does not solve local ordering: the model still needs an explicit language-specific placement, ordering or delta contract.

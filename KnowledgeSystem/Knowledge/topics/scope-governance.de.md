@@ -2,7 +2,7 @@
 id: topic:scope-governance
 title: "Geltungsbereich und Governance"
 language: de
-updated: "2026-08-14"
+updated: "2026-08-27"
 knowledge:
   - K-000001
   - K-000005
@@ -19,9 +19,9 @@ history: []
 decisions:
   - D-000001
 translation_of: topic:scope-governance
-source_updated: "2026-08-14"
+source_updated: "2026-08-27"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:3f01711a30ad6a39e91b8e0641a1162e75607c5819797c87987d70aaf1edfb9d"
+source_digest: "sha256:0a7817934077e964839d38c2cf20ba7f60449f4da30778b688155eccc5eac9ef"
 ---
 
 # Geltungsbereich und Governance
@@ -36,11 +36,24 @@ Dies ist die deutsche Fassung der kanonischen Beschreibung des aktuellen Verstä
 
 Das Dokument ist keine Chronologie der Sitzungen, keine Patch-Liste, kein eigenständiger Backlog und keine beschlossene TYPO3-Core-Roadmap. Historische Diskussionen bleiben in den Sitzungsprotokollen erhalten. Dieses Dokument wird aktualisiert, wenn sich der aktuelle Stand ändert.
 
-## Geltungsbereich und Lesehinweise
+## Geltungsbereich
 
 Das [TYPO3 Localization Team](https://typo3.community/contribute/teams-committees/localization) pflegt die Infrastruktur und die Dienste für die Übersetzung statischer TYPO3-Labels für Backend und Frontend. Die Ausgangstexte liegen üblicherweise als XLIFF-Dateien im Dateisystem des Core oder von Extensions; Übersetzungen werden über [Crowdin](https://crowdin.com/) gepflegt, und die [Crowdin Bridge](https://github.com/TYPO3/crowdin-bridge) exportiert sie auf den Translation Server, von dem TYPO3-Instanzen sie als Language Packs abrufen.
 
 Die Translation Handling Initiative arbeitet dagegen an redaktionell gepflegten Datenbankdatensätzen wie Seiten, Inhaltselementen, Dateimetadaten und Extension-Datensätzen. Ihr Tätigkeitsfeld umfasst die Sprachidentität dieser Inhalte, ihre Synchronisierung und strukturellen Beziehungen, den Editing Workflow und die Frontend-Ausgabe. Die Pflege von statischen Label-Übersetzungen, Crowdin-Projekten und der Language-Pack-Infrastruktur gehört nicht zu ihrer primären Verantwortung.
+
+## Lesehinweise
+
+Die in diesem Dokument verwendeten Modulnamen entsprechen den aktuellen Labels
+des TYPO3-v14-Cores: [Layout](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/backend/Resources/Private/Language/Modules/layout.xlf#L9-L13), [Records](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/backend/Resources/Private/Language/Modules/list.xlf#L9-L13) und [Media](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/filelist/Resources/Private/Language/module.xlf#L9-L13).
+
+Patch-Status und Release-Linien gelten zum im Frontmatter genannten Stichtag
+`external_status_checked_through`. Zu diesem Stichtag bezeichnet `main` die
+TYPO3-v15-Entwicklungslinie. Patch-Tabellen verwenden deshalb die knappen
+Release-Bezeichnungen TYPO3 v15, TYPO3 14.3 und TYPO3 13.4. Ein zusätzlicher
+Branch zählt nur dann als Backport, wenn ein entsprechender Gerrit-Change
+existiert; die bloße Nennung in einem `Releases:`-Footer belegt keinen
+ausstehenden oder gemergten Backport.
 
 Für Aussagen gelten folgende Unterscheidungen:
 
@@ -66,6 +79,10 @@ Für Aussagen gelten folgende Unterscheidungen:
 - BCP 47 ist die aktuelle Präferenz für eine semantische Sprachidentität. Die vollständige Ablösung des heutigen `sys_language_uid`-Vertrags hängt außerdem davon ab, dessen nichtsprachliches `-1`-Synchronisierungsverhalten sowie die mit `0` gekoppelten Rollen als Default Language und strukturelle Führung getrennt zu modellieren; diese Ersatzverträge bleiben offen.
 - Gespeichertes `sys_language_uid = -1` durch explizite Synchronisierung zu ersetzen, ist eine klare Richtung. Der Lebenszyklus dieser Synchronisierung ist noch nicht konzipiert.
 - Eine Struktur, die „mostly connected, selectively different“ unterstützt, ist eine zentrale Produktanforderung. Redakteurinnen und Redakteure sollen in der benötigten Sprache arbeiten können, ohne Free Mode, Connected Mode oder Mixed Mode als Zustände von Datenbankbeziehungen auswählen oder verstehen zu müssen.
+- Die aktuelle Richtung bevorzugt explizite synchronisierte Datensätze und
+  eine einfachere, vorhersehbare Verarbeitungslogik gegenüber einer möglichst
+  kleinen Datensatzmenge. Das genaue Modell, sein Lebenszyklus und seine
+  messbaren betrieblichen Auswirkungen bleiben offen.
 - Die derzeitige strukturelle Präferenz ist eine gemeinsame verborgene, sprachneutrale Strukturebene statt vollständiger Language Layers mit universellen Shadows. Dies ist eine Präferenz für die weitere Untersuchung und keine beschlossene Core-Architektur; die verborgene Ebene bleibt eine Hypothese, die einen Prototyp und eine Konzeption ihres Lebenszyklus benötigt.
 - Die aktuelle Umsetzung erfolgt inkrementell: bestehendes Verhalten charakterisieren, klar abgegrenzte Korrekturen mergen, unsichere Konzepte prototypisch untersuchen und die daraus gewonnene Evidenz für weitergehende Entscheidungen nutzen.
 

@@ -2,7 +2,7 @@
 id: topic:critical-alignment
 title: "Kritische Ausrichtung und offene Entscheidungen"
 language: de
-updated: "2026-08-21"
+updated: "2026-08-27"
 knowledge:
   - K-000001
   - K-000003
@@ -23,9 +23,9 @@ knowledge:
 history: []
 decisions: []
 translation_of: topic:critical-alignment
-source_updated: "2026-08-21"
+source_updated: "2026-08-27"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:96b572d772e43a62cebb043497bf825b30470dbd47258a5af52a922cd4cfa339"
+source_digest: "sha256:2ab499643b74589e25fc02bacec9e8c80e1b96e5d37a3ed84ced9fc09f93bad9"
 ---
 
 # Kritische Ausrichtung und offene Entscheidungen
@@ -38,15 +38,15 @@ Die Vision ist ein Bewertungsrahmen und kein Grund, jede Teillösung abzulehnen.
 
 | Änderung oder Ansatz | Innerhalb des Geltungsbereichs gelöstes Problem | Bewertung anhand der vier Verantwortlichkeiten |
 |---|---|---|
-| [Eigene `colPos`- und `CType`-Werte für Connected Translations deaktivieren](https://review.typo3.org/c/Packages/TYPO3.CMS/+/85978), für TYPO3 v13 (`main` zum Merge-Zeitpunkt) gemergt; es ist keine weitere Release-Linie genannt | Schützt strukturelle Konsistenz für verbundene Inhalte und Container. | Für verbundene Strukturen sinnvoll. Die Änderung entfernte zugleich einen Workaround, mit dem lokale Abwesenheit ausgedrückt wurde. Dies zeigt, weshalb Structural Identity und Output Policy jeweils einen eigenen expliziten Mechanismus benötigen. |
-| [Fallback Chains beim Record Overlay berücksichtigen](https://review.typo3.org/c/Packages/TYPO3.CMS/+/83169), für TYPO3 v14 (`main` zum Merge-Zeitpunkt) gemergt, und der gemergte [Backport für TYPO3 v13 LTS (`13.4`)](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828); der [Fix zur Strict-Regression](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) ist für TYPO3 v15 (aktuelles `main`) offen, während die genannten Backport-Changes für TYPO3 v14 LTS (`14.3`) und TYPO3 v13 LTS (`13.4`) noch nicht existieren | Korrigierte reales Fallback-Verhalten, machte aber zugleich eine Regression sichtbar, wenn ein Datensatz in der angeforderten Sprache unter `strict` verborgen ist. | Mit der Vision vereinbar, wenn die Änderung auf den Fallback-Modus beschränkt bleibt. Der aktive Fix bestätigt, dass sich `strict` nicht implizit wie Fallback verhalten darf; sein aktuelles Patch Set besitzt CI `+1` und einen ungelösten Kommentar und ist nicht gemergt. |
+| [Eigene `colPos`- und `CType`-Werte für Connected Translations deaktivieren](https://review.typo3.org/c/Packages/TYPO3.CMS/+/85978), für TYPO3 v13 gemergt | Schützt strukturelle Konsistenz für verbundene Inhalte und Container. | Für verbundene Strukturen sinnvoll. Die Änderung entfernte zugleich einen Workaround, mit dem lokale Abwesenheit ausgedrückt wurde. Dies zeigt, weshalb Structural Identity und Output Policy jeweils einen eigenen expliziten Mechanismus benötigen. |
+| [Fallback Chains beim Record Overlay berücksichtigen](https://review.typo3.org/c/Packages/TYPO3.CMS/+/83169), für TYPO3 v14 gemergt, und der gemergte [TYPO3-13.4-Backport](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828); der [Fix zur Strict-Regression](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) ist für TYPO3 v15 offen, während die genannten Backport-Changes für TYPO3 14.3 und TYPO3 13.4 noch nicht existieren | Korrigierte reales Fallback-Verhalten, machte aber zugleich eine Regression sichtbar, wenn ein Datensatz in der angeforderten Sprache unter `strict` verborgen ist. | Mit der Vision vereinbar, wenn die Änderung auf den Fallback-Modus beschränkt bleibt. Der aktive Fix bestätigt, dass sich `strict` nicht implizit wie Fallback verhalten darf; sein aktuelles Patch Set besitzt CI `+1` und einen ungelösten Kommentar und ist nicht gemergt. |
 | Korrekturen am Vergleich in Free Mode und Mixed Mode | Machen unabhängige und verbundene Inhalte im aktuellen Modul „Layout“ sichtbar und richten sie aus. | Wertvolle Arbeit an der aktuellen UX. Sie erhält valide Unabhängigkeit und verdeutlicht zugleich strukturelle Beziehungen; sie muss nicht auf ein neues Datenmodell warten. |
 | MM-Kontext-Vorschlag | Reduziert Mehrdeutigkeit von Beziehungen über Sprachen und Workspaces hinweg. | Ein sinnvolles vorbereitendes Modell, sofern Migration sowie Extbase- und DataHandler-Verhalten konsistent bleiben. Es darf nicht mit der abschließenden semantischen Identität gleichgesetzt werden. |
 | Explizite Synchronisierung für alle Sprachen | Ersetzt eine gemeinsame `-1`-Datenbankzeile durch konkrete zielsprachliche Datensätze, deren für die Parität relevante Felder vollständig erzwungen bleiben. | Grundsätzlich klar an der Vision ausgerichtet. Die erste Stufe sollte das Verhalten des vollständigen Datensatzes ohne redaktionelle Abwahlmöglichkeit bewahren; Granularität folgt später. Der Ansatz wird unsicher, wenn Zielanlage, Lebenszyklus, Herkunft, Konflikte und Migration nicht definiert sind. |
 | Multi-Select der Zielsprachen | Beschränkt denselben Prozess zur Synchronisierung des vollständigen Datensatzes auf ausgewählte Zielsprachen. | Eine naheliegende Erweiterung nach der Parität, aber kein verbindlich festgelegtes nächstes Feature. Sie bleibt ausgerichtet, wenn Zielidentität und Semantik bei Abwahl explizit sind. |
 | Feldbezogenes `enforceLanguageSynchronization` | Könnte `l10n_mode=exclude` ersetzen und dabei konfigurationsseitig erzwungene Synchronisierung erhalten. | An expliziter Synchronization Intent ausgerichtet, wenn erzwungene und redaktionell auswählbare Zustände unterscheidbar bleiben. Der aktuelle Core verwendet bereits eine gemeinsame Ausführungspipeline; der Gewinn läge in der Konsolidierung von Konfiguration, Zustandsermittlung und Scopes. Migration und Kompatibilität sind nicht entschieden. |
 | Arbeitsablauf ohne redaktionelle Moduswahl | Entfernt die Notwendigkeit, Free Mode, Connected Mode oder Mixed Mode zu wählen, wenn die tatsächliche Absicht darin besteht, in einer Sprache zu arbeiten. | Als Produktanforderung klar ausgerichtet, sobald der Core die Identität pflegt und lokale strukturelle Freiheit bewahrt. Die heutigen Steuerelemente dürfen nicht entfernt werden, bevor Migration und Lebenszyklus abgesichert sind. |
-| Vollständige Language Layers mit universellen Shadows | Vervollständigen die Struktur jeder Sprache. | Decken lokale Struktur ab, sind derzeit jedoch nicht bevorzugt, weil sie Datensätze, Synchronisierung, Workspace-Versionen und Informationsdichte im Modul „Layout“ verstärken können. Die Kosten sind noch nicht quantifiziert; die Bewertung ist daher keine Ablehnung aufgrund gemessener Performance. |
+| Vollständige Language Layers mit universellen Shadows | Vervollständigen die Struktur jeder Sprache. | Datensatzwachstum ist akzeptabel, wenn es die Verarbeitung vereinfacht. Dieser Ansatz ist derzeit nicht bevorzugt, weil universelle Shadows dennoch die gesamte Synchronisierungs- und Lebenszykluslogik, Workspace-Versionen, Referenzen und die Informationsdichte im Modul „Layout“ erhöhen können, ohne dass eine Nettovereinfachung nachgewiesen ist. Dies ist keine Ablehnung allein aufgrund der Datenbankgröße. |
 | Gemeinsame verborgene Strukturebene | Gibt jeder realen Sprache denselben sprachneutralen strukturellen Bezugspunkt. | Die aktuelle strukturelle Präferenz, weil sie universelle Shadows vermeidet und sichtbare Inhalte von struktureller Führung trennt. Sie bleibt eine nicht ausgewählte Hypothese, bis lokale Sortierung, Berechtigungen, Workspaces, Referenzen, Migration und redaktionelle Unsichtbarkeit validiert wurden. |
 
 Bei jedem neuen Vorschlag stellt die Initiative folgende Fragen:
@@ -97,7 +97,13 @@ Bei jedem neuen Vorschlag stellt die Initiative folgende Fragen:
 
 ### Übergreifend
 
-- **Entscheidung erforderlich:** akzeptables Verhältnis zwischen explizit gespeicherten Daten und Komplexität in Code und Laufzeit.
-- **Offene Frage:** messbare Auswirkungen auf Anzahl der Abfragen, Write Amplification, Datensatzmenge, Reference Index, Workspaces und Nutzbarkeit des Backends.
+- **Aktuelle Präferenz:** explizit gespeicherte Synchronisierungsdaten und
+  einfachere, vorhersehbare Code-Pfade gegenüber einer möglichst kleinen
+  Datensatzmenge bevorzugen.
+- **Entscheidung erforderlich:** genaue Repräsentation und
+  Lebenszyklusgrenzen, die diese Präferenz sicher umsetzen.
+- **Offene Frage:** messbare Nettovereinfachung und Auswirkungen auf die Anzahl
+  der Abfragen, Write Amplification, Datensatzmenge, Reference Index,
+  Workspaces und Nutzbarkeit des Backends.
 - **Entscheidung erforderlich:** Strategie für Kompatibilität, Migration, Deprecation und Extension-APIs.
 - **Entscheidung erforderlich:** Zuständigkeit und Priorisierung gemeinsam mit den zuständigen TYPO3-Core- und Produktstrukturen.

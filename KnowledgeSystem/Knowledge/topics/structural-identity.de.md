@@ -2,7 +2,7 @@
 id: topic:structural-identity
 title: "Structural Identity"
 language: de
-updated: "2026-08-14"
+updated: "2026-08-27"
 knowledge:
   - K-000002
   - K-000009
@@ -11,13 +11,14 @@ knowledge:
   - K-000012
   - K-000016
   - K-000019
+  - K-000021
   - K-000022
 history: []
 decisions: []
 translation_of: topic:structural-identity
-source_updated: "2026-08-14"
+source_updated: "2026-08-27"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:6b8e30b4dfe7b8a29a3c2e8fa1523a4a521dd8348fa7c08c6a05b7f6611a55ec"
+source_digest: "sha256:236d377249880129cb433e811167b0f6f97556d40e1788e0f179a92321f4f2cf"
 ---
 
 # Structural Identity
@@ -82,7 +83,7 @@ Migration der Language Identity ausgewählt:
 
 | Weg | Repräsentation | Nutzen | Wesentliches Risiko oder offene Arbeit | Aktuelle Bewertung |
 |---|---|---|---|---|
-| **1. Vollständige Struktur in jeder Sprache** | Jede Sprache enthält jede strukturelle Position und könnte grundsätzlich die strukturelle Führung übernehmen. Der Core erzeugt Language-Layer-Shadows, wenn eine Position in dieser Sprache keinen sichtbaren Inhalt besitzt. | Jede Sprachebene ist strukturell eigenständig vollständig und kann eine lokale Sortierung ausdrücken. | Jede lokale Abweichung muss in andere Language Layers projiziert werden. Datensatzmenge, Synchronisierung, Workspace-Versionen, Referenzen und sichtbare Informationsdichte im Modul „Layout“ können mit Sprachen und strukturellen Abweichungen wachsen. Selbst eine kleine Umordnung kann mehrere erzeugte Platzhalter erfordern; der genaue Multiplikator ist modellabhängig und wurde nicht gemessen. | **Diskutiert, im Vergleich zu einer gemeinsamen Ebene derzeit jedoch nicht bevorzugt. Weder widerlegt noch formal verworfen.** |
+| **1. Vollständige Struktur in jeder Sprache** | Jede Sprache enthält jede strukturelle Position und könnte grundsätzlich die strukturelle Führung übernehmen. Der Core erzeugt Language-Layer-Shadows, wenn eine Position in dieser Sprache keinen sichtbaren Inhalt besitzt. | Jede Sprachebene ist strukturell eigenständig vollständig und kann eine lokale Sortierung ausdrücken. | Jede lokale Abweichung muss in andere Language Layers projiziert werden. Eine höhere Datensatzmenge ist akzeptabel, wenn sie die Verarbeitung vereinfacht; universelle Shadows können jedoch zugleich Synchronisierungs- und Lebenszykluslogik, Workspace-Versionen, Referenzen und die sichtbare Informationsdichte im Modul „Layout“ erhöhen. Selbst eine kleine Umordnung kann mehrere erzeugte Platzhalter erfordern; Gesamtkomplexität und genauer Multiplikator sind modellabhängig und wurden nicht gemessen. | **Diskutiert, im Vergleich zu einer gemeinsamen Ebene derzeit jedoch nicht bevorzugt, solange keine größere Gesamtvereinfachung nachgewiesen ist. Weder widerlegt noch formal verworfen.** |
 | **2. Gemeinsame verborgene Struktur plus reale Language Layers** | Die Rollen der heutigen Default Language werden getrennt. Eine inhaltslose sprachneutrale Strukturebene speichert jede logische Position; die heutigen Inhalte der Default Language wechseln in eine eigene reale Sprachebene wie jede andere Ausgabesprache. Der Core erzeugt einen Structural Shadow, wenn eine Sprache eine neue Position einführt, und jede reale Variante verbindet sich mit dieser gemeinsamen Position. | Ein sprachübergreifender Bezugspunkt ohne universelle Language-Layer-Shadows; keine reale Ausgabesprache muss die gesamte Struktur führen. | Die genaue Entität und ihr Identifikator, die Migration heutiger Inhalte der Default Language, sprachspezifische Sortierung und Abwesenheit, Berechtigungen, APIs, Workspaces, Referenzen sowie das Verbergen der Strukturebene in Backend und Frontend müssen konzipiert und getestet werden. | **Aktuelle Präferenz für die Untersuchung. Weiterhin eine Hypothese und keine ausgewählte oder implementierte Core-Architektur.** |
 
 Der zweite Weg sollte in der normalen Redaktion und Frontend-Ausgabe unsichtbar bleiben. „Verborgen“ ist Bestandteil des angestrebten Produktverhaltens und keine Aussage über den aktuellen Core. Eine gemeinsame Identität löst auch die lokale Sortierung nicht von selbst: Das Modell benötigt weiterhin einen expliziten sprachspezifischen Vertrag für Platzierung, Sortierung oder Abweichungen.

@@ -2,7 +2,7 @@
 id: topic:language-identity
 title: "Language Identity"
 language: en
-updated: "2026-08-14"
+updated: "2026-08-27"
 knowledge:
   - K-000001
   - K-000002
@@ -40,10 +40,15 @@ The responsibilities must be considered in this order when explaining the vision
   and today's structural lead. The future identity value may identify only a
   real human language or variant.
 - Semantic identity must not depend on a locale being installed on the application server.
+- Semantic identity must cover editorial language variants beyond a
+  conventional language-and-region locale, including variants such as Easy
+  Language.
 - Site configuration must map its available languages to the semantic identity explicitly.
 - Shared storage, translated file metadata and import/export must not depend on coincidentally equal local numbers.
 
-**Vision:** Content language should be identifiable by what the language is, not only by the site-local number assigned to it. BCP 47 is the initiative's current preference for that semantic identity.
+**Vision:** Content language should be identifiable by what the language and
+editorial variant are, not only by a site-local number or conventional locale.
+BCP 47 is the initiative's current preference for that semantic identity.
 
 **Open questions:**
 
