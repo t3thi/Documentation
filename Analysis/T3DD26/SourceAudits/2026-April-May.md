@@ -2,7 +2,7 @@
 
 ## Scope and evidence rules
 
-- Repository root: `/Users/eric/docker/Translation-Handling-Initiative`.
+- All referenced paths are relative to the repository root.
 - Reviewed in full: every Markdown file in `MeetingMinutes/Weekly/2026/04` and `MeetingMinutes/Weekly/2026/05`, plus the complete transcripts for 2026-04-24, 2026-05-08, and 2026-05-29.
 - This dossier reports only evidence from that slice. It deliberately does not treat frequency or enthusiastic phrasing as a decision.
 - The controlled status labels are exactly those requested for the overall analysis: **Current Core Behavior**, **Problem**, **Idea**, **Discussed Direction**, **Preferred Direction**, **Open Question**, **Planned**, **In Progress**, **Implemented**, and **Analytically Derived Recommendation**.

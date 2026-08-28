@@ -17,9 +17,7 @@ Official external sources:
 - Current Gerrit patch set validated: patch set 6, commit `719c5f26b9e92722e63d4b976fe9f16594b4d88d`
 - Gerrit REST detail endpoint used: <https://review.typo3.org/changes/Packages%2FTYPO3.CMS~92267/detail?o=CURRENT_REVISION&o=CURRENT_FILES&o=ALL_REVISIONS&o=DETAILED_ACCOUNTS&o=MESSAGES>
 
-Local source base:
-
-`/Users/eric/docker/Translation-Handling-Initiative`
+All local source paths in this document are relative to the repository root.
 
 `MeetingMinutes` and `Transcripts` are primary local sources for initiative positions. `Analysis/LanguageAll-Findings.md` and files under `Drafts` are secondary working material and are not treated as proof of consensus or current Core state.
 
@@ -318,7 +316,7 @@ This draft is consistent with the cautious status classification above, but rema
 
 ## 6. Exact transcript hit index
 
-The following index records all exact/variant hits from the 13 local 2026 transcript files for the requested concepts. It is an audit index, not a statement that every hit is substantively relevant. Base path: `/Users/eric/docker/Translation-Handling-Initiative/`.
+The following index records all exact/variant hits from the 13 local 2026 transcript files for the requested concepts. It is an audit index, not a statement that every hit is substantively relevant. All referenced paths are relative to the repository root.
 
 ### `-1` / Language All / All Languages
 
