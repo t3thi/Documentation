@@ -70,6 +70,24 @@
         "Does not invent a meeting time when none is evidenced",
         "Does not duplicate or reorder unrelated overview entries"
       ]
+    },
+    {
+      "id": 7,
+      "prompt": "The final T3THI Minutes were reviewed. Publish them to notes.typo3.org automatically and make the operation safe to repeat.",
+      "expected_output": "The deterministic HedgeDoc publication client authenticates the session, creates and reads back one note, and links the verified URL without unsafe overwrite behavior.",
+      "files": [],
+      "assertions": [
+        "Requires explicit completed human review before remote publication",
+        "A parameterless interactive invocation selects the latest canonical Minutes and offers --reviewed --cookies-from-browser firefox as the Enter-confirmed default",
+        "An explicit Minutes path is only needed for a non-latest document",
+        "Prompts for either review or authentication when only that option was omitted",
+        "Can reuse the normal Firefox session with an exact-host cookie query and interactive SAML login fallback without printing or persisting the secret",
+        "Keeps HEDGEDOC_SESSION_COOKIE as the non-interactive authentication path",
+        "Uses the documented HedgeDoc create and download endpoints",
+        "Updates MeetingMinutes/overview.md only after exact remote content verification",
+        "Treats a matching linked note as idempotent success",
+        "Refuses to overwrite differing existing content through an undocumented API"
+      ]
     }
   ]
 }

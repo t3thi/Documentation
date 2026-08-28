@@ -72,7 +72,8 @@ Phase 3 → Identify and group topics
 Phase 4 → Draft minutes per topic
 Phase 5 → Apply formatting and correction rules
 Phase 6 → Validate against checklist
-Phase 7 → Publish the final Markdown and update the overview
+Phase 7 → Save the final Markdown and update the overview
+Phase 8 → Publish reviewed Minutes to HedgeDoc when requested
 ```
 
 ### Phase 1 — Read References
@@ -227,9 +228,9 @@ Before delivering the output, verify every item:
 | 20 | Output is a Markdown code block | Wrapped in triple backticks for easy copy |
 | 21 | Overview updated | Exactly one matching entry in `MeetingMinutes/overview.md`, with no invented link or time |
 
-### Phase 7 — Publish Minutes and Update the Overview
+### Phase 7 — Save Minutes and Update the Overview
 
-Generate the final Markdown and publish it in **three places**:
+Generate the final Markdown and save it in **three places**:
 
 1. **In the chat**: Wrapped in a fenced code block (` ```markdown … ``` `) so
    the user can copy it directly.
@@ -251,6 +252,33 @@ Generate the final Markdown and publish it in **three places**:
 
 If file writing is unavailable, return the Markdown in chat and clearly state
 that both repository updates were skipped.
+
+### Phase 8 — Publish Reviewed Minutes to HedgeDoc
+
+Remote publication is a separate, explicit step after the final repository
+Minutes have received human review. Read and follow
+[`references/hedgedoc-publication.md`](references/hedgedoc-publication.md).
+
+1. Run the offline `check` command first. Without a path, the script selects
+   the chronologically latest `MeetingMinutes/Weekly/YYYY/MM/DD.md` file.
+2. Publish only when the user requests remote publication and confirms the
+   final local Minutes are reviewed. For the latest Minutes, invoke
+   `scripts/publish_minutes.py` without parameters and confirm the proposed
+   `--reviewed --cookies-from-browser firefox` defaults with Enter. Supply a
+   Minutes path only for a non-latest document. Do not reproduce the HTTP
+   workflow manually.
+3. The normal interactive default reuses the Firefox session. If none is
+   authenticated, let the script open the exact SAML login page, complete
+   sign-in, and confirm with Enter.
+   Use `HEDGEDOC_SESSION_COOKIE` only for non-interactive environments. Never
+   print, persist, or commit a session value.
+4. Trust only the verified `/s/...` URL returned by the script. The script
+   updates the unique overview entry after a successful remote read-back.
+5. Do not attempt to overwrite an existing note through an undocumented
+   Socket.IO or browser-storage workflow. HedgeDoc 1.x has no supported update
+   API. If an existing note differs, stop for manual reconciliation.
+6. A pre-created blank note URL must be populated manually once or replaced by
+   a newly created, verified note; the automated create API cannot target it.
 
 ## Supplementary Context
 
@@ -318,6 +346,9 @@ The result is considered correct only if all of the following are true:
   except explicitly allowed italicized technical compounds.
 - `MeetingMinutes/overview.md` contains exactly one corresponding entry whose
   time, link, and summary do not exceed the available evidence.
+- Remote publication, when requested, occurs only after human review and passes
+  the authenticated create, read-back, and overview-link workflow in
+  `scripts/publish_minutes.py`.
 
 ## Maintenance
 
@@ -326,6 +357,9 @@ The result is considered correct only if all of the following are true:
 - Run `python3 scripts/verify_minutes_contract.py` when the output template,
   participant-list contract, prohibited trailing-section rules, or repository
   overview workflow change.
+- Run `python3 scripts/test_publish_minutes.py` when the HedgeDoc publication
+  client, authentication handling, idempotency, or overview-link behavior
+  changes.
 - Keep `evals/evals.json` aligned when date handling, participant sorting,
   English-only rules, or prohibited output structures change materially.
 

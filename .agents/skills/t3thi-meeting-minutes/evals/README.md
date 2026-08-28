@@ -10,7 +10,13 @@ These evals defend the most failure-prone behavior of this skill:
   fabricated meeting time or HedgeDoc URL
 - no invented action-items or summary boilerplate
 - omission of explicit off-the-record content
+- reviewed-only, authenticated, idempotent HedgeDoc create and read-back
+  publication with parameterless latest-Minutes selection, interactive safe
+  defaults, host-scoped Firefox session reuse, and no undocumented existing-note
+  updates
 
 Keep the scenarios aligned when the output contract or style rules change.
 Run `python3 scripts/verify_minutes_contract.py` when the Markdown output
 template, prohibited-section rules, or overview workflow changes.
+Run `python3 scripts/test_publish_minutes.py` when the remote publication
+workflow changes.

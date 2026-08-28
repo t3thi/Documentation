@@ -16,6 +16,8 @@ SKILL_PATH = SKILL_ROOT / "SKILL.md"
 README_PATH = SKILL_ROOT / "README.md"
 OPENAI_METADATA_PATH = SKILL_ROOT / "agents" / "openai.yaml"
 EVALS_PATH = SKILL_ROOT / "evals" / "evals.json"
+PUBLISH_SCRIPT_PATH = SKILL_ROOT / "scripts" / "publish_minutes.py"
+PUBLICATION_RUNBOOK_PATH = SKILL_ROOT / "references" / "hedgedoc-publication.md"
 OVERVIEW_PATH = "MeetingMinutes/overview.md"
 BACK_LINK = "https://notes.typo3.org/s/f3ae8fZSD"
 HUDDLE_URL = "https://app.slack.com/huddle/T024TUMLZ/C05D7UF1L8M"
@@ -159,6 +161,47 @@ def validate_repository_workflow_contract() -> None:
     assert_true(
         "If no time is evidenced" in skill_text,
         "Missing no-fabrication rule for overview times",
+    )
+    assert_true(PUBLISH_SCRIPT_PATH.is_file(), "Missing deterministic HedgeDoc publisher")
+    assert_true(
+        PUBLICATION_RUNBOOK_PATH.is_file(), "Missing HedgeDoc publication runbook"
+    )
+    publish_text = PUBLISH_SCRIPT_PATH.read_text(encoding="utf-8")
+    assert_true(
+        "HEDGEDOC_SESSION_COOKIE" in publish_text,
+        "Publisher must use the secret environment contract",
+    )
+    assert_true(
+        "--cookies-from-browser" in publish_text,
+        "Publisher must expose normal Firefox session reuse",
+    )
+    assert_true(
+        "WHERE host IN (?, ?) AND name = ?" in publish_text,
+        "Firefox import must restrict the cookie query to host and name",
+    )
+    assert_true(
+        "--reviewed" in publish_text,
+        "Publisher must require explicit human-review acknowledgement",
+    )
+    assert_true(
+        "discover_latest_minutes" in publish_text,
+        "Publisher must discover the latest canonical Minutes by default",
+    )
+    assert_true(
+        "resolve_publish_defaults" in publish_text,
+        "Publisher must interactively resolve omitted safe defaults",
+    )
+    assert_true(
+        "--cookies-from-environment" in publish_text,
+        "Publisher must keep an explicit non-interactive environment path",
+    )
+    assert_true(
+        "already-published" in publish_text,
+        "Publisher must preserve idempotent repeat behavior",
+    )
+    assert_true(
+        any("exact remote content verification" in assertion for assertion in assertions),
+        "Publication verification is missing from eval assertions",
     )
 
 

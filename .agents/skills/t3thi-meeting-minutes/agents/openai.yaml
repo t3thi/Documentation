@@ -9,4 +9,11 @@ interface:
     participants, sort their display names, keep the body in third-person prose,
     write MeetingMinutes/Weekly/YYYY/MM/DD.md, add or update the matching
     MeetingMinutes/overview.md entry without inventing a time or URL, and do not
-    invent action items or include off-the-record content.
+    invent action items or include off-the-record content. When the user also
+    requests HedgeDoc publication, require completed human review and use the
+    authenticated publish_minutes.py create, read-back, and overview-link
+    workflow. Prefer its normal Firefox session import for interactive local
+    publication. For the latest Minutes, use the parameterless interactive
+    invocation and confirm its reviewed-plus-Firefox defaults; supply a dated
+    path only for a non-latest document. Never attempt an undocumented
+    overwrite of an existing note.
