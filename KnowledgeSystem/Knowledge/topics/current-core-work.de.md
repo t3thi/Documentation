@@ -2,7 +2,7 @@
 id: topic:current-core-work
 title: "Aktuelle Core-Arbeit"
 language: de
-updated: "2026-08-27"
+updated: "2026-08-28"
 knowledge:
   - K-000013
   - K-000015
@@ -15,9 +15,9 @@ history:
   - K-000026
 decisions: []
 translation_of: topic:current-core-work
-source_updated: "2026-08-27"
+source_updated: "2026-08-28"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:7b0535d3e3e9f234943a6b15edf1df4885895d6d76f2c3b6a513dcee4754cf01"
+source_digest: "sha256:a1740fe03350ba94a277626b5bb430c013f09f3024d633c60d4f9d8b8d0e7548"
 ---
 
 # Aktuelle Core-Arbeit
@@ -47,16 +47,14 @@ Die [Test-Extension der Initiative](https://github.com/t3thi/translation-handlin
 
 Das wiederkehrende Muster ist hilfreich: Ein realer Fehler wird reproduziert, der verantwortliche Vertrag wird identifiziert, Tests definieren die Grenze und die Korrektur bleibt eng begrenzt. Dies ist die von der Initiative bevorzugte Form der inkrementellen Verbesserung.
 
-## Laufende Arbeit mit Stand vom 21.08.2026
+## Laufende Arbeit mit Stand vom 28.08.2026
 
 Dieser Abschnitt beruht auf der vollständigen externen Statusprüfung vom
-21.08.2026. Gerrit 94917 enthält die ausdrücklich datierte spätere
-Statusaktualisierung, die am 27.08.2026 geprüft wurde; für alle anderen Zeilen
-gilt weiterhin der oben genannte allgemeine Stichtag.
+28.08.2026.
 
 Jeder offene Core-Patch erhält entsprechend seinem aktuellen offiziellen Stand genau einen primären Statuseintrag. **WIP** hat Vorrang vor Review-Befunden. **Review-Nacharbeit erforderlich** bedeutet, dass das aktuelle Patch Set mindestens einen ungelösten Kommentar, eine aktuelle negative Review- beziehungsweise Verifizierungsstimme oder einen Merge-Konflikt besitzt. **Review-positiv und mergefähig** ist die hier verwendete Kategorie für einen finalen Patch-Stand; sie erfordert mindestens ein aktuelles Code-Review `+1`, keine aktuelle negative Stimme, keinen ungelösten Kommentar und ein mergefähiges aktuelles Patch Set. **Review ausstehend** umfasst offene Patches ohne diese Blocker, aber auch ohne aktuelles positives Code-Review. **Abgelehnt oder ersetzt** dokumentiert formal aufgegebene Änderungen, wenn ihre Begründung weiterhin relevant ist.
 
-Für offene Gerrit-Änderungen bedeutet **Merge-Konflikt: Ja**, dass Gerrit das aktuelle Patch Set am 21.08.2026 gegenüber seinem Ziel-Branch als `mergeable: false` gemeldet hat. Dies kann sich ändern, wenn sich der Ziel-Branch oder das Patch Set ändert. **Nein** bedeutet `mergeable: true`; dies ersetzt weder Review noch Submit-Freigabe.
+Für offene Gerrit-Änderungen bedeutet **Merge-Konflikt: Ja**, dass Gerrit das aktuelle Patch Set am 28.08.2026 gegenüber seinem Ziel-Branch als `mergeable: false` gemeldet hat. Dies kann sich ändern, wenn sich der Ziel-Branch oder das Patch Set ändert. **Nein** bedeutet `mergeable: true`; dies ersetzt weder Review noch Submit-Freigabe.
 
 ### In Arbeit (WIP)
 
@@ -64,11 +62,12 @@ Für offene Gerrit-Änderungen bedeutet **Merge-Konflikt: Ja**, dass Gerrit das 
 |---|---|---|---|---|
 | [Gerrit 84338](https://review.typo3.org/c/Packages/TYPO3.CMS/+/84338) | TYPO3 v15. | Patch Set 6; WIP; CI `+1`; 4 ungelöste Kommentare. | **Ja** | Schlägt vor, die ID der ersten Site Language als Default Language zu verwenden, statt `0` zu erzwingen. Weitreichende Core-Annahmen bleiben ungelöst, und die Initiative hat ihre unmittelbare Priorität später von diesem Weg weg verlagert. |
 | [Gerrit 92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267) | TYPO3 v15. | Patch Set 6; WIP; CI `+1`; keine ungelösten Kommentare. | Nein | Inventarisiert gespeicherte `Language All`-Annahmen. Ändert kein ausführbares Verhalten und ist weder eine Characterization-Test-Suite noch eine Ersatzimplementierung. |
+| [Forge 110510](https://forge.typo3.org/issues/110510) und [Gerrit 95475](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95475) | TYPO3 v15. | Patch Set 1; WIP; CI `+1`; keine ungelösten Kommentare. | Nein | Zeigt jeden bestehenden Language-All-Datensatz in jeder Sprachspalte und behält die heutige Speicherung bei. Die Änderung ist eine klar abgegrenzte Backend-Verbesserung, bleibt ungemergt und bestimmt kein zukünftiges Strukturmodell. |
 | [Gerrit 92859](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92859) | TYPO3 v15. | Patch Set 6; WIP; CI `-1`; 6 ungelöste Kommentare. | **Ja** | Schlägt sprach- und Workspace-fähige MM-Tabellen vor. Das einheitliche Beziehungsmodell ist relevant, aber die Verwendung von Live-UIDs der Default Language ist ein inkrementeller Entwurf und keine Entscheidung über die zukünftige Structural Identity. |
 | [Gerrit 93289](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93289) | TYPO3 v15. | Patch Set 1; WIP; CI `+1`; keine ungelösten Kommentare. | Nein | Ergänzt Workspace-Abdeckung für das Einfügeverhalten von Language All und schließt vor semantischen Änderungen eine Charakterisierungslücke. |
 | [Gerrit 93819](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93819) | TYPO3 v15; TYPO3 14.3 ist genannt, aber ein Backport-Change existiert noch nicht. | Patch Set 2; `[WIP]`; CI `+1`; keine ungelösten Kommentare. | **Ja** | Ergänzt Schutzmechanismen beim Verschieben von Free-Mode-Inhalten, während der aktuelle Free Mode weiterhin unterstützt wird. |
 | [Forge 110328](https://forge.typo3.org/issues/110328) und [Gerrit 95042](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95042) | TYPO3 v15. | Patch Set 1; `[WIP]`; CI `+1`; keine ungelösten Kommentare. | Nein | Beschränkt auswählbare Translation Parents, um doppelte oder strukturell ungültige Zuordnungen zu verhindern. Der Patch ist kein implementierter Fix. |
-| [Forge 110330](https://forge.typo3.org/issues/110330) und [Gerrit 95043](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95043) | TYPO3 v15. | Patch Set 1; `[WIP]`; CI `+1`; keine ungelösten Kommentare. | Nein | Verbirgt Connected Mode, wenn die Quelle keine Default-Language-Beziehung herstellen kann. Eine Free-Mode-Quelle kann die fehlende Verbindung nicht erzeugen. |
+| [Forge 110330](https://forge.typo3.org/issues/110330) und [Gerrit 95043](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95043) | TYPO3 v15. | Patch Set 1; `[WIP]`; CI `+1`; keine ungelösten Kommentare. | **Ja** | Verbirgt Connected Mode, wenn die Quelle keine Default-Language-Beziehung herstellen kann. Eine Free-Mode-Quelle kann die fehlende Verbindung nicht erzeugen. Das aktuelle Patch Set muss vor weiteren Reviews rebased werden. |
 
 ### Review-Nacharbeit erforderlich
 
@@ -104,5 +103,5 @@ Derzeit erfüllt kein Patch alle Kriterien. Gerrit 92777 besitzt positive Review
 |---|---|---|---|
 | [dbdoctor PR 98](https://github.com/lolli42/dbdoctor/pull/98) | Offen; GitHub meldet den aktuellen Stand als nicht mergefähig und `dirty`. | **Ja** | Repariert `l10n_state`, wenn Synchronisierungsmetadaten gespeicherten übersetzten Werten widersprechen. Dies ist kein gemergtes Core-Verhalten. |
 | [dbdoctor PR 171](https://github.com/lolli42/dbdoctor/pull/171) | Offen mit `[WIP]`; GitHub meldet den aktuellen Stand als konfliktfrei und mergefähig. | Nein | Erkennt verwaiste Übersetzungen aus historischen Kopiervorgängen. Dies ist Diagnose- und Reparaturwerkzeug, kein gemergter Core-Fix und kein neues Übersetzungsmodell. |
-| Sichtbarkeit von Language All in jeder Backend-Sprache | Im geprüften Meeting vom 14.08.2026 vorgeschlagen; es ist kein Gerrit-Change registriert. | Nicht anwendbar | Würde jeden bestehenden Datensatz mit `sys_language_uid = -1` in jeder Sprachspalte an seiner wirksamen Sortierposition anzeigen. Dies ist eine klar abgegrenzte vorbereitende Usability-Arbeit, die die heutige Language-All-Semantik beibehält und kein zukünftiges Strukturmodell bestimmt. |
+| [Forge 110497](https://forge.typo3.org/issues/110497) und [Forge 110498](https://forge.typo3.org/issues/110498) | Beide Issues sind neu; das offizielle Feld für die Zuordnung nennt Tymoteusz Motylewski, und es ist kein Gerrit-Fix registriert. | Nicht anwendbar | Beide melden, dass neue Inline- oder File-Reference-Child-Records nicht verbundener Datensätze einer Nicht-Default-Sprache die Sprache `0` erhalten, wenn keine explizite Child-Sprache den DataHandler erreicht. Eine gemeinsame Ursache oder Lösung ist noch nicht belegt. |
 | Untersuchung der strukturellen Ebene und der Editing Language | Eine Produktbeschreibung existiert; ein fertiggestellter Prototyp ist nicht belegt. | Nicht anwendbar | Eine Skizze, ein Click Dummy oder ein Experiment als Extension würde den redaktionellen Nutzen und strukturelle Annahmen vor einer Architekturentscheidung prüfen. |

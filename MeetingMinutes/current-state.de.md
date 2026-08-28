@@ -1,9 +1,9 @@
 ---
 title: "Translation Handling Initiative - Aktueller Stand"
-last_updated: "2026-08-27"
+last_updated: "2026-08-28"
 weekly_minutes_included_through: "2026-08-14"
 transcripts_included_through: "2026-08-14"
-external_status_checked_through: "2026-08-21"
+external_status_checked_through: "2026-08-28"
 ---
 
 <!--
@@ -16,7 +16,7 @@ Knowledge metadata. Do not edit it directly.
 
 [Englische Fassung](https://notes.typo3.org/s/RhkYPguwb) · [Übersicht der Sitzungsprotokolle](https://notes.typo3.org/s/f3ae8fZSD) · [Hinweise zur Pflege dieses Dokuments](https://github.com/t3thi/Documentation/blob/main/MeetingMinutes/current-state-maintenance.md)
 
-**Stand dieser Fassung:** Die Inhalte wurden zuletzt am 27. August 2026 aktualisiert. Berücksichtigt sind geprüfte Sitzungsprotokolle und Transkripte bis einschließlich 14. August 2026. Der vollständige externe Stand von TYPO3 Core, Gerrit und Forge wurde zuletzt am 21. August 2026 geprüft. Sofern ein Eintrag keinen späteren eigenen Prüfzeitpunkt nennt, sind die Angaben zu Patches und Reviews mit diesem Stichtag zu lesen.
+**Stand dieser Fassung:** Die Inhalte wurden zuletzt am 28. August 2026 aktualisiert. Berücksichtigt sind geprüfte Sitzungsprotokolle und Transkripte bis einschließlich 14. August 2026. Der vollständige externe Stand von TYPO3 Core, Gerrit und Forge wurde zuletzt am 28. August 2026 geprüft. Sofern ein Eintrag keinen späteren eigenen Prüfzeitpunkt nennt, sind die Angaben zu Patches und Reviews mit diesem Stichtag zu lesen.
 
 Dies ist die deutsche Fassung der kanonischen Beschreibung des aktuellen Verständnisses, der Vision und der Arbeit der Translation Handling Initiative. Sie erläutert, warum die Initiative am Translation Handling arbeitet, welche Erkenntnisse ihre Forschung erbracht hat, welche Richtung sie derzeit verfolgt, welche Ansätze sie untersucht und welche Entscheidungen weiterhin offen sind.
 
@@ -417,16 +417,14 @@ Die [Test-Extension der Initiative](https://github.com/t3thi/translation-handlin
 
 Das wiederkehrende Muster ist hilfreich: Ein realer Fehler wird reproduziert, der verantwortliche Vertrag wird identifiziert, Tests definieren die Grenze und die Korrektur bleibt eng begrenzt. Dies ist die von der Initiative bevorzugte Form der inkrementellen Verbesserung.
 
-## Laufende Arbeit mit Stand vom 21.08.2026
+## Laufende Arbeit mit Stand vom 28.08.2026
 
 Dieser Abschnitt beruht auf der vollständigen externen Statusprüfung vom
-21.08.2026. Gerrit 94917 enthält die ausdrücklich datierte spätere
-Statusaktualisierung, die am 27.08.2026 geprüft wurde; für alle anderen Zeilen
-gilt weiterhin der oben genannte allgemeine Stichtag.
+28.08.2026.
 
 Jeder offene Core-Patch erhält entsprechend seinem aktuellen offiziellen Stand genau einen primären Statuseintrag. **WIP** hat Vorrang vor Review-Befunden. **Review-Nacharbeit erforderlich** bedeutet, dass das aktuelle Patch Set mindestens einen ungelösten Kommentar, eine aktuelle negative Review- beziehungsweise Verifizierungsstimme oder einen Merge-Konflikt besitzt. **Review-positiv und mergefähig** ist die hier verwendete Kategorie für einen finalen Patch-Stand; sie erfordert mindestens ein aktuelles Code-Review `+1`, keine aktuelle negative Stimme, keinen ungelösten Kommentar und ein mergefähiges aktuelles Patch Set. **Review ausstehend** umfasst offene Patches ohne diese Blocker, aber auch ohne aktuelles positives Code-Review. **Abgelehnt oder ersetzt** dokumentiert formal aufgegebene Änderungen, wenn ihre Begründung weiterhin relevant ist.
 
-Für offene Gerrit-Änderungen bedeutet **Merge-Konflikt: Ja**, dass Gerrit das aktuelle Patch Set am 21.08.2026 gegenüber seinem Ziel-Branch als `mergeable: false` gemeldet hat. Dies kann sich ändern, wenn sich der Ziel-Branch oder das Patch Set ändert. **Nein** bedeutet `mergeable: true`; dies ersetzt weder Review noch Submit-Freigabe.
+Für offene Gerrit-Änderungen bedeutet **Merge-Konflikt: Ja**, dass Gerrit das aktuelle Patch Set am 28.08.2026 gegenüber seinem Ziel-Branch als `mergeable: false` gemeldet hat. Dies kann sich ändern, wenn sich der Ziel-Branch oder das Patch Set ändert. **Nein** bedeutet `mergeable: true`; dies ersetzt weder Review noch Submit-Freigabe.
 
 ### In Arbeit (WIP)
 
@@ -434,11 +432,12 @@ Für offene Gerrit-Änderungen bedeutet **Merge-Konflikt: Ja**, dass Gerrit das 
 |---|---|---|---|---|
 | [Gerrit 84338](https://review.typo3.org/c/Packages/TYPO3.CMS/+/84338) | TYPO3 v15. | Patch Set 6; WIP; CI `+1`; 4 ungelöste Kommentare. | **Ja** | Schlägt vor, die ID der ersten Site Language als Default Language zu verwenden, statt `0` zu erzwingen. Weitreichende Core-Annahmen bleiben ungelöst, und die Initiative hat ihre unmittelbare Priorität später von diesem Weg weg verlagert. |
 | [Gerrit 92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267) | TYPO3 v15. | Patch Set 6; WIP; CI `+1`; keine ungelösten Kommentare. | Nein | Inventarisiert gespeicherte `Language All`-Annahmen. Ändert kein ausführbares Verhalten und ist weder eine Characterization-Test-Suite noch eine Ersatzimplementierung. |
+| [Forge 110510](https://forge.typo3.org/issues/110510) und [Gerrit 95475](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95475) | TYPO3 v15. | Patch Set 1; WIP; CI `+1`; keine ungelösten Kommentare. | Nein | Zeigt jeden bestehenden Language-All-Datensatz in jeder Sprachspalte und behält die heutige Speicherung bei. Die Änderung ist eine klar abgegrenzte Backend-Verbesserung, bleibt ungemergt und bestimmt kein zukünftiges Strukturmodell. |
 | [Gerrit 92859](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92859) | TYPO3 v15. | Patch Set 6; WIP; CI `-1`; 6 ungelöste Kommentare. | **Ja** | Schlägt sprach- und Workspace-fähige MM-Tabellen vor. Das einheitliche Beziehungsmodell ist relevant, aber die Verwendung von Live-UIDs der Default Language ist ein inkrementeller Entwurf und keine Entscheidung über die zukünftige Structural Identity. |
 | [Gerrit 93289](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93289) | TYPO3 v15. | Patch Set 1; WIP; CI `+1`; keine ungelösten Kommentare. | Nein | Ergänzt Workspace-Abdeckung für das Einfügeverhalten von Language All und schließt vor semantischen Änderungen eine Charakterisierungslücke. |
 | [Gerrit 93819](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93819) | TYPO3 v15; TYPO3 14.3 ist genannt, aber ein Backport-Change existiert noch nicht. | Patch Set 2; `[WIP]`; CI `+1`; keine ungelösten Kommentare. | **Ja** | Ergänzt Schutzmechanismen beim Verschieben von Free-Mode-Inhalten, während der aktuelle Free Mode weiterhin unterstützt wird. |
 | [Forge 110328](https://forge.typo3.org/issues/110328) und [Gerrit 95042](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95042) | TYPO3 v15. | Patch Set 1; `[WIP]`; CI `+1`; keine ungelösten Kommentare. | Nein | Beschränkt auswählbare Translation Parents, um doppelte oder strukturell ungültige Zuordnungen zu verhindern. Der Patch ist kein implementierter Fix. |
-| [Forge 110330](https://forge.typo3.org/issues/110330) und [Gerrit 95043](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95043) | TYPO3 v15. | Patch Set 1; `[WIP]`; CI `+1`; keine ungelösten Kommentare. | Nein | Verbirgt Connected Mode, wenn die Quelle keine Default-Language-Beziehung herstellen kann. Eine Free-Mode-Quelle kann die fehlende Verbindung nicht erzeugen. |
+| [Forge 110330](https://forge.typo3.org/issues/110330) und [Gerrit 95043](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95043) | TYPO3 v15. | Patch Set 1; `[WIP]`; CI `+1`; keine ungelösten Kommentare. | **Ja** | Verbirgt Connected Mode, wenn die Quelle keine Default-Language-Beziehung herstellen kann. Eine Free-Mode-Quelle kann die fehlende Verbindung nicht erzeugen. Das aktuelle Patch Set muss vor weiteren Reviews rebased werden. |
 
 ### Review-Nacharbeit erforderlich
 
@@ -474,7 +473,7 @@ Derzeit erfüllt kein Patch alle Kriterien. Gerrit 92777 besitzt positive Review
 |---|---|---|---|
 | [dbdoctor PR 98](https://github.com/lolli42/dbdoctor/pull/98) | Offen; GitHub meldet den aktuellen Stand als nicht mergefähig und `dirty`. | **Ja** | Repariert `l10n_state`, wenn Synchronisierungsmetadaten gespeicherten übersetzten Werten widersprechen. Dies ist kein gemergtes Core-Verhalten. |
 | [dbdoctor PR 171](https://github.com/lolli42/dbdoctor/pull/171) | Offen mit `[WIP]`; GitHub meldet den aktuellen Stand als konfliktfrei und mergefähig. | Nein | Erkennt verwaiste Übersetzungen aus historischen Kopiervorgängen. Dies ist Diagnose- und Reparaturwerkzeug, kein gemergter Core-Fix und kein neues Übersetzungsmodell. |
-| Sichtbarkeit von Language All in jeder Backend-Sprache | Im geprüften Meeting vom 14.08.2026 vorgeschlagen; es ist kein Gerrit-Change registriert. | Nicht anwendbar | Würde jeden bestehenden Datensatz mit `sys_language_uid = -1` in jeder Sprachspalte an seiner wirksamen Sortierposition anzeigen. Dies ist eine klar abgegrenzte vorbereitende Usability-Arbeit, die die heutige Language-All-Semantik beibehält und kein zukünftiges Strukturmodell bestimmt. |
+| [Forge 110497](https://forge.typo3.org/issues/110497) und [Forge 110498](https://forge.typo3.org/issues/110498) | Beide Issues sind neu; das offizielle Feld für die Zuordnung nennt Tymoteusz Motylewski, und es ist kein Gerrit-Fix registriert. | Nicht anwendbar | Beide melden, dass neue Inline- oder File-Reference-Child-Records nicht verbundener Datensätze einer Nicht-Default-Sprache die Sprache `0` erhalten, wenn keine explizite Child-Sprache den DataHandler erreicht. Eine gemeinsame Ursache oder Lösung ist noch nicht belegt. |
 | Untersuchung der strukturellen Ebene und der Editing Language | Eine Produktbeschreibung existiert; ein fertiggestellter Prototyp ist nicht belegt. | Nicht anwendbar | Eine Skizze, ein Click Dummy oder ein Experiment als Extension würde den redaktionellen Nutzen und strukturelle Annahmen vor einer Architekturentscheidung prüfen. |
 
 <!-- Source Topic: KnowledgeSystem/Knowledge/topics/critical-alignment.de.md -->
@@ -561,7 +560,7 @@ Dies ist die aus heutiger Sicht sinnvollste Abfolge von Aktivitäten der Initiat
 
 1. **Evidenzbasis aktuell halten.** Reproduzierbare Redaktions- und Projekt-Use-Cases ergänzen, insbesondere wenn sich Sprache, Land, Struktur und Ausgabeabsicht unterscheiden.
 2. **Gezielte Charakterisierung abschließen.** Das `-1`-Inventar prüfen, jedes valide Verhalten einem Test zuordnen und bekannte Lücken in Workspaces und DataHandler schließen.
-3. **Klar abgegrenzte Korrekturen abschließen.** Die aufgegebenen überlappenden Changes 92585 und 94917 als ersetzte Historie erhalten und auf ihrem gemergten Ersatz für TYPO3 v15 und TYPO3 14.3 aufbauen, Integritäts-Patches für Kopieren und Verschieben voranbringen, die Entwürfe zu Parent Selector und Wizard validieren und den fehlschlagenden Patch zur Strict-Fallback-Regression korrigieren.
+3. **Klar abgegrenzte Korrekturen abschließen.** Den WIP-Change 95475 zur Language-All-Vergleichsansicht reviewen, die aufgegebenen überlappenden Changes 92585 und 94917 als ersetzte Historie erhalten und auf ihrem gemergten Ersatz für TYPO3 v15 und TYPO3 14.3 aufbauen, Integritäts-Patches für Kopieren und Verschieben voranbringen, die Entwürfe zu Parent Selector und Wizard validieren und den fehlschlagenden Patch zur Strict-Fallback-Regression korrigieren.
 4. **Produktverhalten vor der Speicherung prototypisch untersuchen.** Editing Language, einen Arbeitsablauf ohne Moduswahl im Modul „Layout“, direktes Anlegen in einer Zielsprache, lokale strukturelle Ergänzungen und explizite Abwesenheit anhand realistischer redaktioneller Abläufe prüfen.
 5. **Die aktuelle strukturelle Präferenz gegenüber ihrem Gegenmodell validieren.** Dieselben Akzeptanzfälle für die gemeinsame verborgene Struktur, vollständige Language-Layer-Shadows, Sparse Records und hybride Ansätze verwenden. Vereinfachungen von Code und Laufzeit gemeinsam mit Datensatzwachstum, Informationsdichte im Modul „Layout“, Workspaces, Referenzen, Migration und Betriebskosten messen, statt die Datenbankgröße allein als entscheidend zu behandeln.
 6. **Parität der ersten Stufe definieren und charakterisieren.** Das Flag für alle Ziele, die Zielanlage, die vollständige erzwungene Feldmenge, Quell- und Zielidentität, Konflikte und jeden Übergang spezifizieren. Zunächst nachweisen, dass damit die aktuelle `-1`-Ausgabe reproduziert wird, und anschließend das eigenständig zu entscheidende Multi-Select sowie andere granulare Erweiterungen am selben Prozess bewerten.
@@ -571,7 +570,7 @@ Dies ist die aus heutiger Sicht sinnvollste Abfolge von Aktivitäten der Initiat
 
 ## Evidenzbasis und Pflege
 
-Diese Rekonstruktion berücksichtigt sämtliche Sitzungsprotokolle des Repositorys bis einschließlich 31.07.2026 und alle verfügbaren Transkripte bis einschließlich 31.07.2026. Ein bereitgestellter Snapshot des Initiative-Channels wurde ergänzend auf dauerhafte Use Cases, Implementierungsreferenzen und nicht protokollierte Lücken geprüft; die Stichtage für Protokolle und Transkripte werden dadurch nicht fortgeschrieben. Die aktuellen Gerrit-, Forge- und verlinkten Statusangaben unterstützender Patches in den Abschnitten zu Ergebnissen und laufender Arbeit wurden als vollständiger Satz am 21.08.2026 geprüft; Gerrit 94917 wurde zusätzlich am 27.08.2026 als aufgegeben verifiziert. Die [T3DD26-Präsentation](https://content.eric-harrer.de/t3dd26/) stellt das in dieser Rekonstruktion verwendete konzeptionelle Modell dar.
+Diese Rekonstruktion berücksichtigt alle von Menschen geprüften Sitzungsprotokolle und Transkripte des Repositorys bis einschließlich 14.08.2026. Ein bereitgestellter Snapshot des Initiative-Channels wurde ergänzend auf dauerhafte Use Cases, Implementierungsreferenzen und nicht protokollierte Lücken geprüft; die Stichtage für Protokolle und Transkripte werden dadurch nicht fortgeschrieben. Die aktuellen Gerrit-, Forge- und verlinkten Statusangaben unterstützender Patches in den Abschnitten zu Ergebnissen und laufender Arbeit wurden als vollständiger Satz am 28.08.2026 geprüft. Die [T3DD26-Präsentation](https://content.eric-harrer.de/t3dd26/) stellt das in dieser Rekonstruktion verwendete konzeptionelle Modell dar.
 
 Zentrale Primärquellen sind:
 

@@ -1,9 +1,9 @@
 ---
 title: "Translation Handling Initiative - Current State"
-last_updated: "2026-08-27"
+last_updated: "2026-08-28"
 weekly_minutes_included_through: "2026-08-14"
 transcripts_included_through: "2026-08-14"
-external_status_checked_through: "2026-08-21"
+external_status_checked_through: "2026-08-28"
 ---
 
 <!--
@@ -16,7 +16,7 @@ Knowledge metadata. Do not edit it directly.
 
 [Deutsche Fassung](https://notes.typo3.org/s/7bbwd73t2h) · [Meeting minutes overview](https://notes.typo3.org/s/f3ae8fZSD) · [How to maintain this document](https://github.com/t3thi/Documentation/blob/main/MeetingMinutes/current-state-maintenance.md)
 
-**Status of this edition:** The content was last updated on 27 August 2026. It includes reviewed meeting minutes and transcripts through 14 August 2026. The complete external state of TYPO3 Core, Gerrit and Forge was last checked on 21 August 2026. Unless an entry names a later individual verification date, patch and review statuses should be read as of that date.
+**Status of this edition:** The content was last updated on 28 August 2026. It includes reviewed meeting minutes and transcripts through 14 August 2026. The complete external state of TYPO3 Core, Gerrit and Forge was last checked on 28 August 2026. Unless an entry names a later individual verification date, patch and review statuses should be read as of that date.
 
 This is the canonical description of the Translation Handling Initiative's current understanding, vision and work. It explains why the initiative works on translation handling, what its research has established, which direction it currently sees, which approaches it is investigating and which decisions remain open.
 
@@ -407,15 +407,13 @@ The [initiative test extension](https://github.com/t3thi/translation-handling) a
 
 The repeated pattern is useful: a real failure is reproduced, the responsible contract is identified, tests define the boundary and the fix remains narrow. This is the initiative's preferred form of incremental improvement.
 
-## Current work as of 2026-08-21
+## Current work as of 2026-08-28
 
-This section is based on the complete external-status review of 2026-08-21.
-Gerrit 94917 carries the explicitly dated later status update verified on
-2026-08-27; all other rows retain the general cutoff above.
+This section is based on the complete external-status review of 2026-08-28.
 
 Each open Core patch has one primary status entry according to its current official state. **WIP** takes precedence over review findings. **Review action required** means that the current patch set has at least one unresolved comment, a current negative review or verification, or a merge conflict. **Review-positive and mergeable** is the final patch category used here; it requires at least one current Code-Review `+1`, no current negative vote, no unresolved comment and a mergeable current revision. **Awaiting review** covers open patches without those blockers but without a current positive Code-Review. **Rejected or superseded** records changes that are formally abandoned when the reason remains relevant.
 
-For open Gerrit changes, **Merge conflict: Yes** means that Gerrit reported the current revision as `mergeable: false` against its target branch on 2026-08-21. This can change when the target branch or patch set changes. **No** means `mergeable: true`; it does not replace review or submit approval.
+For open Gerrit changes, **Merge conflict: Yes** means that Gerrit reported the current revision as `mergeable: false` against its target branch on 2026-08-28. This can change when the target branch or patch set changes. **No** means `mergeable: true`; it does not replace review or submit approval.
 
 ### Work in progress (WIP)
 
@@ -423,11 +421,12 @@ For open Gerrit changes, **Merge conflict: Yes** means that Gerrit reported the 
 |---|---|---|---|---|
 | [Gerrit 84338](https://review.typo3.org/c/Packages/TYPO3.CMS/+/84338) | TYPO3 v15. | Patch set 6; WIP; CI `+1`; 4 unresolved comments. | **Yes** | Proposes using the first Site Language ID as the Default Language instead of enforcing `0`. Broad Core-wide assumptions remain unresolved, and the initiative later moved its immediate priority away from this route. |
 | [Gerrit 92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267) | TYPO3 v15. | Patch set 6; WIP; CI `+1`; no unresolved comments. | No | Inventories persisted `Language All` assumptions. It changes no executable behavior and is not a characterization-test suite or replacement implementation. |
+| [Forge 110510](https://forge.typo3.org/issues/110510) and [Gerrit 95475](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95475) | TYPO3 v15. | Patch set 1; WIP; CI `+1`; no unresolved comments. | No | Shows each existing Language-All record in every language column while retaining current storage. The change is a bounded backend improvement, remains unmerged and does not select a future structure model. |
 | [Gerrit 92859](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92859) | TYPO3 v15. | Patch set 6; WIP; CI `-1`; 6 unresolved comments. | **Yes** | Proposes language- and Workspace-aware MM tables. Its uniform relation model is relevant, but the use of live Default-Language UIDs is an incremental design, not a decision for future Structural Identity. |
 | [Gerrit 93289](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93289) | TYPO3 v15. | Patch set 1; WIP; CI `+1`; no unresolved comments. | No | Adds Workspace coverage for Language-All paste behavior and fills a characterization gap before semantic changes. |
 | [Gerrit 93819](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93819) | TYPO3 v15; TYPO3 14.3 is named, but no backport change exists yet. | Patch set 2; `[WIP]`; CI `+1`; no unresolved comments. | **Yes** | Adds move guards for Free-Mode content while current Free Mode remains supported. |
 | [Forge 110328](https://forge.typo3.org/issues/110328) and [Gerrit 95042](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95042) | TYPO3 v15. | Patch set 1; `[WIP]`; CI `+1`; no unresolved comments. | No | Restricts selectable translation parents to prevent duplicate or structurally invalid assignments. The patch is not an implemented fix. |
-| [Forge 110330](https://forge.typo3.org/issues/110330) and [Gerrit 95043](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95043) | TYPO3 v15. | Patch set 1; `[WIP]`; CI `+1`; no unresolved comments. | No | Hides Connected Mode when the source cannot establish a Default-Language relation. A Free-Mode source cannot create the missing connection. |
+| [Forge 110330](https://forge.typo3.org/issues/110330) and [Gerrit 95043](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95043) | TYPO3 v15. | Patch set 1; `[WIP]`; CI `+1`; no unresolved comments. | **Yes** | Hides Connected Mode when the source cannot establish a Default-Language relation. A Free-Mode source cannot create the missing connection. The current revision must be rebased before review can progress. |
 
 ### Review action required
 
@@ -463,7 +462,7 @@ No current patch meets all criteria. Gerrit 92777 has positive reviews but an un
 |---|---|---|---|
 | [dbdoctor PR 98](https://github.com/lolli42/dbdoctor/pull/98) | Open; GitHub reports the current head as not mergeable and `dirty`. | **Yes** | Repairs `l10n_state` when synchronized metadata disagrees with stored translated values. It is not merged Core behavior. |
 | [dbdoctor PR 171](https://github.com/lolli42/dbdoctor/pull/171) | Open `[WIP]`; GitHub reports the current head as clean and mergeable. | No | Detects orphaned translations left by historical copy operations. It is diagnostic and repair tooling, not a merged Core fix or a new translation model. |
-| Language-All visibility in every backend language | Proposed in the reviewed meeting on 2026-08-14; no Gerrit change is registered. | Not applicable | Would show each existing `sys_language_uid = -1` record in every language column at its effective sorting position. This is bounded preparatory usability work that retains current Language-All semantics and does not select a future structure model. |
+| [Forge 110497](https://forge.typo3.org/issues/110497) and [Forge 110498](https://forge.typo3.org/issues/110498) | Both issues are New; the official assignee field names Tymoteusz Motylewski, and no Gerrit fix is registered. | Not applicable | Both report new inline or file-reference children of unconnected non-default-language records receiving language `0` when no explicit child language reaches DataHandler. A shared root cause or solution is not yet established. |
 | Structural-layer and Editing-Language exploration | Product framing exists; no completed prototype is evidenced. | Not applicable | A sketch, click dummy or extension experiment would test editor value and structural assumptions before an architecture decision. |
 
 <!-- Source Topic: KnowledgeSystem/Knowledge/topics/critical-alignment.md -->
@@ -549,7 +548,7 @@ These are the initiative's current best sequence of activities, not a committed 
 
 1. **Keep the evidence base current.** Add reproducible editor and project use cases, especially where language, country, structure and output intent differ.
 2. **Complete focused characterization.** Review the `-1` inventory, map each valid behavior to a test and close known Workspace and DataHandler gaps.
-3. **Finish bounded fixes.** Retain the abandoned overlapping changes 92585 and 94917 as superseded history and build on their merged replacement for TYPO3 v15 and TYPO3 14.3, progress copy/move integrity patches, validate the parent-selector and wizard drafts and resolve the failing strict-fallback regression patch.
+3. **Finish bounded fixes.** Review the WIP Language-All comparison change 95475, retain the abandoned overlapping changes 92585 and 94917 as superseded history and build on their merged replacement for TYPO3 v15 and TYPO3 14.3, progress copy/move integrity patches, validate the parent-selector and wizard drafts and resolve the failing strict-fallback regression patch.
 4. **Prototype product behavior before storage.** Test Editing Language, a mode-free Layout workflow, direct target-language creation, local structural additions and explicit absence with realistic editor workflows.
 5. **Validate the current structural preference against its countermodel.** Use the same acceptance cases for the shared hidden structure, complete per-language shadows, sparse records and any hybrid. Measure code and runtime simplification together with record growth, Layout density, Workspaces, references, migration and operational costs rather than treating database size alone as decisive.
 6. **Define and characterize first-stage parity.** Specify the all-target record flag, target creation, the full enforced field set, source and target identity, conflicts and every transition. Prove that it reproduces current `-1` output, then evaluate the separately decidable multi-select and other granular extensions against the same process.
@@ -559,7 +558,7 @@ These are the initiative's current best sequence of activities, not a committed 
 
 ## Evidence basis and maintenance
 
-This reconstruction includes all repository meeting minutes through 2026-07-31 and all available transcripts through 2026-07-31. A supplied initiative-channel snapshot was reviewed as a supplemental source for durable use cases, implementation references and unminuted gaps; it does not advance the minute or transcript cutoffs. Current Gerrit, Forge and linked supporting-patch states in the achievement and work sections were checked as a complete set on 2026-08-21; Gerrit 94917 was additionally reverified as abandoned on 2026-08-27. The [T3DD26 presentation](https://content.eric-harrer.de/t3dd26/) presents the conceptual model used in this reconstruction.
+This reconstruction includes all human-reviewed repository meeting minutes and transcripts through 2026-08-14. A supplied initiative-channel snapshot was reviewed as a supplemental source for durable use cases, implementation references and unminuted gaps; it does not advance the minute or transcript cutoffs. Current Gerrit, Forge and linked supporting-patch states in the achievement and work sections were checked as a complete set on 2026-08-28. The [T3DD26 presentation](https://content.eric-harrer.de/t3dd26/) presents the conceptual model used in this reconstruction.
 
 Key primary evidence anchors are:
 

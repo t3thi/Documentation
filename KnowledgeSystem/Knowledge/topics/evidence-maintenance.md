@@ -2,7 +2,7 @@
 id: topic:evidence-maintenance
 title: "Next Steps, Evidence and Maintenance"
 language: en
-updated: "2026-08-27"
+updated: "2026-08-28"
 knowledge:
   - K-000005
   - K-000006
@@ -36,7 +36,7 @@ These are the initiative's current best sequence of activities, not a committed 
 
 1. **Keep the evidence base current.** Add reproducible editor and project use cases, especially where language, country, structure and output intent differ.
 2. **Complete focused characterization.** Review the `-1` inventory, map each valid behavior to a test and close known Workspace and DataHandler gaps.
-3. **Finish bounded fixes.** Retain the abandoned overlapping changes 92585 and 94917 as superseded history and build on their merged replacement for TYPO3 v15 and TYPO3 14.3, progress copy/move integrity patches, validate the parent-selector and wizard drafts and resolve the failing strict-fallback regression patch.
+3. **Finish bounded fixes.** Review the WIP Language-All comparison change 95475, retain the abandoned overlapping changes 92585 and 94917 as superseded history and build on their merged replacement for TYPO3 v15 and TYPO3 14.3, progress copy/move integrity patches, validate the parent-selector and wizard drafts and resolve the failing strict-fallback regression patch.
 4. **Prototype product behavior before storage.** Test Editing Language, a mode-free Layout workflow, direct target-language creation, local structural additions and explicit absence with realistic editor workflows.
 5. **Validate the current structural preference against its countermodel.** Use the same acceptance cases for the shared hidden structure, complete per-language shadows, sparse records and any hybrid. Measure code and runtime simplification together with record growth, Layout density, Workspaces, references, migration and operational costs rather than treating database size alone as decisive.
 6. **Define and characterize first-stage parity.** Specify the all-target record flag, target creation, the full enforced field set, source and target identity, conflicts and every transition. Prove that it reproduces current `-1` output, then evaluate the separately decidable multi-select and other granular extensions against the same process.
@@ -46,7 +46,7 @@ These are the initiative's current best sequence of activities, not a committed 
 
 ## Evidence basis and maintenance
 
-This reconstruction includes all repository meeting minutes through 2026-07-31 and all available transcripts through 2026-07-31. A supplied initiative-channel snapshot was reviewed as a supplemental source for durable use cases, implementation references and unminuted gaps; it does not advance the minute or transcript cutoffs. Current Gerrit, Forge and linked supporting-patch states in the achievement and work sections were checked as a complete set on 2026-08-21; Gerrit 94917 was additionally reverified as abandoned on 2026-08-27. The [T3DD26 presentation](https://content.eric-harrer.de/t3dd26/) presents the conceptual model used in this reconstruction.
+This reconstruction includes all human-reviewed repository meeting minutes and transcripts through 2026-08-14. A supplied initiative-channel snapshot was reviewed as a supplemental source for durable use cases, implementation references and unminuted gaps; it does not advance the minute or transcript cutoffs. Current Gerrit, Forge and linked supporting-patch states in the achievement and work sections were checked as a complete set on 2026-08-28. The [T3DD26 presentation](https://content.eric-harrer.de/t3dd26/) presents the conceptual model used in this reconstruction.
 
 Key primary evidence anchors are:
 
