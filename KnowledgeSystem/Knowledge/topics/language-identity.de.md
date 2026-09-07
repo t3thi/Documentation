@@ -2,19 +2,20 @@
 id: topic:language-identity
 title: "Language Identity"
 language: de
-updated: "2026-08-27"
+updated: "2026-09-04"
 knowledge:
   - K-000001
   - K-000002
   - K-000004
   - K-000005
   - K-000017
+  - K-000029
 history: []
 decisions: []
 translation_of: topic:language-identity
-source_updated: "2026-08-27"
+source_updated: "2026-09-04"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:b4ea5f23164b587fed11ad231c2ebed522813f0d2671e801d7a87ce65d07f09b"
+source_digest: "sha256:b768b78cef0a506a86a7f386f59cf4d78b07f536cb64f60cd3dbc0f7b15ad2cb"
 ---
 
 # Language Identity
@@ -44,6 +45,12 @@ Bei der Erklärung der Vision müssen die Verantwortlichkeiten in dieser Reihenf
   Rolle der Default Language einer Site und als heutige strukturelle Führung.
   Der zukünftige Identitätswert darf ausschließlich eine reale menschliche
   Sprache oder Sprachvariante identifizieren.
+- Synthetische Anzeige- und Filterauswahlen im Backend dürfen nicht als
+  fiktive Sprachidentität modelliert werden. Wenn ein Selektor seinen
+  Geltungsbereich durch konkrete Sprach-IDs ausdrücken kann, einschließlich
+  einer expliziten Auswahl aller verfügbaren Overlays, sollte er dafür `-1`
+  nicht wiederverwenden. Vor der Entfernung dieses Platzhalters muss jeder
+  heutige Core-Aufrufpfad charakterisiert werden.
 - Semantische Identität darf nicht davon abhängen, ob eine Locale auf dem Applikationsserver installiert ist.
 - Semantische Identität muss redaktionelle Sprachvarianten jenseits einer
   herkömmlichen Locale mit Sprach- und Landesbezug abdecken, einschließlich Varianten wie

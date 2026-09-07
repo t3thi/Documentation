@@ -379,3 +379,8 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
     - <sup>TYPO3 Upgrade Experiences, Language-All Visualization Prototype, Sorting and Permission Boundaries, Free-Mode Migration, and TYPO3 v14.3.6 Child-Language Regressions</sup>
 - [2026-08-28, 12:01 to 13:02 CET](https://notes.typo3.org/s/o3ARjS6H9N)
     - <sup>Translation Handling Awareness, Current State Usage, Language-All Comparison View Patch, Free-Mode Sorting Boundaries, and Inline Child Language Inheritance</sup>
+
+### September
+
+- [2026-09-04, 12:01 to 13:19 CEST](https://notes.typo3.org/s/FsawsB3Y2K)
+    - <sup>Knowledge-System Continuity, Possible Initiative Team Role, Semantic Classification of Language-All Marker Usages, Gerrit Patch Comparison, Recycler Language Selector Consistency, XML Sitemap Handling, and LinkValidator Runtime Verification</sup>

@@ -2,7 +2,7 @@
 id: topic:current-core-work
 title: "Aktuelle Core-Arbeit"
 language: de
-updated: "2026-08-28"
+updated: "2026-09-04"
 knowledge:
   - K-000013
   - K-000015
@@ -11,13 +11,14 @@ knowledge:
   - K-000023
   - K-000027
   - K-000028
+  - K-000029
 history:
   - K-000026
 decisions: []
 translation_of: topic:current-core-work
-source_updated: "2026-08-28"
+source_updated: "2026-09-04"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:a1740fe03350ba94a277626b5bb430c013f09f3024d633c60d4f9d8b8d0e7548"
+source_digest: "sha256:3bbc7a02d986363b5e7ab2eca7913e2937b619e8ad5edbf94cc5e57f25ceff11"
 ---
 
 # Aktuelle Core-Arbeit
@@ -46,6 +47,35 @@ Die Initiative und damit verbundene Core-Arbeiten haben bereits klar abgegrenzte
 Die [Test-Extension der Initiative](https://github.com/t3thi/translation-handling) stellt außerdem reproduzierbare Szenarien für Übersetzungen, Fallback und Beziehungen bereit. Sie wurde 2025 wiederbelebt und um gezielte IRRE-Fälle erweitert. Sie ist Forschungsinfrastruktur und kein Beleg für geändertes Core-Verhalten.
 
 Das wiederkehrende Muster ist hilfreich: Ein realer Fehler wird reproduziert, der verantwortliche Vertrag wird identifiziert, Tests definieren die Grenze und die Korrektur bleibt eng begrenzt. Dies ist die von der Initiative bevorzugte Form der inkrementellen Verbesserung.
+
+## Gezielte Language-All-Prüfung vom 04.09.2026
+
+Eine gezielte Folgeprüfung betrachtete die beiden WIP-Changes zu
+Language-All-Markern. [Gerrit
+95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619), Patch Set 2,
+führt einen benannten Marker für gespeicherte und synthetische Vorkommen ein,
+ohne das Verhalten zu ändern. [Gerrit
+92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267), Patch Set 6,
+kennzeichnet Annahmen über gespeicherte Language-All-Datensätze und hatte bei
+der Prüfung am 04.09.2026 einen ungelösten Kommentar. Beide Changes waren zu
+diesem Zeitpunkt `NEW`, WIP, CI-positiv und mergefähig.
+
+Die Prüfung der Initiative unterscheidet diese Semantiken: Ein tatsächlich in
+einem Datensatz gespeicherter Wert steht für die Language-All-Auswahl der
+Redaktion; ein nur für einen Anzeige- oder Filterzustand des Backends erzeugter
+Wert ist synthetisch. Die Prüfung von Core `main` beim Commit
+`028b93bddf49a950eb3a58c4606b5e06145fb567` bestätigt aktive Abhängigkeiten in
+Aufrufpfaden von Layout, Routing, Workspaces, Recycler, Sitemap und
+LinkValidator. Sie belegt nicht, dass all diese Pfade dieselbe Darstellung
+benötigen. Die unterstützte Zielrichtung ist daher, synthetische
+Auswahl-Platzhalter dort durch explizite konkrete Sprachauswahlen zu ersetzen,
+wo eine Charakterisierung dies als sicher bestätigt, während das
+datensatzbezogene Verhalten bis zu seinem Synchronisierungsersatz erhalten
+bleibt.
+
+Diese gezielte Prüfung ersetzt nicht den vollständigen externen Statusstand im
+folgenden Abschnitt. Sie aktualisiert ausschließlich Gerrit 92267 und 95619
+sowie die für ihre semantische Einordnung untersuchten Code-Pfade.
 
 ## Laufende Arbeit mit Stand vom 28.08.2026
 

@@ -173,6 +173,11 @@ The responsibilities must be considered in this order when explaining the vision
   Language-All synchronization intent, and `0` as both the Site-default role
   and today's structural lead. The future identity value may identify only a
   real human language or variant.
+- Synthetic backend display and filter selections must not be modelled as a
+  fictitious language identity. Where a selector can express its scope through
+  concrete language IDs, including an explicit selection of all available
+  overlays, it should do so without reusing `-1`. Each current Core call path
+  still needs characterization before this sentinel can be removed.
 - Semantic identity must not depend on a locale being installed on the application server.
 - Semantic identity must cover editorial language variants beyond a
   conventional language-and-region locale, including variants such as Easy
@@ -223,6 +228,11 @@ select their implementation.
 - Migration and repair must reconcile `l10n_state` with stored values and relations without overwriting intentional manual differences.
 - Replacing `l10n_mode=exclude` must preserve its no-opt-out behavior for affected translations and provide explicit migration and compatibility rules.
 - Materialized target records need their own identity and lifecycle metadata even when every behavior-relevant source value remains enforced.
+- During migration, an actual `-1` in a record's language field remains the
+  editor's Language-All choice and therefore record-wide synchronization
+  intent. Synthetic backend selection states must be represented separately,
+  preferably through the explicit set of selected concrete languages; this
+  direction still requires call-path-specific verification.
 
 **Vision:** "Maintain once for several languages" should be represented as synchronization intent applied to concrete language variants, not as a fictitious language identity.
 
@@ -407,6 +417,32 @@ The [initiative test extension](https://github.com/t3thi/translation-handling) a
 
 The repeated pattern is useful: a real failure is reproduced, the responsible contract is identified, tests define the boundary and the fix remains narrow. This is the initiative's preferred form of incremental improvement.
 
+## Targeted Language-All review on 2026-09-04
+
+A targeted follow-up reviewed the two WIP changes concerned with Language-All
+markers. [Gerrit 95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619),
+patch set 2, introduces one named marker for persisted and synthetic
+occurrences without changing behavior. [Gerrit
+92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267), patch set 6,
+marks assumptions about persisted Language-All records and had one unresolved
+comment when checked on 2026-09-04. Both changes were `NEW`, WIP, CI-positive
+and mergeable at that check.
+
+The initiative's review distinguishes those semantics: a value actually
+stored in a record represents the editor's Language-All choice, while a value
+created only to represent a backend display or filter state is synthetic. The
+inspection of Core `main` at commit
+`028b93bddf49a950eb3a58c4606b5e06145fb567` confirms active dependencies in
+Layout, routing, Workspaces, Recycler, sitemap and LinkValidator paths. It does
+not show that all of those paths need the same representation. The supported
+direction is therefore to replace synthetic selection sentinels with explicit
+concrete language selections where characterization proves this safe, while
+preserving record-level behavior until its synchronization replacement exists.
+
+This targeted check does not replace the complete external-status snapshot
+below. It updates only Gerrit 92267 and 95619 and the code paths examined for
+their semantic classification.
+
 ## Current work as of 2026-08-28
 
 This section is based on the complete external-status review of 2026-08-28.
@@ -547,7 +583,12 @@ For any new proposal, the initiative asks:
 These are the initiative's current best sequence of activities, not a committed TYPO3 release roadmap.
 
 1. **Keep the evidence base current.** Add reproducible editor and project use cases, especially where language, country, structure and output intent differ.
-2. **Complete focused characterization.** Review the `-1` inventory, map each valid behavior to a test and close known Workspace and DataHandler gaps.
+2. **Complete focused characterization.** Review the `-1` inventory, classify
+   every occurrence as a persisted record value, a synthetic backend selection
+   or another fallback contract, and map every valid behavior to a test. In
+   particular, verify which TYPO3 v15 selectors can express an all-overlay
+   selection through concrete language IDs before removing synthetic
+   sentinels; also close known Workspace and DataHandler gaps.
 3. **Finish bounded fixes.** Review the WIP Language-All comparison change 95475, retain the abandoned overlapping changes 92585 and 94917 as superseded history and build on their merged replacement for TYPO3 v15 and TYPO3 14.3, progress copy/move integrity patches, validate the parent-selector and wizard drafts and resolve the failing strict-fallback regression patch.
 4. **Prototype product behavior before storage.** Test Editing Language, a mode-free Layout workflow, direct target-language creation, local structural additions and explicit absence with realistic editor workflows.
 5. **Validate the current structural preference against its countermodel.** Use the same acceptance cases for the shared hidden structure, complete per-language shadows, sparse records and any hybrid. Measure code and runtime simplification together with record growth, Layout density, Workspaces, references, migration and operational costs rather than treating database size alone as decisive.
@@ -566,7 +607,7 @@ Key primary evidence anchors are:
 |---|---|
 | Community feedback and editor-facing mode simplification | [T3DD22 and subsequent feedback matrix](https://docs.google.com/spreadsheets/d/1Y8KnuYxMoXyVaZzVHENBp_1fg2M-JGxHog6K3T9qn_Q/edit?gid=0#gid=0), [2024-03-22](https://notes.typo3.org/s/kqdwFxW1m), [2025-07-11](https://notes.typo3.org/s/k11hyaA4N), [2025-10-24](https://notes.typo3.org/s/2Ysd3gDdn) |
 | Language identity and BCP 47 | [2024-01-19](https://notes.typo3.org/s/sEONb4kd6), [2025-07-25](https://notes.typo3.org/s/dtw4v9T7S), [2026-07-31](https://notes.typo3.org/s/z5ICno5pK2) |
-| `-1` replacement, full-record parity and synchronization lifecycle | [2024-06-28](https://notes.typo3.org/s/GQwWxdUKO), [2025-01-31](https://notes.typo3.org/s/kEaZn6jJF), [2025-09-26](https://notes.typo3.org/s/1RnTSuBsq), [2025-11-28](https://notes.typo3.org/s/Sxl-kkYjW), [2026-06-11](https://notes.typo3.org/s/1-J3KsT7VU) |
+| `-1` replacement, full-record parity and synchronization lifecycle | [2024-06-28](https://notes.typo3.org/s/GQwWxdUKO), [2025-01-31](https://notes.typo3.org/s/kEaZn6jJF), [2025-09-26](https://notes.typo3.org/s/1RnTSuBsq), [2025-11-28](https://notes.typo3.org/s/Sxl-kkYjW), [2026-06-11](https://notes.typo3.org/s/1-J3KsT7VU), [2026-09-04](https://notes.typo3.org/s/FsawsB3Y2K) |
 | Current field-synchronization modes and possible consolidation | [2024-04-12](https://notes.typo3.org/s/gjl-sog92), [2024-04-26](https://notes.typo3.org/s/D32XRXoCk), [2024-10-18](https://notes.typo3.org/s/8vI0MnUbs), [2025-08-22](https://notes.typo3.org/s/gL97CaQ5M), [2026-05-08](https://notes.typo3.org/s/-0p3kqzMll) |
 | `l10n_state` consistency and historical copy damage | [2024-04-26](https://notes.typo3.org/s/D32XRXoCk), [2026-02-06](https://notes.typo3.org/s/D8oadqoN-7#) |
 | Mostly connected structures and local exceptions | [2024-03-22](https://notes.typo3.org/s/kqdwFxW1m), [2026-05-08](https://notes.typo3.org/s/-0p3kqzMll), [2026-06-26](https://notes.typo3.org/s/-RP1PwIafA), [2026-07-10](https://notes.typo3.org/s/ccbVIOYfEy) |

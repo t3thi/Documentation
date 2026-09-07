@@ -2,7 +2,7 @@
 id: topic:current-core-work
 title: "Current Core Work"
 language: en
-updated: "2026-08-28"
+updated: "2026-09-04"
 knowledge:
   - K-000013
   - K-000015
@@ -11,6 +11,7 @@ knowledge:
   - K-000023
   - K-000027
   - K-000028
+  - K-000029
 history:
   - K-000026
 decisions: []
@@ -42,6 +43,32 @@ The initiative and related Core work have already delivered bounded improvements
 The [initiative test extension](https://github.com/t3thi/translation-handling) also provides reproducible translation, fallback and relation scenarios. It was revived and extended with focused IRRE cases in 2025. It is research infrastructure, not evidence of changed Core behavior.
 
 The repeated pattern is useful: a real failure is reproduced, the responsible contract is identified, tests define the boundary and the fix remains narrow. This is the initiative's preferred form of incremental improvement.
+
+## Targeted Language-All review on 2026-09-04
+
+A targeted follow-up reviewed the two WIP changes concerned with Language-All
+markers. [Gerrit 95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619),
+patch set 2, introduces one named marker for persisted and synthetic
+occurrences without changing behavior. [Gerrit
+92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267), patch set 6,
+marks assumptions about persisted Language-All records and had one unresolved
+comment when checked on 2026-09-04. Both changes were `NEW`, WIP, CI-positive
+and mergeable at that check.
+
+The initiative's review distinguishes those semantics: a value actually
+stored in a record represents the editor's Language-All choice, while a value
+created only to represent a backend display or filter state is synthetic. The
+inspection of Core `main` at commit
+`028b93bddf49a950eb3a58c4606b5e06145fb567` confirms active dependencies in
+Layout, routing, Workspaces, Recycler, sitemap and LinkValidator paths. It does
+not show that all of those paths need the same representation. The supported
+direction is therefore to replace synthetic selection sentinels with explicit
+concrete language selections where characterization proves this safe, while
+preserving record-level behavior until its synchronization replacement exists.
+
+This targeted check does not replace the complete external-status snapshot
+below. It updates only Gerrit 92267 and 95619 and the code paths examined for
+their semantic classification.
 
 ## Current work as of 2026-08-28
 

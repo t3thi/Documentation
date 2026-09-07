@@ -176,6 +176,12 @@ Bei der Erklärung der Vision müssen die Verantwortlichkeiten in dieser Reihenf
   Rolle der Default Language einer Site und als heutige strukturelle Führung.
   Der zukünftige Identitätswert darf ausschließlich eine reale menschliche
   Sprache oder Sprachvariante identifizieren.
+- Synthetische Anzeige- und Filterauswahlen im Backend dürfen nicht als
+  fiktive Sprachidentität modelliert werden. Wenn ein Selektor seinen
+  Geltungsbereich durch konkrete Sprach-IDs ausdrücken kann, einschließlich
+  einer expliziten Auswahl aller verfügbaren Overlays, sollte er dafür `-1`
+  nicht wiederverwenden. Vor der Entfernung dieses Platzhalters muss jeder
+  heutige Core-Aufrufpfad charakterisiert werden.
 - Semantische Identität darf nicht davon abhängen, ob eine Locale auf dem Applikationsserver installiert ist.
 - Semantische Identität muss redaktionelle Sprachvarianten jenseits einer
   herkömmlichen Locale mit Sprach- und Landesbezug abdecken, einschließlich Varianten wie
@@ -228,6 +234,12 @@ nicht aus.
 - Migration und Reparatur müssen `l10n_state` mit gespeicherten Werten und Beziehungen abgleichen, ohne beabsichtigte manuelle Abweichungen zu überschreiben.
 - Ein Ersatz für `l10n_mode=exclude` muss dessen Verhalten ohne redaktionelle Abwahlmöglichkeit für betroffene Übersetzungen bewahren und explizite Migrations- und Kompatibilitätsregeln bereitstellen.
 - Materialisierte Zielrecords benötigen eigene Identitäts- und Lebenszyklusmetadaten, auch wenn jeder verhaltensrelevante Wert der Quelle erzwungen bleibt.
+- Während der Migration bleibt ein tatsächlich im Sprachfeld eines Datensatzes
+  gespeichertes `-1` die bewusste Language-All-Auswahl der Redaktion und damit
+  eine datensatzweite Synchronisierungsabsicht. Synthetische Auswahlzustände
+  des Backends müssen getrennt dargestellt werden, vorzugsweise durch die
+  explizite Menge ausgewählter konkreter Sprachen; diese Zielrichtung erfordert
+  weiterhin eine Prüfung jedes einzelnen Aufrufpfads.
 
 **Vision:** „Einmal für mehrere Sprachen pflegen“ sollte als Synchronization Intent für konkrete Sprachvarianten dargestellt werden, nicht als fiktive Sprachidentität.
 
@@ -417,6 +429,35 @@ Die [Test-Extension der Initiative](https://github.com/t3thi/translation-handlin
 
 Das wiederkehrende Muster ist hilfreich: Ein realer Fehler wird reproduziert, der verantwortliche Vertrag wird identifiziert, Tests definieren die Grenze und die Korrektur bleibt eng begrenzt. Dies ist die von der Initiative bevorzugte Form der inkrementellen Verbesserung.
 
+## Gezielte Language-All-Prüfung vom 04.09.2026
+
+Eine gezielte Folgeprüfung betrachtete die beiden WIP-Changes zu
+Language-All-Markern. [Gerrit
+95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619), Patch Set 2,
+führt einen benannten Marker für gespeicherte und synthetische Vorkommen ein,
+ohne das Verhalten zu ändern. [Gerrit
+92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267), Patch Set 6,
+kennzeichnet Annahmen über gespeicherte Language-All-Datensätze und hatte bei
+der Prüfung am 04.09.2026 einen ungelösten Kommentar. Beide Changes waren zu
+diesem Zeitpunkt `NEW`, WIP, CI-positiv und mergefähig.
+
+Die Prüfung der Initiative unterscheidet diese Semantiken: Ein tatsächlich in
+einem Datensatz gespeicherter Wert steht für die Language-All-Auswahl der
+Redaktion; ein nur für einen Anzeige- oder Filterzustand des Backends erzeugter
+Wert ist synthetisch. Die Prüfung von Core `main` beim Commit
+`028b93bddf49a950eb3a58c4606b5e06145fb567` bestätigt aktive Abhängigkeiten in
+Aufrufpfaden von Layout, Routing, Workspaces, Recycler, Sitemap und
+LinkValidator. Sie belegt nicht, dass all diese Pfade dieselbe Darstellung
+benötigen. Die unterstützte Zielrichtung ist daher, synthetische
+Auswahl-Platzhalter dort durch explizite konkrete Sprachauswahlen zu ersetzen,
+wo eine Charakterisierung dies als sicher bestätigt, während das
+datensatzbezogene Verhalten bis zu seinem Synchronisierungsersatz erhalten
+bleibt.
+
+Diese gezielte Prüfung ersetzt nicht den vollständigen externen Statusstand im
+folgenden Abschnitt. Sie aktualisiert ausschließlich Gerrit 92267 und 95619
+sowie die für ihre semantische Einordnung untersuchten Code-Pfade.
+
 ## Laufende Arbeit mit Stand vom 28.08.2026
 
 Dieser Abschnitt beruht auf der vollständigen externen Statusprüfung vom
@@ -559,7 +600,13 @@ Bei jedem neuen Vorschlag stellt die Initiative folgende Fragen:
 Dies ist die aus heutiger Sicht sinnvollste Abfolge von Aktivitäten der Initiative und keine verbindliche TYPO3-Release-Roadmap.
 
 1. **Evidenzbasis aktuell halten.** Reproduzierbare Redaktions- und Projekt-Use-Cases ergänzen, insbesondere wenn sich Sprache, Land, Struktur und Ausgabeabsicht unterscheiden.
-2. **Gezielte Charakterisierung abschließen.** Das `-1`-Inventar prüfen, jedes valide Verhalten einem Test zuordnen und bekannte Lücken in Workspaces und DataHandler schließen.
+2. **Gezielte Charakterisierung abschließen.** Das `-1`-Inventar prüfen,
+   jedes Vorkommen als gespeicherten Datensatzwert, synthetische
+   Backend-Auswahl oder weiteren Fallback-Vertrag einordnen und jedes valide
+   Verhalten einem Test zuordnen. Insbesondere ist vor der Entfernung
+   synthetischer Platzhalter zu prüfen, welche TYPO3-v15-Selektoren eine
+   Auswahl aller Overlays durch konkrete Sprach-IDs ausdrücken können; bekannte
+   Lücken in Workspaces und DataHandler sind ebenfalls zu schließen.
 3. **Klar abgegrenzte Korrekturen abschließen.** Den WIP-Change 95475 zur Language-All-Vergleichsansicht reviewen, die aufgegebenen überlappenden Changes 92585 und 94917 als ersetzte Historie erhalten und auf ihrem gemergten Ersatz für TYPO3 v15 und TYPO3 14.3 aufbauen, Integritäts-Patches für Kopieren und Verschieben voranbringen, die Entwürfe zu Parent Selector und Wizard validieren und den fehlschlagenden Patch zur Strict-Fallback-Regression korrigieren.
 4. **Produktverhalten vor der Speicherung prototypisch untersuchen.** Editing Language, einen Arbeitsablauf ohne Moduswahl im Modul „Layout“, direktes Anlegen in einer Zielsprache, lokale strukturelle Ergänzungen und explizite Abwesenheit anhand realistischer redaktioneller Abläufe prüfen.
 5. **Die aktuelle strukturelle Präferenz gegenüber ihrem Gegenmodell validieren.** Dieselben Akzeptanzfälle für die gemeinsame verborgene Struktur, vollständige Language-Layer-Shadows, Sparse Records und hybride Ansätze verwenden. Vereinfachungen von Code und Laufzeit gemeinsam mit Datensatzwachstum, Informationsdichte im Modul „Layout“, Workspaces, Referenzen, Migration und Betriebskosten messen, statt die Datenbankgröße allein als entscheidend zu behandeln.
@@ -578,7 +625,7 @@ Zentrale Primärquellen sind:
 |---|---|
 | Community-Feedback und redaktionelle Vereinfachung der Modi | [Feedback-Matrix von T3DD22 und nachfolgenden Veranstaltungen](https://docs.google.com/spreadsheets/d/1Y8KnuYxMoXyVaZzVHENBp_1fg2M-JGxHog6K3T9qn_Q/edit?gid=0#gid=0), [22.03.2024](https://notes.typo3.org/s/kqdwFxW1m), [11.07.2025](https://notes.typo3.org/s/k11hyaA4N), [24.10.2025](https://notes.typo3.org/s/2Ysd3gDdn) |
 | Language Identity und BCP 47 | [19.01.2024](https://notes.typo3.org/s/sEONb4kd6), [25.07.2025](https://notes.typo3.org/s/dtw4v9T7S), [31.07.2026](https://notes.typo3.org/s/z5ICno5pK2) |
-| Ersatz von `-1`, Parität des vollständigen Datensatzes und Lebenszyklus der Synchronisierung | [28.06.2024](https://notes.typo3.org/s/GQwWxdUKO), [31.01.2025](https://notes.typo3.org/s/kEaZn6jJF), [26.09.2025](https://notes.typo3.org/s/1RnTSuBsq), [28.11.2025](https://notes.typo3.org/s/Sxl-kkYjW), [11.06.2026](https://notes.typo3.org/s/1-J3KsT7VU) |
+| Ersatz von `-1`, Parität des vollständigen Datensatzes und Lebenszyklus der Synchronisierung | [28.06.2024](https://notes.typo3.org/s/GQwWxdUKO), [31.01.2025](https://notes.typo3.org/s/kEaZn6jJF), [26.09.2025](https://notes.typo3.org/s/1RnTSuBsq), [28.11.2025](https://notes.typo3.org/s/Sxl-kkYjW), [11.06.2026](https://notes.typo3.org/s/1-J3KsT7VU), [04.09.2026](https://notes.typo3.org/s/FsawsB3Y2K) |
 | Aktuelle Modi der Feldsynchronisierung und mögliche Konsolidierung | [12.04.2024](https://notes.typo3.org/s/gjl-sog92), [26.04.2024](https://notes.typo3.org/s/D32XRXoCk), [18.10.2024](https://notes.typo3.org/s/8vI0MnUbs), [22.08.2025](https://notes.typo3.org/s/gL97CaQ5M), [08.05.2026](https://notes.typo3.org/s/-0p3kqzMll) |
 | Konsistenz von `l10n_state` und Schäden durch historische Kopiervorgänge | [26.04.2024](https://notes.typo3.org/s/D32XRXoCk), [06.02.2026](https://notes.typo3.org/s/D8oadqoN-7#) |
 | Weitgehend verbundene Strukturen und lokale Ausnahmen | [22.03.2024](https://notes.typo3.org/s/kqdwFxW1m), [08.05.2026](https://notes.typo3.org/s/-0p3kqzMll), [26.06.2026](https://notes.typo3.org/s/-RP1PwIafA), [10.07.2026](https://notes.typo3.org/s/ccbVIOYfEy) |

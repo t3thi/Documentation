@@ -2,7 +2,7 @@
 id: topic:evidence-maintenance
 title: "Next Steps, Evidence and Maintenance"
 language: en
-updated: "2026-08-28"
+updated: "2026-09-04"
 knowledge:
   - K-000005
   - K-000006
@@ -20,6 +20,7 @@ knowledge:
   - K-000021
   - K-000022
   - K-000027
+  - K-000029
 history:
   - K-000026
 decisions:
@@ -35,7 +36,12 @@ decisions:
 These are the initiative's current best sequence of activities, not a committed TYPO3 release roadmap.
 
 1. **Keep the evidence base current.** Add reproducible editor and project use cases, especially where language, country, structure and output intent differ.
-2. **Complete focused characterization.** Review the `-1` inventory, map each valid behavior to a test and close known Workspace and DataHandler gaps.
+2. **Complete focused characterization.** Review the `-1` inventory, classify
+   every occurrence as a persisted record value, a synthetic backend selection
+   or another fallback contract, and map every valid behavior to a test. In
+   particular, verify which TYPO3 v15 selectors can express an all-overlay
+   selection through concrete language IDs before removing synthetic
+   sentinels; also close known Workspace and DataHandler gaps.
 3. **Finish bounded fixes.** Review the WIP Language-All comparison change 95475, retain the abandoned overlapping changes 92585 and 94917 as superseded history and build on their merged replacement for TYPO3 v15 and TYPO3 14.3, progress copy/move integrity patches, validate the parent-selector and wizard drafts and resolve the failing strict-fallback regression patch.
 4. **Prototype product behavior before storage.** Test Editing Language, a mode-free Layout workflow, direct target-language creation, local structural additions and explicit absence with realistic editor workflows.
 5. **Validate the current structural preference against its countermodel.** Use the same acceptance cases for the shared hidden structure, complete per-language shadows, sparse records and any hybrid. Measure code and runtime simplification together with record growth, Layout density, Workspaces, references, migration and operational costs rather than treating database size alone as decisive.
@@ -54,7 +60,7 @@ Key primary evidence anchors are:
 |---|---|
 | Community feedback and editor-facing mode simplification | [T3DD22 and subsequent feedback matrix](https://docs.google.com/spreadsheets/d/1Y8KnuYxMoXyVaZzVHENBp_1fg2M-JGxHog6K3T9qn_Q/edit?gid=0#gid=0), [2024-03-22](https://notes.typo3.org/s/kqdwFxW1m), [2025-07-11](https://notes.typo3.org/s/k11hyaA4N), [2025-10-24](https://notes.typo3.org/s/2Ysd3gDdn) |
 | Language identity and BCP 47 | [2024-01-19](https://notes.typo3.org/s/sEONb4kd6), [2025-07-25](https://notes.typo3.org/s/dtw4v9T7S), [2026-07-31](https://notes.typo3.org/s/z5ICno5pK2) |
-| `-1` replacement, full-record parity and synchronization lifecycle | [2024-06-28](https://notes.typo3.org/s/GQwWxdUKO), [2025-01-31](https://notes.typo3.org/s/kEaZn6jJF), [2025-09-26](https://notes.typo3.org/s/1RnTSuBsq), [2025-11-28](https://notes.typo3.org/s/Sxl-kkYjW), [2026-06-11](https://notes.typo3.org/s/1-J3KsT7VU) |
+| `-1` replacement, full-record parity and synchronization lifecycle | [2024-06-28](https://notes.typo3.org/s/GQwWxdUKO), [2025-01-31](https://notes.typo3.org/s/kEaZn6jJF), [2025-09-26](https://notes.typo3.org/s/1RnTSuBsq), [2025-11-28](https://notes.typo3.org/s/Sxl-kkYjW), [2026-06-11](https://notes.typo3.org/s/1-J3KsT7VU), [2026-09-04](https://notes.typo3.org/s/FsawsB3Y2K) |
 | Current field-synchronization modes and possible consolidation | [2024-04-12](https://notes.typo3.org/s/gjl-sog92), [2024-04-26](https://notes.typo3.org/s/D32XRXoCk), [2024-10-18](https://notes.typo3.org/s/8vI0MnUbs), [2025-08-22](https://notes.typo3.org/s/gL97CaQ5M), [2026-05-08](https://notes.typo3.org/s/-0p3kqzMll) |
 | `l10n_state` consistency and historical copy damage | [2024-04-26](https://notes.typo3.org/s/D32XRXoCk), [2026-02-06](https://notes.typo3.org/s/D8oadqoN-7#) |
 | Mostly connected structures and local exceptions | [2024-03-22](https://notes.typo3.org/s/kqdwFxW1m), [2026-05-08](https://notes.typo3.org/s/-0p3kqzMll), [2026-06-26](https://notes.typo3.org/s/-RP1PwIafA), [2026-07-10](https://notes.typo3.org/s/ccbVIOYfEy) |

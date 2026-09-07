@@ -2,7 +2,7 @@
 id: topic:synchronization-intent
 title: "Synchronization Intent"
 language: de
-updated: "2026-08-14"
+updated: "2026-09-04"
 knowledge:
   - K-000003
   - K-000004
@@ -12,12 +12,13 @@ knowledge:
   - K-000015
   - K-000018
   - K-000023
+  - K-000029
 history: []
 decisions: []
 translation_of: topic:synchronization-intent
-source_updated: "2026-08-14"
+source_updated: "2026-09-04"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:02dd1af203352684aff3cc57a0f4c39ba9bc3d1f68ce62e40879790dc384dfbe"
+source_digest: "sha256:f3941386c2b50d546f28e09f9b0f2605bf7eb720ac062bee8c9fc9f150477770"
 ---
 
 # Synchronization Intent
@@ -44,6 +45,12 @@ source_digest: "sha256:02dd1af203352684aff3cc57a0f4c39ba9bc3d1f68ce62e40879790dc
 - Migration und Reparatur müssen `l10n_state` mit gespeicherten Werten und Beziehungen abgleichen, ohne beabsichtigte manuelle Abweichungen zu überschreiben.
 - Ein Ersatz für `l10n_mode=exclude` muss dessen Verhalten ohne redaktionelle Abwahlmöglichkeit für betroffene Übersetzungen bewahren und explizite Migrations- und Kompatibilitätsregeln bereitstellen.
 - Materialisierte Zielrecords benötigen eigene Identitäts- und Lebenszyklusmetadaten, auch wenn jeder verhaltensrelevante Wert der Quelle erzwungen bleibt.
+- Während der Migration bleibt ein tatsächlich im Sprachfeld eines Datensatzes
+  gespeichertes `-1` die bewusste Language-All-Auswahl der Redaktion und damit
+  eine datensatzweite Synchronisierungsabsicht. Synthetische Auswahlzustände
+  des Backends müssen getrennt dargestellt werden, vorzugsweise durch die
+  explizite Menge ausgewählter konkreter Sprachen; diese Zielrichtung erfordert
+  weiterhin eine Prüfung jedes einzelnen Aufrufpfads.
 
 **Vision:** „Einmal für mehrere Sprachen pflegen“ sollte als Synchronization Intent für konkrete Sprachvarianten dargestellt werden, nicht als fiktive Sprachidentität.
 

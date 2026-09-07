@@ -2,7 +2,7 @@
 id: topic:synchronization-intent
 title: "Synchronization Intent"
 language: en
-updated: "2026-08-14"
+updated: "2026-09-04"
 knowledge:
   - K-000003
   - K-000004
@@ -12,6 +12,7 @@ knowledge:
   - K-000015
   - K-000018
   - K-000023
+  - K-000029
 history: []
 decisions: []
 ---
@@ -40,6 +41,11 @@ decisions: []
 - Migration and repair must reconcile `l10n_state` with stored values and relations without overwriting intentional manual differences.
 - Replacing `l10n_mode=exclude` must preserve its no-opt-out behavior for affected translations and provide explicit migration and compatibility rules.
 - Materialized target records need their own identity and lifecycle metadata even when every behavior-relevant source value remains enforced.
+- During migration, an actual `-1` in a record's language field remains the
+  editor's Language-All choice and therefore record-wide synchronization
+  intent. Synthetic backend selection states must be represented separately,
+  preferably through the explicit set of selected concrete languages; this
+  direction still requires call-path-specific verification.
 
 **Vision:** "Maintain once for several languages" should be represented as synchronization intent applied to concrete language variants, not as a fictitious language identity.
 

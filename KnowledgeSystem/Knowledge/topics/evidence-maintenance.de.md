@@ -2,7 +2,7 @@
 id: topic:evidence-maintenance
 title: "Nächste Schritte, Evidenz und Pflege"
 language: de
-updated: "2026-08-28"
+updated: "2026-09-04"
 knowledge:
   - K-000005
   - K-000006
@@ -20,14 +20,15 @@ knowledge:
   - K-000021
   - K-000022
   - K-000027
+  - K-000029
 history:
   - K-000026
 decisions:
   - D-000001
 translation_of: topic:evidence-maintenance
-source_updated: "2026-08-28"
+source_updated: "2026-09-04"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:3e34d32581a96587b96dd5fcebf5a73ed8572d1c1e34ab5dfd2c3b903ca0eab8"
+source_digest: "sha256:9ef8855c33a374478bef17e71f41419c0be31cd717779e8bf0d050013819ffc9"
 ---
 
 # Nächste Schritte, Evidenz und Pflege
@@ -39,7 +40,13 @@ source_digest: "sha256:3e34d32581a96587b96dd5fcebf5a73ed8572d1c1e34ab5dfd2c3b903
 Dies ist die aus heutiger Sicht sinnvollste Abfolge von Aktivitäten der Initiative und keine verbindliche TYPO3-Release-Roadmap.
 
 1. **Evidenzbasis aktuell halten.** Reproduzierbare Redaktions- und Projekt-Use-Cases ergänzen, insbesondere wenn sich Sprache, Land, Struktur und Ausgabeabsicht unterscheiden.
-2. **Gezielte Charakterisierung abschließen.** Das `-1`-Inventar prüfen, jedes valide Verhalten einem Test zuordnen und bekannte Lücken in Workspaces und DataHandler schließen.
+2. **Gezielte Charakterisierung abschließen.** Das `-1`-Inventar prüfen,
+   jedes Vorkommen als gespeicherten Datensatzwert, synthetische
+   Backend-Auswahl oder weiteren Fallback-Vertrag einordnen und jedes valide
+   Verhalten einem Test zuordnen. Insbesondere ist vor der Entfernung
+   synthetischer Platzhalter zu prüfen, welche TYPO3-v15-Selektoren eine
+   Auswahl aller Overlays durch konkrete Sprach-IDs ausdrücken können; bekannte
+   Lücken in Workspaces und DataHandler sind ebenfalls zu schließen.
 3. **Klar abgegrenzte Korrekturen abschließen.** Den WIP-Change 95475 zur Language-All-Vergleichsansicht reviewen, die aufgegebenen überlappenden Changes 92585 und 94917 als ersetzte Historie erhalten und auf ihrem gemergten Ersatz für TYPO3 v15 und TYPO3 14.3 aufbauen, Integritäts-Patches für Kopieren und Verschieben voranbringen, die Entwürfe zu Parent Selector und Wizard validieren und den fehlschlagenden Patch zur Strict-Fallback-Regression korrigieren.
 4. **Produktverhalten vor der Speicherung prototypisch untersuchen.** Editing Language, einen Arbeitsablauf ohne Moduswahl im Modul „Layout“, direktes Anlegen in einer Zielsprache, lokale strukturelle Ergänzungen und explizite Abwesenheit anhand realistischer redaktioneller Abläufe prüfen.
 5. **Die aktuelle strukturelle Präferenz gegenüber ihrem Gegenmodell validieren.** Dieselben Akzeptanzfälle für die gemeinsame verborgene Struktur, vollständige Language-Layer-Shadows, Sparse Records und hybride Ansätze verwenden. Vereinfachungen von Code und Laufzeit gemeinsam mit Datensatzwachstum, Informationsdichte im Modul „Layout“, Workspaces, Referenzen, Migration und Betriebskosten messen, statt die Datenbankgröße allein als entscheidend zu behandeln.
@@ -58,7 +65,7 @@ Zentrale Primärquellen sind:
 |---|---|
 | Community-Feedback und redaktionelle Vereinfachung der Modi | [Feedback-Matrix von T3DD22 und nachfolgenden Veranstaltungen](https://docs.google.com/spreadsheets/d/1Y8KnuYxMoXyVaZzVHENBp_1fg2M-JGxHog6K3T9qn_Q/edit?gid=0#gid=0), [22.03.2024](https://notes.typo3.org/s/kqdwFxW1m), [11.07.2025](https://notes.typo3.org/s/k11hyaA4N), [24.10.2025](https://notes.typo3.org/s/2Ysd3gDdn) |
 | Language Identity und BCP 47 | [19.01.2024](https://notes.typo3.org/s/sEONb4kd6), [25.07.2025](https://notes.typo3.org/s/dtw4v9T7S), [31.07.2026](https://notes.typo3.org/s/z5ICno5pK2) |
-| Ersatz von `-1`, Parität des vollständigen Datensatzes und Lebenszyklus der Synchronisierung | [28.06.2024](https://notes.typo3.org/s/GQwWxdUKO), [31.01.2025](https://notes.typo3.org/s/kEaZn6jJF), [26.09.2025](https://notes.typo3.org/s/1RnTSuBsq), [28.11.2025](https://notes.typo3.org/s/Sxl-kkYjW), [11.06.2026](https://notes.typo3.org/s/1-J3KsT7VU) |
+| Ersatz von `-1`, Parität des vollständigen Datensatzes und Lebenszyklus der Synchronisierung | [28.06.2024](https://notes.typo3.org/s/GQwWxdUKO), [31.01.2025](https://notes.typo3.org/s/kEaZn6jJF), [26.09.2025](https://notes.typo3.org/s/1RnTSuBsq), [28.11.2025](https://notes.typo3.org/s/Sxl-kkYjW), [11.06.2026](https://notes.typo3.org/s/1-J3KsT7VU), [04.09.2026](https://notes.typo3.org/s/FsawsB3Y2K) |
 | Aktuelle Modi der Feldsynchronisierung und mögliche Konsolidierung | [12.04.2024](https://notes.typo3.org/s/gjl-sog92), [26.04.2024](https://notes.typo3.org/s/D32XRXoCk), [18.10.2024](https://notes.typo3.org/s/8vI0MnUbs), [22.08.2025](https://notes.typo3.org/s/gL97CaQ5M), [08.05.2026](https://notes.typo3.org/s/-0p3kqzMll) |
 | Konsistenz von `l10n_state` und Schäden durch historische Kopiervorgänge | [26.04.2024](https://notes.typo3.org/s/D32XRXoCk), [06.02.2026](https://notes.typo3.org/s/D8oadqoN-7#) |
 | Weitgehend verbundene Strukturen und lokale Ausnahmen | [22.03.2024](https://notes.typo3.org/s/kqdwFxW1m), [08.05.2026](https://notes.typo3.org/s/-0p3kqzMll), [26.06.2026](https://notes.typo3.org/s/-RP1PwIafA), [10.07.2026](https://notes.typo3.org/s/ccbVIOYfEy) |

@@ -2,13 +2,14 @@
 id: topic:language-identity
 title: "Language Identity"
 language: en
-updated: "2026-08-27"
+updated: "2026-09-04"
 knowledge:
   - K-000001
   - K-000002
   - K-000004
   - K-000005
   - K-000017
+  - K-000029
 history: []
 decisions: []
 ---
@@ -39,6 +40,11 @@ The responsibilities must be considered in this order when explaining the vision
   Language-All synchronization intent, and `0` as both the Site-default role
   and today's structural lead. The future identity value may identify only a
   real human language or variant.
+- Synthetic backend display and filter selections must not be modelled as a
+  fictitious language identity. Where a selector can express its scope through
+  concrete language IDs, including an explicit selection of all available
+  overlays, it should do so without reusing `-1`. Each current Core call path
+  still needs characterization before this sentinel can be removed.
 - Semantic identity must not depend on a locale being installed on the application server.
 - Semantic identity must cover editorial language variants beyond a
   conventional language-and-region locale, including variants such as Easy

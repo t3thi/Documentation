@@ -292,7 +292,7 @@ sources:
     authority: primary-retained-meeting-source
     availability: local-restricted
     sha256: sha256:294dc6da43fd18fb06c480b9bd856dd9c83a145a5fc8d4f9b02a5de51237c704
-    reason: Raw transcript is restricted local evidence pending publication clearance.
+    reason: Raw transcripts are ignored and may contain restricted or private passages.
   minutes:2026-08-14:
     type: meeting-minutes
     path: MeetingMinutes/Weekly/2026/08/14.md
@@ -300,6 +300,24 @@ sources:
     availability: repository
     derived_from:
       - transcript:2026-08-14
+    generated_with:
+      skill: skill:t3thi-meeting-minutes
+    review_status: reviewed
+
+  transcript:2026-09-04:
+    type: transcript
+    path: "Transcripts/2026-09-04 12-02-01 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:3aeb94b43a8c83faf6d6f9d9e31f062dbe7bc183784bb93c050bc946f1770ba5
+    reason: Raw transcripts are ignored and may contain restricted or private passages.
+  minutes:2026-09-04:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/09/04.md
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-09-04
     generated_with:
       skill: skill:t3thi-meeting-minutes
     review_status: reviewed
@@ -352,6 +370,12 @@ sources:
     authority: actual-current-typo3-core-code
     availability: repository
     observed_at: "2026-08-11"
+  core:language-all-call-paths-2026-09-04:
+    type: core-code
+    url: https://github.com/TYPO3/typo3/tree/028b93bddf49a950eb3a58c4606b5e06145fb567
+    authority: actual-current-typo3-core-code
+    availability: repository
+    observed_at: "2026-09-04"
 
   github:dbdoctor-98:
     type: github
@@ -432,6 +456,13 @@ sources:
     availability: repository
     status: merged
     observed_at: "2026-08-28"
+  gerrit:92267:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267
+    authority: external-current
+    availability: repository
+    status: open-wip
+    observed_at: "2026-09-04"
   gerrit:92585:
     type: gerrit
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/92585
@@ -523,3 +554,10 @@ sources:
     availability: repository
     status: open-wip
     observed_at: "2026-08-28"
+  gerrit:95619:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619
+    authority: external-current
+    availability: repository
+    status: open-wip
+    observed_at: "2026-09-04"
