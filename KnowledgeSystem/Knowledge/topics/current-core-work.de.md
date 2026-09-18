@@ -2,7 +2,7 @@
 id: topic:current-core-work
 title: "Aktuelle Core-Arbeit"
 language: de
-updated: "2026-09-04"
+updated: "2026-09-18"
 knowledge:
   - K-000013
   - K-000015
@@ -12,13 +12,14 @@ knowledge:
   - K-000027
   - K-000028
   - K-000029
+  - K-000030
 history:
   - K-000026
 decisions: []
 translation_of: topic:current-core-work
-source_updated: "2026-09-04"
+source_updated: "2026-09-18"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:3bbc7a02d986363b5e7ab2eca7913e2937b619e8ad5edbf94cc5e57f25ceff11"
+source_digest: "sha256:e8f9e83c2e78530e58789b9ca217ae6d5a51e3ca4416f3743b69e6da05948c40"
 ---
 
 # Aktuelle Core-Arbeit
@@ -76,6 +77,40 @@ bleibt.
 Diese gezielte Prüfung ersetzt nicht den vollständigen externen Statusstand im
 folgenden Abschnitt. Sie aktualisiert ausschließlich Gerrit 92267 und 95619
 sowie die für ihre semantische Einordnung untersuchten Code-Pfade.
+
+## Gezielte Folgeprüfung vom 18.09.2026
+
+Die fortgesetzte Prüfung von [Gerrit
+95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619) ordnete vier
+weitere Core-Pfade anhand der vorstehenden Unterscheidung ein. Der aktuelle
+`ContentObjectRenderer`, die frontendseitige `CategoryCollection` und der
+Extbase-`Typo3DbQueryParser` beziehen in ihren Abfragen gezielt Datensätze ein,
+die mit Language All gespeichert sind. Es handelt sich damit um
+datensatzbezogene Verwendungen und nicht um synthetische Auswahlwerte des
+Backends. Der `LinkAnalyzer` übernimmt, soweit vorhanden, die tatsächliche
+Sprache des Datensatzes, der einen Link enthält. Fehlt eine nutzbare
+Datensatzsprache, verwendet er jedoch ebenfalls `-1` als Fallback. Dieses
+Fallback ist daher ein dritter Vertrag, der explizit gemacht werden muss,
+bevor seine Darstellung geändert wird. Gerrit 95619 war bei der Prüfung am
+18.09.2026 weiterhin `NEW`, WIP und mergefähig; Patch Set 2 hatte eine
+erfolgreiche CI, aber keine menschliche Code-Review-Stimme.
+
+[Gerrit
+95476](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95476), Patch Set 1,
+ist ein separater WIP-Vorschlag für TYPO3 v15 und 14.3. Wenn ein neu angelegter
+Inline- oder File-Reference-Child-Record ohne explizite Sprache ankommt, wird
+seine Sprache vom referenzierenden Parent abgeleitet. Eine explizit
+übergebene Sprache des Child Records bleibt erhalten, und vorhandene Child
+Records werden nicht nachträglich einer anderen Sprache zugeordnet. Diese
+klar begrenzte Default-Regel behebt die gemeldete Regression, ohne valide
+gemischtsprachige Beziehungen zu verbieten. Der Change war bei der Prüfung am
+18.09.2026 `NEW`, WIP und mergefähig, mit erfolgreicher CI, keinen ungelösten
+Kommentaren und keiner menschlichen Code-Review-Stimme. Er ist kein aktuelles
+Core-Verhalten.
+
+Diese gezielte Folgeprüfung ersetzt nicht den vollständigen externen
+Statusstand im folgenden Abschnitt. Sie aktualisiert ausschließlich Gerrit
+95476 und 95619 sowie die neu charakterisierten Language-All-Aufrufpfade.
 
 ## Laufende Arbeit mit Stand vom 28.08.2026
 

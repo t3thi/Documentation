@@ -443,6 +443,36 @@ This targeted check does not replace the complete external-status snapshot
 below. It updates only Gerrit 92267 and 95619 and the code paths examined for
 their semantic classification.
 
+## Focused follow-up on 2026-09-18
+
+The continued review of [Gerrit
+95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619) classified four
+additional Core paths against the distinction above. The current
+`ContentObjectRenderer`, frontend `CategoryCollection` and Extbase
+`Typo3DbQueryParser` deliberately include records stored with Language All in
+their queries; these are record-level uses rather than synthetic backend
+selection values. `LinkAnalyzer` carries the actual language of the record
+containing a link where available, but also falls back to `-1` when no usable
+record language exists. The fallback is therefore a third contract that must
+be made explicit before its representation is changed. Gerrit 95619 remained
+`NEW`, WIP and mergeable at patch set 2, with successful CI and no human
+Code-Review vote when checked on 2026-09-18.
+
+[Gerrit
+95476](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95476), patch set 1,
+is a separate WIP proposal for TYPO3 v15 and 14.3. When a newly created inline
+or file-reference child arrives without an explicit language, it derives the
+language from the referencing parent. It preserves an explicitly supplied
+child language and does not relanguage existing children. This bounded
+defaulting rule addresses the reported regression without forbidding valid
+mixed-language relations. The change was `NEW`, WIP and mergeable, with
+successful CI, no unresolved comments and no human Code-Review vote when
+checked on 2026-09-18; it is not current Core behavior.
+
+This focused follow-up does not replace the complete external-status snapshot
+below. It updates only Gerrit 95476 and 95619 and the newly characterized
+Language-All call paths.
+
 ## Current work as of 2026-08-28
 
 This section is based on the complete external-status review of 2026-08-28.

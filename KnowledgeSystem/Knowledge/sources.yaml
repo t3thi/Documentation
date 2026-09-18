@@ -322,6 +322,24 @@ sources:
       skill: skill:t3thi-meeting-minutes
     review_status: reviewed
 
+  transcript:2026-09-18:
+    type: transcript
+    path: "Transcripts/2026-09-18 12-00-21 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:758183ecfc4425e134d664c86c3a4c68c44d4cb37924dde1b8798df70e7f5740
+    reason: Raw transcripts are ignored and may contain restricted or private passages.
+  minutes:2026-09-18:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/09/18.md
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-09-18
+    generated_with:
+      skill: skill:t3thi-meeting-minutes
+    review_status: reviewed
+
   core:tca-language-relations:
     type: core-code
     url: https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/Configuration/Tca/TcaEnrichment.php#L185-L247
@@ -376,6 +394,12 @@ sources:
     authority: actual-current-typo3-core-code
     availability: repository
     observed_at: "2026-09-04"
+  core:language-all-call-paths-2026-09-18:
+    type: core-code
+    url: https://github.com/TYPO3/typo3/tree/c4fec897675aa6371126acd3ac712dd6cf740ce8
+    authority: actual-current-typo3-core-code
+    availability: repository
+    observed_at: "2026-09-18"
 
   github:dbdoctor-98:
     type: github
@@ -554,10 +578,17 @@ sources:
     availability: repository
     status: open-wip
     observed_at: "2026-08-28"
+  gerrit:95476:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95476
+    authority: external-current
+    availability: repository
+    status: open-wip
+    observed_at: "2026-09-18"
   gerrit:95619:
     type: gerrit
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619
     authority: external-current
     availability: repository
     status: open-wip
-    observed_at: "2026-09-04"
+    observed_at: "2026-09-18"
