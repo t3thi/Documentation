@@ -25,9 +25,11 @@ sys.path.insert(0, str(TOOLS_DIRECTORY))
 
 from _knowledge.errors import FrontmatterError  # noqa: E402
 from _knowledge.generate import (  # noqa: E402
+    NOTES_PUBLICATION_CHARACTER_LIMIT,
     apply_generated_files,
     generate_indexes,
     generate_views,
+    publication_character_count,
 )
 from _knowledge.graph import collect_backlinks  # noqa: E402
 from _knowledge.lint import lint_repository  # noqa: E402
@@ -451,6 +453,7 @@ class RepositoryFixture:
 
                 # Fixture Current State
 
+                <!-- Source Topic: KnowledgeSystem/Knowledge/topics/example.md -->
                 {{ include-topic "example" section="Current synthesis" }}
                 """
             ),
@@ -466,6 +469,7 @@ class RepositoryFixture:
 
                 # Test-Aktueller-Stand
 
+                <!-- Source Topic: KnowledgeSystem/Knowledge/topics/example.de.md -->
                 {{ include-topic "example" section="Aktuelle Synthese" }}
                 """
             ),
@@ -966,7 +970,49 @@ class GenerationTests(KnowledgeToolingTestCase):
         )
         self.assertNotIn("publication-summary", current_state)
         self.assertNotIn("publication-summary", german_current_state)
+        self.assertNotIn("<!-- Source Topic:", current_state)
+        self.assertNotIn("<!-- Source Topic:", german_current_state)
         self.assertEqual([], apply_generated_files(generate_views(self.fixture.repository()), check=True))
+
+    def test_current_state_deduplicates_repeated_absolute_links(self) -> None:
+        url = "https://example.com/repeated-source"
+        self.fixture.replace(
+            "KnowledgeSystem/Knowledge/topics/example.md",
+            "Canonical fixture synthesis.",
+            f"Canonical synthesis with [first evidence]({url}) and [second evidence]({url}).",
+        )
+
+        current_state = {
+            generated.path.name: generated.content
+            for generated in generate_views(self.fixture.repository())
+        }["current-state.md"]
+
+        self.assertIn("[first evidence][cs1]", current_state)
+        self.assertIn("[second evidence][cs1]", current_state)
+        self.assertEqual(1, current_state.count(url))
+        self.assertIn(f"[cs1]: {url}", current_state)
+
+    def test_current_state_rejects_notes_publication_over_character_limit(self) -> None:
+        target = self.fixture.path("MeetingMinutes/current-state.de.md")
+        before = target.read_bytes()
+        self.fixture.write(
+            "KnowledgeSystem/Knowledge/topics/example.de.md",
+            self.fixture.read("KnowledgeSystem/Knowledge/topics/example.de.md")
+            + ("x" * NOTES_PUBLICATION_CHARACTER_LIMIT),
+        )
+
+        result = self.fixture.run_tool(
+            "build-views",
+            "--root",
+            str(self.fixture.root),
+        )
+
+        self.assertEqual(2, result.returncode, result.stderr)
+        self.assertIn("the notes.typo3.org limit is 100000", result.stderr)
+        self.assertEqual(before, target.read_bytes())
+
+    def test_publication_character_count_matches_browser_utf16_units(self) -> None:
+        self.assertEqual(4, publication_character_count("a😊b"))
 
     def test_generated_register_rows_are_single_line_valid_markdown(self) -> None:
         views = {

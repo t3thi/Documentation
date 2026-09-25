@@ -149,6 +149,13 @@ writes `Views/open-questions.md`,
 Those are the generated files whose checksums must remain identical across a
 second unchanged build.
 
+For the two Current State publications, the builder omits internal source
+annotations and deduplicates repeated absolute URLs as Markdown reference
+links without changing their rendered content. It prints the resulting size
+and refuses output above the 100,000-character limit of `notes.typo3.org`.
+Resolve such a failure in canonical Topic prose or through a deliberate
+publication split, never by editing the generated files.
+
 The top-level `publication` block in `sources.yaml` is the only editable place
 for these cutoffs:
 

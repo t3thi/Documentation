@@ -8,6 +8,14 @@ Current State is a deterministic publication view. Do not edit
 `MeetingMinutes/current-state.md` or `MeetingMinutes/current-state.de.md`
 directly and do not use this page as an all-in-one agent prompt.
 
+Both generated files are prepared for publication on `notes.typo3.org`.
+`build-views` omits internal source annotations, replaces repeated absolute
+URLs with equivalent Markdown reference links and reports each publication's
+size. It refuses to generate a Current State longer than the service limit of
+100,000 characters. If that guard fails, consolidate redundant canonical Topic
+prose or deliberately split the publication; never shorten a generated file
+directly.
+
 The canonical responsibilities are intentionally separated:
 
 - [`../AGENTS.md`](../AGENTS.md) contains repository-wide invariants, source

@@ -12,11 +12,13 @@ from .errors import FrontmatterError, KnowledgeError, MissingDependencyError
 from .external import adapter_for, load_fixture
 from .generate import (
     GeneratedFile,
+    NOTES_PUBLICATION_CHARACTER_LIMIT,
     apply_generated_files,
     generate_backlinks,
     generate_indexes,
     generate_views,
     generated_is_current,
+    publication_character_count,
 )
 from .graph import backlinks_for
 from .lint import lint_repository
@@ -109,6 +111,15 @@ def _run_build(command: str, arguments: argparse.Namespace) -> int:
         print(f"Verified {len(files)} generated file(s).")
     else:
         print(f"Updated {len(changed)} generated file(s); {len(files) - len(changed)} unchanged.")
+    if command == "build-views":
+        for generated in files:
+            if generated.path.name not in {"current-state.md", "current-state.de.md"}:
+                continue
+            count = publication_character_count(generated.content)
+            print(
+                f"Publication size {repository.relative(generated.path)}: "
+                f"{count}/{NOTES_PUBLICATION_CHARACTER_LIMIT} characters."
+            )
     return EXIT_SUCCESS
 
 
