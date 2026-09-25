@@ -2,7 +2,7 @@
 id: topic:current-core-work
 title: "Current Core Work"
 language: en
-updated: "2026-09-18"
+updated: "2026-09-25"
 knowledge:
   - K-000013
   - K-000015
@@ -15,7 +15,8 @@ knowledge:
   - K-000030
 history:
   - K-000026
-decisions: []
+decisions:
+  - D-000002
 ---
 
 # Current Core Work
@@ -100,6 +101,33 @@ checked on 2026-09-18; it is not current Core behavior.
 This focused follow-up does not replace the complete external-status snapshot
 below. It updates only Gerrit 95476 and 95619 and the newly characterized
 Language-All call paths.
+
+## Marker scope review on 2026-09-25
+
+The initiative used a [Human Review
+Explorer](https://content.eric-harrer.de/t3thi/reviews/95619/) to compare 80
+directly and inversely discovered candidates with independent Astra and Opus
+assessments, prior human decisions and Core evidence. The models' agreement
+was treated only as a triage signal: in one previously reviewed
+`ContentObjectRenderer` case, both called the value synthetic although the
+human code-path review had established a persisted-record query.
+
+For the bounded scope of [Gerrit
+95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619), the initiative
+agreed to use one interim `LanguageMarker::ALL_LANGUAGES` constant wherever a
+reviewed `-1` occurrence means All Languages. The marker does not yet encode
+the distinction between a persisted record value, a synthetic backend state
+and a fallback contract. The documentation must therefore not describe it as
+exclusive to database language fields. This patch convention improves naming
+and discoverability without making the contracts equivalent or preventing
+their later separation and replacement.
+
+A plausibility pass found no false positive among the occurrences already
+changed by patch set 2. Further candidates outside the patch still require
+human review and may extend a later patch set. The official Gerrit state was
+unchanged when checked on 2026-09-25: `NEW`, WIP, CI-positive and mergeable,
+with no unresolved comments or human Code-Review vote. This focused check does
+not replace the complete external-status snapshot below.
 
 ## Current work as of 2026-08-28
 

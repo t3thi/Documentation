@@ -340,6 +340,24 @@ sources:
       skill: skill:t3thi-meeting-minutes
     review_status: reviewed
 
+  transcript:2026-09-25:
+    type: transcript
+    path: "Transcripts/2026-09-25 12-02-23 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:85988fa8bbc6eb5e7082f516e5728987e9178260b2d216d5f51b032d3247e6cc
+    reason: Raw transcripts are ignored and may contain restricted or private passages.
+  minutes:2026-09-25:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/09/25.md
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-09-25
+    generated_with:
+      skill: skill:t3thi-meeting-minutes
+    review_status: reviewed
+
   core:tca-language-relations:
     type: core-code
     url: https://github.com/TYPO3/typo3/blob/ee251c96d55b6e609a77334324be0b91bb0839e5/typo3/sysext/core/Classes/Configuration/Tca/TcaEnrichment.php#L185-L247
@@ -591,4 +609,4 @@ sources:
     authority: external-current
     availability: repository
     status: open-wip
-    observed_at: "2026-09-18"
+    observed_at: "2026-09-25"

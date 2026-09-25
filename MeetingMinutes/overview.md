@@ -386,3 +386,5 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
     - <sup>Knowledge-System Continuity, Possible Initiative Team Role, Semantic Classification of Language-All Marker Usages, Gerrit Patch Comparison, Recycler Language Selector Consistency, XML Sitemap Handling, and LinkValidator Runtime Verification</sup>
 - [2026-09-18, 12:00 to 13:05 CEST](https://notes.typo3.org/s/XKLPkvtX-6)
     - <sup>Mixed Mode Direction and External Demand, Systematic Language-All Occurrence Analysis, Inline Child Language Patch Status, LinkAnalyzer Semantics, ContentObjectRenderer Language Restrictions, and Extbase Persistence Findings</sup>
+- [2026-09-25, 12:02 to 13:01 CEST](https://notes.typo3.org/s/IeIMwXw8bM)
+    - <sup>Human Review Explorer for Language-All Findings, Language-All Marker Scope and Semantics, Patch Coverage, and Human Review Method</sup>

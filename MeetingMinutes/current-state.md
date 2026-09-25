@@ -473,6 +473,33 @@ This focused follow-up does not replace the complete external-status snapshot
 below. It updates only Gerrit 95476 and 95619 and the newly characterized
 Language-All call paths.
 
+## Marker scope review on 2026-09-25
+
+The initiative used a [Human Review
+Explorer](https://content.eric-harrer.de/t3thi/reviews/95619/) to compare 80
+directly and inversely discovered candidates with independent Astra and Opus
+assessments, prior human decisions and Core evidence. The models' agreement
+was treated only as a triage signal: in one previously reviewed
+`ContentObjectRenderer` case, both called the value synthetic although the
+human code-path review had established a persisted-record query.
+
+For the bounded scope of [Gerrit
+95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619), the initiative
+agreed to use one interim `LanguageMarker::ALL_LANGUAGES` constant wherever a
+reviewed `-1` occurrence means All Languages. The marker does not yet encode
+the distinction between a persisted record value, a synthetic backend state
+and a fallback contract. The documentation must therefore not describe it as
+exclusive to database language fields. This patch convention improves naming
+and discoverability without making the contracts equivalent or preventing
+their later separation and replacement.
+
+A plausibility pass found no false positive among the occurrences already
+changed by patch set 2. Further candidates outside the patch still require
+human review and may extend a later patch set. The official Gerrit state was
+unchanged when checked on 2026-09-25: `NEW`, WIP, CI-positive and mergeable,
+with no unresolved comments or human Code-Review vote. This focused check does
+not replace the complete external-status snapshot below.
+
 ## Current work as of 2026-08-28
 
 This section is based on the complete external-status review of 2026-08-28.
@@ -613,12 +640,15 @@ For any new proposal, the initiative asks:
 These are the initiative's current best sequence of activities, not a committed TYPO3 release roadmap.
 
 1. **Keep the evidence base current.** Add reproducible editor and project use cases, especially where language, country, structure and output intent differ.
-2. **Complete focused characterization.** Review the `-1` inventory, classify
-   every occurrence as a persisted record value, a synthetic backend selection
-   or another fallback contract, and map every valid behavior to a test. In
-   particular, verify which TYPO3 v15 selectors can express an all-overlay
-   selection through concrete language IDs before removing synthetic
-   sentinels; also close known Workspace and DataHandler gaps.
+2. **Complete focused characterization with a human evidence gate.** Review
+   the `-1` inventory, classify every occurrence as a persisted record value,
+   a synthetic backend selection or another fallback contract, and map every
+   valid behavior to a test. Independent machine analyses may accelerate
+   discovery and triage, but a human must verify each accepted expression,
+   value origin, consumer and Core evidence. In particular, verify which
+   TYPO3 v15 selectors can express an all-overlay selection through concrete
+   language IDs before removing synthetic sentinels; also close known
+   Workspace and DataHandler gaps.
 3. **Finish bounded fixes.** Review the WIP Language-All comparison change 95475, retain the abandoned overlapping changes 92585 and 94917 as superseded history and build on their merged replacement for TYPO3 v15 and TYPO3 14.3, progress copy/move integrity patches, validate the parent-selector and wizard drafts and resolve the failing strict-fallback regression patch.
 4. **Prototype product behavior before storage.** Test Editing Language, a mode-free Layout workflow, direct target-language creation, local structural additions and explicit absence with realistic editor workflows.
 5. **Validate the current structural preference against its countermodel.** Use the same acceptance cases for the shared hidden structure, complete per-language shadows, sparse records and any hybrid. Measure code and runtime simplification together with record growth, Layout density, Workspaces, references, migration and operational costs rather than treating database size alone as decisive.
@@ -631,13 +661,20 @@ These are the initiative's current best sequence of activities, not a committed 
 
 This reconstruction includes all human-reviewed repository meeting minutes and transcripts through 2026-08-14. A supplied initiative-channel snapshot was reviewed as a supplemental source for durable use cases, implementation references and unminuted gaps; it does not advance the minute or transcript cutoffs. Current Gerrit, Forge and linked supporting-patch states in the achievement and work sections were checked as a complete set on 2026-08-28. The [T3DD26 presentation](https://content.eric-harrer.de/t3dd26/) presents the conceptual model used in this reconstruction.
 
+For the current Language-All inventory, the [Human Review
+Explorer](https://content.eric-harrer.de/t3thi/reviews/95619/) exposes direct
+and inverse findings, model-specific reasoning, prior human decisions and
+evidence links. It is a derived review aid, not canonical knowledge. Model
+agreement can prioritize work, but only the human evidence gate and reviewed
+Git changes authorize a conclusion.
+
 Key primary evidence anchors are:
 
 | Topic | Meeting evidence |
 |---|---|
 | Community feedback and editor-facing mode simplification | [T3DD22 and subsequent feedback matrix](https://docs.google.com/spreadsheets/d/1Y8KnuYxMoXyVaZzVHENBp_1fg2M-JGxHog6K3T9qn_Q/edit?gid=0#gid=0), [2024-03-22](https://notes.typo3.org/s/kqdwFxW1m), [2025-07-11](https://notes.typo3.org/s/k11hyaA4N), [2025-10-24](https://notes.typo3.org/s/2Ysd3gDdn) |
 | Language identity and BCP 47 | [2024-01-19](https://notes.typo3.org/s/sEONb4kd6), [2025-07-25](https://notes.typo3.org/s/dtw4v9T7S), [2026-07-31](https://notes.typo3.org/s/z5ICno5pK2) |
-| `-1` replacement, full-record parity and synchronization lifecycle | [2024-06-28](https://notes.typo3.org/s/GQwWxdUKO), [2025-01-31](https://notes.typo3.org/s/kEaZn6jJF), [2025-09-26](https://notes.typo3.org/s/1RnTSuBsq), [2025-11-28](https://notes.typo3.org/s/Sxl-kkYjW), [2026-06-11](https://notes.typo3.org/s/1-J3KsT7VU), [2026-09-04](https://notes.typo3.org/s/FsawsB3Y2K) |
+| `-1` replacement, full-record parity and synchronization lifecycle | [2024-06-28](https://notes.typo3.org/s/GQwWxdUKO), [2025-01-31](https://notes.typo3.org/s/kEaZn6jJF), [2025-09-26](https://notes.typo3.org/s/1RnTSuBsq), [2025-11-28](https://notes.typo3.org/s/Sxl-kkYjW), [2026-06-11](https://notes.typo3.org/s/1-J3KsT7VU), [2026-09-04](https://notes.typo3.org/s/FsawsB3Y2K), [2026-09-25](https://notes.typo3.org/s/IeIMwXw8bM) |
 | Current field-synchronization modes and possible consolidation | [2024-04-12](https://notes.typo3.org/s/gjl-sog92), [2024-04-26](https://notes.typo3.org/s/D32XRXoCk), [2024-10-18](https://notes.typo3.org/s/8vI0MnUbs), [2025-08-22](https://notes.typo3.org/s/gL97CaQ5M), [2026-05-08](https://notes.typo3.org/s/-0p3kqzMll) |
 | `l10n_state` consistency and historical copy damage | [2024-04-26](https://notes.typo3.org/s/D32XRXoCk), [2026-02-06](https://notes.typo3.org/s/D8oadqoN-7#) |
 | Mostly connected structures and local exceptions | [2024-03-22](https://notes.typo3.org/s/kqdwFxW1m), [2026-05-08](https://notes.typo3.org/s/-0p3kqzMll), [2026-06-26](https://notes.typo3.org/s/-RP1PwIafA), [2026-07-10](https://notes.typo3.org/s/ccbVIOYfEy) |

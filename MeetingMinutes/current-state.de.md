@@ -492,6 +492,37 @@ Diese gezielte Folgeprüfung ersetzt nicht den vollständigen externen
 Statusstand im folgenden Abschnitt. Sie aktualisiert ausschließlich Gerrit
 95476 und 95619 sowie die neu charakterisierten Language-All-Aufrufpfade.
 
+## Prüfung des Marker-Geltungsbereichs vom 25.09.2026
+
+Die Initiative nutzte einen [Human Review
+Explorer](https://content.eric-harrer.de/t3thi/reviews/95619/), um 80 durch
+direkte und inverse Suchen ermittelte Kandidaten mit unabhängigen Bewertungen
+von Astra und Opus, früheren menschlichen Entscheidungen und Core-Evidenz zu
+vergleichen. Die Übereinstimmung der Modelle wurde ausschließlich als Signal
+für die Priorisierung betrachtet: In einem zuvor geprüften
+`ContentObjectRenderer`-Fall bezeichneten beide Modelle den Wert als
+synthetisch, obwohl die menschliche Prüfung des Code-Pfads eine Abfrage
+gespeicherter Datensätze belegt hatte.
+
+Für den klar begrenzten Geltungsbereich von [Gerrit
+95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619) verständigte sich
+die Initiative darauf, vorläufig eine gemeinsame Konstante
+`LanguageMarker::ALL_LANGUAGES` zu verwenden, wenn ein geprüftes
+`-1`-Vorkommen All Languages bedeutet. Der Marker bildet die Unterscheidung
+zwischen gespeichertem Datensatzwert, synthetischem Backend-Zustand und
+Fallback-Vertrag zunächst nicht ab. Seine Dokumentation darf ihn daher nicht
+als ausschließlich für Datenbank-Sprachfelder bestimmt beschreiben. Diese
+Patch-Konvention verbessert Benennung und Auffindbarkeit, ohne die Verträge
+gleichzusetzen oder ihre spätere Trennung und Ablösung zu verhindern.
+
+Eine Plausibilitätsprüfung fand unter den bereits durch Patch Set 2 geänderten
+Vorkommen keinen False Positive. Weitere Kandidaten außerhalb des Patches
+benötigen weiterhin menschliches Review und können ein späteres Patch Set
+erweitern. Der offizielle Gerrit-Stand war bei der Prüfung am 25.09.2026
+unverändert: `NEW`, WIP, CI-positiv und mergefähig, ohne ungelöste Kommentare
+oder menschliche Code-Review-Stimme. Diese gezielte Prüfung ersetzt nicht den
+vollständigen externen Statusstand im folgenden Abschnitt.
+
 ## Laufende Arbeit mit Stand vom 28.08.2026
 
 Dieser Abschnitt beruht auf der vollständigen externen Statusprüfung vom
@@ -634,13 +665,17 @@ Bei jedem neuen Vorschlag stellt die Initiative folgende Fragen:
 Dies ist die aus heutiger Sicht sinnvollste Abfolge von Aktivitäten der Initiative und keine verbindliche TYPO3-Release-Roadmap.
 
 1. **Evidenzbasis aktuell halten.** Reproduzierbare Redaktions- und Projekt-Use-Cases ergänzen, insbesondere wenn sich Sprache, Land, Struktur und Ausgabeabsicht unterscheiden.
-2. **Gezielte Charakterisierung abschließen.** Das `-1`-Inventar prüfen,
-   jedes Vorkommen als gespeicherten Datensatzwert, synthetische
-   Backend-Auswahl oder weiteren Fallback-Vertrag einordnen und jedes valide
-   Verhalten einem Test zuordnen. Insbesondere ist vor der Entfernung
-   synthetischer Platzhalter zu prüfen, welche TYPO3-v15-Selektoren eine
-   Auswahl aller Overlays durch konkrete Sprach-IDs ausdrücken können; bekannte
-   Lücken in Workspaces und DataHandler sind ebenfalls zu schließen.
+2. **Gezielte Charakterisierung mit menschlichem Evidenz-Gate abschließen.**
+   Das `-1`-Inventar prüfen, jedes Vorkommen als gespeicherten Datensatzwert,
+   synthetische Backend-Auswahl oder weiteren Fallback-Vertrag einordnen und
+   jedes valide Verhalten einem Test zuordnen. Unabhängige maschinelle
+   Analysen können Discovery und Priorisierung beschleunigen; ein Mensch muss
+   jedoch für jedes akzeptierte Vorkommen den Ausdruck, die Herkunft des
+   Wertes, dessen Verbraucher und die Core-Evidenz prüfen. Insbesondere ist
+   vor der Entfernung synthetischer Platzhalter zu prüfen, welche
+   TYPO3-v15-Selektoren eine Auswahl aller Overlays durch konkrete Sprach-IDs
+   ausdrücken können; bekannte Lücken in Workspaces und DataHandler sind
+   ebenfalls zu schließen.
 3. **Klar abgegrenzte Korrekturen abschließen.** Den WIP-Change 95475 zur Language-All-Vergleichsansicht reviewen, die aufgegebenen überlappenden Changes 92585 und 94917 als ersetzte Historie erhalten und auf ihrem gemergten Ersatz für TYPO3 v15 und TYPO3 14.3 aufbauen, Integritäts-Patches für Kopieren und Verschieben voranbringen, die Entwürfe zu Parent Selector und Wizard validieren und den fehlschlagenden Patch zur Strict-Fallback-Regression korrigieren.
 4. **Produktverhalten vor der Speicherung prototypisch untersuchen.** Editing Language, einen Arbeitsablauf ohne Moduswahl im Modul „Layout“, direktes Anlegen in einer Zielsprache, lokale strukturelle Ergänzungen und explizite Abwesenheit anhand realistischer redaktioneller Abläufe prüfen.
 5. **Die aktuelle strukturelle Präferenz gegenüber ihrem Gegenmodell validieren.** Dieselben Akzeptanzfälle für die gemeinsame verborgene Struktur, vollständige Language-Layer-Shadows, Sparse Records und hybride Ansätze verwenden. Vereinfachungen von Code und Laufzeit gemeinsam mit Datensatzwachstum, Informationsdichte im Modul „Layout“, Workspaces, Referenzen, Migration und Betriebskosten messen, statt die Datenbankgröße allein als entscheidend zu behandeln.
@@ -653,13 +688,22 @@ Dies ist die aus heutiger Sicht sinnvollste Abfolge von Aktivitäten der Initiat
 
 Diese Rekonstruktion berücksichtigt alle von Menschen geprüften Sitzungsprotokolle und Transkripte des Repositorys bis einschließlich 14.08.2026. Ein bereitgestellter Snapshot des Initiative-Channels wurde ergänzend auf dauerhafte Use Cases, Implementierungsreferenzen und nicht protokollierte Lücken geprüft; die Stichtage für Protokolle und Transkripte werden dadurch nicht fortgeschrieben. Die aktuellen Gerrit-, Forge- und verlinkten Statusangaben unterstützender Patches in den Abschnitten zu Ergebnissen und laufender Arbeit wurden als vollständiger Satz am 28.08.2026 geprüft. Die [T3DD26-Präsentation](https://content.eric-harrer.de/t3dd26/) stellt das in dieser Rekonstruktion verwendete konzeptionelle Modell dar.
 
+Für das aktuelle Language-All-Inventar stellt der [Human Review
+Explorer](https://content.eric-harrer.de/t3thi/reviews/95619/) direkte und
+inverse Findings, modellspezifische Begründungen, frühere menschliche
+Entscheidungen und Evidenzlinks bereit. Er ist ein abgeleitetes
+Review-Hilfsmittel und kein kanonisches Wissen. Die Übereinstimmung von
+Modellen kann Arbeiten priorisieren; ausschließlich das menschliche
+Evidenz-Gate und geprüfte Git-Änderungen autorisieren jedoch eine
+Schlussfolgerung.
+
 Zentrale Primärquellen sind:
 
 | Thema | Evidenz aus Sitzungen |
 |---|---|
 | Community-Feedback und redaktionelle Vereinfachung der Modi | [Feedback-Matrix von T3DD22 und nachfolgenden Veranstaltungen](https://docs.google.com/spreadsheets/d/1Y8KnuYxMoXyVaZzVHENBp_1fg2M-JGxHog6K3T9qn_Q/edit?gid=0#gid=0), [22.03.2024](https://notes.typo3.org/s/kqdwFxW1m), [11.07.2025](https://notes.typo3.org/s/k11hyaA4N), [24.10.2025](https://notes.typo3.org/s/2Ysd3gDdn) |
 | Language Identity und BCP 47 | [19.01.2024](https://notes.typo3.org/s/sEONb4kd6), [25.07.2025](https://notes.typo3.org/s/dtw4v9T7S), [31.07.2026](https://notes.typo3.org/s/z5ICno5pK2) |
-| Ersatz von `-1`, Parität des vollständigen Datensatzes und Lebenszyklus der Synchronisierung | [28.06.2024](https://notes.typo3.org/s/GQwWxdUKO), [31.01.2025](https://notes.typo3.org/s/kEaZn6jJF), [26.09.2025](https://notes.typo3.org/s/1RnTSuBsq), [28.11.2025](https://notes.typo3.org/s/Sxl-kkYjW), [11.06.2026](https://notes.typo3.org/s/1-J3KsT7VU), [04.09.2026](https://notes.typo3.org/s/FsawsB3Y2K) |
+| Ersatz von `-1`, Parität des vollständigen Datensatzes und Lebenszyklus der Synchronisierung | [28.06.2024](https://notes.typo3.org/s/GQwWxdUKO), [31.01.2025](https://notes.typo3.org/s/kEaZn6jJF), [26.09.2025](https://notes.typo3.org/s/1RnTSuBsq), [28.11.2025](https://notes.typo3.org/s/Sxl-kkYjW), [11.06.2026](https://notes.typo3.org/s/1-J3KsT7VU), [04.09.2026](https://notes.typo3.org/s/FsawsB3Y2K), [25.09.2026](https://notes.typo3.org/s/IeIMwXw8bM) |
 | Aktuelle Modi der Feldsynchronisierung und mögliche Konsolidierung | [12.04.2024](https://notes.typo3.org/s/gjl-sog92), [26.04.2024](https://notes.typo3.org/s/D32XRXoCk), [18.10.2024](https://notes.typo3.org/s/8vI0MnUbs), [22.08.2025](https://notes.typo3.org/s/gL97CaQ5M), [08.05.2026](https://notes.typo3.org/s/-0p3kqzMll) |
 | Konsistenz von `l10n_state` und Schäden durch historische Kopiervorgänge | [26.04.2024](https://notes.typo3.org/s/D32XRXoCk), [06.02.2026](https://notes.typo3.org/s/D8oadqoN-7#) |
 | Weitgehend verbundene Strukturen und lokale Ausnahmen | [22.03.2024](https://notes.typo3.org/s/kqdwFxW1m), [08.05.2026](https://notes.typo3.org/s/-0p3kqzMll), [26.06.2026](https://notes.typo3.org/s/-RP1PwIafA), [10.07.2026](https://notes.typo3.org/s/ccbVIOYfEy) |

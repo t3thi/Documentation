@@ -2,7 +2,7 @@
 id: topic:current-core-work
 title: "Aktuelle Core-Arbeit"
 language: de
-updated: "2026-09-18"
+updated: "2026-09-25"
 knowledge:
   - K-000013
   - K-000015
@@ -15,11 +15,12 @@ knowledge:
   - K-000030
 history:
   - K-000026
-decisions: []
+decisions:
+  - D-000002
 translation_of: topic:current-core-work
-source_updated: "2026-09-18"
+source_updated: "2026-09-25"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:e8f9e83c2e78530e58789b9ca217ae6d5a51e3ca4416f3743b69e6da05948c40"
+source_digest: "sha256:daa0c0061a4a0274c7df39db0f26882fd6b016b79a13f47d086f2742b4a8318a"
 ---
 
 # Aktuelle Core-Arbeit
@@ -111,6 +112,37 @@ Core-Verhalten.
 Diese gezielte Folgeprüfung ersetzt nicht den vollständigen externen
 Statusstand im folgenden Abschnitt. Sie aktualisiert ausschließlich Gerrit
 95476 und 95619 sowie die neu charakterisierten Language-All-Aufrufpfade.
+
+## Prüfung des Marker-Geltungsbereichs vom 25.09.2026
+
+Die Initiative nutzte einen [Human Review
+Explorer](https://content.eric-harrer.de/t3thi/reviews/95619/), um 80 durch
+direkte und inverse Suchen ermittelte Kandidaten mit unabhängigen Bewertungen
+von Astra und Opus, früheren menschlichen Entscheidungen und Core-Evidenz zu
+vergleichen. Die Übereinstimmung der Modelle wurde ausschließlich als Signal
+für die Priorisierung betrachtet: In einem zuvor geprüften
+`ContentObjectRenderer`-Fall bezeichneten beide Modelle den Wert als
+synthetisch, obwohl die menschliche Prüfung des Code-Pfads eine Abfrage
+gespeicherter Datensätze belegt hatte.
+
+Für den klar begrenzten Geltungsbereich von [Gerrit
+95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619) verständigte sich
+die Initiative darauf, vorläufig eine gemeinsame Konstante
+`LanguageMarker::ALL_LANGUAGES` zu verwenden, wenn ein geprüftes
+`-1`-Vorkommen All Languages bedeutet. Der Marker bildet die Unterscheidung
+zwischen gespeichertem Datensatzwert, synthetischem Backend-Zustand und
+Fallback-Vertrag zunächst nicht ab. Seine Dokumentation darf ihn daher nicht
+als ausschließlich für Datenbank-Sprachfelder bestimmt beschreiben. Diese
+Patch-Konvention verbessert Benennung und Auffindbarkeit, ohne die Verträge
+gleichzusetzen oder ihre spätere Trennung und Ablösung zu verhindern.
+
+Eine Plausibilitätsprüfung fand unter den bereits durch Patch Set 2 geänderten
+Vorkommen keinen False Positive. Weitere Kandidaten außerhalb des Patches
+benötigen weiterhin menschliches Review und können ein späteres Patch Set
+erweitern. Der offizielle Gerrit-Stand war bei der Prüfung am 25.09.2026
+unverändert: `NEW`, WIP, CI-positiv und mergefähig, ohne ungelöste Kommentare
+oder menschliche Code-Review-Stimme. Diese gezielte Prüfung ersetzt nicht den
+vollständigen externen Statusstand im folgenden Abschnitt.
 
 ## Laufende Arbeit mit Stand vom 28.08.2026
 
