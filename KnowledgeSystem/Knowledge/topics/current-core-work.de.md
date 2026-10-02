@@ -2,7 +2,7 @@
 id: topic:current-core-work
 title: "Aktuelle Core-Arbeit"
 language: de
-updated: "2026-09-25"
+updated: "2026-10-02"
 knowledge:
   - K-000013
   - K-000015
@@ -18,9 +18,9 @@ history:
 decisions:
   - D-000002
 translation_of: topic:current-core-work
-source_updated: "2026-09-25"
+source_updated: "2026-10-02"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:daa0c0061a4a0274c7df39db0f26882fd6b016b79a13f47d086f2742b4a8318a"
+source_digest: "sha256:58743ceee8542ac48440c8f5c4d864585fedaea981b276db8f4f243fbf4b7dae"
 ---
 
 # Aktuelle Core-Arbeit
@@ -50,99 +50,82 @@ Die [Test-Extension der Initiative](https://github.com/t3thi/translation-handlin
 
 Das wiederkehrende Muster ist hilfreich: Ein realer Fehler wird reproduziert, der verantwortliche Vertrag wird identifiziert, Tests definieren die Grenze und die Korrektur bleibt eng begrenzt. Dies ist die von der Initiative bevorzugte Form der inkrementellen Verbesserung.
 
-## Gezielte Language-All-Prüfung vom 04.09.2026
+## Language-All-Marker: Geltungsbereich und Review-Grenze
 
-Eine gezielte Folgeprüfung betrachtete die beiden WIP-Changes zu
-Language-All-Markern. [Gerrit
-95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619), Patch Set 2,
-führt einen benannten Marker für gespeicherte und synthetische Vorkommen ein,
-ohne das Verhalten zu ändern. [Gerrit
-92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267), Patch Set 6,
-kennzeichnet Annahmen über gespeicherte Language-All-Datensätze und hatte bei
-der Prüfung am 04.09.2026 einen ungelösten Kommentar. Beide Changes waren zu
-diesem Zeitpunkt `NEW`, WIP, CI-positiv und mergefähig.
+[Gerrit 95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619)
+führt einen benannten Marker ein, ohne das Verhalten zu ändern. Die Initiative
+unterscheidet die gespeicherte Language-All-Auswahl der Redaktion, eine
+synthetische Backend-Auswahl und einen Fallback-Vertrag. Der aktuelle Core
+hängt in Layout, Routing, Workspaces, Recycler, Sitemap und LinkValidator
+weiterhin von diesen Verwendungen ab. Die langfristige Richtung bleibt eine
+explizite konkrete Sprachauswahl, wo die Charakterisierung dies als sicher
+belegt, sowie ein Synchronisierungsersatz für die gespeicherte
+Language-All-Absicht. Die Datensatzabfragen in `ContentObjectRenderer`,
+frontendseitiger `CategoryCollection` und Extbase-`Typo3DbQueryParser` sind
+keine synthetischen Auswahlen.
 
-Die Prüfung der Initiative unterscheidet diese Semantiken: Ein tatsächlich in
-einem Datensatz gespeicherter Wert steht für die Language-All-Auswahl der
-Redaktion; ein nur für einen Anzeige- oder Filterzustand des Backends erzeugter
-Wert ist synthetisch. Die Prüfung von Core `main` beim Commit
-`028b93bddf49a950eb3a58c4606b5e06145fb567` bestätigt aktive Abhängigkeiten in
-Aufrufpfaden von Layout, Routing, Workspaces, Recycler, Sitemap und
-LinkValidator. Sie belegt nicht, dass all diese Pfade dieselbe Darstellung
-benötigen. Die unterstützte Zielrichtung ist daher, synthetische
-Auswahl-Platzhalter dort durch explizite konkrete Sprachauswahlen zu ersetzen,
-wo eine Charakterisierung dies als sicher bestätigt, während das
-datensatzbezogene Verhalten bis zu seinem Synchronisierungsersatz erhalten
-bleibt.
+Für den begrenzten Patch sieht die Vereinbarung vom 25.09.2026, präzisiert am
+02.10.2026, vorläufig einen gemeinsamen `LanguageMarker::ALL_LANGUAGES` vor,
+wo ein geprüftes `-1` All Languages bedeutet. Seine Dokumentation muss
+gespeicherte und synthetische Verwendungen abdecken. Eindeutige Vorkommen in
+`TcaColumnsRemoveEmptyRelations`, `TcaEnrichment`, `TcaPreparation` und
+`SlugHelper` gehören dazu; ein pauschaler TCA-Ausschluss würde dem Zweck
+widersprechen. Die Benennung setzt die Verträge nicht gleich und verhindert
+keine spätere Trennung. Der Decision Record bleibt bis zum kanonischen Review
+vorgeschlagen.
 
-Diese gezielte Prüfung ersetzt nicht den vollständigen externen Statusstand im
-folgenden Abschnitt. Sie aktualisiert ausschließlich Gerrit 92267 und 95619
-sowie die für ihre semantische Einordnung untersuchten Code-Pfade.
+Das bestehende `LinkAnalyzer`-Fallback stellt Datensätze ohne nutzbare
+Sprachinformation als All Languages dar. Das Meeting akzeptierte es und
+`EditableRestriction` für die Marker-Benennung, ohne Verhalten oder
+Abfragedarstellung zu ändern. Die anschließende Mainline-Prüfung vom
+02.10.2026 hält dennoch eine Abdeckungsfrage offen: Die Sammelabfrage
+selektiert das Sprachfeld ausdrücklich, `recheckLinks()` fügt es dagegen
+nicht ausdrücklich hinzu. Liefern weder andere selektierte Felder noch eine
+Event-Erweiterung den Wert, fällt `checkLinks()` auch bei einem sprachfähigen
+Datensatz auf `-1` zurück. Dies ist ein statischer Code-Befund, keine
+reproduzierte Laufzeitregression; die Einschätzung eines geringen Risikos im
+Meeting schließt die Frage nicht. Vor einer Ablösung der Darstellung bleibt
+ein separater Fallback-Vertrag erforderlich.
 
-## Gezielte Folgeprüfung vom 18.09.2026
+Das TypeScript für Drag-and-drop in Layout behält das Literal mit einem
+Kommentar zur Synchronisierung mit dem PHP-Marker. Eine gemeinsame
+JavaScript-Konstante oder ein `isAllLanguage`-Attribut ist Folgearbeit und
+nicht Teil des Benennungs-Patches. Typisierte Konstanten bleiben für TYPO3
+v15 erhalten; ein TYPO3-14.3-Backport muss sie an PHP 8.2 anpassen. Eine
+allgemeine Kommentierungsregel für inverse Prüfungen wie `> -1` oder rein
+kontextbezogenen Code wurde nicht beschlossen.
 
-Die fortgesetzte Prüfung von [Gerrit
-95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619) ordnete vier
-weitere Core-Pfade anhand der vorstehenden Unterscheidung ein. Der aktuelle
-`ContentObjectRenderer`, die frontendseitige `CategoryCollection` und der
-Extbase-`Typo3DbQueryParser` beziehen in ihren Abfragen gezielt Datensätze ein,
-die mit Language All gespeichert sind. Es handelt sich damit um
-datensatzbezogene Verwendungen und nicht um synthetische Auswahlwerte des
-Backends. Der `LinkAnalyzer` übernimmt, soweit vorhanden, die tatsächliche
-Sprache des Datensatzes, der einen Link enthält. Fehlt eine nutzbare
-Datensatzsprache, verwendet er jedoch ebenfalls `-1` als Fallback. Dieses
-Fallback ist daher ein dritter Vertrag, der explizit gemacht werden muss,
-bevor seine Darstellung geändert wird. Gerrit 95619 war bei der Prüfung am
-18.09.2026 weiterhin `NEW`, WIP und mergefähig; Patch Set 2 hatte eine
-erfolgreiche CI, aber keine menschliche Code-Review-Stimme.
+Der [Human Review Explorer](https://content.eric-harrer.de/t3thi/reviews/95619/)
+vergleicht 80 durch direkte und inverse Suchen ermittelte Kandidaten,
+unabhängige Bewertungen von Astra und Opus, frühere menschliche Entscheidungen
+und Core-Evidenz. Modellübereinstimmung dient nur der Priorisierung: Beide
+Modelle ordneten eine Abfrage gespeicherter Datensätze im
+`ContentObjectRenderer` fälschlich als synthetisch ein. Die
+Plausibilitätsprüfung vom 25.09.2026 fand unter den Ersetzungen in Patch Set 2
+keinen False Positive; weitere Kandidaten benötigen weiterhin menschliches
+Review.
 
-[Gerrit
-95476](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95476), Patch Set 1,
-ist ein separater WIP-Vorschlag für TYPO3 v15 und 14.3. Wenn ein neu angelegter
-Inline- oder File-Reference-Child-Record ohne explizite Sprache ankommt, wird
-seine Sprache vom referenzierenden Parent abgeleitet. Eine explizit
-übergebene Sprache des Child Records bleibt erhalten, und vorhandene Child
-Records werden nicht nachträglich einer anderen Sprache zugeordnet. Diese
-klar begrenzte Default-Regel behebt die gemeldete Regression, ohne valide
-gemischtsprachige Beziehungen zu verbieten. Der Change war bei der Prüfung am
-18.09.2026 `NEW`, WIP und mergefähig, mit erfolgreicher CI, keinen ungelösten
-Kommentaren und keiner menschlichen Code-Review-Stimme. Er ist kein aktuelles
-Core-Verhalten.
+Die offizielle Prüfung vom 02.10.2026 ergab für Gerrit 95619 weiterhin
+`NEW`, WIP, Patch Set 2, CI `+1`, mergefähig, keine ungelösten Kommentare
+und keine menschliche Code-Review-Stimme. Die vorbereitete Erweiterung ist
+noch kein hochgeladenes Patch Set.
+[Gerrit 92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267), ein
+separates Inventar von Annahmen über gespeicherte Datensätze, war bei der
+Prüfung am 04.09.2026 `NEW`, WIP, CI-positiv und mergefähig, mit Patch Set 6
+und einem ungelösten Kommentar. Diese gezielten Beobachtungen aktualisieren
+nicht den vollständigen externen Statusstand im folgenden Abschnitt.
 
-Diese gezielte Folgeprüfung ersetzt nicht den vollständigen externen
-Statusstand im folgenden Abschnitt. Sie aktualisiert ausschließlich Gerrit
-95476 und 95619 sowie die neu charakterisierten Language-All-Aufrufpfade.
+## Sprachvorbelegung neuer Child Records
 
-## Prüfung des Marker-Geltungsbereichs vom 25.09.2026
-
-Die Initiative nutzte einen [Human Review
-Explorer](https://content.eric-harrer.de/t3thi/reviews/95619/), um 80 durch
-direkte und inverse Suchen ermittelte Kandidaten mit unabhängigen Bewertungen
-von Astra und Opus, früheren menschlichen Entscheidungen und Core-Evidenz zu
-vergleichen. Die Übereinstimmung der Modelle wurde ausschließlich als Signal
-für die Priorisierung betrachtet: In einem zuvor geprüften
-`ContentObjectRenderer`-Fall bezeichneten beide Modelle den Wert als
-synthetisch, obwohl die menschliche Prüfung des Code-Pfads eine Abfrage
-gespeicherter Datensätze belegt hatte.
-
-Für den klar begrenzten Geltungsbereich von [Gerrit
-95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619) verständigte sich
-die Initiative darauf, vorläufig eine gemeinsame Konstante
-`LanguageMarker::ALL_LANGUAGES` zu verwenden, wenn ein geprüftes
-`-1`-Vorkommen All Languages bedeutet. Der Marker bildet die Unterscheidung
-zwischen gespeichertem Datensatzwert, synthetischem Backend-Zustand und
-Fallback-Vertrag zunächst nicht ab. Seine Dokumentation darf ihn daher nicht
-als ausschließlich für Datenbank-Sprachfelder bestimmt beschreiben. Diese
-Patch-Konvention verbessert Benennung und Auffindbarkeit, ohne die Verträge
-gleichzusetzen oder ihre spätere Trennung und Ablösung zu verhindern.
-
-Eine Plausibilitätsprüfung fand unter den bereits durch Patch Set 2 geänderten
-Vorkommen keinen False Positive. Weitere Kandidaten außerhalb des Patches
-benötigen weiterhin menschliches Review und können ein späteres Patch Set
-erweitern. Der offizielle Gerrit-Stand war bei der Prüfung am 25.09.2026
-unverändert: `NEW`, WIP, CI-positiv und mergefähig, ohne ungelöste Kommentare
-oder menschliche Code-Review-Stimme. Diese gezielte Prüfung ersetzt nicht den
-vollständigen externen Statusstand im folgenden Abschnitt.
+[Gerrit 95476](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95476),
+Patch Set 1, ist ein separater WIP-Vorschlag für TYPO3 v15 und 14.3. Ein neuer
+Inline- oder File-Reference-Child-Record übernimmt die Sprache des
+referenzierenden Parents nur, wenn keine explizite Child-Sprache ankommt.
+Beabsichtigte Abweichungen und vorhandene Child Records bleiben unverändert.
+Dies behebt die gemeldete Vorbelegungsregression, ohne gemischtsprachige
+Beziehungen zu verbieten. Die Prüfung vom 18.09.2026 ergab `NEW`, WIP,
+mergefähig, CI-positiv, keine ungelösten Kommentare und keine menschliche
+Code-Review-Stimme; dies ist kein aktuelles Core-Verhalten.
 
 ## Laufende Arbeit mit Stand vom 28.08.2026
 

@@ -2,7 +2,7 @@
 id: topic:current-core-work
 title: "Current Core Work"
 language: en
-updated: "2026-09-25"
+updated: "2026-10-02"
 knowledge:
   - K-000013
   - K-000015
@@ -46,88 +46,74 @@ The [initiative test extension](https://github.com/t3thi/translation-handling) a
 
 The repeated pattern is useful: a real failure is reproduced, the responsible contract is identified, tests define the boundary and the fix remains narrow. This is the initiative's preferred form of incremental improvement.
 
-## Targeted Language-All review on 2026-09-04
+## Language-All marker: scope and review boundary
 
-A targeted follow-up reviewed the two WIP changes concerned with Language-All
-markers. [Gerrit 95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619),
-patch set 2, introduces one named marker for persisted and synthetic
-occurrences without changing behavior. [Gerrit
-92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267), patch set 6,
-marks assumptions about persisted Language-All records and had one unresolved
-comment when checked on 2026-09-04. Both changes were `NEW`, WIP, CI-positive
-and mergeable at that check.
+[Gerrit 95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619)
+introduces a named marker without changing behavior. The initiative
+distinguishes an editor's stored Language-All choice, a synthetic backend
+selection and a fallback contract. Current Core still depends on these uses
+in Layout, routing, Workspaces, Recycler, sitemap and LinkValidator. The
+longer-term direction remains explicit concrete language selections where
+characterization proves them safe, and a synchronization replacement for
+stored Language-All intent. The record lookups in `ContentObjectRenderer`,
+frontend `CategoryCollection` and Extbase `Typo3DbQueryParser` are not
+synthetic selections.
 
-The initiative's review distinguishes those semantics: a value actually
-stored in a record represents the editor's Language-All choice, while a value
-created only to represent a backend display or filter state is synthetic. The
-inspection of Core `main` at commit
-`028b93bddf49a950eb3a58c4606b5e06145fb567` confirms active dependencies in
-Layout, routing, Workspaces, Recycler, sitemap and LinkValidator paths. It does
-not show that all of those paths need the same representation. The supported
-direction is therefore to replace synthetic selection sentinels with explicit
-concrete language selections where characterization proves this safe, while
-preserving record-level behavior until its synchronization replacement exists.
+For the bounded patch, the agreement of 2026-09-25, refined on 2026-10-02,
+uses one interim `LanguageMarker::ALL_LANGUAGES` wherever a reviewed `-1`
+means All Languages. Its documentation must cover both stored and synthetic
+uses. Clear occurrences in `TcaColumnsRemoveEmptyRelations`, `TcaEnrichment`,
+`TcaPreparation` and `SlugHelper` belong in that scope; blanket TCA exclusion
+would contradict the purpose. Naming does not unify the contracts or prevent
+later separation. The Decision Record remains proposed pending canonical
+review.
 
-This targeted check does not replace the complete external-status snapshot
-below. It updates only Gerrit 92267 and 95619 and the code paths examined for
-their semantic classification.
+The existing `LinkAnalyzer` fallback represents records without usable
+language information as All Languages. The meeting accepted it and
+`EditableRestriction` for marker naming without changing behavior or query
+representation. The post-meeting mainline check on 2026-10-02 nevertheless
+keeps a coverage question open: the bulk query explicitly selects the
+language field, but `recheckLinks()` does not explicitly add it. If neither
+other selected fields nor event enrichment supplies it, `checkLinks()` falls
+back to `-1` even for a language-aware record. This is a static code finding,
+not a reproduced runtime regression; the meeting's low-risk assessment does
+not close it. A separate fallback contract remains necessary before replacing
+the representation.
 
-## Focused follow-up on 2026-09-18
+Layout drag-and-drop TypeScript keeps the literal with a PHP-marker
+synchronization comment. A shared JavaScript constant or an `isAllLanguage`
+property is follow-up work, not part of the naming patch. Typed constants
+remain for TYPO3 v15; a TYPO3 14.3 backport must adapt to PHP 8.2. No general
+annotation rule for inverse checks such as `> -1` or context-only code was
+decided.
 
-The continued review of [Gerrit
-95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619) classified four
-additional Core paths against the distinction above. The current
-`ContentObjectRenderer`, frontend `CategoryCollection` and Extbase
-`Typo3DbQueryParser` deliberately include records stored with Language All in
-their queries; these are record-level uses rather than synthetic backend
-selection values. `LinkAnalyzer` carries the actual language of the record
-containing a link where available, but also falls back to `-1` when no usable
-record language exists. The fallback is therefore a third contract that must
-be made explicit before its representation is changed. Gerrit 95619 remained
-`NEW`, WIP and mergeable at patch set 2, with successful CI and no human
-Code-Review vote when checked on 2026-09-18.
+The [Human Review Explorer](https://content.eric-harrer.de/t3thi/reviews/95619/)
+compares 80 directly and inversely discovered candidates, independent Astra
+and Opus assessments, prior human decisions and Core evidence. Model agreement
+is triage only: both models misclassified a persisted `ContentObjectRenderer`
+query as synthetic. The 2026-09-25 plausibility pass found no false positive
+among patch set 2's replacements; further candidates still require human
+review.
 
-[Gerrit
-95476](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95476), patch set 1,
-is a separate WIP proposal for TYPO3 v15 and 14.3. When a newly created inline
-or file-reference child arrives without an explicit language, it derives the
-language from the referencing parent. It preserves an explicitly supplied
-child language and does not relanguage existing children. This bounded
-defaulting rule addresses the reported regression without forbidding valid
-mixed-language relations. The change was `NEW`, WIP and mergeable, with
-successful CI, no unresolved comments and no human Code-Review vote when
-checked on 2026-09-18; it is not current Core behavior.
+The official check on 2026-10-02 found Gerrit 95619 still `NEW`, WIP at patch
+set 2, CI `+1`, mergeable and without unresolved comments or a human
+Code-Review vote. The prepared expansion is not yet an uploaded patch set.
+[Gerrit 92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267), a
+separate inventory of persisted-record assumptions, was `NEW`, WIP,
+CI-positive and mergeable at patch set 6 with one unresolved comment when
+checked on 2026-09-04. These targeted observations do not refresh the
+complete external-status snapshot below.
 
-This focused follow-up does not replace the complete external-status snapshot
-below. It updates only Gerrit 95476 and 95619 and the newly characterized
-Language-All call paths.
+## Inline-child language defaulting
 
-## Marker scope review on 2026-09-25
-
-The initiative used a [Human Review
-Explorer](https://content.eric-harrer.de/t3thi/reviews/95619/) to compare 80
-directly and inversely discovered candidates with independent Astra and Opus
-assessments, prior human decisions and Core evidence. The models' agreement
-was treated only as a triage signal: in one previously reviewed
-`ContentObjectRenderer` case, both called the value synthetic although the
-human code-path review had established a persisted-record query.
-
-For the bounded scope of [Gerrit
-95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619), the initiative
-agreed to use one interim `LanguageMarker::ALL_LANGUAGES` constant wherever a
-reviewed `-1` occurrence means All Languages. The marker does not yet encode
-the distinction between a persisted record value, a synthetic backend state
-and a fallback contract. The documentation must therefore not describe it as
-exclusive to database language fields. This patch convention improves naming
-and discoverability without making the contracts equivalent or preventing
-their later separation and replacement.
-
-A plausibility pass found no false positive among the occurrences already
-changed by patch set 2. Further candidates outside the patch still require
-human review and may extend a later patch set. The official Gerrit state was
-unchanged when checked on 2026-09-25: `NEW`, WIP, CI-positive and mergeable,
-with no unresolved comments or human Code-Review vote. This focused check does
-not replace the complete external-status snapshot below.
+[Gerrit 95476](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95476),
+patch set 1, is a separate WIP proposal for TYPO3 v15 and 14.3. A newly
+created inline or file-reference child inherits the referencing parent's
+language only when no explicit child language arrives. Deliberate differences
+and existing children remain unchanged. This addresses the reported
+defaulting regression without forbidding mixed-language relations. The
+2026-09-18 check found `NEW`, WIP, mergeable, CI-positive, no unresolved
+comments and no human Code-Review vote; it is not current Core behavior.
 
 ## Current work as of 2026-08-28
 

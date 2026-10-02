@@ -388,3 +388,8 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
     - <sup>Mixed Mode Direction and External Demand, Systematic Language-All Occurrence Analysis, Inline Child Language Patch Status, LinkAnalyzer Semantics, ContentObjectRenderer Language Restrictions, and Extbase Persistence Findings</sup>
 - [2026-09-25, 12:02 to 13:01 CEST](https://notes.typo3.org/s/IeIMwXw8bM)
     - <sup>Human Review Explorer for Language-All Findings, Language-All Marker Scope and Semantics, Patch Coverage, and Human Review Method</sup>
+
+### October
+
+- [2026-10-02, 12:02 to 13:11 CEST](https://notes.typo3.org/s/2liigJQ6jA)
+    - <sup>Participant Context, Comparison View Improvements, Language-All Marker Scope, TCA and LinkValidator Coverage, Marker Documentation, PHP Compatibility, TypeScript Boundaries, and Remaining Review Findings</sup>

@@ -3,6 +3,7 @@ id: D-000002
 status: proposed
 title: Use one interim marker for current Language-All contexts
 date: 2026-09-25
+updated: 2026-10-02
 scope: core-patch-95619
 authority: translation-handling-initiative
 evidence:
@@ -14,6 +15,18 @@ evidence:
     location: "58:32-58:48, agreed Gerrit update about the semantic distinction"
     relation: confirms
     summarized_in: minutes:2026-09-25#topic-3-patch-coverage-and-human-review-method
+  - source: transcript:2026-10-02
+    location: "16:51-23:47 and 38:31-42:14, include genuine TCA and SlugHelper occurrences"
+    relation: refines
+    summarized_in: minutes:2026-10-02#topic-3-tca-and-slughelper-coverage
+  - source: transcript:2026-10-02
+    location: "23:47-38:24, keep LinkValidator behavior and query representation"
+    relation: refines
+    summarized_in: minutes:2026-10-02#topic-4-linkvalidator-fallback-semantics
+  - source: transcript:2026-10-02
+    location: "42:14-56:39, documentation, PHP backport and TypeScript boundaries"
+    relation: refines
+    summarized_in: minutes:2026-10-02#topic-6-typescript-drag-and-drop-boundary
 relations:
   - type: refines
     target: K-000029
@@ -23,7 +36,7 @@ external_artifacts:
   - id: gerrit:95619
     relation: implements
     state: open-wip
-    verified_at: 2026-09-25
+    verified_at: 2026-10-02
 ---
 
 # Use one interim marker for current Language-All contexts
@@ -49,6 +62,20 @@ language fields.
 This is an interim implementation decision for the marker patch. It does not
 declare the underlying persisted, synthetic and fallback contracts
 semantically equivalent and does not decide their eventual replacement.
+
+The 2026-10-02 review includes genuine Language-All occurrences in
+`TcaColumnsRemoveEmptyRelations`, `TcaEnrichment`, `TcaPreparation` and
+`SlugHelper`. It retains the existing `LinkAnalyzer` fallback and
+`EditableRestriction` query representation. The patch description must
+therefore remove its blanket TCA exclusion as well as its record-field-only
+framing.
+
+For Layout drag-and-drop TypeScript, retain the literal and add a comment
+linking it to the PHP marker. Cross-language value transport, a shared
+JavaScript constant or an `isAllLanguage` property are follow-up options, not
+part of this patch. Keep the typed PHP constant for TYPO3 v15; a TYPO3 14.3
+backport must adapt to its PHP 8.2 baseline. Do not add a backport-only code
+comment. No general rule for inverse or context-only annotations was decided.
 
 ## Alternatives considered
 
@@ -78,3 +105,5 @@ in a separate follow-up.
   explicit concrete language sets.
 - The decision changes naming and discoverability only; it does not change
   TYPO3 behavior or adopt a final Language-All replacement contract.
+- Accepting the LinkValidator occurrence for naming does not close the
+  separate language-field coverage question recorded in `K-000029`.
