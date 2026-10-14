@@ -1,6 +1,6 @@
 ---
 title: "Translation Handling Initiative - Current State"
-last_updated: "2026-10-02"
+last_updated: "2026-10-10"
 weekly_minutes_included_through: "2026-08-14"
 transcripts_included_through: "2026-08-14"
 external_status_checked_through: "2026-08-28"
@@ -15,7 +15,7 @@ Knowledge metadata. Do not edit it directly.
 
 [Deutsche Fassung](https://notes.typo3.org/s/7bbwd73t2h) · [Meeting minutes overview](https://notes.typo3.org/s/f3ae8fZSD) · [How to maintain this document][cs3]
 
-**Status of this edition:** The content was last updated on 2 October 2026. It includes reviewed meeting minutes and transcripts through 14 August 2026. The complete external state of TYPO3 Core, Gerrit and Forge was last checked on 28 August 2026. Unless an entry names a later individual verification date, patch and review statuses should be read as of that date.
+**Status of this edition:** The content was last updated on 10 October 2026. It includes reviewed meeting minutes and transcripts through 14 August 2026. The complete external state of TYPO3 Core, Gerrit and Forge was last checked on 28 August 2026. Unless an entry names a later individual verification date, patch and review statuses should be read as of that date.
 
 This is the canonical description of the Translation Handling Initiative's current understanding, vision and work. It explains why the initiative works on translation handling, what its research has established, which direction it currently sees, which approaches it is investigating and which decisions remain open.
 
@@ -357,6 +357,24 @@ The second path should remain invisible in normal editorial and frontend output.
 
 **Vision:** Output should follow explicit site and, where required, content-position intent. A structural connection must not silently determine the frontend fallback policy.
 
+**Unvalidated approach:** André proposed explicit single- or all-language
+enable/disable operations that write the existing `hidden` values, with
+equivalent API support. Without a fallback chain, output would select concrete
+requested-language records independently of the Default Language parent's
+visibility. With a configured chain, fallback would still run at runtime.
+The chain's presence could replace `fallbackType`; a missing connected translation
+would permit fallback, an existing deliberately disabled one would block it,
+and deleting it would permit fallback again. This does not require complete
+fallback copies or a new stored Disable-All flag. The 2026-10-09 discussion
+did not establish shared understanding, behavioral equivalence or a v15
+commitment. This is not adopted architecture or changed Core behavior.
+
+Strict's accepted single-language promise remains intact. Removing a selector
+must not silently activate a previously inactive saved chain, destroy retained
+configuration or lose regional reuse without an unwanted terminal default.
+Migration, local absence, permissions, Workspaces and consistent query behavior
+require validation before this proposal can replace any current mode.
+
 **Open questions:**
 
 - Which state stops fallback for one position?
@@ -403,6 +421,7 @@ The initiative and related Core work have already delivered bounded improvements
 | [Gerrit 94914](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94914), merged 2026-08-01 | TYPO3 v15, [TYPO3 14.3 as Gerrit 94916](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94916) and [TYPO3 13.4 as Gerrit 94915](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94915) merged. | Finds existing translations through `l10n_parent` when `l10n_source` is empty. | Preserves the distinction between structural parent and translation source while preventing duplicates. |
 | [Gerrit 95170][cs18], merged 2026-08-10 | TYPO3 v15 and [TYPO3 14.3 as Gerrit 95199][cs19] merged. | Corrects comparison views that combine Connected- and Free-Mode languages: connected items form comparison rows while each Free-Mode language renders independently, including when the Default Language has no items. | A bounded interim correction for the current modes. It does not select the future editing or structural model. |
 | [Gerrit 95178](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95178), merged 2026-08-10 | TYPO3 v15 and [TYPO3 14.3 as Gerrit 95202](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95202) merged. | Keeps the language title, flag and translation mode visible while scrolling a long comparison view in the Layout module. | Improves editor orientation in the current interface. The patch is explicitly interim and neither changes nor selects a future structural model. |
+| [Gerrit 95619][cs20], merged 2026-10-06 | TYPO3 v15 and [TYPO3 14.3 as Gerrit 96412](https://review.typo3.org/c/Packages/TYPO3.CMS/+/96412) merged. | Names current stored and synthetic All-Languages values through `LanguageMarker::ALL_LANGUAGES`. | Internal naming preparation only: `-1` semantics remain; no replacement API or architecture is adopted. |
 
 The [initiative test extension](https://github.com/t3thi/translation-handling) also provides reproducible translation, fallback and relation scenarios. It was revived and extended with focused IRRE cases in 2025. It is research infrastructure, not evidence of changed Core behavior.
 
@@ -410,8 +429,9 @@ The repeated pattern is useful: a real failure is reproduced, the responsible co
 
 ## Language-All marker: scope and review boundary
 
-[Gerrit 95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619)
-introduces a named marker without changing behavior. The initiative
+[Gerrit 95619][cs20]
+and its 14.3 backport merged on 2026-10-06, verified on 2026-10-10. The
+internal integer marker names existing values without changing behavior. The initiative
 distinguishes an editor's stored Language-All choice, a synthetic backend
 selection and a fallback contract. Current Core still depends on these uses
 in Layout, routing, Workspaces, Recycler, sitemap and LinkValidator. The
@@ -421,14 +441,11 @@ stored Language-All intent. The record lookups in `ContentObjectRenderer`,
 frontend `CategoryCollection` and Extbase `Typo3DbQueryParser` are not
 synthetic selections.
 
-For the bounded patch, the agreement of 2026-09-25, refined on 2026-10-02,
-uses one interim `LanguageMarker::ALL_LANGUAGES` wherever a reviewed `-1`
-means All Languages. Its documentation must cover both stored and synthetic
-uses. Clear occurrences in `TcaColumnsRemoveEmptyRelations`, `TcaEnrichment`,
-`TcaPreparation` and `SlugHelper` belong in that scope; blanket TCA exclusion
-would contradict the purpose. Naming does not unify the contracts or prevent
-later separation. The Decision Record remains proposed pending canonical
-review.
+The merged `LanguageMarker::ALL_LANGUAGES` documents stored and synthetic
+uses and includes the reviewed TCA helpers and `SlugHelper`. This implements
+bounded naming work, not the replacement recommendation. Naming neither
+unifies the contracts nor prevents a later split. The initiative Decision
+Record remains proposed pending its separate canonical review.
 
 The existing `LinkAnalyzer` fallback represents records without usable
 language information as All Languages. The meeting accepted it and
@@ -444,10 +461,9 @@ the representation.
 
 Layout drag-and-drop TypeScript keeps the literal with a PHP-marker
 synchronization comment. A shared JavaScript constant or an `isAllLanguage`
-property is follow-up work, not part of the naming patch. Typed constants
-remain for TYPO3 v15; a TYPO3 14.3 backport must adapt to PHP 8.2. No general
-annotation rule for inverse checks such as `> -1` or context-only code was
-decided.
+property remains follow-up work. TYPO3 v15 has the typed constant; the merged
+14.3 backport uses an untyped constant for PHP 8.2. No general annotation rule
+for inverse checks or context-only code was decided.
 
 The [Human Review Explorer](https://content.eric-harrer.de/t3thi/reviews/95619/)
 compares 80 directly and inversely discovered candidates, independent Astra
@@ -457,9 +473,11 @@ query as synthetic. The 2026-09-25 plausibility pass found no false positive
 among patch set 2's replacements; further candidates still require human
 review.
 
-The official check on 2026-10-02 found Gerrit 95619 still `NEW`, WIP at patch
-set 2, CI `+1`, mergeable and without unresolved comments or a human
-Code-Review vote. The prepared expansion is not yet an uploaded patch set.
+The 2026-10-09 meeting identified a Default Language marker as a follow-up
+candidate. Record predicates and query-level abstractions were explored, but
+no migration API was selected. The merged marker is `@internal`, not a stable
+extension API, and still depends on integer language-field comparisons.
+
 [Gerrit 92267][cs16], a
 separate inventory of persisted-record assumptions, was `NEW`, WIP,
 CI-positive and mergeable at patch set 6 with one unresolved comment when
@@ -681,3 +699,4 @@ Future updates must follow the [Current State maintenance instructions][cs3]. Th
 [cs17]: https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510
 [cs18]: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95170
 [cs19]: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95199
+[cs20]: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619

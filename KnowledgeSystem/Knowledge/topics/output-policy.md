@@ -2,11 +2,12 @@
 id: topic:output-policy
 title: "Output Policy"
 language: en
-updated: "2026-08-11"
+updated: "2026-10-10"
 knowledge:
   - K-000013
   - K-000014
   - K-000020
+  - K-000033
 history:
   - K-000024
   - K-000025
@@ -32,6 +33,24 @@ decisions: []
 - Any change to absence semantics must include compatibility analysis because current projects may depend on existing fallback.
 
 **Vision:** Output should follow explicit site and, where required, content-position intent. A structural connection must not silently determine the frontend fallback policy.
+
+**Unvalidated approach:** André proposed explicit single- or all-language
+enable/disable operations that write the existing `hidden` values, with
+equivalent API support. Without a fallback chain, output would select concrete
+requested-language records independently of the Default Language parent's
+visibility. With a configured chain, fallback would still run at runtime.
+The chain's presence could replace `fallbackType`; a missing connected translation
+would permit fallback, an existing deliberately disabled one would block it,
+and deleting it would permit fallback again. This does not require complete
+fallback copies or a new stored Disable-All flag. The 2026-10-09 discussion
+did not establish shared understanding, behavioral equivalence or a v15
+commitment. This is not adopted architecture or changed Core behavior.
+
+Strict's accepted single-language promise remains intact. Removing a selector
+must not silently activate a previously inactive saved chain, destroy retained
+configuration or lose regional reuse without an unwanted terminal default.
+Migration, local absence, permissions, Workspaces and consistent query behavior
+require validation before this proposal can replace any current mode.
 
 **Open questions:**
 

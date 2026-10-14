@@ -2,7 +2,7 @@
 id: topic:current-core-work
 title: "Aktuelle Core-Arbeit"
 language: de
-updated: "2026-10-02"
+updated: "2026-10-10"
 knowledge:
   - K-000013
   - K-000015
@@ -13,14 +13,16 @@ knowledge:
   - K-000028
   - K-000029
   - K-000030
+  - K-000031
+  - K-000032
 history:
   - K-000026
 decisions:
   - D-000002
 translation_of: topic:current-core-work
-source_updated: "2026-10-02"
+source_updated: "2026-10-10"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:58743ceee8542ac48440c8f5c4d864585fedaea981b276db8f4f243fbf4b7dae"
+source_digest: "sha256:ae0c5e0cd668e887726c43f8c972b9f84c04d7a5cf8f615d3f719ae2cff3a608"
 ---
 
 # Aktuelle Core-Arbeit
@@ -45,6 +47,7 @@ Die Initiative und damit verbundene Core-Arbeiten haben bereits klar abgegrenzte
 | [Gerrit 94914](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94914), gemergt am 01.08.2026 | TYPO3 v15, [TYPO3 14.3 als Gerrit-Patch 94916](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94916) und [TYPO3 13.4 als Gerrit-Patch 94915](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94915) sind gemergt. | Findet vorhandene Übersetzungen über `l10n_parent`, wenn `l10n_source` leer ist. | Bewahrt die Unterscheidung zwischen strukturellem Parent und Übersetzungsquelle und verhindert zugleich Duplikate. |
 | [Gerrit 95170](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95170), gemergt am 10.08.2026 | TYPO3 v15 und [TYPO3 14.3 als Gerrit-Patch 95199](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95199) sind gemergt. | Korrigiert Vergleichsansichten, die Connected- und Free-Mode-Sprachen kombinieren: Connected-Mode-Inhalte bilden Vergleichszeilen, während jede Free-Mode-Sprache unabhängig dargestellt wird, auch wenn die Default Language keine Inhalte enthält. | Eine klar abgegrenzte Zwischenkorrektur für die aktuellen Modi. Sie bestimmt weder das zukünftige Bearbeitungs- noch das Strukturmodell. |
 | [Gerrit 95178](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95178), gemergt am 10.08.2026 | TYPO3 v15 und [TYPO3 14.3 als Gerrit-Patch 95202](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95202) sind gemergt. | Hält beim Scrollen durch eine lange Vergleichsansicht im Modul „Layout“ Sprachname, Flag und Übersetzungsmodus sichtbar. | Verbessert die redaktionelle Orientierung in der aktuellen Oberfläche. Der Patch ist ausdrücklich eine Zwischenlösung und ändert oder bestimmt kein zukünftiges Strukturmodell. |
+| [Gerrit 95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619), gemergt am 06.10.2026 | TYPO3 v15 und [TYPO3 14.3 als Gerrit-Patch 96412](https://review.typo3.org/c/Packages/TYPO3.CMS/+/96412) sind gemergt. | Benennt gespeicherte und synthetische All-Languages-Werte durch `LanguageMarker::ALL_LANGUAGES`. | Nur interne Vorbereitung der Benennung: Die `-1`-Semantik bleibt; keine Ersatz-API oder Architektur ist übernommen. |
 
 Die [Test-Extension der Initiative](https://github.com/t3thi/translation-handling) stellt außerdem reproduzierbare Szenarien für Übersetzungen, Fallback und Beziehungen bereit. Sie wurde 2025 wiederbelebt und um gezielte IRRE-Fälle erweitert. Sie ist Forschungsinfrastruktur und kein Beleg für geändertes Core-Verhalten.
 
@@ -53,7 +56,9 @@ Das wiederkehrende Muster ist hilfreich: Ein realer Fehler wird reproduziert, de
 ## Language-All-Marker: Geltungsbereich und Review-Grenze
 
 [Gerrit 95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619)
-führt einen benannten Marker ein, ohne das Verhalten zu ändern. Die Initiative
+und sein 14.3-Backport wurden am 06.10.2026 gemergt, geprüft am 10.10.2026.
+Der interne Integer-Marker benennt bestehende Werte, ohne das Verhalten zu
+ändern. Die Initiative
 unterscheidet die gespeicherte Language-All-Auswahl der Redaktion, eine
 synthetische Backend-Auswahl und einen Fallback-Vertrag. Der aktuelle Core
 hängt in Layout, Routing, Workspaces, Recycler, Sitemap und LinkValidator
@@ -64,15 +69,12 @@ Language-All-Absicht. Die Datensatzabfragen in `ContentObjectRenderer`,
 frontendseitiger `CategoryCollection` und Extbase-`Typo3DbQueryParser` sind
 keine synthetischen Auswahlen.
 
-Für den begrenzten Patch sieht die Vereinbarung vom 25.09.2026, präzisiert am
-02.10.2026, vorläufig einen gemeinsamen `LanguageMarker::ALL_LANGUAGES` vor,
-wo ein geprüftes `-1` All Languages bedeutet. Seine Dokumentation muss
-gespeicherte und synthetische Verwendungen abdecken. Eindeutige Vorkommen in
-`TcaColumnsRemoveEmptyRelations`, `TcaEnrichment`, `TcaPreparation` und
-`SlugHelper` gehören dazu; ein pauschaler TCA-Ausschluss würde dem Zweck
-widersprechen. Die Benennung setzt die Verträge nicht gleich und verhindert
-keine spätere Trennung. Der Decision Record bleibt bis zum kanonischen Review
-vorgeschlagen.
+Der gemergte `LanguageMarker::ALL_LANGUAGES` dokumentiert gespeicherte und
+synthetische Verwendungen und umfasst die geprüften TCA-Helfer und
+`SlugHelper`. Dies setzt die begrenzte Benennungsarbeit um, nicht die
+Empfehlung zur Ablösung. Die Benennung setzt die Verträge weder gleich noch
+verhindert sie eine spätere Trennung. Der Decision Record der Initiative
+bleibt bis zu seinem separaten kanonischen Review vorgeschlagen.
 
 Das bestehende `LinkAnalyzer`-Fallback stellt Datensätze ohne nutzbare
 Sprachinformation als All Languages dar. Das Meeting akzeptierte es und
@@ -89,11 +91,10 @@ ein separater Fallback-Vertrag erforderlich.
 
 Das TypeScript für Drag-and-drop in Layout behält das Literal mit einem
 Kommentar zur Synchronisierung mit dem PHP-Marker. Eine gemeinsame
-JavaScript-Konstante oder ein `isAllLanguage`-Attribut ist Folgearbeit und
-nicht Teil des Benennungs-Patches. Typisierte Konstanten bleiben für TYPO3
-v15 erhalten; ein TYPO3-14.3-Backport muss sie an PHP 8.2 anpassen. Eine
-allgemeine Kommentierungsregel für inverse Prüfungen wie `> -1` oder rein
-kontextbezogenen Code wurde nicht beschlossen.
+JavaScript-Konstante oder ein `isAllLanguage`-Attribut bleibt Folgearbeit.
+TYPO3 v15 hat die typisierte Konstante; der gemergte 14.3-Backport verwendet
+für PHP 8.2 eine untypisierte Konstante. Eine allgemeine Kommentierungsregel
+für inverse Prüfungen oder rein kontextbezogenen Code wurde nicht beschlossen.
 
 Der [Human Review Explorer](https://content.eric-harrer.de/t3thi/reviews/95619/)
 vergleicht 80 durch direkte und inverse Suchen ermittelte Kandidaten,
@@ -105,10 +106,12 @@ Plausibilitätsprüfung vom 25.09.2026 fand unter den Ersetzungen in Patch Set 2
 keinen False Positive; weitere Kandidaten benötigen weiterhin menschliches
 Review.
 
-Die offizielle Prüfung vom 02.10.2026 ergab für Gerrit 95619 weiterhin
-`NEW`, WIP, Patch Set 2, CI `+1`, mergefähig, keine ungelösten Kommentare
-und keine menschliche Code-Review-Stimme. Die vorbereitete Erweiterung ist
-noch kein hochgeladenes Patch Set.
+Das Meeting vom 09.10.2026 benannte einen Default-Language-Marker als
+möglichen Folgeschritt. Datensatzprüfungen und Abfrageabstraktionen wurden
+untersucht, aber keine Migrations-API ausgewählt. Der gemergte Marker ist
+`@internal`, keine stabile Extension-API, und hängt weiterhin von
+Integer-Vergleichen des Sprachfelds ab.
+
 [Gerrit 92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267), ein
 separates Inventar von Annahmen über gespeicherte Datensätze, war bei der
 Prüfung am 04.09.2026 `NEW`, WIP, CI-positiv und mergefähig, mit Patch Set 6

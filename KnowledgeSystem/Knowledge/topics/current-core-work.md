@@ -2,7 +2,7 @@
 id: topic:current-core-work
 title: "Current Core Work"
 language: en
-updated: "2026-10-02"
+updated: "2026-10-10"
 knowledge:
   - K-000013
   - K-000015
@@ -13,6 +13,8 @@ knowledge:
   - K-000028
   - K-000029
   - K-000030
+  - K-000031
+  - K-000032
 history:
   - K-000026
 decisions:
@@ -41,6 +43,7 @@ The initiative and related Core work have already delivered bounded improvements
 | [Gerrit 94914](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94914), merged 2026-08-01 | TYPO3 v15, [TYPO3 14.3 as Gerrit 94916](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94916) and [TYPO3 13.4 as Gerrit 94915](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94915) merged. | Finds existing translations through `l10n_parent` when `l10n_source` is empty. | Preserves the distinction between structural parent and translation source while preventing duplicates. |
 | [Gerrit 95170](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95170), merged 2026-08-10 | TYPO3 v15 and [TYPO3 14.3 as Gerrit 95199](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95199) merged. | Corrects comparison views that combine Connected- and Free-Mode languages: connected items form comparison rows while each Free-Mode language renders independently, including when the Default Language has no items. | A bounded interim correction for the current modes. It does not select the future editing or structural model. |
 | [Gerrit 95178](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95178), merged 2026-08-10 | TYPO3 v15 and [TYPO3 14.3 as Gerrit 95202](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95202) merged. | Keeps the language title, flag and translation mode visible while scrolling a long comparison view in the Layout module. | Improves editor orientation in the current interface. The patch is explicitly interim and neither changes nor selects a future structural model. |
+| [Gerrit 95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619), merged 2026-10-06 | TYPO3 v15 and [TYPO3 14.3 as Gerrit 96412](https://review.typo3.org/c/Packages/TYPO3.CMS/+/96412) merged. | Names current stored and synthetic All-Languages values through `LanguageMarker::ALL_LANGUAGES`. | Internal naming preparation only: `-1` semantics remain; no replacement API or architecture is adopted. |
 
 The [initiative test extension](https://github.com/t3thi/translation-handling) also provides reproducible translation, fallback and relation scenarios. It was revived and extended with focused IRRE cases in 2025. It is research infrastructure, not evidence of changed Core behavior.
 
@@ -49,7 +52,8 @@ The repeated pattern is useful: a real failure is reproduced, the responsible co
 ## Language-All marker: scope and review boundary
 
 [Gerrit 95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619)
-introduces a named marker without changing behavior. The initiative
+and its 14.3 backport merged on 2026-10-06, verified on 2026-10-10. The
+internal integer marker names existing values without changing behavior. The initiative
 distinguishes an editor's stored Language-All choice, a synthetic backend
 selection and a fallback contract. Current Core still depends on these uses
 in Layout, routing, Workspaces, Recycler, sitemap and LinkValidator. The
@@ -59,14 +63,11 @@ stored Language-All intent. The record lookups in `ContentObjectRenderer`,
 frontend `CategoryCollection` and Extbase `Typo3DbQueryParser` are not
 synthetic selections.
 
-For the bounded patch, the agreement of 2026-09-25, refined on 2026-10-02,
-uses one interim `LanguageMarker::ALL_LANGUAGES` wherever a reviewed `-1`
-means All Languages. Its documentation must cover both stored and synthetic
-uses. Clear occurrences in `TcaColumnsRemoveEmptyRelations`, `TcaEnrichment`,
-`TcaPreparation` and `SlugHelper` belong in that scope; blanket TCA exclusion
-would contradict the purpose. Naming does not unify the contracts or prevent
-later separation. The Decision Record remains proposed pending canonical
-review.
+The merged `LanguageMarker::ALL_LANGUAGES` documents stored and synthetic
+uses and includes the reviewed TCA helpers and `SlugHelper`. This implements
+bounded naming work, not the replacement recommendation. Naming neither
+unifies the contracts nor prevents a later split. The initiative Decision
+Record remains proposed pending its separate canonical review.
 
 The existing `LinkAnalyzer` fallback represents records without usable
 language information as All Languages. The meeting accepted it and
@@ -82,10 +83,9 @@ the representation.
 
 Layout drag-and-drop TypeScript keeps the literal with a PHP-marker
 synchronization comment. A shared JavaScript constant or an `isAllLanguage`
-property is follow-up work, not part of the naming patch. Typed constants
-remain for TYPO3 v15; a TYPO3 14.3 backport must adapt to PHP 8.2. No general
-annotation rule for inverse checks such as `> -1` or context-only code was
-decided.
+property remains follow-up work. TYPO3 v15 has the typed constant; the merged
+14.3 backport uses an untyped constant for PHP 8.2. No general annotation rule
+for inverse checks or context-only code was decided.
 
 The [Human Review Explorer](https://content.eric-harrer.de/t3thi/reviews/95619/)
 compares 80 directly and inversely discovered candidates, independent Astra
@@ -95,9 +95,11 @@ query as synthetic. The 2026-09-25 plausibility pass found no false positive
 among patch set 2's replacements; further candidates still require human
 review.
 
-The official check on 2026-10-02 found Gerrit 95619 still `NEW`, WIP at patch
-set 2, CI `+1`, mergeable and without unresolved comments or a human
-Code-Review vote. The prepared expansion is not yet an uploaded patch set.
+The 2026-10-09 meeting identified a Default Language marker as a follow-up
+candidate. Record predicates and query-level abstractions were explored, but
+no migration API was selected. The merged marker is `@internal`, not a stable
+extension API, and still depends on integer language-field comparisons.
+
 [Gerrit 92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267), a
 separate inventory of persisted-record assumptions, was `NEW`, WIP,
 CI-positive and mergeable at patch set 6 with one unresolved comment when

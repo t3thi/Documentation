@@ -3,7 +3,7 @@ id: D-000002
 status: proposed
 title: Use one interim marker for current Language-All contexts
 date: 2026-09-25
-updated: 2026-10-02
+updated: 2026-10-10
 scope: core-patch-95619
 authority: translation-handling-initiative
 evidence:
@@ -35,8 +35,8 @@ knowledge:
 external_artifacts:
   - id: gerrit:95619
     relation: implements
-    state: open-wip
-    verified_at: 2026-10-02
+    state: merged
+    verified_at: 2026-10-10
 ---
 
 # Use one interim marker for current Language-All contexts
@@ -47,8 +47,9 @@ The literal `-1` currently represents several contracts: a language value
 persisted on a record, a synthetic backend selection or display state, and in
 some paths a fallback with another meaning. Gerrit 95619 introduces
 `LanguageMarker::ALL_LANGUAGES` to make relevant occurrences discoverable and
-self-describing, but its description primarily explains the persisted record
-case.
+self-describing. When this decision was proposed, the patch description
+primarily explained the persisted record case. The merged change now covers
+stored and synthetic uses; its delivered scope is recorded in `K-000032`.
 
 ## Decision
 

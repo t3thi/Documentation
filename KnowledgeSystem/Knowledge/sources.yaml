@@ -1,6 +1,6 @@
 version: 1
 publication:
-  last_updated: "2026-10-02"
+  last_updated: "2026-10-10"
   reviewed_transcripts_through: "2026-08-14"
   reviewed_minutes_through: "2026-08-14"
   external_status_verified_through: "2026-08-28"
@@ -377,6 +377,38 @@ sources:
       skill: skill:t3thi-meeting-minutes
     review_status: reviewed
 
+  transcript:2026-10-09:
+    type: transcript
+    path: "Transcripts/2026-10-09 12-08-43 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:95f74efdedb267502c50a8466d5bff71b9d11413fac9cf86d5aa24d7abf5577a
+    reason: Raw transcripts are ignored and may contain restricted or private passages.
+  minutes:2026-10-09:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/10/09.md
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-10-09
+    generated_with:
+      skill: skill:t3thi-meeting-minutes
+    review_status: reviewed
+
+  core:language-all-marker-2026-10-10:
+    type: core-code
+    url: https://github.com/TYPO3/typo3/blob/d2a9eed77539b081a40fc698346aab937bb6db5f/typo3/sysext/core/Classes/Schema/LanguageMarker.php
+    authority: actual-current-typo3-core-code
+    availability: repository
+    revision: d2a9eed77539b081a40fc698346aab937bb6db5f
+    observed_at: "2026-10-10"
+    reason: >
+      Read-only inspection of the immutable merged revision: internal integer
+      marker, stored and synthetic contexts, TCA, SlugHelper, DataHandler,
+      LinkValidator and TypeScript comment. The 14.3 revision
+      3f53e06144ed45c162863b8e0d893293e15370e7 has an untyped constant.
+      No runtime tests or full remaining-occurrence audit were run.
+
   core:language-all-call-paths-2026-10-02:
     type: core-code
     url: https://github.com/TYPO3/typo3/blob/a9109f6370d9f1c40804a92396159dee828b5f27/typo3/sysext/linkvalidator/Classes/LinkAnalyzer.php
@@ -640,5 +672,14 @@ sources:
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619
     authority: external-current
     availability: repository
-    status: open-wip
-    observed_at: "2026-10-02"
+    status: merged
+    observed_at: "2026-10-10"
+    revision: d2a9eed77539b081a40fc698346aab937bb6db5f
+  gerrit:96412:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/96412
+    authority: external-current
+    availability: repository
+    status: merged
+    observed_at: "2026-10-10"
+    revision: 3f53e06144ed45c162863b8e0d893293e15370e7

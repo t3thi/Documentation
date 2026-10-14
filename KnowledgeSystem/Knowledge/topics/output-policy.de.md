@@ -2,19 +2,20 @@
 id: topic:output-policy
 title: "Output Policy"
 language: de
-updated: "2026-08-11"
+updated: "2026-10-10"
 knowledge:
   - K-000013
   - K-000014
   - K-000020
+  - K-000033
 history:
   - K-000024
   - K-000025
 decisions: []
 translation_of: topic:output-policy
-source_updated: "2026-08-11"
+source_updated: "2026-10-10"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:fd6bcc0310dc7368eb2940dbe3a8ac86b670a6682239e9fd042e9a56a6f24689"
+source_digest: "sha256:4f1feec6807c4d3cbd3a560b85af8152a2966f8a83a4eb7c379eeb86ac11fb39"
 ---
 
 # Output Policy
@@ -36,6 +37,28 @@ source_digest: "sha256:fd6bcc0310dc7368eb2940dbe3a8ac86b670a6682239e9fd042e9a56a
 - Jede Änderung an der Semantik von Abwesenheit erfordert eine Kompatibilitätsanalyse, weil bestehende Projekte vom aktuellen Fallback abhängen können.
 
 **Vision:** Die Ausgabe sollte einer expliziten Site-weiten und, soweit erforderlich, auf einzelne Inhaltspositionen bezogenen Absicht folgen. Eine strukturelle Verbindung darf die Frontend-Fallback-Richtlinie nicht implizit bestimmen.
+
+**Nicht validierter Ansatz:** André schlug explizite Aktivierungs- und
+Deaktivierungsoperationen für eine oder alle Sprachen vor, die bestehende
+`hidden`-Werte schreiben, mit gleichwertiger API-Unterstützung. Ohne Fallback
+Chain würde die Ausgabe konkrete Datensätze der angeforderten Sprache
+unabhängig von der Sichtbarkeit des Default-Language-Parents auswählen.
+Mit konfigurierter Chain würde Fallback weiterhin zur Laufzeit ausgewertet.
+Das Vorhandensein der Chain könnte `fallbackType` ersetzen: Eine fehlende
+Übersetzung zu verbundenen Inhalten würde Fallback erlauben, eine vorhandene bewusst deaktivierte
+würde ihn blockieren; ihr Löschen würde Fallback wieder erlauben. Vollständige
+Fallback-Kopien oder ein neues gespeichertes Disable-All-Flag sind dafür nicht
+vorgesehen. Die Diskussion vom 09.10.2026 belegte weder ein gemeinsames
+Verständnis noch Verhaltensgleichheit oder eine v15-Zusage. Dies ist keine
+übernommene Architektur und kein geändertes Core-Verhalten.
+
+Das akzeptierte Versprechen von Strict, nur die angeforderte Sprache
+auszugeben, bleibt bestehen. Das Entfernen eines Auswahlfelds darf weder eine
+bisher inaktive gespeicherte Chain unbemerkt aktivieren noch erhaltene
+Konfiguration zerstören oder regionale Wiederverwendung ohne unerwünschte
+abschließende Default Language verlieren. Migration, lokale Abwesenheit,
+Berechtigungen, Workspaces und konsistente Abfragen müssen validiert werden,
+bevor dieser Vorschlag einen aktuellen Modus ersetzen kann.
 
 **Offene Fragen:**
 
