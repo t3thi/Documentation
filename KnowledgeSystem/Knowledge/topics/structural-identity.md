@@ -2,7 +2,7 @@
 id: topic:structural-identity
 title: "Structural Identity"
 language: en
-updated: "2026-08-27"
+updated: "2026-10-23"
 knowledge:
   - K-000002
   - K-000009
@@ -13,6 +13,8 @@ knowledge:
   - K-000019
   - K-000021
   - K-000022
+  - K-000034
+  - K-000036
 history: []
 decisions: []
 ---
@@ -59,7 +61,13 @@ record or an independent record that loses the shared relation.
 
 **Editor-facing recommendation:** Remove the Free, Connected and Mixed mode distinction from the normal Layout workflow once Core can uphold that contract. This is a UI and product recommendation with architectural prerequisites. It is not a statement that existing Free-Mode data can already be converted safely or that independent structures should disappear.
 
-**Editing Language:** The preferred product concept is a selectable content language from which the editor works, independent of the backend interface language. For example, a Chinese editor could create Chinese content from English while German remains the site default. The Layout module would place English where it currently always places the default language. This is a product direction, not an implemented feature.
+**Editing Language:** Editors should work from a comprehensible content
+language independently of the backend interface language or site default.
+The demonstrator now remembers it per site. The requested comparison reference
+stays visible, with a translation action if missing, and cannot be deselected;
+comparison choices should survive view changes. Whether a temporary Layout
+language switch should also replace the remembered working source remains open.
+These are prototype findings and interaction goals, not implemented Core behavior.
 
 #### Current structural preference and the two meanings of Shadow Record
 
@@ -93,3 +101,4 @@ The second path should remain invisible in normal editorial and frontend output.
 - When can an independently created record later join an existing structure safely?
 - Which migration and lifecycle guarantees are prerequisites before the normal UI can stop showing Free, Connected and Mixed modes?
 - How are existing Free- and Mixed-Mode records migrated without losing their independent outcome?
+- When may a translation source change or reset after deletion? Core's page-wizard filter derives sources from existing references, not an immutable first choice; the observed deletion case still needs characterization.

@@ -2,7 +2,7 @@
 id: topic:solution-spaces
 title: "Mögliche Lösungsräume"
 language: de
-updated: "2026-08-27"
+updated: "2026-10-23"
 knowledge:
   - K-000003
   - K-000005
@@ -14,12 +14,13 @@ knowledge:
   - K-000016
   - K-000018
   - K-000021
+  - K-000034
 history: []
 decisions: []
 translation_of: topic:solution-spaces
-source_updated: "2026-08-27"
+source_updated: "2026-10-23"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:89de2940fb0088f7a68f124d096a292016a3ee7f8729f9d0e85f7759747635e5"
+source_digest: "sha256:6e0968f140848959c10886586734156fe905a17a7f5d07144b7af3160baf15f2"
 ---
 
 # Mögliche Lösungsräume
@@ -41,7 +42,7 @@ Die folgenden Ansätze beantworten Teile der Verantwortlichkeiten. Keiner von ih
 | Vollständige Language Layers | Jede strukturelle Position in jeder relevanten Sprache materialisieren und bei fehlendem Inhalt Language-Layer-Shadows verwenden. | Jede Sprache ist strukturell eigenständig vollständig und kann eine lokale Sortierung tragen. | Datensatzwachstum ist akzeptabel, wenn es die Verarbeitung vereinfacht; universelle Shadows können jedoch zugleich Synchronisierungs- und Lebenszykluslogik, die Informationsdichte im Modul „Layout“, Workspace-Versionen, Referenzen und Migration verstärken. Gesamtvereinfachung und tatsächlicher Datensatzmultiplikator müssen gemessen werden. | **Diskutierte Richtung; derzeit nicht bevorzugt, solange keine größere Gesamtvereinfachung nachgewiesen ist, und nicht ausgewählt.** |
 | Gemeinsame verborgene neutrale Strukturebene | Gemeinsame Structural Identity von realen Ausgabesprachen trennen, heutige Default-Ausgabeinhalte in eine eigene reale Sprachebene migrieren und inhaltslose Structural Shadows als gemeinsame Anker anlegen. | Keine reale Sprache muss die strukturelle Führung übernehmen; weniger universelle Shadow-Duplikation und ein sprachübergreifender Bezugspunkt. | Führt eine Abstraktion ein, die jeder Bearbeitungs-, Abfrage-, Beziehungs-, Berechtigungs- und Workspace-Pfad verstehen muss; lokale Sortierung und explizite Abwesenheit benötigen weiterhin einen Vertrag. | **Aktuelle Präferenz für die Untersuchung; weiterhin eine nicht ausgewählte Hypothese.** |
 | Begrenzter hybrider Ansatz | Eine gemeinsame Structural Identity beibehalten und Sprachdatensätze nur materialisieren, wenn Inhalte oder explizite Abwesenheit sie erfordern. | Könnte explizite Struktur mit begrenztem Datenwachstum verbinden. | Mehr Zustände und Übergangsregeln; analytische Option, die von der Initiative noch nicht validiert wurde. | **Analytische Option; keine eigenständige Präferenz der Initiative.** |
-| Editing Language | Redakteurinnen und Redakteure die Inhaltssprache auswählen lassen, von der aus sie arbeiten, und diese als primären Backend-Kontext verwenden. | Entfernt irrelevante Default-Language-Texte aus dem Arbeitsablauf und unterstützt Quellen, die nicht der Default Language entsprechen. | Page Tree, Module „Layout“ und „Records“, Berechtigungen, Sortierung sowie Verhalten von Quelle und Herkunft. | **Bevorzugte Produktbeschreibung; Prototyp weiterhin erforderlich.** |
+| Editing Language | Redakteurinnen und Redakteure die Inhaltssprache auswählen lassen, von der aus sie arbeiten, und diese als primären Backend-Kontext verwenden. | Entfernt irrelevante Default-Language-Texte aus dem Arbeitsablauf und unterstützt Quellen, die nicht der Default Language entsprechen. | Page Tree, Module „Layout“ und „Records“, Berechtigungen, Sortierung sowie Verhalten von Quelle und Herkunft. | **Bevorzugte Produktbeschreibung; Demonstrator vorhanden, Validierung offen.** |
 | Explizite Absicht bei Abwesenheit | Darstellen, ob Fallback für eine strukturelle Position fortgesetzt oder beendet werden soll. | Macht regionale Auslassung vorhersehbar. | Abwärtskompatibilität, UX und konsistente Frontend-Auswertung. | **Abgeleitete Anforderung; Repräsentation offen.** |
 
 Ein generisches multidimensionales Modell für Sprache, Land, Markt, Marke oder Zielgruppe ist eine angrenzende Zukunftsperspektive. Es könnte später helfen, Sprache von anderen Inhaltskontexten zu trennen, ist aber nicht die unmittelbare Antwort der Initiative auf die vier Verantwortlichkeiten.

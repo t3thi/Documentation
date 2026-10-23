@@ -2,7 +2,7 @@
 id: topic:output-policy
 title: "Output Policy"
 language: de
-updated: "2026-10-10"
+updated: "2026-10-23"
 knowledge:
   - K-000013
   - K-000014
@@ -11,11 +11,12 @@ knowledge:
 history:
   - K-000024
   - K-000025
-decisions: []
+decisions:
+  - D-000003
 translation_of: topic:output-policy
-source_updated: "2026-10-10"
+source_updated: "2026-10-23"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:4f1feec6807c4d3cbd3a560b85af8152a2966f8a83a4eb7c379eeb86ac11fb39"
+source_digest: "sha256:fe9150aa3dd375fe4c805d5d87c3aa1602bd0df697be0efa78517f5fa9668ff4"
 ---
 
 # Output Policy
@@ -38,19 +39,20 @@ source_digest: "sha256:4f1feec6807c4d3cbd3a560b85af8152a2966f8a83a4eb7c379eeb86a
 
 **Vision:** Die Ausgabe sollte einer expliziten Site-weiten und, soweit erforderlich, auf einzelne Inhaltspositionen bezogenen Absicht folgen. Eine strukturelle Verbindung darf die Frontend-Fallback-Richtlinie nicht implizit bestimmen.
 
-**Nicht validierter Ansatz:** André schlug explizite Aktivierungs- und
-Deaktivierungsoperationen für eine oder alle Sprachen vor, die bestehende
-`hidden`-Werte schreiben, mit gleichwertiger API-Unterstützung. Ohne Fallback
-Chain würde die Ausgabe konkrete Datensätze der angeforderten Sprache
-unabhängig von der Sichtbarkeit des Default-Language-Parents auswählen.
-Mit konfigurierter Chain würde Fallback weiterhin zur Laufzeit ausgewertet.
-Das Vorhandensein der Chain könnte `fallbackType` ersetzen: Eine fehlende
-Übersetzung zu verbundenen Inhalten würde Fallback erlauben, eine vorhandene bewusst deaktivierte
-würde ihn blockieren; ihr Löschen würde Fallback wieder erlauben. Vollständige
-Fallback-Kopien oder ein neues gespeichertes Disable-All-Flag sind dafür nicht
-vorgesehen. Die Diskussion vom 09.10.2026 belegte weder ein gemeinsames
-Verständnis noch Verhaltensgleichheit oder eine v15-Zusage. Dies ist keine
-übernommene Architektur und kein geändertes Core-Verhalten.
+**Nicht validierter Ansatz:** Explizite Sichtbarkeitsschreibvorgänge könnten
+die Strict/Free-Unterscheidung ersetzen: ohne Chain konkrete Datensätze der
+angeforderten Sprache unabhängig von der Sichtbarkeit des Default-Language-Parents
+auswählen; mit Chain Fallback weiter zur Laufzeit auswerten statt vollständige
+Fallback-Kopien anzulegen. Die Chain könnte `fallbackType` ersetzen. Eine
+fehlende verbundene Übersetzung würde Fallback erlauben, eine bewusst
+deaktivierte ihn stoppen und deren Löschung ihn wieder erlauben. Der
+Demonstrator schreibt bereits bestehende `hidden`-Felder. Das Meeting lehnte
+ein weiteres Override-Feld ab und wählte eine bewusste Kontextmenüaktion ohne
+redundantes Label. Bulk-Schreibvorgänge stellen frühere gemischte Zustände
+nicht wieder her. Diese begrenzte Prototypvereinbarung, als vorgeschlagener
+Decision Record erfasst, übernimmt weder das Gesamtmodell noch belegt sie
+Verhaltensgleichheit oder eine v15-Zusage; gleichwertige API-Unterstützung
+und Kompatibilität bleiben zu validieren.
 
 Das akzeptierte Versprechen von Strict, nur die angeforderte Sprache
 auszugeben, bleibt bestehen. Das Entfernen eines Auswahlfelds darf weder eine

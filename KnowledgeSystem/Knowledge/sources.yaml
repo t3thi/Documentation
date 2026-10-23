@@ -1,6 +1,6 @@
 version: 1
 publication:
-  last_updated: "2026-10-10"
+  last_updated: "2026-10-23"
   reviewed_transcripts_through: "2026-08-14"
   reviewed_minutes_through: "2026-08-14"
   external_status_verified_through: "2026-08-28"
@@ -395,6 +395,50 @@ sources:
       skill: skill:t3thi-meeting-minutes
     review_status: reviewed
 
+  transcript:2026-10-23:
+    type: transcript
+    path: "Transcripts/2026-10-23 12-00-32 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:2c725625adf51e6cbb199c462ebf5f69e96cc56128132875e4376bcff916e732
+    reason: Raw transcripts are ignored and may contain restricted or private passages.
+  minutes:2026-10-23:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/10/23.md
+    url: https://notes.typo3.org/s/TXqazBh8D3
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-10-23
+    generated_with:
+      skill: skill:t3thi-meeting-minutes
+    review_status: reviewed
+
+  github:structure-layer:
+    type: prototype-code
+    url: https://github.com/t3thi/structure-layer/tree/e8c67c41e9144b7d2a22b53ab2b05706ef96c1bc
+    authority: prototype-implementation
+    availability: repository
+    revision: e8c67c41e9144b7d2a22b53ab2b05706ef96c1bc
+    status: prototype
+    observed_at: "2026-10-23"
+    reason: >
+      Reviewed meeting demonstration plus read-only inspection of the README,
+      AllLanguagesVisibility and the DataHandlerHook visibility rewrite.
+      No demo, migration or prototype test suite was executed.
+  core:translation-source-filter-2026-10-23:
+    type: core-code
+    url: https://github.com/TYPO3/typo3/blob/01752b13fbe8f1616576ae1ca71a5da6d139a0ba/typo3/sysext/backend/Classes/Controller/Wizard/LocalizationController.php#L598-L715
+    authority: actual-current-typo3-core-code
+    availability: repository
+    revision: 01752b13fbe8f1616576ae1ca71a5da6d139a0ba
+    observed_at: "2026-10-23"
+    reason: >
+      Official main head verified before inspecting the page source-language
+      filter and referenced-source queries. Static inspection qualifies the
+      meeting's first-source shorthand; no deleted-source runtime reproduction
+      or complete deletion/cleanup audit was run.
+
   core:language-all-marker-2026-10-10:
     type: core-code
     url: https://github.com/TYPO3/typo3/blob/d2a9eed77539b081a40fc698346aab937bb6db5f/typo3/sysext/core/Classes/Schema/LanguageMarker.php
@@ -683,3 +727,11 @@ sources:
     status: merged
     observed_at: "2026-10-10"
     revision: 3f53e06144ed45c162863b8e0d893293e15370e7
+  gerrit:97053:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/97053
+    authority: external-current
+    availability: repository
+    status: open-review-action-required
+    observed_at: "2026-10-23"
+    revision: 56f803b938be892608b0f15729584a2b430fa41a

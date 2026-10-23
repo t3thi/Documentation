@@ -2,7 +2,7 @@
 id: topic:scope-governance
 title: "Scope and Governance"
 language: en
-updated: "2026-08-27"
+updated: "2026-10-23"
 knowledge:
   - K-000001
   - K-000005
@@ -15,6 +15,7 @@ knowledge:
   - K-000019
   - K-000021
   - K-000027
+  - K-000034
 history: []
 decisions:
   - D-000001
@@ -78,7 +79,7 @@ Statements use the following distinctions:
 - The current direction favors explicit synchronized records and simpler,
   predictable processing logic over minimizing record count. The exact model,
   lifecycle and measured operational effects remain open.
-- The current structural preference is a shared hidden, language-neutral structure layer rather than complete per-language layers with universal shadows. This is a preference for further investigation, not an adopted Core architecture; the hidden layer remains a hypothesis that needs a prototype and lifecycle design.
+- The current structural preference is a shared hidden, language-neutral structure layer rather than complete per-language layers with universal shadows. A demonstrator now exists, but the hypothesis still needs validation and lifecycle design; it is not adopted Core architecture.
 - Current delivery is incremental: characterize existing behavior, merge bounded correctness fixes, prototype uncertain concepts and use the resulting evidence to support broader decisions.
 
 ## How the initiative works

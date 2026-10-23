@@ -2,7 +2,7 @@
 id: topic:solution-spaces
 title: "Possible Solution Spaces"
 language: en
-updated: "2026-08-27"
+updated: "2026-10-23"
 knowledge:
   - K-000003
   - K-000005
@@ -14,6 +14,7 @@ knowledge:
   - K-000016
   - K-000018
   - K-000021
+  - K-000034
 history: []
 decisions: []
 ---
@@ -37,7 +38,7 @@ The following approaches answer parts of the responsibilities. None is the compl
 | Complete per-language layers | Materialize every structural position in every relevant language, using language-layer shadows where content is absent. | Every language is structurally self-contained and can carry local ordering. | Record growth is acceptable when it produces simpler processing, but universal shadows may also amplify synchronization and lifecycle logic, Layout density, Workspace versions, references and migration. Net simplification and the actual record multiplier need measurement. | **Discussed direction; currently disfavored until greater overall simplification is demonstrated, and not selected.** |
 | Shared hidden neutral structure layer | Separate common structural identity from real output languages, migrate today's default output content into its own real language layer and create contentless structural shadows as shared anchors. | No real language must be the structural lead; less universal shadow duplication and one cross-language reference point. | Introduces an abstraction that every editing, query, relation, permission and Workspace path must understand; local ordering and explicit absence still need a contract. | **Current preference for investigation; still an unselected hypothesis.** |
 | Bounded hybrid | Keep a shared structural identity and materialize language records only when content or explicit absence requires them. | Could combine explicit structure with bounded data growth. | More states and transition rules; analytical option not yet validated by the initiative. | **Analytical option; not a separate initiative preference.** |
-| Editing Language | Let editors select the content language from which they work and use it as the primary backend context. | Removes irrelevant default-language text from the workflow and supports non-default sources. | Page Tree, Layout module, Records module, permissions, ordering and source/provenance behavior. | **Preferred product framing; prototype still needed.** |
+| Editing Language | Let editors select the content language from which they work and use it as the primary backend context. | Removes irrelevant default-language text from the workflow and supports non-default sources. | Page Tree, Layout module, Records module, permissions, ordering and source/provenance behavior. | **Preferred product framing; demonstrator exists, validation remains open.** |
 | Explicit absence intent | Represent whether fallback should continue or stop for one structural position. | Makes regional omission predictable. | Backward compatibility, UX and consistent frontend evaluation. | **Derived requirement; representation open.** |
 
 A generic multi-dimensional model for language, country, market, brand or audience is an adjacent future perspective. It may eventually help separate language from other content contexts, but it is not the initiative's immediate answer to the four responsibilities.

@@ -2,7 +2,7 @@
 id: topic:output-policy
 title: "Output Policy"
 language: en
-updated: "2026-10-10"
+updated: "2026-10-23"
 knowledge:
   - K-000013
   - K-000014
@@ -11,7 +11,8 @@ knowledge:
 history:
   - K-000024
   - K-000025
-decisions: []
+decisions:
+  - D-000003
 ---
 
 # Output Policy
@@ -34,17 +35,18 @@ decisions: []
 
 **Vision:** Output should follow explicit site and, where required, content-position intent. A structural connection must not silently determine the frontend fallback policy.
 
-**Unvalidated approach:** André proposed explicit single- or all-language
-enable/disable operations that write the existing `hidden` values, with
-equivalent API support. Without a fallback chain, output would select concrete
-requested-language records independently of the Default Language parent's
-visibility. With a configured chain, fallback would still run at runtime.
-The chain's presence could replace `fallbackType`; a missing connected translation
-would permit fallback, an existing deliberately disabled one would block it,
-and deleting it would permit fallback again. This does not require complete
-fallback copies or a new stored Disable-All flag. The 2026-10-09 discussion
-did not establish shared understanding, behavioral equivalence or a v15
-commitment. This is not adopted architecture or changed Core behavior.
+**Unvalidated approach:** Explicit visibility writes could replace the
+Strict/Free distinction: without a chain, select concrete requested-language
+records independently of the Default Language parent's visibility; with a
+chain, retain runtime fallback instead of complete fallback copies. The chain
+could replace `fallbackType`. A missing connected translation would permit
+fallback, a deliberately disabled one would stop it, and deletion would permit
+it again. The demonstrator now writes existing `hidden` fields. The meeting
+declined another override field and chose deliberate context-menu placement
+without a redundant label. Bulk writes do not restore previous mixed states.
+This bounded prototype agreement, recorded in a proposed Decision Record,
+does not adopt the full model, prove behavior parity or commit it to v15;
+equivalent API support and compatibility remain to be validated.
 
 Strict's accepted single-language promise remains intact. Removing a selector
 must not silently activate a previously inactive saved chain, destroy retained

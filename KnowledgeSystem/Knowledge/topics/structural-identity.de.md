@@ -2,7 +2,7 @@
 id: topic:structural-identity
 title: "Structural Identity"
 language: de
-updated: "2026-08-27"
+updated: "2026-10-23"
 knowledge:
   - K-000002
   - K-000009
@@ -13,12 +13,14 @@ knowledge:
   - K-000019
   - K-000021
   - K-000022
+  - K-000034
+  - K-000036
 history: []
 decisions: []
 translation_of: topic:structural-identity
-source_updated: "2026-08-27"
+source_updated: "2026-10-23"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:236d377249880129cb433e811167b0f6f97556d40e1788e0f179a92321f4f2cf"
+source_digest: "sha256:b504fb3130bf2f7394254cf21e75703bdcc43f5001d037ba6205aefbd296d3ba"
 ---
 
 # Structural Identity
@@ -65,7 +67,14 @@ Datensatz, der die gemeinsame Beziehung verliert.
 
 **Empfehlung für die redaktionelle Oberfläche:** Die Unterscheidung zwischen Free Mode, Connected Mode und Mixed Mode soll aus dem normalen Arbeitsablauf im Modul „Layout“ entfernt werden, sobald der Core diesen Vertrag gewährleisten kann. Dies ist eine Produkt- und UI-Empfehlung mit architektonischen Voraussetzungen. Sie besagt weder, dass bestehende Free-Mode-Daten bereits sicher konvertiert werden können, noch dass unabhängige Strukturen entfallen sollen.
 
-**Editing Language:** Das bevorzugte Produktkonzept ist eine auswählbare Inhaltssprache, von der aus Redakteurinnen und Redakteure arbeiten, unabhängig von der Sprache der Backend-Oberfläche. Eine chinesische Redakteurin oder ein chinesischer Redakteur könnte beispielsweise chinesische Inhalte ausgehend von Englisch erstellen, während Deutsch die Default Language der Site bleibt. Das Modul „Layout“ würde Englisch dort anzeigen, wo es heute stets die Default Language anzeigt. Dies ist eine Produktrichtung und keine implementierte Funktion.
+**Editing Language:** Die Redaktion soll aus einer verständlichen Inhaltssprache
+arbeiten, unabhängig von Backend-Oberflächensprache und Site-Default.
+Der Demonstrator merkt sie sich bereits je Site. Die gewünschte Vergleichsreferenz
+bleibt sichtbar, bei fehlender Übersetzung mit Übersetzungsaktion, und ist nicht
+abwählbar; die Vergleichsauswahl soll Ansichtswechsel überstehen. Ob ein
+vorübergehender Sprachwechsel im Modul „Layout“ auch die gemerkte Arbeitsquelle
+ersetzen soll, bleibt offen. Dies sind Prototypbefunde und Interaktionsziele,
+kein implementiertes Core-Verhalten.
 
 #### Aktuelle strukturelle Präferenz und die zwei Bedeutungen von Shadow Record
 
@@ -101,3 +110,4 @@ Der zweite Weg sollte in der normalen Redaktion und Frontend-Ausgabe unsichtbar 
 - Wann kann ein unabhängig erstellter Datensatz später sicher mit einer vorhandenen Struktur verbunden werden?
 - Welche Migrations- und Lebenszyklusgarantien sind Voraussetzung dafür, dass Free Mode, Connected Mode und Mixed Mode in der normalen Oberfläche nicht mehr angezeigt werden müssen?
 - Wie werden vorhandene Datensätze aus Free Mode und Mixed Mode migriert, ohne ihr unabhängiges Ergebnis zu verlieren?
+- Wann darf eine Übersetzungsquelle wechseln oder nach Löschung zurückgesetzt werden? Der Seiten-Wizard des Core ermittelt Quellen aus vorhandenen Referenzen, nicht aus einer unveränderlichen ersten Auswahl; der beobachtete Löschfall benötigt weiterhin Charakterisierung.

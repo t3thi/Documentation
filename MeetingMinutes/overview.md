@@ -395,3 +395,5 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
     - <sup>Participant Context, Comparison View Improvements, Language-All Marker Scope, TCA and LinkValidator Coverage, Marker Documentation, PHP Compatibility, TypeScript Boundaries, and Remaining Review Findings</sup>
 - [2026-10-09, 12:08 to 13:08 CEST](https://notes.typo3.org/s/xomlGD8GOX)
     - <sup>Merged Language-All Marker, Default Language Follow-Up, Migration and Query Abstractions, Synchronization and Structural Reference, Copy and Move Semantics, Intentional Absence, and Possible Output-Mode Simplification</sup>
+- [2026-10-23, 12:00 to 13:28 CEST](https://notes.typo3.org/s/TXqazBh8D3)
+    - <sup>Structure-Layer Proof of Concept, Editing Language and Multisite Navigation, Comparison Selection Persistence, Structural Permissions, All-Language Visibility Actions, Language-Zero Validation, Translation Source Restrictions, and Deferred Site-Language Cleanup</sup>

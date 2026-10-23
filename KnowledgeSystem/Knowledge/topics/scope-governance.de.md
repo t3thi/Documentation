@@ -2,7 +2,7 @@
 id: topic:scope-governance
 title: "Geltungsbereich und Governance"
 language: de
-updated: "2026-08-27"
+updated: "2026-10-23"
 knowledge:
   - K-000001
   - K-000005
@@ -15,13 +15,14 @@ knowledge:
   - K-000019
   - K-000021
   - K-000027
+  - K-000034
 history: []
 decisions:
   - D-000001
 translation_of: topic:scope-governance
-source_updated: "2026-08-27"
+source_updated: "2026-10-23"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:5c7f675e2a9583e56de28ef5c757cddde39bb1ce58748caa0d3d1ea1ba57e49b"
+source_digest: "sha256:e78302965e37c4d21e9ba927f429bf778754362f4e1cc04ee3fadb6de22a895a"
 ---
 
 # Geltungsbereich und Governance
@@ -84,7 +85,7 @@ Für Aussagen gelten folgende Unterscheidungen:
   eine einfachere, vorhersehbare Verarbeitungslogik gegenüber einer möglichst
   kleinen Datensatzmenge. Das genaue Modell, sein Lebenszyklus und seine
   messbaren betrieblichen Auswirkungen bleiben offen.
-- Die derzeitige strukturelle Präferenz ist eine gemeinsame verborgene, sprachneutrale Strukturebene statt vollständiger Language Layers mit universellen Shadows. Dies ist eine Präferenz für die weitere Untersuchung und keine beschlossene Core-Architektur; die verborgene Ebene bleibt eine Hypothese, die einen Prototyp und eine Konzeption ihres Lebenszyklus benötigt.
+- Die derzeitige strukturelle Präferenz ist eine gemeinsame verborgene, sprachneutrale Strukturebene statt vollständiger Language Layers mit universellen Shadows. Ein Demonstrator existiert inzwischen, aber die Hypothese benötigt weiterhin Validierung und Lebenszykluskonzeption; sie ist keine beschlossene Core-Architektur.
 - Die aktuelle Umsetzung erfolgt inkrementell: bestehendes Verhalten charakterisieren, klar abgegrenzte Korrekturen mergen, unsichere Konzepte prototypisch untersuchen und die daraus gewonnene Evidenz für weitergehende Entscheidungen nutzen.
 
 ## Arbeitsweise der Initiative

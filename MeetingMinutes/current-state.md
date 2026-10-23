@@ -1,6 +1,6 @@
 ---
 title: "Translation Handling Initiative - Current State"
-last_updated: "2026-10-10"
+last_updated: "2026-10-23"
 weekly_minutes_included_through: "2026-08-14"
 transcripts_included_through: "2026-08-14"
 external_status_checked_through: "2026-08-28"
@@ -15,7 +15,7 @@ Knowledge metadata. Do not edit it directly.
 
 [Deutsche Fassung](https://notes.typo3.org/s/7bbwd73t2h) · [Meeting minutes overview](https://notes.typo3.org/s/f3ae8fZSD) · [How to maintain this document][cs3]
 
-**Status of this edition:** The content was last updated on 10 October 2026. It includes reviewed meeting minutes and transcripts through 14 August 2026. The complete external state of TYPO3 Core, Gerrit and Forge was last checked on 28 August 2026. Unless an entry names a later individual verification date, patch and review statuses should be read as of that date.
+**Status of this edition:** The content was last updated on 23 October 2026. It includes reviewed meeting minutes and transcripts through 14 August 2026. The complete external state of TYPO3 Core, Gerrit and Forge was last checked on 28 August 2026. Unless an entry names a later individual verification date, patch and review statuses should be read as of that date.
 
 This is the canonical description of the Translation Handling Initiative's current understanding, vision and work. It explains why the initiative works on translation handling, what its research has established, which direction it currently sees, which approaches it is investigating and which decisions remain open.
 
@@ -65,7 +65,7 @@ Statements use the following distinctions:
 - The current direction favors explicit synchronized records and simpler,
   predictable processing logic over minimizing record count. The exact model,
   lifecycle and measured operational effects remain open.
-- The current structural preference is a shared hidden, language-neutral structure layer rather than complete per-language layers with universal shadows. This is a preference for further investigation, not an adopted Core architecture; the hidden layer remains a hypothesis that needs a prototype and lifecycle design.
+- The current structural preference is a shared hidden, language-neutral structure layer rather than complete per-language layers with universal shadows. A demonstrator now exists, but the hypothesis still needs validation and lifecycle design; it is not adopted Core architecture.
 - Current delivery is incremental: characterize existing behavior, merge bounded correctness fixes, prototype uncertain concepts and use the resulting evidence to support broader decisions.
 
 ## How the initiative works
@@ -306,7 +306,13 @@ record or an independent record that loses the shared relation.
 
 **Editor-facing recommendation:** Remove the Free, Connected and Mixed mode distinction from the normal Layout workflow once Core can uphold that contract. This is a UI and product recommendation with architectural prerequisites. It is not a statement that existing Free-Mode data can already be converted safely or that independent structures should disappear.
 
-**Editing Language:** The preferred product concept is a selectable content language from which the editor works, independent of the backend interface language. For example, a Chinese editor could create Chinese content from English while German remains the site default. The Layout module would place English where it currently always places the default language. This is a product direction, not an implemented feature.
+**Editing Language:** Editors should work from a comprehensible content
+language independently of the backend interface language or site default.
+The demonstrator now remembers it per site. The requested comparison reference
+stays visible, with a translation action if missing, and cannot be deselected;
+comparison choices should survive view changes. Whether a temporary Layout
+language switch should also replace the remembered working source remains open.
+These are prototype findings and interaction goals, not implemented Core behavior.
 
 #### Current structural preference and the two meanings of Shadow Record
 
@@ -340,6 +346,7 @@ The second path should remain invisible in normal editorial and frontend output.
 - When can an independently created record later join an existing structure safely?
 - Which migration and lifecycle guarantees are prerequisites before the normal UI can stop showing Free, Connected and Mixed modes?
 - How are existing Free- and Mixed-Mode records migrated without losing their independent outcome?
+- When may a translation source change or reset after deletion? Core's page-wizard filter derives sources from existing references, not an immutable first choice; the observed deletion case still needs characterization.
 
 ### 4. Output Policy
 
@@ -357,17 +364,18 @@ The second path should remain invisible in normal editorial and frontend output.
 
 **Vision:** Output should follow explicit site and, where required, content-position intent. A structural connection must not silently determine the frontend fallback policy.
 
-**Unvalidated approach:** André proposed explicit single- or all-language
-enable/disable operations that write the existing `hidden` values, with
-equivalent API support. Without a fallback chain, output would select concrete
-requested-language records independently of the Default Language parent's
-visibility. With a configured chain, fallback would still run at runtime.
-The chain's presence could replace `fallbackType`; a missing connected translation
-would permit fallback, an existing deliberately disabled one would block it,
-and deleting it would permit fallback again. This does not require complete
-fallback copies or a new stored Disable-All flag. The 2026-10-09 discussion
-did not establish shared understanding, behavioral equivalence or a v15
-commitment. This is not adopted architecture or changed Core behavior.
+**Unvalidated approach:** Explicit visibility writes could replace the
+Strict/Free distinction: without a chain, select concrete requested-language
+records independently of the Default Language parent's visibility; with a
+chain, retain runtime fallback instead of complete fallback copies. The chain
+could replace `fallbackType`. A missing connected translation would permit
+fallback, a deliberately disabled one would stop it, and deletion would permit
+it again. The demonstrator now writes existing `hidden` fields. The meeting
+declined another override field and chose deliberate context-menu placement
+without a redundant label. Bulk writes do not restore previous mixed states.
+This bounded prototype agreement, recorded in a proposed Decision Record,
+does not adopt the full model, prove behavior parity or commit it to v15;
+equivalent API support and compatibility remain to be validated.
 
 Strict's accepted single-language promise remains intact. Removing a selector
 must not silently activate a previously inactive saved chain, destroy retained
@@ -398,7 +406,7 @@ The following approaches answer parts of the responsibilities. None is the compl
 | Complete per-language layers | Materialize every structural position in every relevant language, using language-layer shadows where content is absent. | Every language is structurally self-contained and can carry local ordering. | Record growth is acceptable when it produces simpler processing, but universal shadows may also amplify synchronization and lifecycle logic, Layout density, Workspace versions, references and migration. Net simplification and the actual record multiplier need measurement. | **Discussed direction; currently disfavored until greater overall simplification is demonstrated, and not selected.** |
 | Shared hidden neutral structure layer | Separate common structural identity from real output languages, migrate today's default output content into its own real language layer and create contentless structural shadows as shared anchors. | No real language must be the structural lead; less universal shadow duplication and one cross-language reference point. | Introduces an abstraction that every editing, query, relation, permission and Workspace path must understand; local ordering and explicit absence still need a contract. | **Current preference for investigation; still an unselected hypothesis.** |
 | Bounded hybrid | Keep a shared structural identity and materialize language records only when content or explicit absence requires them. | Could combine explicit structure with bounded data growth. | More states and transition rules; analytical option not yet validated by the initiative. | **Analytical option; not a separate initiative preference.** |
-| Editing Language | Let editors select the content language from which they work and use it as the primary backend context. | Removes irrelevant default-language text from the workflow and supports non-default sources. | Page Tree, Layout module, Records module, permissions, ordering and source/provenance behavior. | **Preferred product framing; prototype still needed.** |
+| Editing Language | Let editors select the content language from which they work and use it as the primary backend context. | Removes irrelevant default-language text from the workflow and supports non-default sources. | Page Tree, Layout module, Records module, permissions, ordering and source/provenance behavior. | **Preferred product framing; demonstrator exists, validation remains open.** |
 | Explicit absence intent | Represent whether fallback should continue or stop for one structural position. | Makes regional omission predictable. | Backward compatibility, UX and consistent frontend evaluation. | **Derived requirement; representation open.** |
 
 A generic multi-dimensional model for language, country, market, brand or audience is an adjacent future perspective. It may eventually help separate language from other content contexts, but it is not the initiative's immediate answer to the four responsibilities.
@@ -429,60 +437,62 @@ The repeated pattern is useful: a real failure is reproduced, the responsible co
 
 ## Language-All marker: scope and review boundary
 
-[Gerrit 95619][cs20]
-and its 14.3 backport merged on 2026-10-06, verified on 2026-10-10. The
-internal integer marker names existing values without changing behavior. The initiative
-distinguishes an editor's stored Language-All choice, a synthetic backend
-selection and a fallback contract. Current Core still depends on these uses
-in Layout, routing, Workspaces, Recycler, sitemap and LinkValidator. The
-longer-term direction remains explicit concrete language selections where
-characterization proves them safe, and a synchronization replacement for
-stored Language-All intent. The record lookups in `ContentObjectRenderer`,
-frontend `CategoryCollection` and Extbase `Typo3DbQueryParser` are not
-synthetic selections.
+[Gerrit 95619][cs20] and its
+14.3 backport merged on 2026-10-06, verified on 2026-10-10.
+`LanguageMarker::ALL_LANGUAGES` is an internal integer marker, including the
+reviewed TCA helpers and `SlugHelper`, not a behavior change or stable extension
+API. Stored intent, synthetic selection and fallback remain distinct contracts
+in Layout, routing, Workspaces, Recycler, sitemap and LinkValidator. Concrete
+selection and a synchronization replacement remain the longer-term direction,
+subject to characterization; naming neither implements it nor prevents a
+later split. The initiative Decision Record remains proposed. The lookups in
+`ContentObjectRenderer`, frontend `CategoryCollection` and Extbase
+`Typo3DbQueryParser` select stored records, not synthetic languages.
 
-The merged `LanguageMarker::ALL_LANGUAGES` documents stored and synthetic
-uses and includes the reviewed TCA helpers and `SlugHelper`. This implements
-bounded naming work, not the replacement recommendation. Naming neither
-unifies the contracts nor prevents a later split. The initiative Decision
-Record remains proposed pending its separate canonical review.
+`LinkAnalyzer`'s missing-language fallback and `EditableRestriction` retain
+their behavior and query representation. The 2026-10-02 static check found that
+the bulk query selects the language field explicitly but `recheckLinks()` does
+not. Without incidental selected fields or event enrichment, `checkLinks()`
+falls back to `-1` even for a language-aware record. This remains a coverage
+question, not a reproduced regression or a resolved fallback contract.
 
-The existing `LinkAnalyzer` fallback represents records without usable
-language information as All Languages. The meeting accepted it and
-`EditableRestriction` for marker naming without changing behavior or query
-representation. The post-meeting mainline check on 2026-10-02 nevertheless
-keeps a coverage question open: the bulk query explicitly selects the
-language field, but `recheckLinks()` does not explicitly add it. If neither
-other selected fields nor event enrichment supplies it, `checkLinks()` falls
-back to `-1` even for a language-aware record. This is a static code finding,
-not a reproduced runtime regression; the meeting's low-risk assessment does
-not close it. A separate fallback contract remains necessary before replacing
-the representation.
-
-Layout drag-and-drop TypeScript keeps the literal with a PHP-marker
-synchronization comment. A shared JavaScript constant or an `isAllLanguage`
-property remains follow-up work. TYPO3 v15 has the typed constant; the merged
-14.3 backport uses an untyped constant for PHP 8.2. No general annotation rule
-for inverse checks or context-only code was decided.
+Layout TypeScript retains its literal with a PHP-marker synchronization comment;
+a shared JavaScript constant or `isAllLanguage` property is follow-up. TYPO3 v15
+has the typed constant; 14.3 uses an untyped one for PHP 8.2. Default Language
+markers, record/query abstractions and general inverse/context annotation rules
+remain open; integer language-field dependencies are not removed.
 
 The [Human Review Explorer](https://content.eric-harrer.de/t3thi/reviews/95619/)
-compares 80 directly and inversely discovered candidates, independent Astra
-and Opus assessments, prior human decisions and Core evidence. Model agreement
-is triage only: both models misclassified a persisted `ContentObjectRenderer`
-query as synthetic. The 2026-09-25 plausibility pass found no false positive
-among patch set 2's replacements; further candidates still require human
-review.
+compares 80 direct/inverse candidates, Astra/Opus assessments, human decisions
+and Core evidence. Both models misclassified a stored-record
+`ContentObjectRenderer` query. Agreement is triage, not proof. The 2026-09-25
+pass found no false positive in patch set 2; further candidates need human review.
+[Gerrit 92267][cs16] remains a
+separate inventory: its 2026-09-04 observation was `NEW`, WIP, patch set 6,
+CI-positive, mergeable, one unresolved comment. These targeted observations do
+not refresh the complete external snapshot below.
 
-The 2026-10-09 meeting identified a Default Language marker as a follow-up
-candidate. Record predicates and query-level abstractions were explored, but
-no migration API was selected. The merged marker is `@internal`, not a stable
-extension API, and still depends on integer language-field comparisons.
+## Structure-layer demonstrator and language-zero validation
 
-[Gerrit 92267][cs16], a
-separate inventory of persisted-record assumptions, was `NEW`, WIP,
-CI-positive and mergeable at patch set 6 with one unresolved comment when
-checked on 2026-09-04. These targeted observations do not refresh the
-complete external-status snapshot below.
+André demonstrated the [structure-layer prototype](https://github.com/t3thi/structure-layer)
+on 2026-10-23. It retains hidden structural `0` records and moves real content
+into language variants, with per-site Editing Language, Page Tree labels and
+creation controls. Comparison persistence, contextual translation actions and
+source/deletion behavior still need work. The development-only structure view
+is for inspection, not a production editing contract. Direct structural
+blueprints and separate structural permissions remain later ideas.
+
+This is research progress, not Core adoption or a v15/v16 promise. Demo setup
+resets its database; the presenter had not tested migration. Production
+migration, reversal, permissions, lifecycle and full behavior parity remain
+unvalidated. The shared-structure hypothesis is not resolved by the demo.
+
+[Gerrit 97053](https://review.typo3.org/c/Packages/TYPO3.CMS/+/97053), checked
+2026-10-23, is separate work for TYPO3 v15, with 14.3 release intent: patch
+set 1 is `NEW`, mergeable, CI and Code-Review `+1`, one unresolved comment.
+It prefers language `0` regardless of order but still uses the first language
+if `0` is absent. The meeting requested an error instead; that is not yet in
+the inspected patch. No merged backport or architecture decision is established.
 
 ## Inline-child language defaulting
 
@@ -551,7 +561,6 @@ No current patch meets all criteria. Gerrit 92777 has positive reviews but an un
 | [dbdoctor PR 98][cs2] | Open; GitHub reports the current head as not mergeable and `dirty`. | **Yes** | Repairs `l10n_state` when synchronized metadata disagrees with stored translated values. It is not merged Core behavior. |
 | [dbdoctor PR 171](https://github.com/lolli42/dbdoctor/pull/171) | Open `[WIP]`; GitHub reports the current head as clean and mergeable. | No | Detects orphaned translations left by historical copy operations. It is diagnostic and repair tooling, not a merged Core fix or a new translation model. |
 | [Forge 110497](https://forge.typo3.org/issues/110497) and [Forge 110498](https://forge.typo3.org/issues/110498) | Both issues are New; the official assignee field names Tymoteusz Motylewski, and no Gerrit fix is registered. | Not applicable | Both report new inline or file-reference children of unconnected non-default-language records receiving language `0` when no explicit child language reaches DataHandler. A shared root cause or solution is not yet established. |
-| Structural-layer and Editing-Language exploration | Product framing exists; no completed prototype is evidenced. | Not applicable | A sketch, click dummy or extension experiment would test editor value and structural assumptions before an architecture decision. |
 
 ## Critical alignment against the vision
 

@@ -2,7 +2,7 @@
 id: topic:current-core-work
 title: "Aktuelle Core-Arbeit"
 language: de
-updated: "2026-10-10"
+updated: "2026-10-23"
 knowledge:
   - K-000013
   - K-000015
@@ -15,14 +15,16 @@ knowledge:
   - K-000030
   - K-000031
   - K-000032
+  - K-000034
+  - K-000035
 history:
   - K-000026
 decisions:
   - D-000002
 translation_of: topic:current-core-work
-source_updated: "2026-10-10"
+source_updated: "2026-10-23"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:ae0c5e0cd668e887726c43f8c972b9f84c04d7a5cf8f615d3f719ae2cff3a608"
+source_digest: "sha256:d39248b4f90673961ae34af9e2b75dcdd67a8fa0425ac5bf8667c6a00825645f"
 ---
 
 # Aktuelle Core-Arbeit
@@ -55,68 +57,69 @@ Das wiederkehrende Muster ist hilfreich: Ein realer Fehler wird reproduziert, de
 
 ## Language-All-Marker: Geltungsbereich und Review-Grenze
 
-[Gerrit 95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619)
-und sein 14.3-Backport wurden am 06.10.2026 gemergt, geprüft am 10.10.2026.
-Der interne Integer-Marker benennt bestehende Werte, ohne das Verhalten zu
-ändern. Die Initiative
-unterscheidet die gespeicherte Language-All-Auswahl der Redaktion, eine
-synthetische Backend-Auswahl und einen Fallback-Vertrag. Der aktuelle Core
-hängt in Layout, Routing, Workspaces, Recycler, Sitemap und LinkValidator
-weiterhin von diesen Verwendungen ab. Die langfristige Richtung bleibt eine
-explizite konkrete Sprachauswahl, wo die Charakterisierung dies als sicher
-belegt, sowie ein Synchronisierungsersatz für die gespeicherte
-Language-All-Absicht. Die Datensatzabfragen in `ContentObjectRenderer`,
-frontendseitiger `CategoryCollection` und Extbase-`Typo3DbQueryParser` sind
-keine synthetischen Auswahlen.
+[Gerrit 95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619) und sein
+14.3-Backport wurden am 06.10.2026 gemergt, geprüft am 10.10.2026.
+`LanguageMarker::ALL_LANGUAGES` ist ein interner Integer-Marker einschließlich
+der geprüften TCA-Helfer und `SlugHelper`, keine Verhaltensänderung oder stabile
+Extension-API. Gespeicherte Absicht, synthetische Auswahl und Fallback bleiben
+verschiedene Verträge in Layout, Routing, Workspaces, Recycler, Sitemap und
+LinkValidator. Konkrete Auswahl und ein Synchronisierungsersatz bleiben die
+langfristige Richtung unter dem Vorbehalt der Charakterisierung; die Benennung
+setzt sie weder um noch verhindert sie eine spätere Trennung. Der Decision
+Record der Initiative bleibt vorgeschlagen. Die Abfragen in
+`ContentObjectRenderer`, frontendseitiger `CategoryCollection` und
+Extbase-`Typo3DbQueryParser` selektieren gespeicherte Datensätze, keine
+synthetischen Sprachen.
 
-Der gemergte `LanguageMarker::ALL_LANGUAGES` dokumentiert gespeicherte und
-synthetische Verwendungen und umfasst die geprüften TCA-Helfer und
-`SlugHelper`. Dies setzt die begrenzte Benennungsarbeit um, nicht die
-Empfehlung zur Ablösung. Die Benennung setzt die Verträge weder gleich noch
-verhindert sie eine spätere Trennung. Der Decision Record der Initiative
-bleibt bis zu seinem separaten kanonischen Review vorgeschlagen.
+Das Fallback des `LinkAnalyzer` bei fehlender Sprachinformation und
+`EditableRestriction` behalten Verhalten und Abfragedarstellung. Die statische
+Prüfung vom 02.10.2026 zeigte: Die Sammelabfrage selektiert das Sprachfeld
+ausdrücklich, `recheckLinks()` nicht. Ohne beiläufig selektierte Felder oder
+Event-Erweiterung fällt `checkLinks()` auch bei einem sprachfähigen Datensatz
+auf `-1` zurück. Dies bleibt eine Abdeckungsfrage, keine reproduzierte
+Regression und kein geklärter Fallback-Vertrag.
 
-Das bestehende `LinkAnalyzer`-Fallback stellt Datensätze ohne nutzbare
-Sprachinformation als All Languages dar. Das Meeting akzeptierte es und
-`EditableRestriction` für die Marker-Benennung, ohne Verhalten oder
-Abfragedarstellung zu ändern. Die anschließende Mainline-Prüfung vom
-02.10.2026 hält dennoch eine Abdeckungsfrage offen: Die Sammelabfrage
-selektiert das Sprachfeld ausdrücklich, `recheckLinks()` fügt es dagegen
-nicht ausdrücklich hinzu. Liefern weder andere selektierte Felder noch eine
-Event-Erweiterung den Wert, fällt `checkLinks()` auch bei einem sprachfähigen
-Datensatz auf `-1` zurück. Dies ist ein statischer Code-Befund, keine
-reproduzierte Laufzeitregression; die Einschätzung eines geringen Risikos im
-Meeting schließt die Frage nicht. Vor einer Ablösung der Darstellung bleibt
-ein separater Fallback-Vertrag erforderlich.
-
-Das TypeScript für Drag-and-drop in Layout behält das Literal mit einem
-Kommentar zur Synchronisierung mit dem PHP-Marker. Eine gemeinsame
-JavaScript-Konstante oder ein `isAllLanguage`-Attribut bleibt Folgearbeit.
-TYPO3 v15 hat die typisierte Konstante; der gemergte 14.3-Backport verwendet
-für PHP 8.2 eine untypisierte Konstante. Eine allgemeine Kommentierungsregel
-für inverse Prüfungen oder rein kontextbezogenen Code wurde nicht beschlossen.
+Layout-TypeScript behält sein Literal mit PHP-Synchronisierungskommentar;
+eine gemeinsame JavaScript-Konstante oder `isAllLanguage` bleibt Folgearbeit.
+TYPO3 v15 hat die typisierte Konstante, 14.3 eine untypisierte für PHP 8.2.
+Default-Language-Marker, Datensatz-/Abfrageabstraktionen und allgemeine
+Kommentierungsregeln für inverse oder kontextbezogene Fälle bleiben offen;
+Integer-Abhängigkeiten im Sprachfeld sind nicht entfernt.
 
 Der [Human Review Explorer](https://content.eric-harrer.de/t3thi/reviews/95619/)
-vergleicht 80 durch direkte und inverse Suchen ermittelte Kandidaten,
-unabhängige Bewertungen von Astra und Opus, frühere menschliche Entscheidungen
-und Core-Evidenz. Modellübereinstimmung dient nur der Priorisierung: Beide
-Modelle ordneten eine Abfrage gespeicherter Datensätze im
-`ContentObjectRenderer` fälschlich als synthetisch ein. Die
-Plausibilitätsprüfung vom 25.09.2026 fand unter den Ersetzungen in Patch Set 2
-keinen False Positive; weitere Kandidaten benötigen weiterhin menschliches
-Review.
+vergleicht 80 direkte/inverse Kandidaten, Astra-/Opus-Bewertungen, menschliche
+Entscheidungen und Core-Evidenz. Beide Modelle klassifizierten eine Abfrage
+gespeicherter Datensätze im `ContentObjectRenderer` falsch. Übereinstimmung
+dient der Priorisierung, nicht als Beweis. Die Prüfung vom 25.09.2026 fand in
+Patch Set 2 keinen False Positive; weitere Kandidaten benötigen menschliches Review.
+[Gerrit 92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267) bleibt ein
+separates Inventar: Stand 04.09.2026 `NEW`, WIP, Patch Set 6, CI-positiv,
+mergefähig, ein ungelöster Kommentar. Diese gezielten Beobachtungen erneuern
+nicht den vollständigen externen Stand im folgenden Abschnitt.
 
-Das Meeting vom 09.10.2026 benannte einen Default-Language-Marker als
-möglichen Folgeschritt. Datensatzprüfungen und Abfrageabstraktionen wurden
-untersucht, aber keine Migrations-API ausgewählt. Der gemergte Marker ist
-`@internal`, keine stabile Extension-API, und hängt weiterhin von
-Integer-Vergleichen des Sprachfelds ab.
+## Struktur-Layer-Demonstrator und Validierung der Sprache null
 
-[Gerrit 92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267), ein
-separates Inventar von Annahmen über gespeicherte Datensätze, war bei der
-Prüfung am 04.09.2026 `NEW`, WIP, CI-positiv und mergefähig, mit Patch Set 6
-und einem ungelösten Kommentar. Diese gezielten Beobachtungen aktualisieren
-nicht den vollständigen externen Statusstand im folgenden Abschnitt.
+André demonstrierte den [Struktur-Layer-Prototyp](https://github.com/t3thi/structure-layer)
+am 23.10.2026. Er behält verborgene strukturelle `0`-Datensätze und verlagert
+reale Inhalte in Sprachvarianten, mit Editing Language je Site, Page-Tree-Labels
+und Anlagekontrollen. Vergleichspersistenz, kontextuelle Übersetzungsaktionen
+und Quell-/Löschverhalten benötigen weitere Arbeit. Die Entwicklungsansicht der
+Struktur dient der Inspektion, nicht als Bearbeitungsvertrag für Produktion.
+Direkte Strukturblaupausen und getrennte Strukturberechtigungen bleiben spätere Ideen.
+
+Dies ist Forschungsfortschritt, keine Core-Übernahme oder v15-/v16-Zusage.
+Das Demo-Setup setzt seine Datenbank zurück; der Vortragende hatte die Migration
+nicht getestet. Produktionsmigration, Rückweg, Berechtigungen, Lebenszyklus und
+vollständige Verhaltensparität sind nicht validiert. Die gemeinsame
+Strukturhypothese ist durch die Demo nicht entschieden.
+
+[Gerrit 97053](https://review.typo3.org/c/Packages/TYPO3.CMS/+/97053), geprüft
+am 23.10.2026, ist separate Arbeit für TYPO3 v15, mit Release-Absicht 14.3:
+Patch Set 1 ist `NEW`, mergefähig, CI und Code-Review `+1`, ein ungelöster
+Kommentar. Es bevorzugt Sprache `0` unabhängig von der Reihenfolge, nutzt bei
+fehlender `0` aber weiter die erste Sprache. Das Meeting verlangte stattdessen
+einen Fehler; dieser fehlt im geprüften Patch. Ein gemergter Backport oder eine
+Architekturentscheidung ist damit nicht belegt.
 
 ## Sprachvorbelegung neuer Child Records
 
@@ -187,4 +190,3 @@ Derzeit erfüllt kein Patch alle Kriterien. Gerrit 92777 besitzt positive Review
 | [dbdoctor PR 98](https://github.com/lolli42/dbdoctor/pull/98) | Offen; GitHub meldet den aktuellen Stand als nicht mergefähig und `dirty`. | **Ja** | Repariert `l10n_state`, wenn Synchronisierungsmetadaten gespeicherten übersetzten Werten widersprechen. Dies ist kein gemergtes Core-Verhalten. |
 | [dbdoctor PR 171](https://github.com/lolli42/dbdoctor/pull/171) | Offen mit `[WIP]`; GitHub meldet den aktuellen Stand als konfliktfrei und mergefähig. | Nein | Erkennt verwaiste Übersetzungen aus historischen Kopiervorgängen. Dies ist Diagnose- und Reparaturwerkzeug, kein gemergter Core-Fix und kein neues Übersetzungsmodell. |
 | [Forge 110497](https://forge.typo3.org/issues/110497) und [Forge 110498](https://forge.typo3.org/issues/110498) | Beide Issues sind neu; das offizielle Feld für die Zuordnung nennt Tymoteusz Motylewski, und es ist kein Gerrit-Fix registriert. | Nicht anwendbar | Beide melden, dass neue Inline- oder File-Reference-Child-Records nicht verbundener Datensätze einer Nicht-Default-Sprache die Sprache `0` erhalten, wenn keine explizite Child-Sprache den DataHandler erreicht. Eine gemeinsame Ursache oder Lösung ist noch nicht belegt. |
-| Untersuchung der strukturellen Ebene und der Editing Language | Eine Produktbeschreibung existiert; ein fertiggestellter Prototyp ist nicht belegt. | Nicht anwendbar | Eine Skizze, ein Click Dummy oder ein Experiment als Extension würde den redaktionellen Nutzen und strukturelle Annahmen vor einer Architekturentscheidung prüfen. |

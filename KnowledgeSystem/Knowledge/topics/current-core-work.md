@@ -2,7 +2,7 @@
 id: topic:current-core-work
 title: "Current Core Work"
 language: en
-updated: "2026-10-10"
+updated: "2026-10-23"
 knowledge:
   - K-000013
   - K-000015
@@ -15,6 +15,8 @@ knowledge:
   - K-000030
   - K-000031
   - K-000032
+  - K-000034
+  - K-000035
 history:
   - K-000026
 decisions:
@@ -51,60 +53,62 @@ The repeated pattern is useful: a real failure is reproduced, the responsible co
 
 ## Language-All marker: scope and review boundary
 
-[Gerrit 95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619)
-and its 14.3 backport merged on 2026-10-06, verified on 2026-10-10. The
-internal integer marker names existing values without changing behavior. The initiative
-distinguishes an editor's stored Language-All choice, a synthetic backend
-selection and a fallback contract. Current Core still depends on these uses
-in Layout, routing, Workspaces, Recycler, sitemap and LinkValidator. The
-longer-term direction remains explicit concrete language selections where
-characterization proves them safe, and a synchronization replacement for
-stored Language-All intent. The record lookups in `ContentObjectRenderer`,
-frontend `CategoryCollection` and Extbase `Typo3DbQueryParser` are not
-synthetic selections.
+[Gerrit 95619](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619) and its
+14.3 backport merged on 2026-10-06, verified on 2026-10-10.
+`LanguageMarker::ALL_LANGUAGES` is an internal integer marker, including the
+reviewed TCA helpers and `SlugHelper`, not a behavior change or stable extension
+API. Stored intent, synthetic selection and fallback remain distinct contracts
+in Layout, routing, Workspaces, Recycler, sitemap and LinkValidator. Concrete
+selection and a synchronization replacement remain the longer-term direction,
+subject to characterization; naming neither implements it nor prevents a
+later split. The initiative Decision Record remains proposed. The lookups in
+`ContentObjectRenderer`, frontend `CategoryCollection` and Extbase
+`Typo3DbQueryParser` select stored records, not synthetic languages.
 
-The merged `LanguageMarker::ALL_LANGUAGES` documents stored and synthetic
-uses and includes the reviewed TCA helpers and `SlugHelper`. This implements
-bounded naming work, not the replacement recommendation. Naming neither
-unifies the contracts nor prevents a later split. The initiative Decision
-Record remains proposed pending its separate canonical review.
+`LinkAnalyzer`'s missing-language fallback and `EditableRestriction` retain
+their behavior and query representation. The 2026-10-02 static check found that
+the bulk query selects the language field explicitly but `recheckLinks()` does
+not. Without incidental selected fields or event enrichment, `checkLinks()`
+falls back to `-1` even for a language-aware record. This remains a coverage
+question, not a reproduced regression or a resolved fallback contract.
 
-The existing `LinkAnalyzer` fallback represents records without usable
-language information as All Languages. The meeting accepted it and
-`EditableRestriction` for marker naming without changing behavior or query
-representation. The post-meeting mainline check on 2026-10-02 nevertheless
-keeps a coverage question open: the bulk query explicitly selects the
-language field, but `recheckLinks()` does not explicitly add it. If neither
-other selected fields nor event enrichment supplies it, `checkLinks()` falls
-back to `-1` even for a language-aware record. This is a static code finding,
-not a reproduced runtime regression; the meeting's low-risk assessment does
-not close it. A separate fallback contract remains necessary before replacing
-the representation.
-
-Layout drag-and-drop TypeScript keeps the literal with a PHP-marker
-synchronization comment. A shared JavaScript constant or an `isAllLanguage`
-property remains follow-up work. TYPO3 v15 has the typed constant; the merged
-14.3 backport uses an untyped constant for PHP 8.2. No general annotation rule
-for inverse checks or context-only code was decided.
+Layout TypeScript retains its literal with a PHP-marker synchronization comment;
+a shared JavaScript constant or `isAllLanguage` property is follow-up. TYPO3 v15
+has the typed constant; 14.3 uses an untyped one for PHP 8.2. Default Language
+markers, record/query abstractions and general inverse/context annotation rules
+remain open; integer language-field dependencies are not removed.
 
 The [Human Review Explorer](https://content.eric-harrer.de/t3thi/reviews/95619/)
-compares 80 directly and inversely discovered candidates, independent Astra
-and Opus assessments, prior human decisions and Core evidence. Model agreement
-is triage only: both models misclassified a persisted `ContentObjectRenderer`
-query as synthetic. The 2026-09-25 plausibility pass found no false positive
-among patch set 2's replacements; further candidates still require human
-review.
+compares 80 direct/inverse candidates, Astra/Opus assessments, human decisions
+and Core evidence. Both models misclassified a stored-record
+`ContentObjectRenderer` query. Agreement is triage, not proof. The 2026-09-25
+pass found no false positive in patch set 2; further candidates need human review.
+[Gerrit 92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267) remains a
+separate inventory: its 2026-09-04 observation was `NEW`, WIP, patch set 6,
+CI-positive, mergeable, one unresolved comment. These targeted observations do
+not refresh the complete external snapshot below.
 
-The 2026-10-09 meeting identified a Default Language marker as a follow-up
-candidate. Record predicates and query-level abstractions were explored, but
-no migration API was selected. The merged marker is `@internal`, not a stable
-extension API, and still depends on integer language-field comparisons.
+## Structure-layer demonstrator and language-zero validation
 
-[Gerrit 92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267), a
-separate inventory of persisted-record assumptions, was `NEW`, WIP,
-CI-positive and mergeable at patch set 6 with one unresolved comment when
-checked on 2026-09-04. These targeted observations do not refresh the
-complete external-status snapshot below.
+André demonstrated the [structure-layer prototype](https://github.com/t3thi/structure-layer)
+on 2026-10-23. It retains hidden structural `0` records and moves real content
+into language variants, with per-site Editing Language, Page Tree labels and
+creation controls. Comparison persistence, contextual translation actions and
+source/deletion behavior still need work. The development-only structure view
+is for inspection, not a production editing contract. Direct structural
+blueprints and separate structural permissions remain later ideas.
+
+This is research progress, not Core adoption or a v15/v16 promise. Demo setup
+resets its database; the presenter had not tested migration. Production
+migration, reversal, permissions, lifecycle and full behavior parity remain
+unvalidated. The shared-structure hypothesis is not resolved by the demo.
+
+[Gerrit 97053](https://review.typo3.org/c/Packages/TYPO3.CMS/+/97053), checked
+2026-10-23, is separate work for TYPO3 v15, with 14.3 release intent: patch
+set 1 is `NEW`, mergeable, CI and Code-Review `+1`, one unresolved comment.
+It prefers language `0` regardless of order but still uses the first language
+if `0` is absent. The meeting requested an error instead; that is not yet in
+the inspected patch. No merged backport or architecture decision is established.
 
 ## Inline-child language defaulting
 
@@ -173,4 +177,3 @@ No current patch meets all criteria. Gerrit 92777 has positive reviews but an un
 | [dbdoctor PR 98](https://github.com/lolli42/dbdoctor/pull/98) | Open; GitHub reports the current head as not mergeable and `dirty`. | **Yes** | Repairs `l10n_state` when synchronized metadata disagrees with stored translated values. It is not merged Core behavior. |
 | [dbdoctor PR 171](https://github.com/lolli42/dbdoctor/pull/171) | Open `[WIP]`; GitHub reports the current head as clean and mergeable. | No | Detects orphaned translations left by historical copy operations. It is diagnostic and repair tooling, not a merged Core fix or a new translation model. |
 | [Forge 110497](https://forge.typo3.org/issues/110497) and [Forge 110498](https://forge.typo3.org/issues/110498) | Both issues are New; the official assignee field names Tymoteusz Motylewski, and no Gerrit fix is registered. | Not applicable | Both report new inline or file-reference children of unconnected non-default-language records receiving language `0` when no explicit child language reaches DataHandler. A shared root cause or solution is not yet established. |
-| Structural-layer and Editing-Language exploration | Product framing exists; no completed prototype is evidenced. | Not applicable | A sketch, click dummy or extension experiment would test editor value and structural assumptions before an architecture decision. |
