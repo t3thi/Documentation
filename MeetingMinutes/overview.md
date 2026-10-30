@@ -397,3 +397,5 @@ title: "Translation Handling Initiative - Team Meeting Minutes Overview"
     - <sup>Merged Language-All Marker, Default Language Follow-Up, Migration and Query Abstractions, Synchronization and Structural Reference, Copy and Move Semantics, Intentional Absence, and Possible Output-Mode Simplification</sup>
 - [2026-10-23, 12:00 to 13:28 CEST](https://notes.typo3.org/s/TXqazBh8D3)
     - <sup>Structure-Layer Proof of Concept, Editing Language and Multisite Navigation, Comparison Selection Persistence, Structural Permissions, All-Language Visibility Actions, Language-Zero Validation, Translation Source Restrictions, and Deferred Site-Language Cleanup</sup>
+- [2026-10-30, 12:01 to 13:05 CET](https://notes.typo3.org/s/8Dua37LZux)
+    - <sup>Fallback Types and Record Overlays, Regional Fallback Without Mandatory Default Language, Intentional Absence and Unfinished Translations, Gerrit 94510 Review, Crop Synchronization of File References, IRRE Child Records Versus Shared MM Records, and Deferred Prototype Demonstration</sup>

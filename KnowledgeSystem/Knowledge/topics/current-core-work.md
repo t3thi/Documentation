@@ -19,6 +19,7 @@ knowledge:
   - K-000037
   - K-000038
   - K-000039
+  - K-000040
 history:
   - K-000030
   - K-000026
@@ -143,8 +144,9 @@ synthetic-value removal elsewhere remain open, not completed by this fix.
 
 ## Current work as of 2026-10-30
 
-All listed Gerrit changes, their Change-ID backports, Forge issues and the
-linked dbdoctor PRs were rechecked on 2026-10-30. WIP takes precedence; otherwise
+The full audit checked all listed changes and linked issues on 2026-10-30;
+the meeting follow-up rechecked 94510, 110008 and 88024 later that day.
+WIP takes precedence; otherwise
 negative votes, unresolved comments or merge conflicts require review action.
 Review-positive requires a current positive Code-Review, no such blocker and
 mergeability. Other open changes await review. Merge conflict reports Gerrit
@@ -165,14 +167,9 @@ mergeability against the target branch on that date, not submit approval.
 
 | Patch | Target release lines and backports | Current review state | Merge conflict | Scope and boundary |
 |---|---|---|---|---|
+| [Forge 110008](https://forge.typo3.org/issues/110008) and [Gerrit 94510](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) | TYPO3 v15; 14.3 intended, no backport found. | Patch set 11; André: Code-Review `-1`, Verified `+1`; Benni: both `+1`; CI `+1`; 1 unresolved comment. | No | Stops a hidden translated candidate from falling back under `fallbackType: strict`; missing translations can still fall back. Not the complete single-language requirement, not merged. Release/backport policy remains disputed. |
 | [Gerrit 92777](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92777) | TYPO3 v15; 14.3 intended; no backport found. | Patch set 10; two Code-Review `+1`; CI `+1`; 1 unresolved comment. | No | Restricts copied Free-Mode records to languages available in the target context. This improves current-model integrity without selecting a future structure model. |
 | [Gerrit 93063](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93063) | TYPO3 v15; 14.3 intended, no backport found. | Patch set 8; CI `+1`; no current Code-Review vote or unresolved comment. | **Yes** | Warns about orphaned translations without repairing or redesigning identity; rebase is required. |
-
-### Review-positive and mergeable
-
-| Patch | Target release lines and backports | Current review state | Merge conflict | Scope and boundary |
-|---|---|---|---|---|
-| [Forge 110008](https://forge.typo3.org/issues/110008) and [Gerrit 94510](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) | TYPO3 v15; 14.3 intended, no backport found. | Patch set 11; Code-Review `+1`; CI `+1`; no unresolved comments. | No | Restricts fallback under Strict. The fix is not merged; the regression remains an open Core correction. Its current footer no longer names 13.4. |
 
 ### Awaiting review
 
@@ -199,3 +196,4 @@ mergeability against the target branch on that date, not submit approval.
 | [dbdoctor PR 98](https://github.com/lolli42/dbdoctor/pull/98) | Merged 2026-10-08. | Not applicable | Repairs divergent `l10n_state` by marking differing stored values `custom`; dbdoctor tooling, not changed Core state enrichment. |
 | [dbdoctor PR 171](https://github.com/lolli42/dbdoctor/pull/171) | Closed without merge 2026-10-08; split work described in the closing comment. | Not applicable | The broad cleanup draft is not merged. Generic record deletion when a page translation is absent can delete valid extension data; narrower cleanup must remain site-aware. |
 | [Forge 110497](https://forge.typo3.org/issues/110497) and [Forge 110498](https://forge.typo3.org/issues/110498) | Both Closed. | Not applicable | The missing child-language reports are linked to the replacement 87595/96783 through 95476's abandonment. This establishes a delivered correction, not the exact introducing regression commit. |
+| [Forge 88024](https://forge.typo3.org/issues/88024) | New; original v9.5.5 report. | Not applicable | Crop updates do not follow initial file-reference copying. The owned-child synchronization requirement is not implemented by child-language alignment; the reported current project setup remains unverified. |

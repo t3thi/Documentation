@@ -16,7 +16,7 @@ decisions:
 translation_of: topic:output-policy
 source_updated: "2026-10-30"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:76a7f50b44b7afc4be200871f4b67520740a6025682fb27d9834c4fbfe2cf537"
+source_digest: "sha256:c9532b92cd7d48530c2fa06d41d4c003185c18a1a899997148ecaf6ecce28e06"
 ---
 
 # Output Policy
@@ -62,14 +62,20 @@ abschließende Default Language verlieren. Migration, lokale Abwesenheit,
 Berechtigungen, Workspaces und konsistente Abfragen müssen validiert werden,
 bevor dieser Vorschlag einen aktuellen Modus ersetzen kann.
 
-Die statische Prüfung vom 30.10.2026 bestätigt inzwischen die Kontextmenü-Aktion
-und den Wegfall des redundanten Labels im Prototyp. Dies ist keine neue
-Laufzeitvalidierung oder Übernahme des vollständigen Modells.
+Die statische Prüfung vom 30.10.2026 bestätigt Kontextmenü und Label-Entfall,
+nicht die vollständige Laufzeitparität.
+
+Eine versteckte Übersetzung kann noch in Bearbeitung sein, während der bisherige
+Fallback sichtbar bleiben soll. `hidden` pauschal als Stoppsignal zu behandeln,
+würde diesen Ablauf brechen. Bewusste Auslassung und unfertige Übersetzung
+brauchen unterscheidbare Semantik; ein neuer Zustand, ein Unterdrückungsfeld
+oder eine ausschließliche Workspace-Lösung sind nicht ausgewählt. Dies begrenzt
+den vorläufigen Ansatz, ohne ihn zu beschließen oder zu verwerfen.
 
 **Offene Fragen:**
 
 - Welcher Zustand beendet Fallback für eine einzelne Position?
-- Ist eine deaktivierte Übersetzung ein geeignetes Stoppsignal, oder ist eine separate Absicht erforderlich?
+- Wie unterscheidet sich ein bewusstes Stoppsignal von einer noch unfertigen versteckten Übersetzung?
 - Sollte normaler Fallback einen optionalen abschließenden Default-Schritt anbieten, während `strict` auf eine Sprache beschränkt bleibt?
 - In welchem Geltungsbereich darf die Ausgabeabsicht konfiguriert werden: Site Language, Seite, Strukturposition, Datensatz oder Feld?
 - Wie wird ein konsistentes Verhalten für Seiten, Inhalte, Extbase und eigene Abfragen sichergestellt?

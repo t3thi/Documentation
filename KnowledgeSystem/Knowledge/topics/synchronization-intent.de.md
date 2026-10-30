@@ -13,12 +13,13 @@ knowledge:
   - K-000018
   - K-000023
   - K-000029
+  - K-000040
 history: []
 decisions: []
 translation_of: topic:synchronization-intent
 source_updated: "2026-10-30"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:2e010b70b88c7df8474a70824255dc1b6c63e21905eaaf1fac09915c480d2434"
+source_digest: "sha256:45a3877fb00662201620841a8f66be6179fa76ac37004942de3203943243098e"
 ---
 
 # Synchronization Intent
@@ -75,7 +76,7 @@ source_digest: "sha256:2e010b70b88c7df8474a70824255dc1b6c63e21905eaaf1fac09915c4
 - Soll ein neues `config.behaviour.enforceLanguageSynchronization` den erzwungenen Zustand über `l10n_state` abbilden und `l10n_mode=exclude` ersetzen?
 - Wie werden `prefixLangTitle`, das Standardverhalten und die Extension-Kompatibilität behandelt, wenn `l10n_mode` entfernt wird?
 
-Ein Boolean-Flag für alle Sprachen ist das nützliche minimale Kompatibilitätsmodell: In der ersten Stufe sollte es alle konfigurierten Ziele ohne feldbezogene Abwahlmöglichkeit bedeuten und damit die Wirkung des vollständigen `-1`-Datensatzes nachbilden. Eine naheliegende darauf aufbauende Feature-Option ist, den Boolean durch ein datensatzweites Multi-Select der Synchronisierungs-Zielsprachen zu ersetzen oder zu erweitern. Derselbe vollständige Synchronisierungsprozess würde Zielrecords dann nur in den ausgewählten Sprachen anlegen und pflegen. Ein [vorläufiger Vorschlag aus einer Sitzung](https://notes.typo3.org/s/Sxl-kkYjW) bezeichnete das Datensatzfeld als `language_sync` und seine TCA-Referenz als `ctrl.languageSyncField`; weder Name noch API sind ausgewählt. Ob und wann das Multi-Select eingeführt wird, muss entschieden werden, und feldbezogene Ausnahmen sind eine eigenständige mögliche Erweiterung. Weder das Flag noch das Multi-Select bildet bereits einen vollständigen Lebenszyklus oder eine beschlossene TCA-API.
+Das minimale Kompatibilitätsmodell ist ein Boolean für alle konfigurierten Ziele ohne Feld-Abwahl: Es soll zunächst den vollständigen `-1`-Datensatz nachbilden. Ein späteres datensatzweites Multi-Select könnte denselben Prozess auf gewählte Zielsprachen begrenzen. Der [vorläufige Vorschlag](https://notes.typo3.org/s/Sxl-kkYjW) nennt `language_sync` und `ctrl.languageSyncField`; Namen, API, Einführung und Zeitpunkt sind nicht beschlossen. Feldbezogene Ausnahmen bleiben eine separate Erweiterung. Weder Boolean noch Multi-Select definiert bereits den vollständigen Lebenszyklus.
 
 **Möglicher technischer Wiederverwendungspfad für die erste Stufe mit `-1`-Parität:**
 
@@ -84,10 +85,25 @@ Ein Boolean-Flag für alle Sprachen ist das nützliche minimale Kompatibilitäts
 3. Jeder Zieldatensatz erhält in `l10n_state` einen erzwungenen Zustand oder eine gleichwertige neue Zustandsrepräsentation für jedes Feld, das zur Reproduktion des vollständigen Quelldatensatzes erforderlich ist. Der bestehende DataMapProcessor kann anschließend seine [Propagation vom Parent zu abhängigen Datensätzen für skalare Werte und Beziehungen](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/core/Classes/DataHandling/Localization/DataMapProcessor.php) wiederverwenden.
 4. Spätere Änderungen durchlaufen dieselbe Abhängigkeitspipeline. Nachdem die funktionale Parität nachgewiesen ist, kann derselbe Vertrag ein eigenständig zu entscheidendes Multi-Select der Zielsprachen unterstützen und dabei die Erzwingung aller Felder innerhalb jedes ausgewählten Ziels beibehalten.
 
-„Jedes Feld“ bezeichnet jeden Wert, den der aktuelle `-1`-Datensatz absichtlich identisch bereitstellt, einschließlich Ausgabe- und Strukturwerten. Es bedeutet nicht, dass erzeugte Datensätze dieselben Werte für `uid`, `sys_language_uid`, `l10n_parent`, `l10n_source`, `l10n_state` oder Workspace- und Versionsmetadaten besitzen. Diese Felder stellen Identität und Lebenszyklus jedes Zieldatensatzes her. Die genaue Menge der vom Core verwalteten Ausnahmen muss anhand des Schemas definiert und in Tests charakterisiert werden.
+„Jedes Feld“ umfasst alle absichtlich identischen Werte des heutigen `-1`-Datensatzes, auch Ausgabe und Struktur. Eigene `uid`, `sys_language_uid`, `l10n_parent`, `l10n_source`, `l10n_state` sowie Workspace-/Versionsmetadaten sichern dagegen Identität und Lebenszyklus jedes Ziels. Diese Core-Ausnahmen sind am Schema zu definieren und zu testen.
 
-Dies ist ein möglicher Wiederverwendungspfad und keine unmittelbar einsetzbare Konfigurationsänderung. Die datensatzweite Absicht müsste für jedes zur Parität relevante Feld ihrer Ziele wirksame `enforceLanguageSynchronization`-Semantik ableiten. `l10n_mode=exclude` statisch an jedem TCA-Feld zu deklarieren, würde auch nicht synchronisierte Datensätze betreffen. Der aktuelle DataMapProcessor [überspringt `-1`-Datensätze und erfordert verbundene Zieldatensätze](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/core/Classes/DataHandling/Localization/DataMapProcessor.php). Der neue datensatzweite Pfad muss Ziele daher auflösen, sie anlegen oder abgleichen, die vollständige erzwungene Feldmenge ableiten und die Aktivierung atomar sowie idempotent ausführen. Eine aktuelle `-1`-Quelle muss zunächst einem gültigen führenden Datensatz zugeordnet oder über einen neuen Anlagepfad behandelt werden, weil das bestehende `localize()` einen verbundenen Parent herstellt, wenn die Quelle ein Default-Language-Datensatz ist.
+Dies ist ein möglicher Wiederverwendungspfad, keine sofort nutzbare Konfiguration. Die datensatzweite Absicht müsste für alle paritätsrelevanten Zielfelder `enforceLanguageSynchronization`-Semantik ableiten; statisches `l10n_mode=exclude` würde auch unabhängige Datensätze betreffen. Der DataMapProcessor [überspringt `-1` und benötigt verbundene Ziele](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/core/Classes/DataHandling/Localization/DataMapProcessor.php). Der neue Pfad muss Ziele auflösen, anlegen oder abgleichen, die gesamte erzwungene Feldmenge bestimmen und atomar/idempotent aktivieren. Eine `-1`-Quelle braucht zuvor einen gültigen führenden Datensatz oder einen neuen Anlagepfad: `localize()` stellt den verbundenen Parent aus einer Default-Language-Quelle her.
 
-Beim Multi-Select kann das Hinzufügen einer Sprache dieselbe Operation „Ziel sicherstellen, dann alle Felder erzwingen“ wiederverwenden. Für das Entfernen einer Sprache ist eine explizite Lebenszyklusentscheidung erforderlich: den erzeugten Datensatz behalten und lösen, deaktivieren, als gelöscht markieren oder entfernen. Auch die gespeicherte Zielidentität muss Site-übergreifend aussagekräftig bleiben; heutige Site-lokale numerische IDs reichen für einen Shared-Storage-Vertrag nicht aus. Deshalb ist das Multi-Select eine konkrete Feature-Option mit Entscheidungsbedarf und weder eine implementierte Felddefinition noch ein festgelegter nächster Schritt.
+Beim Multi-Select kann Hinzufügen „Ziel sicherstellen, dann alle Felder erzwingen“ wiederverwenden. Entfernen erfordert eine Entscheidung: Ziel behalten und lösen, deaktivieren, als gelöscht markieren oder entfernen. Die Zielidentität muss Site-übergreifend gelten; Site-lokale Zahlen reichen für Shared Storage nicht aus. Das Multi-Select bleibt daher eine entscheidungsbedürftige Feature-Option, keine implementierte Felddefinition oder festgelegte Folgearbeit.
 
-Eine eigenständige mögliche Konsolidierung auf Feldebene ist `enforceLanguageSynchronization` neben `allowLanguageSynchronization` auf derselben `config.behaviour`-Ebene. Der erzwungene Zustand könnte dann über `l10n_state` dargestellt werden, sodass `l10n_mode=exclude` und dessen separater Scope zur Feldauswahl entfallen könnten. Dies wurde von der Initiative vorgeschlagen, ist aber weder implementiert noch ausgewählt. Die genaue Zustandsdarstellung sowie der Migrations- und Kompatibilitätsvertrag sind offen. Der Ansatz darf nicht mit dem getrennten datensatzweiten Ersatz für `-1` gleichgesetzt werden.
+Eine separate Feld-Konsolidierung könnte `enforceLanguageSynchronization` neben `allowLanguageSynchronization` unter `config.behaviour` einführen. Ein erzwungener `l10n_state` könnte `l10n_mode=exclude` samt separatem Auswahl-Scope ersetzen. Dies ist ein Vorschlag der Initiative, weder implementiert noch ausgewählt; Zustand, Migration und Kompatibilität bleiben offen. Es ist nicht der datensatzweite `-1`-Ersatz.
+
+**Eigene Kinder statt geteilter Ziele:** Die Synchronisierung eines zusammengesetzten
+Parent-Feldes soll relevante Werte seiner integralen 1:n-IRRE-Kinder rekursiv
+einschließen, nicht mehrfach verwendbare MM-Ziele. Beim File-Feld betrifft das
+`sys_file_reference` samt Crop, nicht die geteilte `sys_file`.
+[Forge 88024](https://forge.typo3.org/issues/88024) dokumentiert initial kopierte,
+später aber nicht aktualisierte Crops bei beiden Synchronisierungsarten.
+Der Core gleicht Beziehungen ab und ermittelt Synchronisierungsfelder je
+Tabellen-TCA; dies erzwingt nicht alle vorhandenen Child-Werte. Auch der gemergte
+Child-Sprachabgleich ist eine andere Operation. Eigentümerschaft folgt aus der
+Beziehungskonfiguration, nicht allein aus `inline`; Löschkaskaden steuert separat
+`behaviour.enableCascadingDelete`. Rekursive Propagation ist eine Anforderung,
+keine implementierte oder ausgewählte API. Verschachtelte Ausnahmen, Workspaces,
+Rechte, Zyklen und Migration bleiben zu prüfen; v13-Fall und historischer
+Workaround wurden nicht unabhängig reproduziert.

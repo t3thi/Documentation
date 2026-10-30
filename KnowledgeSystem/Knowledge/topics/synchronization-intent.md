@@ -13,6 +13,7 @@ knowledge:
   - K-000018
   - K-000023
   - K-000029
+  - K-000040
 history: []
 decisions: []
 ---
@@ -85,3 +86,18 @@ This is a possible reuse path, not a drop-in configuration change. The record-le
 For the multi-select, adding a language can reuse the same "ensure target, then enforce all fields" operation. Removing a language needs an explicit lifecycle decision: retain and detach the generated record, disable it, soft-delete it or remove it. The stored target identity must also remain meaningful across sites; current site-local numeric IDs are not sufficient for a shared-storage contract. These points make the multi-select a concrete feature option requiring a decision, not an implemented field definition or fixed next step.
 
 A separate possible field-level consolidation is `enforceLanguageSynchronization` beside `allowLanguageSynchronization` at the same `config.behaviour` level. The enforced state could then be represented through `l10n_state`, allowing `l10n_mode=exclude` and its separate field-selection scope to be retired. This was proposed by the initiative but is neither implemented nor selected. Its exact state representation, migration and compatibility contract remain open. It must not be conflated with the separate record-wide replacement for `-1`.
+
+**Owned children versus shared targets:** Synchronizing a composite parent
+field should include its integral one-to-many IRRE children and relevant values,
+recursively, not independently reusable MM targets. For a file field this means
+the owned `sys_file_reference`, including crop, not the shared `sys_file`.
+[Forge 88024](https://forge.typo3.org/issues/88024) documents initial crop copying
+without later propagation under both synchronization mechanisms. Core currently
+reconciles relations and discovers child synchronization from each table's own
+TCA; that is not unconditional propagation of all existing child values. The
+merged child-language alignment is a separate operation. Ownership depends on
+relation configuration, not `inline` alone; cascading deletion has its own
+`behaviour.enableCascadingDelete` control. Recursive propagation is a requirement,
+not implemented behavior or a selected API; nested overrides, Workspaces,
+permissions, cycles and migration need characterization. The reported v13 case
+and historical workaround were not independently reproduced.

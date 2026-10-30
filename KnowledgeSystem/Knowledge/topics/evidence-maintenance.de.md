@@ -22,6 +22,7 @@ knowledge:
   - K-000027
   - K-000029
   - K-000031
+  - K-000040
 history:
   - K-000026
 decisions:
@@ -29,7 +30,7 @@ decisions:
 translation_of: topic:evidence-maintenance
 source_updated: "2026-10-30"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:4cb918eca1445bba4a13351de7a13deebca1ddf5e510f8db1957bf6b8cbddb7e"
+source_digest: "sha256:67bde4ecfb314456c473d1d22cdfe9bf9a20c4ccb9ce24e889adac3954773155"
 ---
 
 # Nächste Schritte, Evidenz und Pflege
@@ -52,7 +53,7 @@ Dies ist die aus heutiger Sicht sinnvollste Abfolge von Aktivitäten der Initiat
    TYPO3-v15-Selektoren eine Auswahl aller Overlays durch konkrete Sprach-IDs
    ausdrücken können; bekannte Lücken in Workspaces und DataHandler sind
    ebenfalls zu schließen.
-3. **Klar abgegrenzte Korrekturen abschließen.** 95475 rebasen und reviewen, Copy-/Move-, Parent-Selector- und Wizard-Arbeit voranbringen und das Review der inzwischen mergefähigen Strict-Korrektur 94510 abschließen. Auf 87595/96783, 94673/96935 und 97053/97225 aufbauen, ohne daraus eine Übernahme des Zukunftsmodells abzuleiten.
+3. **Begrenzte Korrekturen abschließen.** 95475 rebasen, Copy-/Move-, Parent-Selector- und Wizard-Arbeit voranbringen, semantisches Review von 94510 klären: Funktionsnachweis ist keine Merge-Freigabe. Auf 87595/96783, 94673/96935 und 97053/97225 aufbauen, ohne daraus das Zukunftsmodell abzuleiten.
 4. **Produktverhalten vor der Speicherung prototypisch untersuchen.** Editing Language, einen Arbeitsablauf ohne Moduswahl im Modul „Layout“, direktes Anlegen in einer Zielsprache, lokale strukturelle Ergänzungen und explizite Abwesenheit anhand realistischer redaktioneller Abläufe prüfen.
 5. **Die aktuelle strukturelle Präferenz gegenüber ihrem Gegenmodell validieren.** Dieselben Akzeptanzfälle für die gemeinsame verborgene Struktur, vollständige Language-Layer-Shadows, Sparse Records und hybride Ansätze verwenden. Vereinfachungen von Code und Laufzeit gemeinsam mit Datensatzwachstum, Informationsdichte im Modul „Layout“, Workspaces, Referenzen, Migration und Betriebskosten messen, statt die Datenbankgröße allein als entscheidend zu behandeln.
 6. **Parität der ersten Stufe definieren und charakterisieren.** Das Flag für alle Ziele, die Zielanlage, die vollständige erzwungene Feldmenge, Quell- und Zielidentität, Konflikte und jeden Übergang spezifizieren. Zunächst nachweisen, dass damit die aktuelle `-1`-Ausgabe reproduziert wird, und anschließend das eigenständig zu entscheidende Multi-Select sowie andere granulare Erweiterungen am selben Prozess bewerten.
@@ -62,7 +63,7 @@ Dies ist die aus heutiger Sicht sinnvollste Abfolge von Aktivitäten der Initiat
 
 ## Evidenzbasis und Pflege
 
-Die Meetingbasis ist bis 23.10.2026 abgeglichen, einschließlich der zuvor
+Die Meetingbasis ist bis 30.10.2026 abgeglichen, einschließlich der zuvor
 unregistrierten Quellen vom 21./28. August. Wiederholungen und Off-Topic erzeugen
 kein neues Wissen. Am 30.10.2026 wurden 55 Gerrit-Changes geprüft: alle 50 bisher
 verlinkten, zwei zusätzlich benannte, zwei gefundene Backports und 96916.
@@ -70,6 +71,8 @@ Forge-Issues, dbdoctor-PRs und die beschriebenen Core-Pfade wurden ebenfalls
 geprüft, letztere statisch an einer festen v15-Revision. Dies ist weder ein
 neuer Laufzeittest aller Szenarien noch eine fachliche Freigabe der Änderungen.
 Umfang und Grenzen stehen im [Prüfbericht](https://github.com/t3thi/Documentation/blob/main/KnowledgeSystem/Documentation/reviews/2026-10-30-freshness.md).
+Die spätere Meeting-Nachbereitung prüfte nochmals 94510, 110008 und 88024,
+nicht das gesamte Inventar. Ihr [Bericht](https://github.com/t3thi/Documentation/blob/main/KnowledgeSystem/Documentation/reviews/2026-10-30-meeting-ingestion.md) trennt Anforderungen und Implementierung.
 Die [T3DD26-Präsentation](https://content.eric-harrer.de/t3dd26/) bleibt konzeptioneller Hintergrund.
 
 Für das aktuelle Language-All-Inventar stellt der [Human Review
@@ -95,6 +98,7 @@ Zentrale Primärquellen sind:
 | Editing Language | [08.05.2026](https://notes.typo3.org/s/-0p3kqzMll), [29.05.2026](https://notes.typo3.org/s/0AJqa7JwuJ) |
 | Output Policy, Strict-Verhalten und beabsichtigte Abwesenheit | [15.12.2023](https://notes.typo3.org/s/ddSKDuz1Q), [11.06.2026](https://notes.typo3.org/s/1-J3KsT7VU), [10.07.2026](https://notes.typo3.org/s/ccbVIOYfEy), [31.07.2026](https://notes.typo3.org/s/z5ICno5pK2) |
 | Jüngster Prototyp und redaktioneller Workflow | [23.10.2026](https://notes.typo3.org/s/TXqazBh8D3) |
+| Versteckte Entwürfe versus Auslassung; eigene Kinder versus geteilte Synchronisierungsziele | [30.10.2026](https://notes.typo3.org/s/8Dua37LZux) |
 
 Zukünftige Aktualisierungen müssen den [Pflegehinweisen für den Current State](https://github.com/t3thi/Documentation/blob/main/KnowledgeSystem/Documentation/current-state-maintenance.md) folgen. Die zentrale Regel lautet:
 

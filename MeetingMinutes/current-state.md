@@ -1,8 +1,8 @@
 ---
 title: "Translation Handling Initiative - Current State"
 last_updated: "2026-10-30"
-weekly_minutes_included_through: "2026-10-23"
-transcripts_included_through: "2026-10-23"
+weekly_minutes_included_through: "2026-10-30"
+transcripts_included_through: "2026-10-30"
 external_status_checked_through: "2026-10-30"
 ---
 
@@ -13,9 +13,9 @@ Knowledge metadata. Do not edit it directly.
 
 # Translation Handling Initiative: Current State
 
-[Deutsche Fassung](https://notes.typo3.org/s/7bbwd73t2h) · [Meeting minutes overview](https://notes.typo3.org/s/f3ae8fZSD) · [How to maintain this document][cs6]
+[Deutsche Fassung](https://notes.typo3.org/s/7bbwd73t2h) · [Meeting minutes overview](https://notes.typo3.org/s/f3ae8fZSD) · [How to maintain this document][cs7]
 
-**Status of this edition:** The content was last updated on 30 October 2026. It includes reviewed meeting minutes and transcripts through 23 October 2026. The documented Core paths and recorded external patch and issue states were last checked on 30 October 2026. Unless an entry names a later individual verification date, patch and review statuses should be read as of that date.
+**Status of this edition:** The content was last updated on 30 October 2026. It includes reviewed meeting minutes and transcripts through 30 October 2026. The documented Core paths and recorded external patch and issue states were last checked on 30 October 2026. Unless an entry names a later individual verification date, patch and review statuses should be read as of that date.
 
 This is the canonical description of the Translation Handling Initiative's current understanding, vision and work. It explains why the initiative works on translation handling, what its research has established, which direction it currently sees, which approaches it is investigating and which decisions remain open.
 
@@ -102,13 +102,13 @@ The initiative's vision starts from concrete project and editorial needs. These 
 | **File-metadata translation at scale** | The [Media module translation control](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/filelist/Classes/FileList.php) shows for each file whether metadata for a configured language can be created or edited. Creating or editing target-language alternative text remains a per-file workflow; no dedicated bulk creation or completeness workflow is evident in current Core. | Structural Identity and editorial workflow |
 | **Intentional absence** | A missing translation and an intentionally disabled or omitted translation can both lead to fallback. The editor's intent is not represented explicitly enough. | Output Policy |
 
-The "mostly connected, selectively different" case is the clearest description of the middle ground TYPO3 should support better and the overarching direction for most structural use cases. Target-language-only content is not a separate case; it is the local-addition form of the same requirement. Identical translated structures and fully independent structures are both valid. A small local exception should not force editors to give up the benefits of the shared majority. See the [June 2026 use-case analysis][cs8] and its [July refinement][cs14].
+The "mostly connected, selectively different" case is the clearest description of the middle ground TYPO3 should support better and the overarching direction for most structural use cases. Target-language-only content is not a separate case; it is the local-addition form of the same requirement. Identical translated structures and fully independent structures are both valid. A small local exception should not force editors to give up the benefits of the shared majority. See the [June 2026 use-case analysis][cs9] and its [July refinement][cs15].
 
 ### What community feedback supports
 
 The [community-feedback matrix from T3DD22 and subsequent events][cs1] does not contain one yes-or-no decision about removing translation modes. It records "Switching translation modes" as an editor problem and easier Mixed-Mode resolution as an editor requirement. Other responses value Free Mode because it permits the target-language-only expression of a "mostly connected, selectively different" structure. The 2024 editor interview likewise confirms that this broader use case is valid while both Mixed Mode and artificial hidden Default-Language records are unsatisfactory.
 
-The established need is therefore not to remove independent editorial outcomes. It is to stop requiring editors to manage technical relation states when their intent is simply to create, omit, replace or reorder content in a particular language. The initiative recommends removing the Free, Connected and Mixed distinction from the normal editor interface once Core can create and maintain the necessary structural relations safely. This recommendation depends on prior work for automatic target creation, relation integrity, migration and lifecycle handling; it is not a deprecation of today's Free Mode behavior. See the [2024 editor interview][cs16], the [always-connected discussion][cs15] and the [later technically-connected refinement][cs11].
+The established need is therefore not to remove independent editorial outcomes. It is to stop requiring editors to manage technical relation states when their intent is simply to create, omit, replace or reorder content in a particular language. The initiative recommends removing the Free, Connected and Mixed distinction from the normal editor interface once Core can create and maintain the necessary structural relations safely. This recommendation depends on prior work for automatic target creation, relation integrity, migration and lifecycle handling; it is not a deprecation of today's Free Mode behavior. See the [2024 editor interview][cs17], the [always-connected discussion][cs16] and the [later technically-connected refinement][cs12].
 
 ## Research findings: what exists today
 
@@ -129,9 +129,9 @@ Owned inline/file children now follow their parent language on relevant parent o
 
 Page translations always retain a parent relation. Free and Mixed Mode primarily describe how other records, especially content elements, relate inside the Layout module.
 
-The current contracts above are rechecked statically against TYPO3 v15 main on 2026-10-30: [TCA language relations](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/core/Classes/Configuration/Tca/TcaEnrichment.php), [localization state][cs4], [Layout module mode detection](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/backend/Classes/View/BackendLayout/ContentFetcher.php) and [fallback construction](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/core/Classes/Context/LanguageAspectFactory.php). Current Core also [derives the mode labels and restricts new content in Connected Mode](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/backend/Classes/View/PageLayoutContext.php), while the [Layout template renders the mode as a visible badge](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/backend/Resources/Private/Partials/PageLayout/LanguageColumns.fluid.html).
+The current contracts above are rechecked statically against TYPO3 v15 main on 2026-10-30: [TCA language relations](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/core/Classes/Configuration/Tca/TcaEnrichment.php), [localization state][cs5], [Layout module mode detection](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/backend/Classes/View/BackendLayout/ContentFetcher.php) and [fallback construction](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/core/Classes/Context/LanguageAspectFactory.php). Current Core also [derives the mode labels and restricts new content in Connected Mode](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/backend/Classes/View/PageLayoutContext.php), while the [Layout template renders the mode as a visible badge](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/backend/Resources/Private/Partials/PageLayout/LanguageColumns.fluid.html).
 
-Current Core processes both field-synchronization mechanisms in the same [DataMapProcessor pipeline][cs3], but resolves their fields through separate scopes. `parent` and `source` come from `l10n_state`; the `exclude` scope is collected directly from [`l10n_mode=exclude` in TCA][cs3]. The [localization state selects only fields configured with `allowLanguageSynchronization`][cs4], and the [backend selector exposes `custom`, `parent` and, where a source exists, `source`](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/backend/Classes/Form/FieldWizard/LocalizationStateSelector.php). Both mechanisms operate on existing related language records. Neither creates missing language variants or expresses record-wide synchronization by itself.
+Current Core processes both field-synchronization mechanisms in the same [DataMapProcessor pipeline][cs4], but resolves their fields through separate scopes. `parent` and `source` come from `l10n_state`; the `exclude` scope is collected directly from [`l10n_mode=exclude` in TCA][cs4]. The [localization state selects only fields configured with `allowLanguageSynchronization`][cs5], and the [backend selector exposes `custom`, `parent` and, where a source exists, `source`](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/backend/Classes/Form/FieldWizard/LocalizationStateSelector.php). Both mechanisms operate on existing related language records. Neither creates missing language variants or expresses record-wide synchronization by itself.
 
 ### Established findings
 
@@ -146,7 +146,7 @@ Current Core processes both field-synchronization mechanisms in the same [DataMa
 9. **Independent structures remain valid, but editor-visible relation modes are not the desired product contract.** Current Free Mode behavior remains supported and is not deprecated. The recommended future editor workflow hides Free, Connected and Mixed relation states only after Core can preserve independent outcomes and maintain structural identity automatically.
 10. **Technical connection does not require identical structures.** Two language variants can share one logical structural identity while one language adds, omits, replaces or reorders content. "Always connected" describes maintained identity, not mandatory structural or content equality.
 11. **Small fixes and tests are part of the architecture work.** They expose actual invariants and prevent the future model from being based on incomplete assumptions.
-12. **Synchronization metadata and stored values can disagree.** In existing data, an empty or missing `l10n_state` entry does not prove that a localized field equals its parent. Current [Core state enrichment][cs4] treats a missing field state as `parent` without comparing the stored values, so the backend can present the field as inherited while its stored value differs. The [dbdoctor PR 98][cs5] merged on 2026-10-08; it repairs the metadata in dbdoctor, not Core state enrichment.
+12. **Synchronization metadata and stored values can disagree.** In existing data, an empty or missing `l10n_state` entry does not prove that a localized field equals its parent. Current [Core state enrichment][cs5] treats a missing field state as `parent` without comparing the stored values, so the backend can present the field as inherited while its stored value differs. The [dbdoctor PR 98][cs6] merged on 2026-10-08; it repairs the metadata in dbdoctor, not Core state enrichment.
 13. **Field synchronization has two control models today.** `l10n_mode=exclude` enforces synchronization through TCA configuration. `allowLanguageSynchronization` exposes an editor choice stored in `l10n_state`. The execution pipeline is shared, but configuration, state discovery and scopes remain distinct.
 14. **Language All applies the complete record.** Current [frontend selection includes `-1`](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/frontend/Classes/ContentObject/ContentObjectRenderer.php) for every requested language, and the [overlay logic returns such a record unchanged](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/core/Classes/Domain/Repository/PageRepository.php). A compatible first replacement must therefore preserve the effect of one complete shared row before introducing more granular synchronization.
 
@@ -254,22 +254,37 @@ select their implementation.
 - Should a new `config.behaviour.enforceLanguageSynchronization` represent the enforced state through `l10n_state` and replace `l10n_mode=exclude`?
 - If `l10n_mode` is removed, how are `prefixLangTitle`, the default behavior and extension compatibility handled?
 
-The Boolean all-languages flag is the useful minimal compatibility model: in its first stage it should mean all configured targets and no field-level opt-out, matching the complete-record effect of `-1`. A natural feature option built on that state is to replace or extend the Boolean with a record-level multi-select of synchronization target languages. The same full-record process would then create and maintain targets only in the selected languages. A [tentative meeting proposal][cs13] called the record field `language_sync` and its TCA reference `ctrl.languageSyncField`; neither name nor API is selected. Whether and when to introduce the multi-select must be decided, and field-level exceptions are a separate possible extension. Neither the flag nor the multi-select is a finished lifecycle or adopted TCA API.
+The Boolean all-languages flag is the useful minimal compatibility model: in its first stage it should mean all configured targets and no field-level opt-out, matching the complete-record effect of `-1`. A natural feature option built on that state is to replace or extend the Boolean with a record-level multi-select of synchronization target languages. The same full-record process would then create and maintain targets only in the selected languages. A [tentative meeting proposal][cs14] called the record field `language_sync` and its TCA reference `ctrl.languageSyncField`; neither name nor API is selected. Whether and when to introduce the multi-select must be decided, and field-level exceptions are a separate possible extension. Neither the flag nor the multi-select is a finished lifecycle or adopted TCA API.
 
 **Possible technical reuse path for first-stage `-1` parity:**
 
 1. A record-wide synchronization intent on a lead record initially selects every target language in its defined site or storage scope.
-2. The DataHandler ensures that one connected target record exists in each target language. Current [`localize()`][cs2] already validates the target Site Language, rejects duplicates and prepares language, parent and source values; [`localizeRecord()`][cs2] creates the target through a nested DataHandler operation.
-3. Each target receives an enforced `l10n_state`, or an equivalent new state representation, for every field needed to reproduce the complete source record. The existing DataMapProcessor can then reuse its [parent-to-dependent propagation for scalar values and relations][cs3].
+2. The DataHandler ensures that one connected target record exists in each target language. Current [`localize()`][cs3] already validates the target Site Language, rejects duplicates and prepares language, parent and source values; [`localizeRecord()`][cs3] creates the target through a nested DataHandler operation.
+3. Each target receives an enforced `l10n_state`, or an equivalent new state representation, for every field needed to reproduce the complete source record. The existing DataMapProcessor can then reuse its [parent-to-dependent propagation for scalar values and relations][cs4].
 4. Later updates continue through the same dependency pipeline. After functional parity is proven, the same contract can support a separately decided multi-select of target languages while retaining full-field enforcement within every selected target.
 
 "Every field" means every value whose current `-1` record is intended to expose identically, including output and structural values. It does not mean that generated records share `uid`, `sys_language_uid`, `l10n_parent`, `l10n_source`, `l10n_state` or Workspace/version metadata; those fields establish the identity and lifecycle of each target record. The exact Core-managed exclusion set must be defined by schema and characterized in tests.
 
-This is a possible reuse path, not a drop-in configuration change. The record-level intent would have to derive effective `enforceLanguageSynchronization` semantics for every parity-relevant field of its targets. Declaring `l10n_mode=exclude` statically on every TCA field would also affect unrelated records. Current DataMapProcessor [skips `-1` records and requires connected target records][cs3]. The new record-level path must therefore resolve targets, create or reconcile them, derive the full enforced field set and perform activation atomically and idempotently. A current `-1` source must first be mapped to a valid lead record or handled by a new creation path because existing `localize()` establishes a connected parent when the source is a Default-Language record.
+This is a possible reuse path, not a drop-in configuration change. The record-level intent would have to derive effective `enforceLanguageSynchronization` semantics for every parity-relevant field of its targets. Declaring `l10n_mode=exclude` statically on every TCA field would also affect unrelated records. Current DataMapProcessor [skips `-1` records and requires connected target records][cs4]. The new record-level path must therefore resolve targets, create or reconcile them, derive the full enforced field set and perform activation atomically and idempotently. A current `-1` source must first be mapped to a valid lead record or handled by a new creation path because existing `localize()` establishes a connected parent when the source is a Default-Language record.
 
 For the multi-select, adding a language can reuse the same "ensure target, then enforce all fields" operation. Removing a language needs an explicit lifecycle decision: retain and detach the generated record, disable it, soft-delete it or remove it. The stored target identity must also remain meaningful across sites; current site-local numeric IDs are not sufficient for a shared-storage contract. These points make the multi-select a concrete feature option requiring a decision, not an implemented field definition or fixed next step.
 
 A separate possible field-level consolidation is `enforceLanguageSynchronization` beside `allowLanguageSynchronization` at the same `config.behaviour` level. The enforced state could then be represented through `l10n_state`, allowing `l10n_mode=exclude` and its separate field-selection scope to be retired. This was proposed by the initiative but is neither implemented nor selected. Its exact state representation, migration and compatibility contract remain open. It must not be conflated with the separate record-wide replacement for `-1`.
+
+**Owned children versus shared targets:** Synchronizing a composite parent
+field should include its integral one-to-many IRRE children and relevant values,
+recursively, not independently reusable MM targets. For a file field this means
+the owned `sys_file_reference`, including crop, not the shared `sys_file`.
+[Forge 88024][cs2] documents initial crop copying
+without later propagation under both synchronization mechanisms. Core currently
+reconciles relations and discovers child synchronization from each table's own
+TCA; that is not unconditional propagation of all existing child values. The
+merged child-language alignment is a separate operation. Ownership depends on
+relation configuration, not `inline` alone; cascading deletion has its own
+`behaviour.enableCascadingDelete` control. Recursive propagation is a requirement,
+not implemented behavior or a selected API; nested overrides, Workspaces,
+permissions, cycles and migration need characterization. The reported v13 case
+and historical workaround were not independently reproduced.
 
 ### 3. Structural Identity
 
@@ -386,10 +401,17 @@ configuration or lose regional reuse without an unwanted terminal default.
 Migration, local absence, permissions, Workspaces and consistent query behavior
 require validation before this proposal can replace any current mode.
 
+A hidden translation is not necessarily an omission: an editor may be working
+on it while expecting the previous fallback to remain visible. Treating every
+`hidden` record as a stop signal would break that workflow. Intentional absence
+and unfinished translation both need representation; no new state, suppression
+field or Workspaces-only solution has been selected. This constrains the
+tentative proposal rather than adopting or rejecting it.
+
 **Open questions:**
 
 - Which state stops fallback for one position?
-- Is a disabled translation an appropriate stop signal, or is a separate intent required?
+- How can an explicit stop signal be distinguished from an unfinished hidden translation?
 - Should normal fallback offer an optional terminal default step while `strict` remains single-language?
 - At which scope may output intent be configured: site language, page, structure position, record or field?
 - How are page, content, Extbase and custom-query behaviors kept consistent?
@@ -430,9 +452,9 @@ The initiative and related Core work have already delivered bounded improvements
 | [Gerrit 88837](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88837), merged 2026-04-11 | 14. | Avoids remapping non-language-aware IRRE children and uses separately assigned records for localized parents. | A concrete case where explicit synchronized data resolved ownership ambiguity. |
 | [Gerrit 94831](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94831), merged 2026-07-21 | 15, [14.3 as Gerrit 94866](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94866) and [13.4 as Gerrit 94867](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94867) merged. | Resolves translated Mount Point subpages through the default-language relation and prevents a `404`. | A real shared-storage project produced a small, test-backed fix. |
 | [Gerrit 94914](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94914), merged 2026-08-01 | 15, [14.3 as Gerrit 94916](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94916) and [13.4 as Gerrit 94915](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94915) merged. | Finds existing translations through `l10n_parent` when `l10n_source` is empty. | Preserves the distinction between structural parent and translation source while preventing duplicates. |
-| [Gerrit 95170][cs20], merged 2026-08-10 | 15 and [14.3 as Gerrit 95199][cs21] merged. | Corrects comparison views that combine Connected- and Free-Mode languages: connected items form comparison rows while each Free-Mode language renders independently, including when the Default Language has no items. | A bounded interim correction for the current modes. It does not select the future editing or structural model. |
+| [Gerrit 95170][cs21], merged 2026-08-10 | 15 and [14.3 as Gerrit 95199][cs22] merged. | Corrects comparison views that combine Connected- and Free-Mode languages: connected items form comparison rows while each Free-Mode language renders independently, including when the Default Language has no items. | A bounded interim correction for the current modes. It does not select the future editing or structural model. |
 | [Gerrit 95178](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95178), merged 2026-08-10 | 15 and [14.3 as Gerrit 95202](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95202) merged. | Keeps the language title, flag and translation mode visible while scrolling a long comparison view in the Layout module. | Improves editor orientation in the current interface. The patch is explicitly interim and neither changes nor selects a future structural model. |
-| [Gerrit 95619][cs22], merged 2026-10-06 | 15 and [14.3 as Gerrit 96412](https://review.typo3.org/c/Packages/TYPO3.CMS/+/96412) merged. | Names current stored and synthetic All-Languages values through `LanguageMarker::ALL_LANGUAGES`. | Internal naming preparation only: `-1` semantics remain; no replacement API or architecture is adopted. |
+| [Gerrit 95619][cs23], merged 2026-10-06 | 15 and [14.3 as Gerrit 96412](https://review.typo3.org/c/Packages/TYPO3.CMS/+/96412) merged. | Names current stored and synthetic All-Languages values through `LanguageMarker::ALL_LANGUAGES`. | Internal naming preparation only: `-1` semantics remain; no replacement API or architecture is adopted. |
 | [Gerrit 87595](https://review.typo3.org/c/Packages/TYPO3.CMS/+/87595), merged 2026-10-17 | 15; [Gerrit 96783](https://review.typo3.org/c/Packages/TYPO3.CMS/+/96783) merged for 14.3 on 2026-10-18. | Aligns owned inline/file children to the stored parent language after relation resolution. | Broader than superseded 95476; includes existing siblings on relevant parent operations, not a global repair. |
 | [Gerrit 94673](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94673), merged 2026-10-20 | 15; [Gerrit 96935](https://review.typo3.org/c/Packages/TYPO3.CMS/+/96935) merged for 14.3. | Restores the page-icon context menu in Language Comparison. | Opt-in renderer behavior, not prototype bulk visibility or a new permission model. |
 | [Gerrit 97053](https://review.typo3.org/c/Packages/TYPO3.CMS/+/97053), merged 2026-10-30 | 15; [Gerrit 97225](https://review.typo3.org/c/Packages/TYPO3.CMS/+/97225) merged for 14.3. | Prefers language `0` regardless of configuration order. | Missing `0` still falls back to the first language; no hidden-layer architecture is adopted. |
@@ -443,7 +465,7 @@ The repeated pattern is useful: a real failure is reproduced, the responsible co
 
 ## Language-All marker: scope and review boundary
 
-[Gerrit 95619][cs22] and its
+[Gerrit 95619][cs23] and its
 14.3 backport merged on 2026-10-06, rechecked on 2026-10-30.
 `LanguageMarker::ALL_LANGUAGES` is an internal integer marker, including the
 reviewed TCA helpers and `SlugHelper`, not a behavior change or stable extension
@@ -473,7 +495,7 @@ compares 80 direct/inverse candidates, Astra/Opus assessments, human decisions
 and Core evidence. Both models misclassified a stored-record
 `ContentObjectRenderer` query. Agreement is triage, not proof. The 2026-09-25
 pass found no false positive in patch set 2; further candidates need human review.
-[Gerrit 92267][cs18] was abandoned on 2026-10-07 after the marker work. It remains historical inventory evidence, not an open patch or a replacement implementation.
+[Gerrit 92267][cs19] was abandoned on 2026-10-07 after the marker work. It remains historical inventory evidence, not an open patch or a replacement implementation.
 
 ## Structure-layer demonstrator and language-zero validation
 
@@ -527,8 +549,9 @@ synthetic-value removal elsewhere remain open, not completed by this fix.
 
 ## Current work as of 2026-10-30
 
-All listed Gerrit changes, their Change-ID backports, Forge issues and the
-linked dbdoctor PRs were rechecked on 2026-10-30. WIP takes precedence; otherwise
+The full audit checked all listed changes and linked issues on 2026-10-30;
+the meeting follow-up rechecked 94510, 110008 and 88024 later that day.
+WIP takes precedence; otherwise
 negative votes, unresolved comments or merge conflicts require review action.
 Review-positive requires a current positive Code-Review, no such blocker and
 mergeability. Other open changes await review. Merge conflict reports Gerrit
@@ -549,14 +572,9 @@ mergeability against the target branch on that date, not submit approval.
 
 | Patch | Target release lines and backports | Current review state | Merge conflict | Scope and boundary |
 |---|---|---|---|---|
+| [Forge 110008](https://forge.typo3.org/issues/110008) and [Gerrit 94510][cs20] | TYPO3 v15; 14.3 intended, no backport found. | Patch set 11; André: Code-Review `-1`, Verified `+1`; Benni: both `+1`; CI `+1`; 1 unresolved comment. | No | Stops a hidden translated candidate from falling back under `fallbackType: strict`; missing translations can still fall back. Not the complete single-language requirement, not merged. Release/backport policy remains disputed. |
 | [Gerrit 92777](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92777) | TYPO3 v15; 14.3 intended; no backport found. | Patch set 10; two Code-Review `+1`; CI `+1`; 1 unresolved comment. | No | Restricts copied Free-Mode records to languages available in the target context. This improves current-model integrity without selecting a future structure model. |
 | [Gerrit 93063](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93063) | TYPO3 v15; 14.3 intended, no backport found. | Patch set 8; CI `+1`; no current Code-Review vote or unresolved comment. | **Yes** | Warns about orphaned translations without repairing or redesigning identity; rebase is required. |
-
-### Review-positive and mergeable
-
-| Patch | Target release lines and backports | Current review state | Merge conflict | Scope and boundary |
-|---|---|---|---|---|
-| [Forge 110008](https://forge.typo3.org/issues/110008) and [Gerrit 94510][cs19] | TYPO3 v15; 14.3 intended, no backport found. | Patch set 11; Code-Review `+1`; CI `+1`; no unresolved comments. | No | Restricts fallback under Strict. The fix is not merged; the regression remains an open Core correction. Its current footer no longer names 13.4. |
 
 ### Awaiting review
 
@@ -570,19 +588,20 @@ mergeability against the target branch on that date, not submit approval.
 
 | Patch | Target release lines and backports | Official state | Merge conflict | Reason |
 |---|---|---|---|---|
-| [Gerrit 92585](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92585) | TYPO3 v15; TYPO3 14.3 was named, but no backport change exists. | Abandoned on 2026-08-07. | Not applicable | Its narrow Free-Mode rendering fix was further developed in the merged [TYPO3 v15 change 95170][cs20] and [TYPO3 14.3 backport 95199][cs21]. |
-| [Gerrit 94917](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94917) | TYPO3 v15; no backport branch was named and no backport change exists. | Abandoned on 2026-08-27. | Not applicable | Its overlapping Free/Mixed comparison work had already been proposed for replacement by the merged [TYPO3 v15 change 95170][cs20] and [TYPO3 14.3 backport 95199][cs21]. Change 94917 itself was not merged. |
+| [Gerrit 92585](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92585) | TYPO3 v15; TYPO3 14.3 was named, but no backport change exists. | Abandoned on 2026-08-07. | Not applicable | Its narrow Free-Mode rendering fix was further developed in the merged [TYPO3 v15 change 95170][cs21] and [TYPO3 14.3 backport 95199][cs22]. |
+| [Gerrit 94917](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94917) | TYPO3 v15; no backport branch was named and no backport change exists. | Abandoned on 2026-08-27. | Not applicable | Its overlapping Free/Mixed comparison work had already been proposed for replacement by the merged [TYPO3 v15 change 95170][cs21] and [TYPO3 14.3 backport 95199][cs22]. Change 94917 itself was not merged. |
 | [Gerrit 84338](https://review.typo3.org/c/Packages/TYPO3.CMS/+/84338) | TYPO3 v15. | Abandoned 2026-10-23. | Not applicable | Configurable Default Language IDs were abandoned because of pervasive `0` assumptions. The author prefers investigating the structure-layer PoC; this does not adopt it in Core. |
-| [Gerrit 92267][cs18] | TYPO3 v15. | Abandoned 2026-10-07. | Not applicable | Earlier annotation inventory; merged 95619/96412 provide the bounded marker instead. Not a test suite or semantic replacement. |
+| [Gerrit 92267][cs19] | TYPO3 v15. | Abandoned 2026-10-07. | Not applicable | Earlier annotation inventory; merged 95619/96412 provide the bounded marker instead. Not a test suite or semantic replacement. |
 | [Gerrit 95476](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95476) | TYPO3 v15/14.3 proposal. | Abandoned 2026-10-23. | Not applicable | Replaced by merged 87595/96783, whose broader child-alignment contract is described above. |
 
 ### Supporting patches and non-patch research
 
 | Work | Current state | Merge conflict | Meaning |
 |---|---|---|---|
-| [dbdoctor PR 98][cs5] | Merged 2026-10-08. | Not applicable | Repairs divergent `l10n_state` by marking differing stored values `custom`; dbdoctor tooling, not changed Core state enrichment. |
+| [dbdoctor PR 98][cs6] | Merged 2026-10-08. | Not applicable | Repairs divergent `l10n_state` by marking differing stored values `custom`; dbdoctor tooling, not changed Core state enrichment. |
 | [dbdoctor PR 171](https://github.com/lolli42/dbdoctor/pull/171) | Closed without merge 2026-10-08; split work described in the closing comment. | Not applicable | The broad cleanup draft is not merged. Generic record deletion when a page translation is absent can delete valid extension data; narrower cleanup must remain site-aware. |
 | [Forge 110497](https://forge.typo3.org/issues/110497) and [Forge 110498](https://forge.typo3.org/issues/110498) | Both Closed. | Not applicable | The missing child-language reports are linked to the replacement 87595/96783 through 95476's abandonment. This establishes a delivered correction, not the exact introducing regression commit. |
+| [Forge 88024][cs2] | New; original v9.5.5 report. | Not applicable | Crop updates do not follow initial file-reference copying. The owned-child synchronization requirement is not implemented by child-language alignment; the reported current project setup remains unverified. |
 
 ## Critical alignment against the vision
 
@@ -591,7 +610,7 @@ The vision is a review framework, not a reason to reject every partial solution.
 | Change or approach | Problem solved within its scope | Assessment against the four responsibilities |
 |---|---|---|
 | [Disable custom `colPos` and `CType` for connected translations](https://review.typo3.org/c/Packages/TYPO3.CMS/+/85978), merged for TYPO3 v13 | Protects structural consistency for connected content and containers. | Sound for connected structure. It also removed a workaround for expressing local absence, showing why Structural Identity and Output Policy need their own explicit mechanisms. |
-| [Respect fallback chains during record overlay](https://review.typo3.org/c/Packages/TYPO3.CMS/+/83169), merged for TYPO3 v14, and its merged [TYPO3 13.4 backport](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828); the [strict-regression fix][cs19] is open for TYPO3 v15, while its named TYPO3 14.3 backport changes do not yet exist | Fixed real fallback behavior, but also exposed a regression when a requested-language record is hidden under `strict`. | Compatible with the vision when restricted to fallback mode. The active fix confirms that `strict` must not silently behave like fallback; patch set 11 has positive Code-Review and CI, no unresolved comments and is mergeable, but not merged. |
+| [Record-overlay fallback chains](https://review.typo3.org/c/Packages/TYPO3.CMS/+/83169), merged for 14, and [13.4 backport 88828](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828); [94510][cs20] remains open for 15, with 14.3 intended but no backport found | 94510 stops fallback for a hidden translated candidate under `fallbackType: strict`, but retains missing-translation fallback. | Functional verification does not settle the single-language requirement or compatibility. Patch set 11 is mergeable but has Code-Review `-1` and one unresolved comment. The requirement remains intact; the meeting did not establish a definitive introducing commit or agree release policy. |
 | Free/Mixed comparison fixes | Make independent and connected content visible and aligned in the current Layout module. | Valuable current UX work. They preserve valid independence while making structural relations clearer; they do not need to wait for a new data model. |
 | MM context proposal | Reduces relation ambiguity across languages and Workspaces. | A reasonable preparatory model if migration and Extbase/DataHandler behavior remain consistent. It should not be mistaken for final semantic identity. |
 | Explicit all-language synchronization | Replaces one shared `-1` row with concrete target-language records whose parity-relevant fields remain fully enforced. | Strongly aligned in principle. The first stage should preserve complete-record behavior without editor opt-out; granularity comes later. It becomes unsafe if target creation, lifecycle, provenance, conflict and migration rules are undefined. |
@@ -673,7 +692,7 @@ These are the initiative's current best sequence of activities, not a committed 
    TYPO3 v15 selectors can express an all-overlay selection through concrete
    language IDs before removing synthetic sentinels; also close known
    Workspace and DataHandler gaps.
-3. **Finish bounded fixes.** Rebase and review 95475, progress copy/move, parent-selector and wizard work, and complete review of the now mergeable Strict correction 94510. Build on merged 87595/96783, 94673/96935 and 97053/97225 without treating them as adoption of the future model.
+3. **Finish bounded fixes.** Rebase and review 95475, progress copy/move, parent-selector and wizard work, and resolve the semantic review of 94510; functional verification is not approval to merge. Build on merged 87595/96783, 94673/96935 and 97053/97225 without treating them as adoption of the future model.
 4. **Prototype product behavior before storage.** Test Editing Language, a mode-free Layout workflow, direct target-language creation, local structural additions and explicit absence with realistic editor workflows.
 5. **Validate the current structural preference against its countermodel.** Use the same acceptance cases for the shared hidden structure, complete per-language shadows, sparse records and any hybrid. Measure code and runtime simplification together with record growth, Layout density, Workspaces, references, migration and operational costs rather than treating database size alone as decisive.
 6. **Define and characterize first-stage parity.** Specify the all-target record flag, target creation, the full enforced field set, source and target identity, conflicts and every transition. Prove that it reproduces current `-1` output, then evaluate the separately decidable multi-select and other granular extensions against the same process.
@@ -683,7 +702,7 @@ These are the initiative's current best sequence of activities, not a committed 
 
 ## Evidence basis and maintenance
 
-The reviewed meeting basis is reconciled through 2026-10-23, including the
+The reviewed meeting basis is reconciled through 2026-10-30, including the
 previously unregistered August 21 and 28 bundles. Repetition and off-topic
 material do not create new Knowledge. On 2026-10-30, all 50 previously linked
 Gerrit changes, two additional named changes, two discovered backports and
@@ -691,6 +710,8 @@ the Recycler improvement 96916 were checked, together with the documented Forge 
 documented Core paths were statically rechecked at a pinned TYPO3 v15 revision.
 This is not a fresh runtime test of every scenario or semantic human acceptance
 of the proposed Knowledge changes. The [dated audit](https://github.com/t3thi/Documentation/blob/main/KnowledgeSystem/Documentation/reviews/2026-10-30-freshness.md) records scope and remaining limits.
+The subsequent meeting ingestion rechecked 94510, 110008 and 88024, not the
+entire inventory again; its [report](https://github.com/t3thi/Documentation/blob/main/KnowledgeSystem/Documentation/reviews/2026-10-30-meeting-ingestion.md) separates the new requirements from current implementation.
 The [T3DD26 presentation](https://content.eric-harrer.de/t3dd26/) remains conceptual background.
 
 For the current Language-All inventory, the [Human Review
@@ -704,40 +725,42 @@ Key primary evidence anchors are:
 
 | Topic | Meeting evidence |
 |---|---|
-| Community feedback and editor-facing mode simplification | [T3DD22 and subsequent feedback matrix][cs1], [2024-03-22][cs16], [2025-07-11][cs15], [2025-10-24][cs11] |
-| Language identity and BCP 47 | [2024-01-19](https://notes.typo3.org/s/sEONb4kd6), [2025-07-25](https://notes.typo3.org/s/dtw4v9T7S), [2026-07-31][cs17] |
-| `-1` replacement, full-record parity and synchronization lifecycle | [2024-06-28](https://notes.typo3.org/s/GQwWxdUKO), [2025-01-31](https://notes.typo3.org/s/kEaZn6jJF), [2025-09-26](https://notes.typo3.org/s/1RnTSuBsq), [2025-11-28][cs13], [2026-06-11][cs10], [2026-09-04](https://notes.typo3.org/s/FsawsB3Y2K), [2026-09-25](https://notes.typo3.org/s/IeIMwXw8bM) |
-| Current field-synchronization modes and possible consolidation | [2024-04-12](https://notes.typo3.org/s/gjl-sog92), [2024-04-26][cs12], [2024-10-18](https://notes.typo3.org/s/8vI0MnUbs), [2025-08-22](https://notes.typo3.org/s/gL97CaQ5M), [2026-05-08][cs7] |
-| `l10n_state` consistency and historical copy damage | [2024-04-26][cs12], [2026-02-06](https://notes.typo3.org/s/D8oadqoN-7#) |
-| Mostly connected structures and local exceptions | [2024-03-22][cs16], [2026-05-08][cs7], [2026-06-26][cs8], [2026-07-10][cs14] |
-| Complete layers, shadows and shared structure | [2025-07-18](https://notes.typo3.org/s/L0lQKrWaW), [2025-10-24][cs11], [2026-05-29][cs9], [2026-07-10][cs14] |
-| Editing Language | [2026-05-08][cs7], [2026-05-29][cs9] |
-| Output policy, strict behavior and intentional absence | [2023-12-15](https://notes.typo3.org/s/ddSKDuz1Q), [2026-06-11][cs10], [2026-07-10][cs14], [2026-07-31][cs17] |
+| Community feedback and editor-facing mode simplification | [T3DD22 and subsequent feedback matrix][cs1], [2024-03-22][cs17], [2025-07-11][cs16], [2025-10-24][cs12] |
+| Language identity and BCP 47 | [2024-01-19](https://notes.typo3.org/s/sEONb4kd6), [2025-07-25](https://notes.typo3.org/s/dtw4v9T7S), [2026-07-31][cs18] |
+| `-1` replacement, full-record parity and synchronization lifecycle | [2024-06-28](https://notes.typo3.org/s/GQwWxdUKO), [2025-01-31](https://notes.typo3.org/s/kEaZn6jJF), [2025-09-26](https://notes.typo3.org/s/1RnTSuBsq), [2025-11-28][cs14], [2026-06-11][cs11], [2026-09-04](https://notes.typo3.org/s/FsawsB3Y2K), [2026-09-25](https://notes.typo3.org/s/IeIMwXw8bM) |
+| Current field-synchronization modes and possible consolidation | [2024-04-12](https://notes.typo3.org/s/gjl-sog92), [2024-04-26][cs13], [2024-10-18](https://notes.typo3.org/s/8vI0MnUbs), [2025-08-22](https://notes.typo3.org/s/gL97CaQ5M), [2026-05-08][cs8] |
+| `l10n_state` consistency and historical copy damage | [2024-04-26][cs13], [2026-02-06](https://notes.typo3.org/s/D8oadqoN-7#) |
+| Mostly connected structures and local exceptions | [2024-03-22][cs17], [2026-05-08][cs8], [2026-06-26][cs9], [2026-07-10][cs15] |
+| Complete layers, shadows and shared structure | [2025-07-18](https://notes.typo3.org/s/L0lQKrWaW), [2025-10-24][cs12], [2026-05-29][cs10], [2026-07-10][cs15] |
+| Editing Language | [2026-05-08][cs8], [2026-05-29][cs10] |
+| Output policy, strict behavior and intentional absence | [2023-12-15](https://notes.typo3.org/s/ddSKDuz1Q), [2026-06-11][cs11], [2026-07-10][cs15], [2026-07-31][cs18] |
 | Latest prototype and editorial workflow | [2026-10-23](https://notes.typo3.org/s/TXqazBh8D3) |
+| Hidden drafts versus intentional omission; owned-child versus shared-target synchronization | [2026-10-30](https://notes.typo3.org/s/8Dua37LZux) |
 
-Future updates must follow the [Current State maintenance instructions][cs6]. The key rule is:
+Future updates must follow the [Current State maintenance instructions][cs7]. The key rule is:
 
 > **Update the current state, not the history.**
 
 [cs1]: https://docs.google.com/spreadsheets/d/1Y8KnuYxMoXyVaZzVHENBp_1fg2M-JGxHog6K3T9qn_Q/edit?gid=0#gid=0
-[cs2]: https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/core/Classes/DataHandling/DataHandler.php
-[cs3]: https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/core/Classes/DataHandling/Localization/DataMapProcessor.php
-[cs4]: https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/core/Classes/DataHandling/Localization/State.php
-[cs5]: https://github.com/lolli42/dbdoctor/pull/98
-[cs6]: https://github.com/t3thi/Documentation/blob/main/KnowledgeSystem/Documentation/current-state-maintenance.md
-[cs7]: https://notes.typo3.org/s/-0p3kqzMll
-[cs8]: https://notes.typo3.org/s/-RP1PwIafA
-[cs9]: https://notes.typo3.org/s/0AJqa7JwuJ
-[cs10]: https://notes.typo3.org/s/1-J3KsT7VU
-[cs11]: https://notes.typo3.org/s/2Ysd3gDdn
-[cs12]: https://notes.typo3.org/s/D32XRXoCk
-[cs13]: https://notes.typo3.org/s/Sxl-kkYjW
-[cs14]: https://notes.typo3.org/s/ccbVIOYfEy
-[cs15]: https://notes.typo3.org/s/k11hyaA4N
-[cs16]: https://notes.typo3.org/s/kqdwFxW1m
-[cs17]: https://notes.typo3.org/s/z5ICno5pK2
-[cs18]: https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267
-[cs19]: https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510
-[cs20]: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95170
-[cs21]: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95199
-[cs22]: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619
+[cs2]: https://forge.typo3.org/issues/88024
+[cs3]: https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/core/Classes/DataHandling/DataHandler.php
+[cs4]: https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/core/Classes/DataHandling/Localization/DataMapProcessor.php
+[cs5]: https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/core/Classes/DataHandling/Localization/State.php
+[cs6]: https://github.com/lolli42/dbdoctor/pull/98
+[cs7]: https://github.com/t3thi/Documentation/blob/main/KnowledgeSystem/Documentation/current-state-maintenance.md
+[cs8]: https://notes.typo3.org/s/-0p3kqzMll
+[cs9]: https://notes.typo3.org/s/-RP1PwIafA
+[cs10]: https://notes.typo3.org/s/0AJqa7JwuJ
+[cs11]: https://notes.typo3.org/s/1-J3KsT7VU
+[cs12]: https://notes.typo3.org/s/2Ysd3gDdn
+[cs13]: https://notes.typo3.org/s/D32XRXoCk
+[cs14]: https://notes.typo3.org/s/Sxl-kkYjW
+[cs15]: https://notes.typo3.org/s/ccbVIOYfEy
+[cs16]: https://notes.typo3.org/s/k11hyaA4N
+[cs17]: https://notes.typo3.org/s/kqdwFxW1m
+[cs18]: https://notes.typo3.org/s/z5ICno5pK2
+[cs19]: https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267
+[cs20]: https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510
+[cs21]: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95170
+[cs22]: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95199
+[cs23]: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619

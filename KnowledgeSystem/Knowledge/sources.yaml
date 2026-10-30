@@ -1,8 +1,8 @@
 version: 1
 publication:
   last_updated: "2026-10-30"
-  reviewed_transcripts_through: "2026-10-23"
-  reviewed_minutes_through: "2026-10-23"
+  reviewed_transcripts_through: "2026-10-30"
+  reviewed_minutes_through: "2026-10-30"
   external_status_verified_through: "2026-10-30"
 
 sources:
@@ -636,7 +636,7 @@ sources:
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510
     authority: external-current
     availability: repository
-    status: open-review-positive
+    status: open-review-action-required
     observed_at: "2026-10-30"
     revision: 5f5b7c72824cc6fcd3921c4f4fe40238e4fc02b2
   gerrit:94914:
@@ -1173,3 +1173,43 @@ sources:
     availability: repository
     status: resolved
     observed_at: "2026-10-30"
+
+  transcript:2026-10-30:
+    type: transcript
+    path: "Transcripts/2026-10-30 12-01-00 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:8303df760402e5d5c670266aeeeaadcdc25b901b3c928d7cd09138900cee015d
+    reason: Raw transcripts remain ignored restricted local evidence.
+  minutes:2026-10-30:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/10/30.md
+    url: https://notes.typo3.org/s/8Dua37LZux
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-10-30
+    generated_with:
+      skill: skill:t3thi-meeting-minutes
+    review_status: reviewed
+
+  forge:88024:
+    type: forge
+    url: https://forge.typo3.org/issues/88024
+    authority: external-current
+    availability: repository
+    status: new
+    observed_at: "2026-10-30"
+  core:meeting-2026-10-30:
+    type: core-code
+    url: https://github.com/TYPO3/typo3/tree/cdaa725d2d8add6da57e37f269094e8a222973d7
+    authority: actual-current-typo3-core-code
+    availability: repository
+    revision: cdaa725d2d8add6da57e37f269094e8a222973d7
+    observed_at: "2026-10-30"
+    reason: >
+      Focused static check of LanguageAspectFactory, PageRepository,
+      TcaPreparation, sys_file_reference, State, DataMapProcessor and DataHandler.
+      Local HEAD contains an unmerged 94510 test commit above this baseline;
+      its diff is treated as patch evidence, not upstream behavior. Existing
+      origin/main has no changes to these paths. No runtime or v13 comparison.

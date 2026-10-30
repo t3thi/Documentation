@@ -54,10 +54,17 @@ configuration or lose regional reuse without an unwanted terminal default.
 Migration, local absence, permissions, Workspaces and consistent query behavior
 require validation before this proposal can replace any current mode.
 
+A hidden translation is not necessarily an omission: an editor may be working
+on it while expecting the previous fallback to remain visible. Treating every
+`hidden` record as a stop signal would break that workflow. Intentional absence
+and unfinished translation both need representation; no new state, suppression
+field or Workspaces-only solution has been selected. This constrains the
+tentative proposal rather than adopting or rejecting it.
+
 **Open questions:**
 
 - Which state stops fallback for one position?
-- Is a disabled translation an appropriate stop signal, or is a separate intent required?
+- How can an explicit stop signal be distinguished from an unfinished hidden translation?
 - Should normal fallback offer an optional terminal default step while `strict` remains single-language?
 - At which scope may output intent be configured: site language, page, structure position, record or field?
 - How are page, content, Extbase and custom-query behaviors kept consistent?

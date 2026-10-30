@@ -19,6 +19,7 @@ knowledge:
   - K-000037
   - K-000038
   - K-000039
+  - K-000040
 history:
   - K-000030
   - K-000026
@@ -27,7 +28,7 @@ decisions:
 translation_of: topic:current-core-work
 source_updated: "2026-10-30"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:65fde5d8ef512d4bdde62c67e4ee1effbfcf158fc72be5c1ca169ef4f688c7ab"
+source_digest: "sha256:61fc52739a2437127b22631bc2e78741825bfc6ec455684ab758cb973ab5225d"
 ---
 
 # Aktuelle Core-Arbeit
@@ -155,8 +156,9 @@ Pfaden sind damit nicht umgesetzt.
 
 ## Laufende Arbeit mit Stand vom 30.10.2026
 
-Gerrit-Changes samt Change-ID-Backports, Forge-Issues und dbdoctor-PRs wurden
-am 30.10.2026 geprüft. WIP hat Vorrang; sonst erfordern negative Stimmen,
+Der Gesamtabgleich prüfte Changes und verlinkte Issues am 30.10.2026;
+die Meeting-Nachbereitung prüfte danach nochmals 94510, 110008 und 88024.
+WIP hat Vorrang; sonst erfordern negative Stimmen,
 offene Kommentare oder Merge-Konflikte Nacharbeit. Review-positiv bedeutet:
 aktuelle positive Code-Review-Stimme, mergefähig, ohne diese Blocker; sonst
 Review ausstehend. Mergefähigkeit gilt gegenüber dem damaligen Ziel-Branch
@@ -177,14 +179,9 @@ und ist keine Submit-Freigabe.
 
 | Patch | Ziel-Release-Linien und Backports | Aktueller Review-Stand | Merge-Konflikt | Geltungsbereich und Abgrenzung |
 |---|---|---|---|---|
+| [Forge 110008](https://forge.typo3.org/issues/110008) und [Gerrit 94510](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) | TYPO3 v15; 14.3 beabsichtigt, kein Backport gefunden. | Patch Set 11; André: Code-Review `-1`, Verified `+1`; Benni: beides `+1`; CI `+1`; 1 ungelöster Kommentar. | Nein | Stoppt Fallback bei verstecktem Übersetzungskandidaten unter `fallbackType: strict`; bei fehlender Übersetzung bleibt Fallback möglich. Erfüllt nicht die gesamte Einsprachen-Anforderung, nicht gemergt. Release-/Backport-Strategie bleibt strittig. |
 | [Gerrit 92777](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92777) | TYPO3 v15; 14.3 vorgesehen; kein Backport gefunden. | Patch Set 10; zwei Code-Review `+1`; CI `+1`; 1 ungelöster Kommentar. | Nein | Beschränkt kopierte Free-Mode-Datensätze auf im Zielkontext verfügbare Sprachen. Dies verbessert die Integrität des aktuellen Modells, ohne ein zukünftiges Strukturmodell auszuwählen. |
 | [Gerrit 93063](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93063) | TYPO3 v15; 14.3 beabsichtigt, kein Backport gefunden. | Patch Set 8; CI `+1`; keine aktuelle Code-Review-Stimme oder ungelösten Kommentare. | **Ja** | Warnt vor verwaisten Übersetzungen, ohne Identität zu reparieren oder neu zu gestalten; Rebase erforderlich. |
-
-### Review-positiv und mergefähig
-
-| Patch | Ziel-Release-Linien und Backports | Aktueller Review-Stand | Merge-Konflikt | Geltungsbereich und Abgrenzung |
-|---|---|---|---|---|
-| [Forge 110008](https://forge.typo3.org/issues/110008) und [Gerrit 94510](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) | TYPO3 v15; 14.3 beabsichtigt, kein Backport gefunden. | Patch Set 11; Code-Review `+1`; CI `+1`; keine ungelösten Kommentare. | Nein | Begrenzt Fallback unter Strict. Nicht gemergt; die Regression bleibt eine offene Core-Korrektur. Der aktuelle Footer nennt 13.4 nicht mehr. |
 
 ### Review ausstehend
 
@@ -211,3 +208,4 @@ und ist keine Submit-Freigabe.
 | [dbdoctor PR 98](https://github.com/lolli42/dbdoctor/pull/98) | Am 08.10.2026 gemergt. | Nicht anwendbar | Repariert abweichenden `l10n_state`, indem unterschiedliche gespeicherte Werte als `custom` markiert werden; dbdoctor-Werkzeug, keine geänderte Zustandsanreicherung im Core. |
 | [dbdoctor PR 171](https://github.com/lolli42/dbdoctor/pull/171) | Am 08.10.2026 ohne Merge geschlossen; der Abschlusskommentar beschreibt aufgeteilte Folgearbeit. | Nicht anwendbar | Der breite Cleanup-Entwurf ist nicht gemergt. Generisches Löschen bei fehlender Seitenübersetzung kann valide Extension-Daten entfernen; engerer Cleanup muss Site-spezifisch bleiben. |
 | [Forge 110497](https://forge.typo3.org/issues/110497) und [Forge 110498](https://forge.typo3.org/issues/110498) | Beide Closed. | Nicht anwendbar | Die Meldungen zur fehlenden Child-Sprache sind über die Aufgabe von 95476 mit dem Ersatz 87595/96783 verknüpft. Dies belegt eine gelieferte Korrektur, nicht den exakt regressionsauslösenden Commit. |
+| [Forge 88024](https://forge.typo3.org/issues/88024) | New; ursprünglicher v9.5.5-Bericht. | Nicht anwendbar | Crop wird initial kopiert, später nicht nachgezogen. Child-Sprachabgleich implementiert keine rekursive Wertsynchronisierung; der aktuelle Projektfall bleibt unvalidiert. |
