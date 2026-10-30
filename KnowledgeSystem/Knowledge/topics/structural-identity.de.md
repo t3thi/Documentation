@@ -2,7 +2,7 @@
 id: topic:structural-identity
 title: "Structural Identity"
 language: de
-updated: "2026-10-23"
+updated: "2026-10-30"
 knowledge:
   - K-000002
   - K-000009
@@ -18,9 +18,9 @@ knowledge:
 history: []
 decisions: []
 translation_of: topic:structural-identity
-source_updated: "2026-10-23"
+source_updated: "2026-10-30"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:b504fb3130bf2f7394254cf21e75703bdcc43f5001d037ba6205aefbd296d3ba"
+source_digest: "sha256:841d86e3b57dcb89ee185a3a31477db72f54f4a90274a360058d141a6dcd787d"
 ---
 
 # Structural Identity
@@ -68,13 +68,13 @@ Datensatz, der die gemeinsame Beziehung verliert.
 **Empfehlung für die redaktionelle Oberfläche:** Die Unterscheidung zwischen Free Mode, Connected Mode und Mixed Mode soll aus dem normalen Arbeitsablauf im Modul „Layout“ entfernt werden, sobald der Core diesen Vertrag gewährleisten kann. Dies ist eine Produkt- und UI-Empfehlung mit architektonischen Voraussetzungen. Sie besagt weder, dass bestehende Free-Mode-Daten bereits sicher konvertiert werden können, noch dass unabhängige Strukturen entfallen sollen.
 
 **Editing Language:** Die Redaktion soll aus einer verständlichen Inhaltssprache
-arbeiten, unabhängig von Backend-Oberflächensprache und Site-Default.
-Der Demonstrator merkt sie sich bereits je Site. Die gewünschte Vergleichsreferenz
-bleibt sichtbar, bei fehlender Übersetzung mit Übersetzungsaktion, und ist nicht
-abwählbar; die Vergleichsauswahl soll Ansichtswechsel überstehen. Ob ein
-vorübergehender Sprachwechsel im Modul „Layout“ auch die gemerkte Arbeitsquelle
-ersetzen soll, bleibt offen. Dies sind Prototypbefunde und Interaktionsziele,
-kein implementiertes Core-Verhalten.
+arbeiten, unabhängig von Backend-Oberflächensprache und Site-Default. Der
+Prototyp merkt sie sich je Site. Der am 30.10.2026 geprüfte Code hält sie im
+Vergleich sichtbar, bietet eine Aktion für fehlende Seitenübersetzungen und
+schließt ihre Abwahl aus; die Toolbar ist der normale Umschalter.
+Auswahlpersistenz und ein unabhängig gemerkter vorübergehender Ansichtskontext
+benötigen weiterhin redaktionelle Validierung. Dies sind Prototypfähigkeiten
+und Ziele, kein implementiertes Core-Verhalten.
 
 #### Aktuelle strukturelle Präferenz und die zwei Bedeutungen von Shadow Record
 

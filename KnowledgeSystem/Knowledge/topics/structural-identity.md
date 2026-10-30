@@ -2,7 +2,7 @@
 id: topic:structural-identity
 title: "Structural Identity"
 language: en
-updated: "2026-10-23"
+updated: "2026-10-30"
 knowledge:
   - K-000002
   - K-000009
@@ -62,12 +62,12 @@ record or an independent record that loses the shared relation.
 **Editor-facing recommendation:** Remove the Free, Connected and Mixed mode distinction from the normal Layout workflow once Core can uphold that contract. This is a UI and product recommendation with architectural prerequisites. It is not a statement that existing Free-Mode data can already be converted safely or that independent structures should disappear.
 
 **Editing Language:** Editors should work from a comprehensible content
-language independently of the backend interface language or site default.
-The demonstrator now remembers it per site. The requested comparison reference
-stays visible, with a translation action if missing, and cannot be deselected;
-comparison choices should survive view changes. Whether a temporary Layout
-language switch should also replace the remembered working source remains open.
-These are prototype findings and interaction goals, not implemented Core behavior.
+language independently of backend interface language or site default. The
+prototype remembers it per site. Code checked on 2026-10-30 keeps it visible in
+comparison, offers a missing-page action and excludes it from deselection; the
+top bar is the normal switch. Selection persistence and an independently
+remembered temporary viewing context still need editorial validation. These
+are prototype capabilities and goals, not implemented Core behavior.
 
 #### Current structural preference and the two meanings of Shadow Record
 

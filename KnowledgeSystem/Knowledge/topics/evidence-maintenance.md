@@ -2,7 +2,7 @@
 id: topic:evidence-maintenance
 title: "Next Steps, Evidence and Maintenance"
 language: en
-updated: "2026-09-25"
+updated: "2026-10-30"
 knowledge:
   - K-000005
   - K-000006
@@ -46,7 +46,7 @@ These are the initiative's current best sequence of activities, not a committed 
    TYPO3 v15 selectors can express an all-overlay selection through concrete
    language IDs before removing synthetic sentinels; also close known
    Workspace and DataHandler gaps.
-3. **Finish bounded fixes.** Review the WIP Language-All comparison change 95475, retain the abandoned overlapping changes 92585 and 94917 as superseded history and build on their merged replacement for TYPO3 v15 and TYPO3 14.3, progress copy/move integrity patches, validate the parent-selector and wizard drafts and resolve the failing strict-fallback regression patch.
+3. **Finish bounded fixes.** Rebase and review 95475, progress copy/move, parent-selector and wizard work, and complete review of the now mergeable Strict correction 94510. Build on merged 87595/96783, 94673/96935 and 97053/97225 without treating them as adoption of the future model.
 4. **Prototype product behavior before storage.** Test Editing Language, a mode-free Layout workflow, direct target-language creation, local structural additions and explicit absence with realistic editor workflows.
 5. **Validate the current structural preference against its countermodel.** Use the same acceptance cases for the shared hidden structure, complete per-language shadows, sparse records and any hybrid. Measure code and runtime simplification together with record growth, Layout density, Workspaces, references, migration and operational costs rather than treating database size alone as decisive.
 6. **Define and characterize first-stage parity.** Specify the all-target record flag, target creation, the full enforced field set, source and target identity, conflicts and every transition. Prove that it reproduces current `-1` output, then evaluate the separately decidable multi-select and other granular extensions against the same process.
@@ -56,7 +56,15 @@ These are the initiative's current best sequence of activities, not a committed 
 
 ## Evidence basis and maintenance
 
-This reconstruction includes all human-reviewed repository meeting minutes and transcripts through 2026-08-14. A supplied initiative-channel snapshot was reviewed as a supplemental source for durable use cases, implementation references and unminuted gaps; it does not advance the minute or transcript cutoffs. Current Gerrit, Forge and linked supporting-patch states in the achievement and work sections were checked as a complete set on 2026-08-28. The [T3DD26 presentation](https://content.eric-harrer.de/t3dd26/) presents the conceptual model used in this reconstruction.
+The reviewed meeting basis is reconciled through 2026-10-23, including the
+previously unregistered August 21 and 28 bundles. Repetition and off-topic
+material do not create new Knowledge. On 2026-10-30, all 50 previously linked
+Gerrit changes, two additional named changes, two discovered backports and
+the Recycler improvement 96916 were checked, together with the documented Forge issues and dbdoctor PRs. The
+documented Core paths were statically rechecked at a pinned TYPO3 v15 revision.
+This is not a fresh runtime test of every scenario or semantic human acceptance
+of the proposed Knowledge changes. The [dated audit](https://github.com/t3thi/Documentation/blob/main/KnowledgeSystem/Documentation/reviews/2026-10-30-freshness.md) records scope and remaining limits.
+The [T3DD26 presentation](https://content.eric-harrer.de/t3dd26/) remains conceptual background.
 
 For the current Language-All inventory, the [Human Review
 Explorer](https://content.eric-harrer.de/t3thi/reviews/95619/) exposes direct
@@ -78,8 +86,8 @@ Key primary evidence anchors are:
 | Complete layers, shadows and shared structure | [2025-07-18](https://notes.typo3.org/s/L0lQKrWaW), [2025-10-24](https://notes.typo3.org/s/2Ysd3gDdn), [2026-05-29](https://notes.typo3.org/s/0AJqa7JwuJ), [2026-07-10](https://notes.typo3.org/s/ccbVIOYfEy) |
 | Editing Language | [2026-05-08](https://notes.typo3.org/s/-0p3kqzMll), [2026-05-29](https://notes.typo3.org/s/0AJqa7JwuJ) |
 | Output policy, strict behavior and intentional absence | [2023-12-15](https://notes.typo3.org/s/ddSKDuz1Q), [2026-06-11](https://notes.typo3.org/s/1-J3KsT7VU), [2026-07-10](https://notes.typo3.org/s/ccbVIOYfEy), [2026-07-31](https://notes.typo3.org/s/z5ICno5pK2) |
-| Latest work and governance boundary | [2026-07-24](https://notes.typo3.org/s/Sn7GKjSk_3), [2026-07-31](https://notes.typo3.org/s/z5ICno5pK2) |
+| Latest prototype and editorial workflow | [2026-10-23](https://notes.typo3.org/s/TXqazBh8D3) |
 
-Future updates must follow the [Current State maintenance instructions](https://github.com/t3thi/Documentation/blob/main/MeetingMinutes/current-state-maintenance.md). The key rule is:
+Future updates must follow the [Current State maintenance instructions](https://github.com/t3thi/Documentation/blob/main/KnowledgeSystem/Documentation/current-state-maintenance.md). The key rule is:
 
 > **Update the current state, not the history.**

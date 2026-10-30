@@ -2,7 +2,7 @@
 id: topic:scope-governance
 title: "Scope and Governance"
 language: en
-updated: "2026-10-23"
+updated: "2026-10-30"
 knowledge:
   - K-000001
   - K-000005
@@ -27,7 +27,7 @@ decisions:
 
 # Translation Handling Initiative: Current State
 
-[Deutsche Fassung](https://notes.typo3.org/s/7bbwd73t2h) · [Meeting minutes overview](https://notes.typo3.org/s/f3ae8fZSD) · [How to maintain this document](https://github.com/t3thi/Documentation/blob/main/MeetingMinutes/current-state-maintenance.md)
+[Deutsche Fassung](https://notes.typo3.org/s/7bbwd73t2h) · [Meeting minutes overview](https://notes.typo3.org/s/f3ae8fZSD) · [How to maintain this document](https://github.com/t3thi/Documentation/blob/main/KnowledgeSystem/Documentation/current-state-maintenance.md)
 
 {{ publication-summary }}
 
@@ -43,12 +43,13 @@ The Translation Handling Initiative instead works on editor-maintained database 
 
 ## Reading guide
 
-The user-facing module names in this document follow the current TYPO3 v14
-Core labels: [Layout](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/backend/Resources/Private/Language/Modules/layout.xlf#L9-L13), [Records](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/backend/Resources/Private/Language/Modules/list.xlf#L9-L13) and [Media](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/filelist/Resources/Private/Language/module.xlf#L9-L13).
+The user-facing module names in this document follow the current TYPO3 v15
+Core labels: [Layout](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/backend/Resources/Private/Language/Modules/layout.xlf), [Records](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/backend/Resources/Private/Language/Modules/list.xlf) and [Media](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/filelist/Resources/Private/Language/module.xlf).
 
 At the external-status cutoff stated above, `main` represented the TYPO3 v15
-development line. Patch tables therefore use the concise release labels TYPO3
-v15, TYPO3 14.3 and TYPO3 13.4. An additional branch counts as a backport only
+development line. Patch tables use concise TYPO3 version numbers (15, 14.3,
+13.4); historical merges retain their original major line. A merge into a branch
+does not prove inclusion in a published patch release. A branch counts as a backport only
 when a corresponding Gerrit change exists; mention in a `Releases:` footer
 alone is not evidence of a pending or merged backport.
 

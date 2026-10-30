@@ -36,7 +36,7 @@ external_artifacts:
   - id: gerrit:95619
     relation: implements
     state: merged
-    verified_at: 2026-10-10
+    verified_at: 2026-10-30
 ---
 
 # Use one interim marker for current Language-All contexts

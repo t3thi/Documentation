@@ -137,8 +137,8 @@ def _publication_summary(
             )
         return (
             f"**Stand dieser Fassung:** Die Inhalte wurden zuletzt am {last_updated} aktualisiert. "
-            f"{reviewed_sources} Der vollständige externe Stand von TYPO3 Core, Gerrit und Forge "
-            f"wurde zuletzt am {external_through} geprüft. Sofern ein Eintrag keinen späteren "
+            f"{reviewed_sources} Die beschriebenen Core-Codepfade und die erfassten externen "
+            f"Patch- und Issue-Stände wurden zuletzt am {external_through} geprüft. Sofern ein Eintrag keinen späteren "
             "eigenen Prüfzeitpunkt nennt, sind die Angaben zu Patches und Reviews mit diesem "
             "Stichtag zu lesen."
         )
@@ -155,8 +155,8 @@ def _publication_summary(
         )
     return (
         f"**Status of this edition:** The content was last updated on {last_updated}. "
-        f"{reviewed_sources} The complete external state of TYPO3 Core, Gerrit and Forge was last "
-        f"checked on {external_through}. Unless an entry names a later individual verification "
+        f"{reviewed_sources} The documented Core paths and recorded external patch and issue states "
+        f"were last checked on {external_through}. Unless an entry names a later individual verification "
         "date, patch and review statuses should be read as of that date."
     )
 

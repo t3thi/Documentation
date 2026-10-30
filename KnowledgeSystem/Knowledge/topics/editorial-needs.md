@@ -2,7 +2,7 @@
 id: topic:editorial-needs
 title: "Editorial Needs and Use Cases"
 language: en
-updated: "2026-08-27"
+updated: "2026-10-30"
 knowledge:
   - K-000004
   - K-000006
@@ -29,7 +29,7 @@ The initiative's vision starts from concrete project and editorial needs. These 
 | **Regional fallback** | UK content should reuse general English, but not an unrelated terminal language. A site-wide chain cannot also express whether one missing position should fall back or remain intentionally absent. | Output Policy |
 | **Content for all languages** | A record uses `sys_language_uid = -1` to mean "all languages", although this is behavior rather than a human language. The same complete record is used in every language, and the special value affects many unrelated Core paths. | Synchronization Intent and Language Identity |
 | **Editing from a comprehensible language** | A Chinese editor may need to create Chinese content from English while the site default is German. A permanently privileged default-language column makes the workflow harder to understand. | Structural Identity and editorial context |
-| **File-metadata translation at scale** | The [Media module translation control](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/filelist/Classes/FileList.php#L1225-L1305) shows for each file whether metadata for a configured language can be created or edited. Creating or editing target-language alternative text remains a per-file workflow; no dedicated bulk creation or completeness workflow is evident in current Core. | Structural Identity and editorial workflow |
+| **File-metadata translation at scale** | The [Media module translation control](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/filelist/Classes/FileList.php) shows for each file whether metadata for a configured language can be created or edited. Creating or editing target-language alternative text remains a per-file workflow; no dedicated bulk creation or completeness workflow is evident in current Core. | Structural Identity and editorial workflow |
 | **Intentional absence** | A missing translation and an intentionally disabled or omitted translation can both lead to fallback. The editor's intent is not represented explicitly enough. | Output Policy |
 
 The "mostly connected, selectively different" case is the clearest description of the middle ground TYPO3 should support better and the overarching direction for most structural use cases. Target-language-only content is not a separate case; it is the local-addition form of the same requirement. Identical translated structures and fully independent structures are both valid. A small local exception should not force editors to give up the benefits of the shared majority. See the [June 2026 use-case analysis](https://notes.typo3.org/s/-RP1PwIafA) and its [July refinement](https://notes.typo3.org/s/ccbVIOYfEy).

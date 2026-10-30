@@ -2,7 +2,7 @@
 id: topic:evidence-maintenance
 title: "Nächste Schritte, Evidenz und Pflege"
 language: de
-updated: "2026-09-25"
+updated: "2026-10-30"
 knowledge:
   - K-000005
   - K-000006
@@ -27,9 +27,9 @@ history:
 decisions:
   - D-000001
 translation_of: topic:evidence-maintenance
-source_updated: "2026-09-25"
+source_updated: "2026-10-30"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:932d1548ab0aa0cefab61f65731c33f84248634ff9b54755ab8bab5b1b5d621c"
+source_digest: "sha256:4cb918eca1445bba4a13351de7a13deebca1ddf5e510f8db1957bf6b8cbddb7e"
 ---
 
 # Nächste Schritte, Evidenz und Pflege
@@ -52,7 +52,7 @@ Dies ist die aus heutiger Sicht sinnvollste Abfolge von Aktivitäten der Initiat
    TYPO3-v15-Selektoren eine Auswahl aller Overlays durch konkrete Sprach-IDs
    ausdrücken können; bekannte Lücken in Workspaces und DataHandler sind
    ebenfalls zu schließen.
-3. **Klar abgegrenzte Korrekturen abschließen.** Den WIP-Change 95475 zur Language-All-Vergleichsansicht reviewen, die aufgegebenen überlappenden Changes 92585 und 94917 als ersetzte Historie erhalten und auf ihrem gemergten Ersatz für TYPO3 v15 und TYPO3 14.3 aufbauen, Integritäts-Patches für Kopieren und Verschieben voranbringen, die Entwürfe zu Parent Selector und Wizard validieren und den fehlschlagenden Patch zur Strict-Fallback-Regression korrigieren.
+3. **Klar abgegrenzte Korrekturen abschließen.** 95475 rebasen und reviewen, Copy-/Move-, Parent-Selector- und Wizard-Arbeit voranbringen und das Review der inzwischen mergefähigen Strict-Korrektur 94510 abschließen. Auf 87595/96783, 94673/96935 und 97053/97225 aufbauen, ohne daraus eine Übernahme des Zukunftsmodells abzuleiten.
 4. **Produktverhalten vor der Speicherung prototypisch untersuchen.** Editing Language, einen Arbeitsablauf ohne Moduswahl im Modul „Layout“, direktes Anlegen in einer Zielsprache, lokale strukturelle Ergänzungen und explizite Abwesenheit anhand realistischer redaktioneller Abläufe prüfen.
 5. **Die aktuelle strukturelle Präferenz gegenüber ihrem Gegenmodell validieren.** Dieselben Akzeptanzfälle für die gemeinsame verborgene Struktur, vollständige Language-Layer-Shadows, Sparse Records und hybride Ansätze verwenden. Vereinfachungen von Code und Laufzeit gemeinsam mit Datensatzwachstum, Informationsdichte im Modul „Layout“, Workspaces, Referenzen, Migration und Betriebskosten messen, statt die Datenbankgröße allein als entscheidend zu behandeln.
 6. **Parität der ersten Stufe definieren und charakterisieren.** Das Flag für alle Ziele, die Zielanlage, die vollständige erzwungene Feldmenge, Quell- und Zielidentität, Konflikte und jeden Übergang spezifizieren. Zunächst nachweisen, dass damit die aktuelle `-1`-Ausgabe reproduziert wird, und anschließend das eigenständig zu entscheidende Multi-Select sowie andere granulare Erweiterungen am selben Prozess bewerten.
@@ -62,7 +62,15 @@ Dies ist die aus heutiger Sicht sinnvollste Abfolge von Aktivitäten der Initiat
 
 ## Evidenzbasis und Pflege
 
-Diese Rekonstruktion berücksichtigt alle von Menschen geprüften Sitzungsprotokolle und Transkripte des Repositorys bis einschließlich 14.08.2026. Ein bereitgestellter Snapshot des Initiative-Channels wurde ergänzend auf dauerhafte Use Cases, Implementierungsreferenzen und nicht protokollierte Lücken geprüft; die Stichtage für Protokolle und Transkripte werden dadurch nicht fortgeschrieben. Die aktuellen Gerrit-, Forge- und verlinkten Statusangaben unterstützender Patches in den Abschnitten zu Ergebnissen und laufender Arbeit wurden als vollständiger Satz am 28.08.2026 geprüft. Die [T3DD26-Präsentation](https://content.eric-harrer.de/t3dd26/) stellt das in dieser Rekonstruktion verwendete konzeptionelle Modell dar.
+Die Meetingbasis ist bis 23.10.2026 abgeglichen, einschließlich der zuvor
+unregistrierten Quellen vom 21./28. August. Wiederholungen und Off-Topic erzeugen
+kein neues Wissen. Am 30.10.2026 wurden 55 Gerrit-Changes geprüft: alle 50 bisher
+verlinkten, zwei zusätzlich benannte, zwei gefundene Backports und 96916.
+Forge-Issues, dbdoctor-PRs und die beschriebenen Core-Pfade wurden ebenfalls
+geprüft, letztere statisch an einer festen v15-Revision. Dies ist weder ein
+neuer Laufzeittest aller Szenarien noch eine fachliche Freigabe der Änderungen.
+Umfang und Grenzen stehen im [Prüfbericht](https://github.com/t3thi/Documentation/blob/main/KnowledgeSystem/Documentation/reviews/2026-10-30-freshness.md).
+Die [T3DD26-Präsentation](https://content.eric-harrer.de/t3dd26/) bleibt konzeptioneller Hintergrund.
 
 Für das aktuelle Language-All-Inventar stellt der [Human Review
 Explorer](https://content.eric-harrer.de/t3thi/reviews/95619/) direkte und
@@ -86,8 +94,8 @@ Zentrale Primärquellen sind:
 | Vollständige Ebenen, Shadows und gemeinsame Struktur | [18.07.2025](https://notes.typo3.org/s/L0lQKrWaW), [24.10.2025](https://notes.typo3.org/s/2Ysd3gDdn), [29.05.2026](https://notes.typo3.org/s/0AJqa7JwuJ), [10.07.2026](https://notes.typo3.org/s/ccbVIOYfEy) |
 | Editing Language | [08.05.2026](https://notes.typo3.org/s/-0p3kqzMll), [29.05.2026](https://notes.typo3.org/s/0AJqa7JwuJ) |
 | Output Policy, Strict-Verhalten und beabsichtigte Abwesenheit | [15.12.2023](https://notes.typo3.org/s/ddSKDuz1Q), [11.06.2026](https://notes.typo3.org/s/1-J3KsT7VU), [10.07.2026](https://notes.typo3.org/s/ccbVIOYfEy), [31.07.2026](https://notes.typo3.org/s/z5ICno5pK2) |
-| Jüngster Arbeitsstand und Entscheidungsgrenze | [24.07.2026](https://notes.typo3.org/s/Sn7GKjSk_3), [31.07.2026](https://notes.typo3.org/s/z5ICno5pK2) |
+| Jüngster Prototyp und redaktioneller Workflow | [23.10.2026](https://notes.typo3.org/s/TXqazBh8D3) |
 
-Zukünftige Aktualisierungen müssen den [Pflegehinweisen für den Current State](https://github.com/t3thi/Documentation/blob/main/MeetingMinutes/current-state-maintenance.md) folgen. Die zentrale Regel lautet:
+Zukünftige Aktualisierungen müssen den [Pflegehinweisen für den Current State](https://github.com/t3thi/Documentation/blob/main/KnowledgeSystem/Documentation/current-state-maintenance.md) folgen. Die zentrale Regel lautet:
 
 > **Aktualisiere den aktuellen Stand, nicht die Historie.**

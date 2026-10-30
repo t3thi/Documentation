@@ -2,7 +2,7 @@
 id: topic:editorial-needs
 title: "Redaktionelle Anforderungen und Use Cases"
 language: de
-updated: "2026-08-27"
+updated: "2026-10-30"
 knowledge:
   - K-000004
   - K-000006
@@ -13,9 +13,9 @@ knowledge:
 history: []
 decisions: []
 translation_of: topic:editorial-needs
-source_updated: "2026-08-27"
+source_updated: "2026-10-30"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:ff3545d52007bf90ed7a00f3436d14e45a40e09ee8b2f9615b11b7da230ab227"
+source_digest: "sha256:61ca337b5c0e0c5db18fa31df3271035cb3587dee73cd74abbb63c3471f4fc16"
 ---
 
 # Redaktionelle Anforderungen und Use Cases
@@ -33,7 +33,7 @@ Die Vision der Initiative geht von konkreten Projekt- und Redaktionsanforderunge
 | **Regionaler Fallback** | Inhalte für das Vereinigte Königreich sollen allgemeines Englisch wiederverwenden, aber nicht auf eine unpassende Sprache am Ende der Fallback Chain zurückfallen. Eine Site-weite Kette kann nicht zusätzlich ausdrücken, ob an einer fehlenden Position Fallback erfolgen oder diese bewusst leer bleiben soll. | Output Policy |
 | **Inhalte für alle Sprachen** | Ein Datensatz verwendet `sys_language_uid = -1` im Sinne von „alle Sprachen“, obwohl dies ein Verhalten und keine menschliche Sprache bezeichnet. Derselbe vollständige Datensatz wird in jeder Sprache verwendet, und der Sonderwert wirkt sich auf viele voneinander unabhängige Core-Pfade aus. | Synchronization Intent und Language Identity |
 | **Bearbeitung ausgehend von einer verständlichen Sprache** | Eine chinesische Redakteurin oder ein chinesischer Redakteur muss chinesische Inhalte gegebenenfalls ausgehend von Englisch erstellen, während die Default Language der Site Deutsch ist. Eine dauerhaft privilegierte Default-Language-Spalte erschwert es, diesen Arbeitsablauf zu verstehen. | Structural Identity und redaktioneller Kontext |
-| **Übersetzung von Dateimetadaten in größerem Umfang** | Das [Übersetzungsmenü des Moduls „Media“](https://github.com/TYPO3/typo3/blob/f1cb929fe861d3156d1735360aff0a710c884a0d/typo3/sysext/filelist/Classes/FileList.php#L1225-L1305) zeigt für jede Datei, ob Metadaten für eine konfigurierte Sprache angelegt oder bearbeitet werden können. Das Anlegen oder Bearbeiten zielsprachlicher Alternativtexte bleibt ein Ablauf pro Datei; im aktuellen Core ist kein eigener Ablauf für Massenerstellung oder Vollständigkeitsprüfung erkennbar. | Structural Identity und redaktioneller Arbeitsablauf |
+| **Übersetzung von Dateimetadaten in größerem Umfang** | Das [Übersetzungsmenü des Moduls „Media“](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/filelist/Classes/FileList.php) zeigt für jede Datei, ob Metadaten für eine konfigurierte Sprache angelegt oder bearbeitet werden können. Das Anlegen oder Bearbeiten zielsprachlicher Alternativtexte bleibt ein Ablauf pro Datei; im aktuellen Core ist kein eigener Ablauf für Massenerstellung oder Vollständigkeitsprüfung erkennbar. | Structural Identity und redaktioneller Arbeitsablauf |
 | **Beabsichtigte Abwesenheit** | Sowohl eine fehlende Übersetzung als auch eine bewusst deaktivierte oder ausgelassene Übersetzung können zu Fallback führen. Die redaktionelle Absicht wird nicht ausreichend explizit dargestellt. | Output Policy |
 
 „Mostly connected, selectively different“ beschreibt den Zwischenbereich, den TYPO3 besser unterstützen sollte, am deutlichsten und bildet die übergeordnete Stoßrichtung für die meisten strukturellen Use Cases. Inhalt ausschließlich für eine Zielsprache ist kein davon getrennter Use Case, sondern die Ausprägung einer lokalen Ergänzung innerhalb derselben Anforderung. Identische übersetzte Strukturen und vollständig unabhängige Strukturen sind beide valide. Eine kleine lokale Ausnahme sollte Redakteurinnen und Redakteure nicht dazu zwingen, die Vorteile des weitgehend gemeinsamen Inhalts aufzugeben. Siehe die [Use-Case-Analyse vom Juni 2026](https://notes.typo3.org/s/-RP1PwIafA) und ihre [Präzisierung vom Juli](https://notes.typo3.org/s/ccbVIOYfEy).

@@ -2,7 +2,7 @@
 id: topic:output-policy
 title: "Output Policy"
 language: de
-updated: "2026-10-23"
+updated: "2026-10-30"
 knowledge:
   - K-000013
   - K-000014
@@ -14,9 +14,9 @@ history:
 decisions:
   - D-000003
 translation_of: topic:output-policy
-source_updated: "2026-10-23"
+source_updated: "2026-10-30"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:fe9150aa3dd375fe4c805d5d87c3aa1602bd0df697be0efa78517f5fa9668ff4"
+source_digest: "sha256:76a7f50b44b7afc4be200871f4b67520740a6025682fb27d9834c4fbfe2cf537"
 ---
 
 # Output Policy
@@ -61,6 +61,10 @@ Konfiguration zerstören oder regionale Wiederverwendung ohne unerwünschte
 abschließende Default Language verlieren. Migration, lokale Abwesenheit,
 Berechtigungen, Workspaces und konsistente Abfragen müssen validiert werden,
 bevor dieser Vorschlag einen aktuellen Modus ersetzen kann.
+
+Die statische Prüfung vom 30.10.2026 bestätigt inzwischen die Kontextmenü-Aktion
+und den Wegfall des redundanten Labels im Prototyp. Dies ist keine neue
+Laufzeitvalidierung oder Übernahme des vollständigen Modells.
 
 **Offene Fragen:**
 

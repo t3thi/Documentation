@@ -2,7 +2,7 @@
 id: topic:output-policy
 title: "Output Policy"
 language: en
-updated: "2026-10-23"
+updated: "2026-10-30"
 knowledge:
   - K-000013
   - K-000014
@@ -41,9 +41,9 @@ records independently of the Default Language parent's visibility; with a
 chain, retain runtime fallback instead of complete fallback copies. The chain
 could replace `fallbackType`. A missing connected translation would permit
 fallback, a deliberately disabled one would stop it, and deletion would permit
-it again. The demonstrator now writes existing `hidden` fields. The meeting
-declined another override field and chose deliberate context-menu placement
-without a redundant label. Bulk writes do not restore previous mixed states.
+it again. The prototype now contains the context-menu action and writes existing
+`hidden` fields without another override field or redundant label, as confirmed
+by static inspection on 2026-10-30. Bulk writes do not restore previous mixed states.
 This bounded prototype agreement, recorded in a proposed Decision Record,
 does not adopt the full model, prove behavior parity or commit it to v15;
 equivalent API support and compatibility remain to be validated.

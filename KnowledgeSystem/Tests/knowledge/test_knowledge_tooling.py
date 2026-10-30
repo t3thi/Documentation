@@ -955,7 +955,7 @@ class GenerationTests(KnowledgeToolingTestCase):
         self.assertIn(
             "**Status of this edition:** The content was last updated on 11 August 2026. "
             "It includes reviewed meeting minutes and transcripts through 11 August 2026. "
-            "The complete external state of TYPO3 Core, Gerrit and Forge was last checked on "
+            "The documented Core paths and recorded external patch and issue states were last checked on "
             "11 August 2026. Unless an entry names a later individual verification date,",
             current_state,
         )
@@ -963,8 +963,8 @@ class GenerationTests(KnowledgeToolingTestCase):
         self.assertIn(
             "**Stand dieser Fassung:** Die Inhalte wurden zuletzt am 11. August 2026 aktualisiert. "
             "Berücksichtigt sind geprüfte Sitzungsprotokolle und Transkripte bis einschließlich "
-            "11. August 2026. Der vollständige externe Stand von TYPO3 Core, Gerrit und Forge "
-            "wurde zuletzt am 11. August 2026 geprüft. Sofern ein Eintrag keinen späteren eigenen "
+            "11. August 2026. Die beschriebenen Core-Codepfade und die erfassten externen "
+            "Patch- und Issue-Stände wurden zuletzt am 11. August 2026 geprüft. Sofern ein Eintrag keinen späteren eigenen "
             "Prüfzeitpunkt nennt,",
             german_current_state,
         )
@@ -973,6 +973,18 @@ class GenerationTests(KnowledgeToolingTestCase):
         self.assertNotIn("<!-- Source Topic:", current_state)
         self.assertNotIn("<!-- Source Topic:", german_current_state)
         self.assertEqual([], apply_generated_files(generate_views(self.fixture.repository()), check=True))
+
+    def test_publication_dates_do_not_conflate_update_and_source_coverage(self) -> None:
+        self.fixture.replace("KnowledgeSystem/Knowledge/sources.yaml", "last_updated: 2026-08-11", "last_updated: 2026-10-30")
+        self.fixture.replace("KnowledgeSystem/Knowledge/sources.yaml", "reviewed_minutes_through: 2026-08-11", "reviewed_minutes_through: 2026-10-23")
+        self.fixture.replace("KnowledgeSystem/Knowledge/sources.yaml", "external_status_verified_through: 2026-08-11", "external_status_verified_through: 2026-10-30")
+        generated = {item.path.name: item.content for item in generate_views(self.fixture.repository())}
+        self.assertIn("last updated on 30 October 2026", generated["current-state.md"])
+        self.assertIn("meeting minutes through 23 October 2026", generated["current-state.md"])
+        self.assertIn("transcripts through 11 August 2026", generated["current-state.md"])
+        self.assertIn("were last checked on 30 October 2026", generated["current-state.md"])
+        self.assertIn("Sitzungsprotokolle bis einschließlich 23. Oktober 2026", generated["current-state.de.md"])
+        self.assertIn("Transkripte bis einschließlich 11. August 2026", generated["current-state.de.md"])
 
     def test_current_state_deduplicates_repeated_absolute_links(self) -> None:
         url = "https://example.com/repeated-source"

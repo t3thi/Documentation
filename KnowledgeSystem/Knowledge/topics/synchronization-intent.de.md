@@ -2,7 +2,7 @@
 id: topic:synchronization-intent
 title: "Synchronization Intent"
 language: de
-updated: "2026-09-04"
+updated: "2026-10-30"
 knowledge:
   - K-000003
   - K-000004
@@ -16,9 +16,9 @@ knowledge:
 history: []
 decisions: []
 translation_of: topic:synchronization-intent
-source_updated: "2026-09-04"
+source_updated: "2026-10-30"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:f3941386c2b50d546f28e09f9b0f2605bf7eb720ac062bee8c9fc9f150477770"
+source_digest: "sha256:2e010b70b88c7df8474a70824255dc1b6c63e21905eaaf1fac09915c480d2434"
 ---
 
 # Synchronization Intent
@@ -80,13 +80,13 @@ Ein Boolean-Flag für alle Sprachen ist das nützliche minimale Kompatibilitäts
 **Möglicher technischer Wiederverwendungspfad für die erste Stufe mit `-1`-Parität:**
 
 1. Eine datensatzweite Synchronisierungsabsicht an einem führenden Datensatz wählt zunächst jede Zielsprache in ihrem definierten Site- oder Storage-Geltungsbereich aus.
-2. Der DataHandler stellt sicher, dass in jeder Zielsprache genau ein verbundener Zieldatensatz vorhanden ist. Das bestehende [`localize()`](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/DataHandling/DataHandler.php#L4735-L4918) validiert bereits die Ziel-Site-Language, verhindert Duplikate und bereitet Sprache, Parent und Quelle vor; [`localizeRecord()`](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/DataHandling/DataHandler.php#L4921-L5004) legt den Zieldatensatz durch eine verschachtelte DataHandler-Operation an.
-3. Jeder Zieldatensatz erhält in `l10n_state` einen erzwungenen Zustand oder eine gleichwertige neue Zustandsrepräsentation für jedes Feld, das zur Reproduktion des vollständigen Quelldatensatzes erforderlich ist. Der bestehende DataMapProcessor kann anschließend seine [Propagation vom Parent zu abhängigen Datensätzen für skalare Werte und Beziehungen](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/DataHandling/Localization/DataMapProcessor.php#L381-L452) wiederverwenden.
+2. Der DataHandler stellt sicher, dass in jeder Zielsprache genau ein verbundener Zieldatensatz vorhanden ist. Das bestehende [`localize()`](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/core/Classes/DataHandling/DataHandler.php) validiert bereits die Ziel-Site-Language, verhindert Duplikate und bereitet Sprache, Parent und Quelle vor; [`localizeRecord()`](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/core/Classes/DataHandling/DataHandler.php) legt den Zieldatensatz durch eine verschachtelte DataHandler-Operation an.
+3. Jeder Zieldatensatz erhält in `l10n_state` einen erzwungenen Zustand oder eine gleichwertige neue Zustandsrepräsentation für jedes Feld, das zur Reproduktion des vollständigen Quelldatensatzes erforderlich ist. Der bestehende DataMapProcessor kann anschließend seine [Propagation vom Parent zu abhängigen Datensätzen für skalare Werte und Beziehungen](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/core/Classes/DataHandling/Localization/DataMapProcessor.php) wiederverwenden.
 4. Spätere Änderungen durchlaufen dieselbe Abhängigkeitspipeline. Nachdem die funktionale Parität nachgewiesen ist, kann derselbe Vertrag ein eigenständig zu entscheidendes Multi-Select der Zielsprachen unterstützen und dabei die Erzwingung aller Felder innerhalb jedes ausgewählten Ziels beibehalten.
 
 „Jedes Feld“ bezeichnet jeden Wert, den der aktuelle `-1`-Datensatz absichtlich identisch bereitstellt, einschließlich Ausgabe- und Strukturwerten. Es bedeutet nicht, dass erzeugte Datensätze dieselben Werte für `uid`, `sys_language_uid`, `l10n_parent`, `l10n_source`, `l10n_state` oder Workspace- und Versionsmetadaten besitzen. Diese Felder stellen Identität und Lebenszyklus jedes Zieldatensatzes her. Die genaue Menge der vom Core verwalteten Ausnahmen muss anhand des Schemas definiert und in Tests charakterisiert werden.
 
-Dies ist ein möglicher Wiederverwendungspfad und keine unmittelbar einsetzbare Konfigurationsänderung. Die datensatzweite Absicht müsste für jedes zur Parität relevante Feld ihrer Ziele wirksame `enforceLanguageSynchronization`-Semantik ableiten. `l10n_mode=exclude` statisch an jedem TCA-Feld zu deklarieren, würde auch nicht synchronisierte Datensätze betreffen. Der aktuelle DataMapProcessor [überspringt `-1`-Datensätze und erfordert verbundene Zieldatensätze](https://github.com/TYPO3/typo3/blob/fe9189fcc3e559e1a442fc398291fed856bf6598/typo3/sysext/core/Classes/DataHandling/Localization/DataMapProcessor.php#L203-L284). Der neue datensatzweite Pfad muss Ziele daher auflösen, sie anlegen oder abgleichen, die vollständige erzwungene Feldmenge ableiten und die Aktivierung atomar sowie idempotent ausführen. Eine aktuelle `-1`-Quelle muss zunächst einem gültigen führenden Datensatz zugeordnet oder über einen neuen Anlagepfad behandelt werden, weil das bestehende `localize()` einen verbundenen Parent herstellt, wenn die Quelle ein Default-Language-Datensatz ist.
+Dies ist ein möglicher Wiederverwendungspfad und keine unmittelbar einsetzbare Konfigurationsänderung. Die datensatzweite Absicht müsste für jedes zur Parität relevante Feld ihrer Ziele wirksame `enforceLanguageSynchronization`-Semantik ableiten. `l10n_mode=exclude` statisch an jedem TCA-Feld zu deklarieren, würde auch nicht synchronisierte Datensätze betreffen. Der aktuelle DataMapProcessor [überspringt `-1`-Datensätze und erfordert verbundene Zieldatensätze](https://github.com/TYPO3/typo3/blob/cdaa725d2d8add6da57e37f269094e8a222973d7/typo3/sysext/core/Classes/DataHandling/Localization/DataMapProcessor.php). Der neue datensatzweite Pfad muss Ziele daher auflösen, sie anlegen oder abgleichen, die vollständige erzwungene Feldmenge ableiten und die Aktivierung atomar sowie idempotent ausführen. Eine aktuelle `-1`-Quelle muss zunächst einem gültigen führenden Datensatz zugeordnet oder über einen neuen Anlagepfad behandelt werden, weil das bestehende `localize()` einen verbundenen Parent herstellt, wenn die Quelle ein Default-Language-Datensatz ist.
 
 Beim Multi-Select kann das Hinzufügen einer Sprache dieselbe Operation „Ziel sicherstellen, dann alle Felder erzwingen“ wiederverwenden. Für das Entfernen einer Sprache ist eine explizite Lebenszyklusentscheidung erforderlich: den erzeugten Datensatz behalten und lösen, deaktivieren, als gelöscht markieren oder entfernen. Auch die gespeicherte Zielidentität muss Site-übergreifend aussagekräftig bleiben; heutige Site-lokale numerische IDs reichen für einen Shared-Storage-Vertrag nicht aus. Deshalb ist das Multi-Select eine konkrete Feature-Option mit Entscheidungsbedarf und weder eine implementierte Felddefinition noch ein festgelegter nächster Schritt.
 

@@ -149,6 +149,24 @@ summary near the beginning of each document. The visible summary explains the
 dates without exposing internal metadata field names. Do not maintain cutoff
 values in this file or edit the generated copies.
 
+`last_updated` is the last semantic edit, not proof of complete source or
+external freshness. The two meeting cutoffs describe complete incorporation
+of the reviewed source bundles; they are not simply the newest cited meeting.
+The external cutoff covers the documented Core paths and external artifacts,
+not an exhaustive audit of all TYPO3 code or a runtime acceptance test.
+
+For each weekly update, reconcile every available meeting since the previous
+cutoff, including `no-change` results, and close missing source registrations.
+A full freshness run must inventory every Gerrit URL in both Current State
+files, check branch-specific siblings/backports by Change-ID, recheck the
+documented Forge and supporting GitHub states, and pin the inspected Core
+revision. Update the canonical objects, all affected Topics and their German
+projections, then advance only the cutoffs actually covered by that run.
+Partial checks retain individual observation dates and must not claim a full
+refresh. Source coverage is separate from semantic acceptance: do not clear
+Knowledge/Decision or translation-review gates merely because an audit or
+build completed.
+
 ## Patch release-line labels
 
 Define the time-dependent meaning of TYPO3's `main` branch once in the Current
