@@ -1,8 +1,8 @@
 ---
 title: "Translation Handling Initiative - Aktueller Stand"
-last_updated: "2026-10-30"
-weekly_minutes_included_through: "2026-10-30"
-transcripts_included_through: "2026-10-30"
+last_updated: "2026-11-13"
+weekly_minutes_included_through: "2026-11-13"
+transcripts_included_through: "2026-11-13"
 external_status_checked_through: "2026-10-30"
 ---
 
@@ -15,7 +15,7 @@ Knowledge metadata. Do not edit it directly.
 
 [Englische Fassung](https://notes.typo3.org/s/RhkYPguwb) · [Übersicht der Sitzungsprotokolle](https://notes.typo3.org/s/f3ae8fZSD) · [Hinweise zur Pflege dieses Dokuments][cs7]
 
-**Stand dieser Fassung:** Die Inhalte wurden zuletzt am 30. Oktober 2026 aktualisiert. Berücksichtigt sind geprüfte Sitzungsprotokolle und Transkripte bis einschließlich 30. Oktober 2026. Die beschriebenen Core-Codepfade und die erfassten externen Patch- und Issue-Stände wurden zuletzt am 30. Oktober 2026 geprüft. Sofern ein Eintrag keinen späteren eigenen Prüfzeitpunkt nennt, sind die Angaben zu Patches und Reviews mit diesem Stichtag zu lesen.
+**Stand dieser Fassung:** Die Inhalte wurden zuletzt am 13. November 2026 aktualisiert. Berücksichtigt sind geprüfte Sitzungsprotokolle und Transkripte bis einschließlich 13. November 2026. Die beschriebenen Core-Codepfade und die erfassten externen Patch- und Issue-Stände wurden zuletzt am 30. Oktober 2026 geprüft. Sofern ein Eintrag keinen späteren eigenen Prüfzeitpunkt nennt, sind die Angaben zu Patches und Reviews mit diesem Stichtag zu lesen.
 
 Dies ist die deutsche Fassung der kanonischen Beschreibung des aktuellen Verständnisses, der Vision und der Arbeit der Translation Handling Initiative. Sie erläutert, warum die Initiative am Translation Handling arbeitet, welche Erkenntnisse ihre Forschung erbracht hat, welche Richtung sie derzeit verfolgt, welche Ansätze sie untersucht und welche Entscheidungen weiterhin offen sind.
 
@@ -428,6 +428,8 @@ brauchen unterscheidbare Semantik; ein neuer Zustand, ein Unterdrückungsfeld
 oder eine ausschließliche Workspace-Lösung sind nicht ausgewählt. Dies begrenzt
 den vorläufigen Ansatz, ohne ihn zu beschließen oder zu verwerfen.
 
+`languageMode: overlays/free` ([97535][cs24]) wurde gegenüber `fallbackType: connected` bevorzugt, nicht beschlossen. Floating Records sollen sichtbar bleiben. Ob `0` die Kette beendet und wie Seiten, Records und Extbase damit umgehen, muss geprüft werden. Für 94510 wurden ein Important-Changelog und Workspaces als mögliche Übergangshilfe angefragt, kein Backport beschlossen.
+
 **Offene Fragen:**
 
 - Welcher Zustand beendet Fallback für eine einzelne Position?
@@ -575,42 +577,37 @@ ohne Sprachunterstützung enthalten; `null` bedeutet uneingeschränkte Auswahl.
 Freie Sprach-Mehrfachauswahl und die Entfernung synthetischer Werte in anderen
 Pfaden sind damit nicht umgesetzt.
 
-## Laufende Arbeit mit Stand vom 30.10.2026
+## Laufende Core-Arbeit
 
-Der Gesamtabgleich prüfte Changes und verlinkte Issues am 30.10.2026;
-die Meeting-Nachbereitung prüfte danach nochmals 94510, 110008 und 88024.
-WIP hat Vorrang; sonst erfordern negative Stimmen,
-offene Kommentare oder Merge-Konflikte Nacharbeit. Review-positiv bedeutet:
-aktuelle positive Code-Review-Stimme, mergefähig, ohne diese Blocker; sonst
-Review ausstehend. Mergefähigkeit gilt gegenüber dem damaligen Ziel-Branch
-und ist keine Submit-Freigabe.
+Gesamtabgleich: 30.10.2026. Am 13.11.2026 wurden die Meeting-Changes und 93028 nachgeprüft. WIP hat Vorrang; negative Votes, offene Kommentare oder Konflikte erfordern Nacharbeit. Mergefähigkeit ist keine Submit-Freigabe.
 
 ### In Arbeit (WIP)
 
 | Patch | Ziel-Release-Linien und Backports | Aktueller Review-Stand | Merge-Konflikt | Geltungsbereich und Abgrenzung |
 |---|---|---|---|---|
-| [Forge 110510](https://forge.typo3.org/issues/110510) und [Gerrit 95475](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95475) | TYPO3 v15. | Patch Set 2; WIP; CI `+1`; keine ungelösten Kommentare. | **Ja** | Zeigt einen gespeicherten Language-All-Datensatz in mehreren Spalten. Der Spaltenkontext schützt die Sprache benachbarter Paste-/Move-Operationen; der gemeinsame Datensatz behält All beim Einfügen. Ein Sortierwert ermöglicht keine unabhängigen Free-Mode-Positionen. Die Move-Guard-Anforderung aus August bleibt zu prüfen. |
+| [Forge 110510](https://forge.typo3.org/issues/110510), [Gerrit 95475](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95475) | 15 | PS3; WIP; CI `+1`; 0 | Nein | Ein Language-All-Datensatz je Spalte sichtbar, mit eigenen DOM-IDs und datensatzbezogenem Zähler. Spaltenkontext und `-1` bleiben erhalten. Seitenübergreifender Refresh und Move-Guard offen; ein gemeinsamer Sortierwert bleibt. |
 | [Gerrit 92859](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92859) | TYPO3 v15. | Patch Set 6; WIP; CI `-1`; 6 ungelöste Kommentare. | **Ja** | Schlägt sprach- und Workspace-fähige MM-Tabellen vor. Das einheitliche Beziehungsmodell ist relevant, aber die Verwendung von Live-UIDs der Default Language ist ein inkrementeller Entwurf und keine Entscheidung über die zukünftige Structural Identity. |
 | [Gerrit 93289](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93289) | TYPO3 v15. | Patch Set 1; WIP; CI `+1`; keine ungelösten Kommentare. | Nein | Ergänzt Workspace-Abdeckung für das Einfügeverhalten von Language All und schließt vor semantischen Änderungen eine Charakterisierungslücke. |
-| [Gerrit 93819](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93819) | TYPO3 v15; 14.3 vorgesehen; kein Backport gefunden. | Patch Set 2; `[WIP]`; CI `+1`; keine ungelösten Kommentare. | **Ja** | Ergänzt Schutzmechanismen beim Verschieben von Free-Mode-Inhalten, während der aktuelle Free Mode weiterhin unterstützt wird. |
+| [Gerrit 93819](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93819) | 15; 14.3 geplant | PS2; WIP; CR `-1`; CI `+1`; 1 | **Ja** | Move-Guard erfasst direkte Sprachwechsel nicht. Verlustfreie DataHandler-Validierung vorgeschlagen. |
 | [Forge 110328](https://forge.typo3.org/issues/110328) und [Gerrit 95042](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95042) | TYPO3 v15. | Patch Set 1; `[WIP]`; CI `+1`; keine ungelösten Kommentare. | **Ja** | Beschränkt auswählbare Translation Parents, um doppelte oder strukturell ungültige Zuordnungen zu verhindern. Der Patch ist kein implementierter Fix. |
 | [Forge 110330](https://forge.typo3.org/issues/110330) und [Gerrit 95043](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95043) | TYPO3 v15. | Patch Set 1; `[WIP]`; CI `+1`; keine ungelösten Kommentare. | **Ja** | Verbirgt Connected Mode, wenn die Quelle keine Default-Language-Beziehung herstellen kann. Eine Free-Mode-Quelle kann die fehlende Verbindung nicht erzeugen. Das aktuelle Patch Set muss vor weiteren Reviews rebased werden. |
+| [Gerrit 97455](https://review.typo3.org/c/Packages/TYPO3.CMS/+/97455) | 15 | PS5; WIP; CI `-1`; 0 | Nein | Offene Alternative `fallbackType: connected`; im Meeting nicht bevorzugt. |
 
 ### Review-Nacharbeit erforderlich
 
 | Patch | Ziel-Release-Linien und Backports | Aktueller Review-Stand | Merge-Konflikt | Geltungsbereich und Abgrenzung |
 |---|---|---|---|---|
-| [Forge 110008](https://forge.typo3.org/issues/110008) und [Gerrit 94510][cs20] | TYPO3 v15; 14.3 beabsichtigt, kein Backport gefunden. | Patch Set 11; André: Code-Review `-1`, Verified `+1`; Benni: beides `+1`; CI `+1`; 1 ungelöster Kommentar. | Nein | Stoppt Fallback bei verstecktem Übersetzungskandidaten unter `fallbackType: strict`; bei fehlender Übersetzung bleibt Fallback möglich. Erfüllt nicht die gesamte Einsprachen-Anforderung, nicht gemergt. Release-/Backport-Strategie bleibt strittig. |
-| [Gerrit 92777](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92777) | TYPO3 v15; 14.3 vorgesehen; kein Backport gefunden. | Patch Set 10; zwei Code-Review `+1`; CI `+1`; 1 ungelöster Kommentar. | Nein | Beschränkt kopierte Free-Mode-Datensätze auf im Zielkontext verfügbare Sprachen. Dies verbessert die Integrität des aktuellen Modells, ohne ein zukünftiges Strukturmodell auszuwählen. |
-| [Gerrit 93063](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93063) | TYPO3 v15; 14.3 beabsichtigt, kein Backport gefunden. | Patch Set 8; CI `+1`; keine aktuelle Code-Review-Stimme oder ungelösten Kommentare. | **Ja** | Warnt vor verwaisten Übersetzungen, ohne Identität zu reparieren oder neu zu gestalten; Rebase erforderlich. |
+| [Forge 110008](https://forge.typo3.org/issues/110008), [Gerrit 94510][cs20] | 15; 14.3 geplant | PS11; CR `+1`; CI `+1`; 1 | Nein | Stoppt Strict-Fallback bei versteckter, nicht bei fehlender Übersetzung. Changelog, Sichtbarkeitsgrenzen und Backport offen. |
+| [Gerrit 92777](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92777) | 15; 14.3 geplant | PS10; CR `-1` / `+1`; CI `+1`; 2 | Nein | Effektive Zielsprache statt Quellsprache prüfen. Regeln für Storage Folder und `pid=0` offen. |
+| [Gerrit 93063](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93063) | 15; 14.3 geplant | PS9; CR `-1`; CI `+1`; 0 | Nein | Diagnose verwaister Übersetzungen; Prävention und Reparatur sind separate Vorschläge. |
+| [Gerrit 93752](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93752) | 15; 14.3 geplant | PS6; CR `-1`; CI `+1`; 1 | **Ja** | Zielsprache und Zugriffsprüfung vor Kindkopien; keine weiteren Übersetzungen beim Einfügen. Review offen. |
+| [Gerrit 97535][cs24] | 15 | PS1; CI `-1`; 0 | Nein | Vorgeschlagenes `languageMode: overlays/free`; Reihenfolge von `0`, Sichtbarkeit und Migration offen. |
 
 ### Review ausstehend
 
 | Patch | Ziel-Release-Linien und Backports | Aktueller Review-Stand | Merge-Konflikt | Geltungsbereich und Abgrenzung |
 |---|---|---|---|---|
-| [Gerrit 93028](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93028) | TYPO3 v15; 14.3 vorgesehen; kein Backport gefunden. | Patch Set 6; CI `+1`; keine aktuelle Code-Review-Stimme und kein ungelöster Kommentar. | Nein | Wendet die angeforderte Sprache des Parents auf neu erstellte Relation Child Records an und lässt bereits lokalisierte Child Records unverändert. |
 | [Gerrit 95038](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95038) | TYPO3 v15. | Patch Set 2; CI `+1`; keine aktuelle Code-Review-Stimme und kein ungelöster Kommentar. | Nein | Hält `pages.doktype` mittels `l10n_mode=exclude` an der Default-Language-Seite ausgerichtet und stellt für bereits abweichende Übersetzungen einen Upgrade Wizard bereit. Dies erzwingt eine Invariante des aktuellen Modells und wählt kein zukünftiges Strukturmodell aus. |
-| [Gerrit 93752](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93752) | TYPO3 v15; 14.3 beabsichtigt, kein Backport gefunden. | Patch Set 4; CI `+1`; keine aktuelle Code-Review-Stimme oder ungelösten Kommentare. | Nein | Überspringt Overlays beim Kopieren in eine Free-Mode-Sprache; inzwischen mergefähig, aber noch nicht positiv gereviewt oder gemergt. |
 
 ### Abgelehnt oder ersetzt
 
@@ -621,6 +618,7 @@ und ist keine Submit-Freigabe.
 | [Gerrit 84338](https://review.typo3.org/c/Packages/TYPO3.CMS/+/84338) | TYPO3 v15. | Am 23.10.2026 aufgegeben. | Nicht anwendbar | Konfigurierbare Default-Language-IDs wurden wegen weitreichender `0`-Annahmen aufgegeben. Der Autor bevorzugt die Untersuchung des Struktur-Layer-PoC; dies ist keine Core-Übernahme. |
 | [Gerrit 92267][cs19] | TYPO3 v15. | Am 07.10.2026 aufgegeben. | Nicht anwendbar | Früheres Annotationsinventar; 95619/96412 liefern stattdessen den begrenzten Marker. Keine Test-Suite oder semantische Ablösung. |
 | [Gerrit 95476](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95476) | Vorschlag für TYPO3 v15/14.3. | Am 23.10.2026 aufgegeben. | Nicht anwendbar | Ersetzt durch 87595/96783 mit dem oben beschriebenen umfassenderen Child-Sprachabgleich. |
+| [Gerrit 93028](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93028) | 15 / 14.3 | Am 11.11.2026 aufgegeben. | Nicht anwendbar | Aufgabe verweist auf den gemergten Sprachabgleich 87595. |
 
 ### Unterstützende Patches und Forschung ohne Patch
 
@@ -638,7 +636,7 @@ Die Vision ist ein Bewertungsrahmen und kein Grund, jede Teillösung abzulehnen.
 | Änderung oder Ansatz | Innerhalb des Geltungsbereichs gelöstes Problem | Bewertung anhand der vier Verantwortlichkeiten |
 |---|---|---|
 | [Eigene `colPos`- und `CType`-Werte für Connected Translations deaktivieren](https://review.typo3.org/c/Packages/TYPO3.CMS/+/85978), für TYPO3 v13 gemergt | Schützt strukturelle Konsistenz für verbundene Inhalte und Container. | Für verbundene Strukturen sinnvoll. Die Änderung entfernte zugleich einen Workaround, mit dem lokale Abwesenheit ausgedrückt wurde. Dies zeigt, weshalb Structural Identity und Output Policy jeweils einen eigenen expliziten Mechanismus benötigen. |
-| [Record-Overlay-Fallback-Chains](https://review.typo3.org/c/Packages/TYPO3.CMS/+/83169), für 14 gemergt, und [13.4-Backport 88828](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828); [94510][cs20] ist für 15 offen, 14.3 beabsichtigt, kein Backport gefunden | 94510 stoppt Fallback bei verstecktem Übersetzungskandidaten unter `fallbackType: strict`, nicht bei fehlender Übersetzung. | Funktionsnachweis klärt weder Einsprachen-Anforderung noch Kompatibilität. Patch Set 11 ist mergefähig, hat aber Code-Review `-1` und einen ungelösten Kommentar. Anforderung bleibt; das Meeting bestimmte weder eindeutig den auslösenden Commit noch die Release-Strategie. |
+| [Record-Overlay-Fallback-Chains](https://review.typo3.org/c/Packages/TYPO3.CMS/+/83169), für 14 gemergt, und [13.4-Backport 88828](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828); [94510][cs20] ist für 15 offen, 14.3 beabsichtigt, kein Backport gefunden | 94510 stoppt Fallback bei verstecktem Übersetzungskandidaten unter `fallbackType: strict`, nicht bei fehlender Übersetzung. | Funktionsnachweis klärt weder Einsprachen-Anforderung noch Kompatibilität. PS11 ist mergefähig mit Code-Review `+1`, aber Martins Thread bleibt offen. Anforderung bleibt; das Meeting bestimmte weder eindeutig den auslösenden Commit noch die Release-Strategie. |
 | Korrekturen am Vergleich in Free Mode und Mixed Mode | Machen unabhängige und verbundene Inhalte im aktuellen Modul „Layout“ sichtbar und richten sie aus. | Wertvolle Arbeit an der aktuellen UX. Sie erhält valide Unabhängigkeit und verdeutlicht zugleich strukturelle Beziehungen; sie muss nicht auf ein neues Datenmodell warten. |
 | MM-Kontext-Vorschlag | Reduziert Mehrdeutigkeit von Beziehungen über Sprachen und Workspaces hinweg. | Ein sinnvolles vorbereitendes Modell, sofern Migration sowie Extbase- und DataHandler-Verhalten konsistent bleiben. Es darf nicht mit der abschließenden semantischen Identität gleichgesetzt werden. |
 | Explizite Synchronisierung für alle Sprachen | Ersetzt eine gemeinsame `-1`-Datenbankzeile durch konkrete zielsprachliche Datensätze, deren für die Parität relevante Felder vollständig erzwungen bleiben. | Grundsätzlich klar an der Vision ausgerichtet. Die erste Stufe sollte das Verhalten des vollständigen Datensatzes ohne redaktionelle Abwahlmöglichkeit bewahren; Granularität folgt später. Der Ansatz wird unsicher, wenn Zielanlage, Lebenszyklus, Herkunft, Konflikte und Migration nicht definiert sind. |
@@ -723,7 +721,7 @@ Dies ist die aus heutiger Sicht sinnvollste Abfolge von Aktivitäten der Initiat
    TYPO3-v15-Selektoren eine Auswahl aller Overlays durch konkrete Sprach-IDs
    ausdrücken können; bekannte Lücken in Workspaces und DataHandler sind
    ebenfalls zu schließen.
-3. **Begrenzte Korrekturen abschließen.** 95475 rebasen, Copy-/Move-, Parent-Selector- und Wizard-Arbeit voranbringen, semantisches Review von 94510 klären: Funktionsnachweis ist keine Merge-Freigabe. Auf 87595/96783, 94673/96935 und 97053/97225 aufbauen, ohne daraus das Zukunftsmodell abzuleiten.
+3. **Begrenzte Korrekturen abschließen.** 95475 reviewen und seitenübergreifende Moves testen, Copy-/Move-, Parent-Selector- und Wizard-Arbeit voranbringen, semantisches Review von 94510 klären: Funktionsnachweis ist keine Merge-Freigabe. Auf 87595/96783, 94673/96935 und 97053/97225 aufbauen, ohne daraus das Zukunftsmodell abzuleiten.
 4. **Produktverhalten vor der Speicherung prototypisch untersuchen.** Editing Language, einen Arbeitsablauf ohne Moduswahl im Modul „Layout“, direktes Anlegen in einer Zielsprache, lokale strukturelle Ergänzungen und explizite Abwesenheit anhand realistischer redaktioneller Abläufe prüfen.
 5. **Die aktuelle strukturelle Präferenz gegenüber ihrem Gegenmodell validieren.** Dieselben Akzeptanzfälle für die gemeinsame verborgene Struktur, vollständige Language-Layer-Shadows, Sparse Records und hybride Ansätze verwenden. Vereinfachungen von Code und Laufzeit gemeinsam mit Datensatzwachstum, Informationsdichte im Modul „Layout“, Workspaces, Referenzen, Migration und Betriebskosten messen, statt die Datenbankgröße allein als entscheidend zu behandeln.
 6. **Parität der ersten Stufe definieren und charakterisieren.** Das Flag für alle Ziele, die Zielanlage, die vollständige erzwungene Feldmenge, Quell- und Zielidentität, Konflikte und jeden Übergang spezifizieren. Zunächst nachweisen, dass damit die aktuelle `-1`-Ausgabe reproduziert wird, und anschließend das eigenständig zu entscheidende Multi-Select sowie andere granulare Erweiterungen am selben Prozess bewerten.
@@ -733,17 +731,7 @@ Dies ist die aus heutiger Sicht sinnvollste Abfolge von Aktivitäten der Initiat
 
 ## Evidenzbasis und Pflege
 
-Die Meetingbasis ist bis 30.10.2026 abgeglichen, einschließlich der zuvor
-unregistrierten Quellen vom 21./28. August. Wiederholungen und Off-Topic erzeugen
-kein neues Wissen. Am 30.10.2026 wurden 55 Gerrit-Changes geprüft: alle 50 bisher
-verlinkten, zwei zusätzlich benannte, zwei gefundene Backports und 96916.
-Forge-Issues, dbdoctor-PRs und die beschriebenen Core-Pfade wurden ebenfalls
-geprüft, letztere statisch an einer festen v15-Revision. Dies ist weder ein
-neuer Laufzeittest aller Szenarien noch eine fachliche Freigabe der Änderungen.
-Umfang und Grenzen stehen im [Prüfbericht](https://github.com/t3thi/Documentation/blob/main/KnowledgeSystem/Documentation/reviews/2026-10-30-freshness.md).
-Die spätere Meeting-Nachbereitung prüfte nochmals 94510, 110008 und 88024,
-nicht das gesamte Inventar. Ihr [Bericht](https://github.com/t3thi/Documentation/blob/main/KnowledgeSystem/Documentation/reviews/2026-10-30-meeting-ingestion.md) trennt Anforderungen und Implementierung.
-Die [T3DD26-Präsentation](https://content.eric-harrer.de/t3dd26/) bleibt konzeptioneller Hintergrund.
+Die geprüfte Meetingbasis reicht bis 13.11.2026, einschließlich 21./28. August. Der [Gesamtabgleich vom 30.10.](https://github.com/t3thi/Documentation/blob/main/KnowledgeSystem/Documentation/reviews/2026-10-30-freshness.md) umfasste 55 Gerrit-Changes, Forge, dbdoctor und statische Core-Prüfungen. Am 13.11. wurden nur Meeting-Changes, 93028 und zugehörige Issues geprüft. Die [T3DD26-Präsentation](https://content.eric-harrer.de/t3dd26/) bleibt konzeptioneller Hintergrund.
 
 Für das aktuelle Language-All-Inventar stellt der [Human Review
 Explorer](https://content.eric-harrer.de/t3thi/reviews/95619/) direkte und
@@ -769,6 +757,7 @@ Zentrale Primärquellen sind:
 | Output Policy, Strict-Verhalten und beabsichtigte Abwesenheit | [15.12.2023](https://notes.typo3.org/s/ddSKDuz1Q), [11.06.2026][cs11], [10.07.2026][cs15], [31.07.2026][cs18] |
 | Jüngster Prototyp und redaktioneller Workflow | [23.10.2026](https://notes.typo3.org/s/TXqazBh8D3) |
 | Versteckte Entwürfe versus Auslassung; eigene Kinder versus geteilte Synchronisierungsziele | [30.10.2026](https://notes.typo3.org/s/8Dua37LZux) |
+| Fallback, Sprachwechsel und Kopierziele | [13.11.2026](https://notes.typo3.org/s/WWW9W-C8js) |
 
 Zukünftige Aktualisierungen müssen den [Pflegehinweisen für den Current State][cs7] folgen. Die zentrale Regel lautet:
 
@@ -797,3 +786,4 @@ Zukünftige Aktualisierungen müssen den [Pflegehinweisen für den Current State
 [cs21]: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95170
 [cs22]: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95199
 [cs23]: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95619
+[cs24]: https://review.typo3.org/c/Packages/TYPO3.CMS/+/97535

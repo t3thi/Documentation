@@ -2,7 +2,7 @@
 id: topic:critical-alignment
 title: "Critical Alignment and Open Decisions"
 language: en
-updated: "2026-10-30"
+updated: "2026-11-13"
 knowledge:
   - K-000001
   - K-000003
@@ -35,7 +35,7 @@ The vision is a review framework, not a reason to reject every partial solution.
 | Change or approach | Problem solved within its scope | Assessment against the four responsibilities |
 |---|---|---|
 | [Disable custom `colPos` and `CType` for connected translations](https://review.typo3.org/c/Packages/TYPO3.CMS/+/85978), merged for TYPO3 v13 | Protects structural consistency for connected content and containers. | Sound for connected structure. It also removed a workaround for expressing local absence, showing why Structural Identity and Output Policy need their own explicit mechanisms. |
-| [Record-overlay fallback chains](https://review.typo3.org/c/Packages/TYPO3.CMS/+/83169), merged for 14, and [13.4 backport 88828](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828); [94510](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) remains open for 15, with 14.3 intended but no backport found | 94510 stops fallback for a hidden translated candidate under `fallbackType: strict`, but retains missing-translation fallback. | Functional verification does not settle the single-language requirement or compatibility. Patch set 11 is mergeable but has Code-Review `-1` and one unresolved comment. The requirement remains intact; the meeting did not establish a definitive introducing commit or agree release policy. |
+| [Record-overlay fallback chains](https://review.typo3.org/c/Packages/TYPO3.CMS/+/83169), merged for 14, and [13.4 backport 88828](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828); [94510](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) remains open for 15, with 14.3 intended but no backport found | 94510 stops fallback for a hidden translated candidate under `fallbackType: strict`, but retains missing-translation fallback. | Functional verification does not settle the single-language requirement or compatibility. PS11 is mergeable with Code-Review `+1`, but Martin's thread remains unresolved. The requirement remains intact; the meeting did not establish a definitive introducing commit or agree release policy. |
 | Free/Mixed comparison fixes | Make independent and connected content visible and aligned in the current Layout module. | Valuable current UX work. They preserve valid independence while making structural relations clearer; they do not need to wait for a new data model. |
 | MM context proposal | Reduces relation ambiguity across languages and Workspaces. | A reasonable preparatory model if migration and Extbase/DataHandler behavior remain consistent. It should not be mistaken for final semantic identity. |
 | Explicit all-language synchronization | Replaces one shared `-1` row with concrete target-language records whose parity-relevant fields remain fully enforced. | Strongly aligned in principle. The first stage should preserve complete-record behavior without editor opt-out; granularity comes later. It becomes unsafe if target creation, lifecycle, provenance, conflict and migration rules are undefined. |

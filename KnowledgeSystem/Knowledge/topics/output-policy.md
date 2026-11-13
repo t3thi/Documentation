@@ -2,12 +2,13 @@
 id: topic:output-policy
 title: "Output Policy"
 language: en
-updated: "2026-10-30"
+updated: "2026-11-13"
 knowledge:
   - K-000013
   - K-000014
   - K-000020
   - K-000033
+  - K-000041
 history:
   - K-000024
   - K-000025
@@ -60,6 +61,8 @@ on it while expecting the previous fallback to remain visible. Treating every
 and unfinished translation both need representation; no new state, suppression
 field or Workspaces-only solution has been selected. This constrains the
 tentative proposal rather than adopting or rejecting it.
+
+`languageMode: overlays/free` ([97535](https://review.typo3.org/c/Packages/TYPO3.CMS/+/97535)) was preferred over `fallbackType: connected`, not adopted. Floating records should remain visible. Whether `0` terminates the chain and how pages, records and Extbase handle it require testing. The 94510 review requests an Important changelog and suggests Workspaces as a workaround; no backport was decided.
 
 **Open questions:**
 

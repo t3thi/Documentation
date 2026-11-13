@@ -2,7 +2,7 @@
 id: topic:current-core-work
 title: "Current Core Work"
 language: en
-updated: "2026-10-30"
+updated: "2026-11-13"
 knowledge:
   - K-000013
   - K-000015
@@ -20,6 +20,9 @@ knowledge:
   - K-000038
   - K-000039
   - K-000040
+  - K-000041
+  - K-000042
+  - K-000043
 history:
   - K-000030
   - K-000026
@@ -142,42 +145,37 @@ Recycler language includes stored All records and non-language-aware tables;
 unrestricted selection uses `null`. Arbitrary language multi-selection and
 synthetic-value removal elsewhere remain open, not completed by this fix.
 
-## Current work as of 2026-10-30
+## Current Core Work
 
-The full audit checked all listed changes and linked issues on 2026-10-30;
-the meeting follow-up rechecked 94510, 110008 and 88024 later that day.
-WIP takes precedence; otherwise
-negative votes, unresolved comments or merge conflicts require review action.
-Review-positive requires a current positive Code-Review, no such blocker and
-mergeability. Other open changes await review. Merge conflict reports Gerrit
-mergeability against the target branch on that date, not submit approval.
+Full audit: 2026-10-30. The meeting changes and 93028 were rechecked on 2026-11-13. WIP takes precedence; negative votes, unresolved comments or conflicts require action. Mergeability is not submit approval.
 
 ### Work in progress (WIP)
 
 | Patch | Target release lines and backports | Current review state | Merge conflict | Scope and boundary |
 |---|---|---|---|---|
-| [Forge 110510](https://forge.typo3.org/issues/110510) and [Gerrit 95475](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95475) | TYPO3 v15. | Patch set 2; WIP; CI `+1`; no unresolved comments. | **Yes** | Repeats one stored Language-All record across columns. Column context protects neighboring paste/move language; the shared record retains All on paste. One sorting value still cannot give independent Free-Mode positions. Review must address the August move-guard requirement. |
+| [Forge 110510](https://forge.typo3.org/issues/110510), [Gerrit 95475](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95475) | 15 | PS3; WIP; CI `+1`; 0 | No | One Language-All record appears in each column with distinct DOM IDs and record-based counts. Column context and `-1` are preserved. Cross-page refresh and move guard remain open; sorting is shared. |
 | [Gerrit 92859](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92859) | TYPO3 v15. | Patch set 6; WIP; CI `-1`; 6 unresolved comments. | **Yes** | Proposes language- and Workspace-aware MM tables. Its uniform relation model is relevant, but the use of live Default-Language UIDs is an incremental design, not a decision for future Structural Identity. |
 | [Gerrit 93289](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93289) | TYPO3 v15. | Patch set 1; WIP; CI `+1`; no unresolved comments. | No | Adds Workspace coverage for Language-All paste behavior and fills a characterization gap before semantic changes. |
-| [Gerrit 93819](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93819) | TYPO3 v15; 14.3 intended; no backport found. | Patch set 2; `[WIP]`; CI `+1`; no unresolved comments. | **Yes** | Adds move guards for Free-Mode content while current Free Mode remains supported. |
+| [Gerrit 93819](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93819) | 15; 14.3 intended | PS2; WIP; CR `-1`; CI `+1`; 1 | **Yes** | Move guard misses direct language changes. Lossless DataHandler validation is proposed. |
 | [Forge 110328](https://forge.typo3.org/issues/110328) and [Gerrit 95042](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95042) | TYPO3 v15. | Patch set 1; `[WIP]`; CI `+1`; no unresolved comments. | **Yes** | Restricts selectable translation parents to prevent duplicate or structurally invalid assignments. The patch is not an implemented fix. |
 | [Forge 110330](https://forge.typo3.org/issues/110330) and [Gerrit 95043](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95043) | TYPO3 v15. | Patch set 1; `[WIP]`; CI `+1`; no unresolved comments. | **Yes** | Hides Connected Mode when the source cannot establish a Default-Language relation. A Free-Mode source cannot create the missing connection. The current revision must be rebased before review can progress. |
+| [Gerrit 97455](https://review.typo3.org/c/Packages/TYPO3.CMS/+/97455) | 15 | PS5; WIP; CI `-1`; 0 | No | Open `fallbackType: connected` alternative; not preferred at the meeting. |
 
 ### Review action required
 
 | Patch | Target release lines and backports | Current review state | Merge conflict | Scope and boundary |
 |---|---|---|---|---|
-| [Forge 110008](https://forge.typo3.org/issues/110008) and [Gerrit 94510](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) | TYPO3 v15; 14.3 intended, no backport found. | Patch set 11; André: Code-Review `-1`, Verified `+1`; Benni: both `+1`; CI `+1`; 1 unresolved comment. | No | Stops a hidden translated candidate from falling back under `fallbackType: strict`; missing translations can still fall back. Not the complete single-language requirement, not merged. Release/backport policy remains disputed. |
-| [Gerrit 92777](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92777) | TYPO3 v15; 14.3 intended; no backport found. | Patch set 10; two Code-Review `+1`; CI `+1`; 1 unresolved comment. | No | Restricts copied Free-Mode records to languages available in the target context. This improves current-model integrity without selecting a future structure model. |
-| [Gerrit 93063](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93063) | TYPO3 v15; 14.3 intended, no backport found. | Patch set 8; CI `+1`; no current Code-Review vote or unresolved comment. | **Yes** | Warns about orphaned translations without repairing or redesigning identity; rebase is required. |
+| [Forge 110008](https://forge.typo3.org/issues/110008), [Gerrit 94510](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) | 15; 14.3 intended | PS11; CR `+1`; CI `+1`; 1 | No | Stops Strict fallback for hidden, not missing, translations. Changelog, visibility scope and backport remain open. |
+| [Gerrit 92777](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92777) | 15; 14.3 intended | PS10; CR `-1` / `+1`; CI `+1`; 2 | No | Validate effective target language, not source language. Storage-folder and `pid=0` rules remain open. |
+| [Gerrit 93063](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93063) | 15; 14.3 intended | PS9; CR `-1`; CI `+1`; 0 | No | Orphan diagnostics; prevention and repair are separate proposals. |
+| [Gerrit 93752](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93752) | 15; 14.3 intended | PS6; CR `-1`; CI `+1`; 1 | **Yes** | Target language and access are checked before child copying; translations are not copied along. Review remains open. |
+| [Gerrit 97535](https://review.typo3.org/c/Packages/TYPO3.CMS/+/97535) | 15 | PS1; CI `-1`; 0 | No | Proposed `languageMode: overlays/free`; ordering of `0`, visibility and migration remain open. |
 
 ### Awaiting review
 
 | Patch | Target release lines and backports | Current review state | Merge conflict | Scope and boundary |
 |---|---|---|---|---|
-| [Gerrit 93028](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93028) | TYPO3 v15; 14.3 intended; no backport found. | Patch set 6; CI `+1`; no current Code-Review vote or unresolved comment. | No | Applies the requested parent language to newly created relation children while leaving already localized children unchanged. |
 | [Gerrit 95038](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95038) | TYPO3 v15. | Patch set 2; CI `+1`; no current Code-Review vote or unresolved comment. | No | Keeps `pages.doktype` aligned with the Default-Language page through `l10n_mode=exclude` and provides an Upgrade Wizard for existing divergent translations. This enforces a current-model invariant rather than selecting a future structural model. |
-| [Gerrit 93752](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93752) | TYPO3 v15; 14.3 intended, no backport found. | Patch set 4; CI `+1`; no current Code-Review vote or unresolved comment. | No | Skips overlays when copying to a Free-Mode language; now mergeable but not yet reviewed positively or merged. |
 
 ### Rejected or superseded
 
@@ -188,6 +186,7 @@ mergeability against the target branch on that date, not submit approval.
 | [Gerrit 84338](https://review.typo3.org/c/Packages/TYPO3.CMS/+/84338) | TYPO3 v15. | Abandoned 2026-10-23. | Not applicable | Configurable Default Language IDs were abandoned because of pervasive `0` assumptions. The author prefers investigating the structure-layer PoC; this does not adopt it in Core. |
 | [Gerrit 92267](https://review.typo3.org/c/Packages/TYPO3.CMS/+/92267) | TYPO3 v15. | Abandoned 2026-10-07. | Not applicable | Earlier annotation inventory; merged 95619/96412 provide the bounded marker instead. Not a test suite or semantic replacement. |
 | [Gerrit 95476](https://review.typo3.org/c/Packages/TYPO3.CMS/+/95476) | TYPO3 v15/14.3 proposal. | Abandoned 2026-10-23. | Not applicable | Replaced by merged 87595/96783, whose broader child-alignment contract is described above. |
+| [Gerrit 93028](https://review.typo3.org/c/Packages/TYPO3.CMS/+/93028) | 15 / 14.3 | Abandoned 2026-11-11. | Not applicable | Abandonment cites merged child-language alignment 87595. |
 
 ### Supporting patches and non-patch research
 

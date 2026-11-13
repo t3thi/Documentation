@@ -2,21 +2,22 @@
 id: topic:output-policy
 title: "Output Policy"
 language: de
-updated: "2026-10-30"
+updated: "2026-11-13"
 knowledge:
   - K-000013
   - K-000014
   - K-000020
   - K-000033
+  - K-000041
 history:
   - K-000024
   - K-000025
 decisions:
   - D-000003
 translation_of: topic:output-policy
-source_updated: "2026-10-30"
+source_updated: "2026-11-13"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:c9532b92cd7d48530c2fa06d41d4c003185c18a1a899997148ecaf6ecce28e06"
+source_digest: "sha256:cf770cd0ae269c6319e0af7343bd1656c217bc820f6c8f58c24c17fa2cfa4ba5"
 ---
 
 # Output Policy
@@ -71,6 +72,8 @@ würde diesen Ablauf brechen. Bewusste Auslassung und unfertige Übersetzung
 brauchen unterscheidbare Semantik; ein neuer Zustand, ein Unterdrückungsfeld
 oder eine ausschließliche Workspace-Lösung sind nicht ausgewählt. Dies begrenzt
 den vorläufigen Ansatz, ohne ihn zu beschließen oder zu verwerfen.
+
+`languageMode: overlays/free` ([97535](https://review.typo3.org/c/Packages/TYPO3.CMS/+/97535)) wurde gegenüber `fallbackType: connected` bevorzugt, nicht beschlossen. Floating Records sollen sichtbar bleiben. Ob `0` die Kette beendet und wie Seiten, Records und Extbase damit umgehen, muss geprüft werden. Für 94510 wurden ein Important-Changelog und Workspaces als mögliche Übergangshilfe angefragt, kein Backport beschlossen.
 
 **Offene Fragen:**
 

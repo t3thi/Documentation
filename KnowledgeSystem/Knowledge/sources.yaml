@@ -1,8 +1,8 @@
 version: 1
 publication:
-  last_updated: "2026-10-30"
-  reviewed_transcripts_through: "2026-10-30"
-  reviewed_minutes_through: "2026-10-30"
+  last_updated: "2026-11-13"
+  reviewed_transcripts_through: "2026-11-13"
+  reviewed_minutes_through: "2026-11-13"
   external_status_verified_through: "2026-10-30"
 
 sources:
@@ -637,7 +637,7 @@ sources:
     authority: external-current
     availability: repository
     status: open-review-action-required
-    observed_at: "2026-10-30"
+    observed_at: "2026-11-13"
     revision: 5f5b7c72824cc6fcd3921c4f4fe40238e4fc02b2
   gerrit:94914:
     type: gerrit
@@ -685,7 +685,7 @@ sources:
     authority: external-current
     availability: repository
     status: open-wip
-    observed_at: "2026-10-30"
+    observed_at: "2026-11-13"
     revision: f9518beee05e88361d407dae457b80dfda54d5ba
   gerrit:95170:
     type: gerrit
@@ -725,8 +725,8 @@ sources:
     authority: external-current
     availability: repository
     status: open-wip
-    observed_at: "2026-10-30"
-    revision: b1b78ed2b34baac398e824537c7fa39b74ad56ac
+    observed_at: "2026-11-13"
+    revision: 92a9070582f8fada13ed6294ef792622f012e585
   gerrit:95476:
     type: gerrit
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/95476
@@ -827,9 +827,9 @@ sources:
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/93752
     authority: external-current
     availability: repository
-    status: open-awaiting-review
-    observed_at: "2026-10-30"
-    revision: 9335926f210d84971b5080a63cfa6e001dfc49f9
+    status: open-review-action-required
+    observed_at: "2026-11-13"
+    revision: 0c9f55025567c2628c1d910f131280f21054f2a3
 
   gerrit:94867:
     type: gerrit
@@ -863,8 +863,8 @@ sources:
     url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/93028
     authority: external-current
     availability: repository
-    status: open-awaiting-review
-    observed_at: "2026-10-30"
+    status: abandoned
+    observed_at: "2026-11-13"
     revision: 740aff9fed68617e02be463800481e8b07e6848b
 
   gerrit:89286:
@@ -900,8 +900,8 @@ sources:
     authority: external-current
     availability: repository
     status: open-review-action-required
-    observed_at: "2026-10-30"
-    revision: 07118485a7c9aa85cabd2ee31941756b603d2d86
+    observed_at: "2026-11-13"
+    revision: 8f5ae2eea75fbbb607b63b6699bee4f71f7aefb5
 
   gerrit:95043:
     type: gerrit
@@ -909,7 +909,7 @@ sources:
     authority: external-current
     availability: repository
     status: open-wip
-    observed_at: "2026-10-30"
+    observed_at: "2026-11-13"
     revision: 543c4a596d5c36b968c1c4fc0a5d5b171cfd2184
 
   gerrit:92881:
@@ -945,7 +945,7 @@ sources:
     authority: external-current
     availability: repository
     status: open-wip
-    observed_at: "2026-10-30"
+    observed_at: "2026-11-13"
     revision: 1fd1fe4567407aee58cfec813429e3c3c99fa332
 
   gerrit:87655:
@@ -1008,7 +1008,7 @@ sources:
     authority: external-current
     availability: repository
     status: open-review-action-required
-    observed_at: "2026-10-30"
+    observed_at: "2026-11-13"
     revision: eba7fb45fe25deee4227867a47f20431c6b04ce5
 
   gerrit:93289:
@@ -1213,3 +1213,53 @@ sources:
       Local HEAD contains an unmerged 94510 test commit above this baseline;
       its diff is treated as patch evidence, not upstream behavior. Existing
       origin/main has no changes to these paths. No runtime or v13 comparison.
+
+  transcript:2026-11-13:
+    type: transcript
+    path: "Transcripts/2026-11-13 12-00-29 - Meeting der Initiative.txt"
+    authority: primary-retained-meeting-source
+    availability: local-restricted
+    sha256: sha256:33e4f538060bbe937217d66086d6e96b3b6dd6e2a9df2b04af46140f43e242b2
+    reason: Raw transcripts remain ignored restricted local evidence.
+  minutes:2026-11-13:
+    type: meeting-minutes
+    path: MeetingMinutes/Weekly/2026/11/13.md
+    url: https://notes.typo3.org/s/WWW9W-C8js
+    authority: reviewed-meeting-projection
+    availability: repository
+    derived_from:
+      - transcript:2026-11-13
+    generated_with:
+      skill: skill:t3thi-meeting-minutes
+    review_status: reviewed
+
+  gerrit:97535:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/97535
+    authority: external-current
+    availability: repository
+    status: open-review-action-required
+    observed_at: "2026-11-13"
+    revision: da022406fd4809f9f092afe66ea6e3d9d8d75271
+  gerrit:97455:
+    type: gerrit
+    url: https://review.typo3.org/c/Packages/TYPO3.CMS/+/97455
+    authority: external-current
+    availability: repository
+    status: open-wip
+    observed_at: "2026-11-13"
+    revision: 50b6b4680de6a146f2d90a8cb076d952349705f7
+  forge:111386:
+    type: forge
+    url: https://forge.typo3.org/issues/111386
+    authority: external-current
+    availability: repository
+    status: under-review
+    observed_at: "2026-11-13"
+  forge:108358:
+    type: forge
+    url: https://forge.typo3.org/issues/108358
+    authority: external-current
+    availability: repository
+    status: under-review
+    observed_at: "2026-11-13"

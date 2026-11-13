@@ -2,7 +2,7 @@
 id: topic:critical-alignment
 title: "Kritische Ausrichtung und offene Entscheidungen"
 language: de
-updated: "2026-10-30"
+updated: "2026-11-13"
 knowledge:
   - K-000001
   - K-000003
@@ -23,9 +23,9 @@ knowledge:
 history: []
 decisions: []
 translation_of: topic:critical-alignment
-source_updated: "2026-10-30"
+source_updated: "2026-11-13"
 translation_reviewed_at: "2026-08-14"
-source_digest: "sha256:ecbe94e33e2dbcae4bf8060796c1557e2876021bbfe996bcb8f9b0ee3d32b2e3"
+source_digest: "sha256:9482d5290b6cb877c7a5311344fd122830a3cd23ecf437c055d68561bd4b9494"
 ---
 
 # Kritische Ausrichtung und offene Entscheidungen
@@ -39,7 +39,7 @@ Die Vision ist ein Bewertungsrahmen und kein Grund, jede Teillösung abzulehnen.
 | Änderung oder Ansatz | Innerhalb des Geltungsbereichs gelöstes Problem | Bewertung anhand der vier Verantwortlichkeiten |
 |---|---|---|
 | [Eigene `colPos`- und `CType`-Werte für Connected Translations deaktivieren](https://review.typo3.org/c/Packages/TYPO3.CMS/+/85978), für TYPO3 v13 gemergt | Schützt strukturelle Konsistenz für verbundene Inhalte und Container. | Für verbundene Strukturen sinnvoll. Die Änderung entfernte zugleich einen Workaround, mit dem lokale Abwesenheit ausgedrückt wurde. Dies zeigt, weshalb Structural Identity und Output Policy jeweils einen eigenen expliziten Mechanismus benötigen. |
-| [Record-Overlay-Fallback-Chains](https://review.typo3.org/c/Packages/TYPO3.CMS/+/83169), für 14 gemergt, und [13.4-Backport 88828](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828); [94510](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) ist für 15 offen, 14.3 beabsichtigt, kein Backport gefunden | 94510 stoppt Fallback bei verstecktem Übersetzungskandidaten unter `fallbackType: strict`, nicht bei fehlender Übersetzung. | Funktionsnachweis klärt weder Einsprachen-Anforderung noch Kompatibilität. Patch Set 11 ist mergefähig, hat aber Code-Review `-1` und einen ungelösten Kommentar. Anforderung bleibt; das Meeting bestimmte weder eindeutig den auslösenden Commit noch die Release-Strategie. |
+| [Record-Overlay-Fallback-Chains](https://review.typo3.org/c/Packages/TYPO3.CMS/+/83169), für 14 gemergt, und [13.4-Backport 88828](https://review.typo3.org/c/Packages/TYPO3.CMS/+/88828); [94510](https://review.typo3.org/c/Packages/TYPO3.CMS/+/94510) ist für 15 offen, 14.3 beabsichtigt, kein Backport gefunden | 94510 stoppt Fallback bei verstecktem Übersetzungskandidaten unter `fallbackType: strict`, nicht bei fehlender Übersetzung. | Funktionsnachweis klärt weder Einsprachen-Anforderung noch Kompatibilität. PS11 ist mergefähig mit Code-Review `+1`, aber Martins Thread bleibt offen. Anforderung bleibt; das Meeting bestimmte weder eindeutig den auslösenden Commit noch die Release-Strategie. |
 | Korrekturen am Vergleich in Free Mode und Mixed Mode | Machen unabhängige und verbundene Inhalte im aktuellen Modul „Layout“ sichtbar und richten sie aus. | Wertvolle Arbeit an der aktuellen UX. Sie erhält valide Unabhängigkeit und verdeutlicht zugleich strukturelle Beziehungen; sie muss nicht auf ein neues Datenmodell warten. |
 | MM-Kontext-Vorschlag | Reduziert Mehrdeutigkeit von Beziehungen über Sprachen und Workspaces hinweg. | Ein sinnvolles vorbereitendes Modell, sofern Migration sowie Extbase- und DataHandler-Verhalten konsistent bleiben. Es darf nicht mit der abschließenden semantischen Identität gleichgesetzt werden. |
 | Explizite Synchronisierung für alle Sprachen | Ersetzt eine gemeinsame `-1`-Datenbankzeile durch konkrete zielsprachliche Datensätze, deren für die Parität relevante Felder vollständig erzwungen bleiben. | Grundsätzlich klar an der Vision ausgerichtet. Die erste Stufe sollte das Verhalten des vollständigen Datensatzes ohne redaktionelle Abwahlmöglichkeit bewahren; Granularität folgt später. Der Ansatz wird unsicher, wenn Zielanlage, Lebenszyklus, Herkunft, Konflikte und Migration nicht definiert sind. |
